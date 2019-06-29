@@ -3,7 +3,7 @@ languageCode = "en-us"
 title = "Jihad D. Waspada"
 
 theme = "hugo-theme-cactus-plus"
-googleAnalytics = "your_google_analytics_id"
+googleAnalytics = "UA-142998318-1"
 # Set the value to true if your site include CJK (Chinese, Japanese, and Korean languages) characters
 hasCJKLanguage = false
 
@@ -12,8 +12,8 @@ hasCJKLanguage = false
 	description = "Site Description"
 	bio = "Software Developer | FP Enthusiast 🇮🇩🇳🇱"
 
-	twitter = "54723950"
-	facebook = "100000017572948"
+	twitter = "Dewey92"
+	facebook = "dewey.macro"
 
 	enableRSS = true
 	enableToc = true
@@ -70,7 +70,6 @@ hasCJKLanguage = false
 	iconFont = "font-awesome"
   # The social icons can be styled differently if you use mono as font - circle, rounded, or empty
   socialIconStyle = ""
-
 
 # Add additional social link entries underneath
 [social]

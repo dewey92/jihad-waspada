@@ -4,6 +4,7 @@ date: 2019-06-29T15:10:02+02:00
 description: Tidak selamanya orang yang bekerja di luar negeri haruslah orang yang hebat. Dan tidak selamanya bekerja di luar negeri itu sesulit yang dibayangkan
 tags: ["belanda", "developer", "work"]
 categories: ["work"]
+images: ["/uploads/amsterdam-night.jpg"]
 image:
   src: "/uploads/amsterdam-night.jpg"
   caption: Image by <a href="https://pixabay.com/users/ansgarscheffold-12599326/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=4230946">Ansgar Scheffold</a> from <a href="https://pixabay.com/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=4230946">Pixabay</a>
@@ -54,7 +55,7 @@ Bulan Januari 2018 saya terbang ke Belanda. Persiapannya pun hanya satu hari: Se
 
 "Lho, katanya dulu sudah les Bahasa Inggris, mas?". Betul saya sudah les, pun dapat nilai yang cukup memuaskan dalam tes IELTS. Tapi bukan berarti bahasa Inggris saya _sudah sebagus itu_ dan percaya diri dalam berkomunikasi. Conversation saya masih belepotan hehe.
 
-Daaan setelah 3 bulan saya mulai melihat kenyataan bahwa mereka pun banyak melakukan kesalahan _here and there_ karena sejatinya mereka sendiri  bukan native speaker. Saya seringkali mendengar "belum siapnya berbahasa Inggris" menjadi salah faktor terbesar orang Indonesia ogah merantau ke luar negeri. Bahkan saya punya beberapa kolega yang Bahasa Inggris-nya sangat amburadul tapi tetep _stay cool_, yang penting dimengerti. Saya juga pernah ngobrol sama seorang developer asal Rusia yang Bahasa Inggrisnya masyaallah hancur sampai-sampai gak terhitung saya bilang "_sorry?_", tapi dia sukses bekerja di perusahaan sebesar [Booking.com](https://www.booking.com/). Jadi santai aja lagi, kita semua paham kok kita bukan native speaker 🙂
+Daaan setelah 3 bulan saya mulai melihat kenyataan bahwa mereka pun banyak melakukan kesalahan _here and there_ karena sejatinya mereka sendiri  bukan native speaker. Saya seringkali mendengar "belum siapnya berbahasa Inggris" menjadi salah satu faktor terbesar orang Indonesia ogah merantau ke luar negeri. Bahkan saya punya beberapa kolega yang Bahasa Inggris-nya sangat amburadul tapi tetep _stay cool_, yang penting dimengerti. Saya juga pernah ngobrol sama seorang developer asal Rusia yang Bahasa Inggrisnya masyaallah hancur sampai-sampai gak terhitung saya bilang "_sorry?_", tapi dia sukses bekerja di perusahaan sebesar [Booking.com](https://www.booking.com/). Jadi santai aja lagi, kita semua paham kok kita bukan native speaker 🙂
 
 > Bahasa Inggris masih kurang bagus gak masalah, asalkan kita betul-betul paham apa yang orang lain bicarakan, dan orang lain betul-betul paham apa yang kita bicarakan.
 
