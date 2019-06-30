@@ -11,7 +11,7 @@ image:
 draft: false
 ---
 
-Nggak sedikit dari teman-teman saya bertanya bagaimana saya bisa bekerja di luar negeri &mdash; di Belanda tapatnya &mdash; dan menetap di sana. Dan banyak yang menganggap bahwa pastilah saya seorang developer handal sampai-sampai saya bisa relokasi ke Belanda. Saya cuman bisa bilang "Amin" dan berdoa semoga suatu saat saya bisa jadi developer handal 😅 Sebenarnya banyak developer asal Indonesia yang sukses bekerja merantau di negeri orang, seperti Mas Zain, Mas Elky, Mas Sonny, Mas Irham, yang tentunya jauh lebih hebat dari saya. Jujur saya bekerja di Belanda ini sebatas karena faktor _luck_ saja, atau lebih tepatnya karena **kebesaran dan kuasa Tuhan** 🙏🏻
+Nggak sedikit dari teman-teman saya bertanya bagaimana saya bisa bekerja di luar negeri &mdash; di Belanda tepatnya &mdash; dan menetap di sana. Dan banyak yang menganggap bahwa pastilah saya seorang developer handal sampai-sampai saya bisa relokasi ke Belanda. Saya cuman bisa bilang "Amin" dan berdoa semoga suatu saat saya bisa jadi developer handal 😅 Sebenarnya banyak developer asal Indonesia yang sukses bekerja merantau di negeri orang, seperti Mas Zain, Mas Elky, Mas Sonny, Mas Irham, yang tentunya jauh lebih hebat dari saya. Jujur saya bekerja di Belanda ini sebatas karena faktor _luck_ saja, atau lebih tepatnya karena **kebesaran dan kuasa Tuhan** 🙏🏻
 
 ---
 
@@ -69,12 +69,14 @@ Yang membuat mencari pekerjaan **terasa** agak sulit adalah karena tidak semua i
 
 Namun secara keseluruhan, permintaan pasar untuk developer masih sangat besar 🙂
 
+EDIT: Saya sudah bekerja di perusahaan yang baru semenjak awal Juni 2019, masih di sekitaran Amsterdam. Alhamdulillah.
+
 ---
 
 Beberapa _takeaway_ receh dari saya pribadi sebelum _blindly apply for jobs_ di luar negeri:
 
 - Matangkan kemampuan berbahasa Inggris. Nggak harus sempurna, tapi cukup mengerti dan dimengerti.
-- Kita bisa mencari pekerjaan di luar negeri melalui [Stackoverflow](https://stackoverflow.com/). Jangan lupa mencari perusahaan yang menyediakan paket "Visa Sponsorship" atau "Relocation" karena elemen ini yang memungkinkan kita untuk relokasi ke negara tujuan.
+- Kita bisa mencari pekerjaan di luar negeri melalui [Stackoverflow](https://stackoverflow.com/). Jangan lupa mencari perusahaan yang menyediakan paket "Visa Sponsorship" atau "Relocation" karena elemen ini yang memungkinkan kita untuk relokasi ke negara tujuan. Di Stackoverflow ini juga, saya pernah ditawari pekerjaan lewst Inbox di Berlin tapi sayangnya waktu itu sedang persiapan keberangkatan ke Belanda. Maka, update profile [Developer Story](https://stackoverflow.com/users/story/3956497) temen-temen, cari pekerjaan di halaman [Jobs dengan filter Visa Sponspors dan Relocation](https://stackoverflow.com/jobs?v=true&t=true), insyallah banyak opportunity di sana. Sebelum berangkat ke Belanda saya juga aktif cari di Stackoverflow, pun sewaktu saya masih mencari pekerjaan baru. Silakan dicoba 😉
 - Lihat bagaimana sistem pajak yang berlaku di negera tujuan. Saya punya pengalaman yang cukup buruk di awal-awal waktu saya tinggal di Belanda: pajak terlampau tinggi dan kami tidak mempersiapkan diri secara mental dan finansial. Walaupun pada akhirnya kami sebagai expat mendapatkan keringanan pajak selama 5 tahun awal dan pajak yang telah kami bayarkan dikembalikan ([30% ruling](https://www.iamsterdam.com/en/living/take-care-of-official-matters/highly-skilled-migrants/thirty-percent-ruling)), kita tetap harus tau supaya tidak terlalu kaget dan merasa kecewa.
 - Punya _financial backup_. Pada waktu keberangkatan saya ke Belanda, saya hampir-hampir tidak memiliki tabungan yang mencukupi bahkan untuk tinggal di Belanda selama 1 bulan saja. Oleh karenanya, saya mendadak meminjam sejumlah uang yang bisa dibilang cukup besar ke orang tua dan berangsur mencicilnya 🤦🏻
 - Punya Mastercard atau Visa. Di beberapa negara seperti Belanda, mereka tidak menerima cash sama sekali untuk kebutuhan-kebutuhan tertentu: seperti beli tiket transportasi umum, pembayaran registrasi imigrasi, dan pembayaran-pembayaran lainnya. Kita tidak bisa serta merta membuka akun bank di sini, ada syarat yang harus dipenuhi. Sampai syarat tersebut terpenuhi, akan sangat _handy_ jika kita tetap bisa melakukan pembayaran secara _cashless_.
