@@ -16,7 +16,7 @@ hasCJKLanguage = false
 	facebook = "dewey.macro"
 
 	enableRSS = true
-	enableToc = true
+	enableToc = false
 
 	enableDisqus = false
 	disqusShortname = "your_disqus_short_name"
