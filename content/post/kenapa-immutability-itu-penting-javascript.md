@@ -29,7 +29,7 @@ const name = "Jihad"
 name = "Dzikri"
 ```
 
-Javascript akan complain bahwa variable `name` tidak dadat diubah: `Uncaught TypeError: Assignment to constant variable`. Mirip-mirip begitu lah. Selama saya bekerja dengan Javascript tiga tahun belakangan, saya hampir-hampir tidak pernah menggunakan `let` dan lebih memilih `const`. Sekedar menghindari _mutability_.
+Javascript akan complain bahwa variable `name` tidak dapat diubah: `Uncaught TypeError: Assignment to constant variable`. Mirip-mirip begitu lah. Selama saya bekerja dengan Javascript tiga taun belakangan, saya hampir-hampir tidak pernah menggunakan `let` dan lebih memilih `const`. Sekedar menghindari _mutability_.
 
 ```js
 let i = 9
