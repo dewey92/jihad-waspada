@@ -7,9 +7,13 @@ googleAnalytics = "UA-142998318-1"
 # Set the value to true if your site include CJK (Chinese, Japanese, and Korean languages) characters
 hasCJKLanguage = false
 
+# syntax highlighting
+pygmentsStyle = "dracula"
+# pygmentsOptions = "linenos=inline"
+
 [params]
 	author = "Jihad D. Waspada"
-	description = "Site Description"
+	description = "Jihad Dzikri Waspada's personal blog"
 	bio = "Software Developer | FP Enthusiast 🇮🇩🇳🇱"
 
 	twitter = "Dewey92"
