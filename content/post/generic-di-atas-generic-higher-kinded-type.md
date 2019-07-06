@@ -214,4 +214,4 @@ Jika teman-teman tertarik belajar Haskell atau Purescript yang memiliki konsep T
 
 Beberapa library mencoba meng-encode konsep HKT ke dalam Typescript. Yang paling terkenal adalah [fp-ts](https://github.com/gcanti/fp-ts). Dulu kami pernah menggunakan library ini di production, tapi kami merasa terlalu verbose dan kurang cocok dengan tim sehingga penggunaannya kami minimalisir. Ada juga alternatif lain yang mungkin lebih simple, [hkts](https://github.com/pelotom/hkts), belum pernah nyoba tapi hehe.
 
-Akhirul kalam, semoga artikel ini dapat menambah wawasan temen-temen dalam dunia programming terutama di bidang type theory. Kalau mau ngasih komentar atau masukan, bisa langsung ke Twitter saya aja, kita diskusi disitu biar asik 😉. _Arriverdeci!_
+Akhirul kalam, semoga artikel ini dapat menambah wawasan temen-temen dalam dunia programming terutama di bidang type theory. Kalau mau ngasih komentar atau masukan, [bisa langsung ke Twitter saya aja, kita diskusi disitu biar asik](https://twitter.com/Dewey92/status/1147535086453178369) 😉. _Arriverdeci!_
