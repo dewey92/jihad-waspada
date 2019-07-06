@@ -1,5 +1,5 @@
 ---
-title: "Generic di atas Generic: Higher Kinded Type"
+title: "Generic di atas Generic: Higher-Kinded Type"
 date: 2019-07-06T15:30:24+02:00
 description: "Setiap value ada type-nya. Dan setiap type ada kind-nya."
 images: ["/uploads/stairs.jpg"]
