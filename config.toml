@@ -9,6 +9,7 @@ hasCJKLanguage = false
 
 # syntax highlighting
 pygmentsStyle = "dracula"
+pygmentsUseClasses = false
 # pygmentsOptions = "linenos=inline"
 
 [params]

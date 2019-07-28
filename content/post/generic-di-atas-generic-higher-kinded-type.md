@@ -6,7 +6,7 @@ images: ["/uploads/stairs.jpg"]
 image:
   src: "/uploads/stairs.jpg"
   caption: Photo by <strong><a href="https://www.pexels.com/@blitzboy?utm_content=attributionCopyText&amp;utm_medium=referral&amp;utm_source=pexels">Sindre Strøm</a></strong> from <strong><a href="https://www.pexels.com/photo/photo-of-sneakers-1497406/?utm_content=attributionCopyText&amp;utm_medium=referral&amp;utm_source=pexels">Pexels</a></strong>
-tags: ["typescript", "haskell", "purescript"]
+tags: ["typescript", "haskell", "purescript", "polymorphism"]
 categories: ["programming", "functional programming", "type system"]
 draft: false
 ---
