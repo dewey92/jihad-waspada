@@ -159,9 +159,7 @@ const addLastName = <A extends FName>(
 ```js
 const person = { firstName: 'jihad', email: 'email@email.email' }
 const res = addLastName(person)
-res.email
-    ^^^^^
-// Property 'email' does not exist on type 'FName & { lastName: string; }'.
+// { firstName: 'jihad', lastName: 'jihad', email: 'email@email.email' }
 ```
 
 ## Deleting
