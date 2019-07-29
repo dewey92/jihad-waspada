@@ -205,4 +205,6 @@ const x2 = rename({ x: 17, y: 8 }, 'y', 'z')
 ```
 
 # Kesimpulan
-Sebuah fungsi yang row-polymorphic adalah fungsi yang reusable, dapat digunakan oleh berbagai macam record selama memenuhi constraint-nya. Typescript sendiri sudah menyediakan sekumpulan _utlity types_ (seperti Union, Intersection, Exclude, dsb) yang bisa digunakan untuk mendukung Row Polymorphism dengan cukup mudah. Yah, menurut saya sih lebih mudah dibanding [RP nya Purescript](https://github.com/purescript/purescript-record/blob/master/src/Record.purs) yang... sudahlah 😄
+Sebuah fungsi yang row-polymorphic adalah fungsi yang reusable, dapat digunakan oleh berbagai macam record selama memenuhi constraint-nya. Row Polymorphism di Typescript lumrahnya ditandai dengan keyword `extends` agar compiler tidak kehilangan informasi tipe rows yang sedang dimanipulasi. Terjaganya informasi ini sangat dibutuhkan ketika kita ingin mengembalikan object tersebut kembali (_the row type parameter appears in the return type_).
+
+Typescript sendiri sudah menyediakan sekumpulan _utlity types_ (seperti Union, Intersection, Exclude, dsb) yang bisa digunakan untuk mendukung Row Polymorphism dengan cukup mudah. Yah, menurut saya sih lebih mudah dibanding [RP nya Purescript](https://github.com/purescript/purescript-record/blob/master/src/Record.purs) yang... sudahlah 😄
