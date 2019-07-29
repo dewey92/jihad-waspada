@@ -66,6 +66,7 @@ pygmentsUseClasses = true
 	enableShare = true
 	tweet = "Twitter"
 	share = "FB"
+	githubLink = "https://github.com/dewey92/jihad-waspada"
 
 	# 404 page
 	title404 = ""

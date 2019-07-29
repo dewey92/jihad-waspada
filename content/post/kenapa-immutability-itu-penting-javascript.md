@@ -29,7 +29,7 @@ const name = "Jihad"
 name = "Dzikri"
 ```
 
-Javascript akan complain bahwa variable `name` tidak dadat diubah: `Uncaught TypeError: Assignment to constant variable`. Mirip-mirip begitu lah. Selama saya bekerja dengan Javascript tiga tahun belakangan, saya hampir-hampir tidak pernah menggunakan `let` dan lebih memilih `const`. Sekedar menghindari _mutability_.
+Javascript akan complain bahwa variable `name` tidak dapat diubah: `Uncaught TypeError: Assignment to constant variable`. Mirip-mirip begitu lah. Selama saya bekerja dengan Javascript tiga tahun belakangan, saya hampir-hampir tidak pernah menggunakan `let` dan lebih memilih `const`. Sekedar menghindari _mutability_.
 
 ```js
 let i = 9
@@ -225,7 +225,7 @@ Jika object `user` diubah dengan cara yang _mutable_, component tersebut gak aka
 Sekarang kita sudah cukup paham _behaviour_ Object di Javascript yang memiliki nature _pass by reference_ 🎉 Ada beberapa keuntungan yang didapat jika menghindari mutasi variable dan object.
 
 - Sadar atau tidak sadar, ketiga function di atas (`solusi1`, `solusi2`, `solusi3`) semuanya adalah _pure function_. Yang dimaksud dengan _pure function_ adalah function yang tidak mengubah nilai di luar scope-nya. Ketiga function tersebut tidak mengubah object `user`, mereka justru **mengembalikan object baru**.
-- Karena _pure function_ inilah, Kita bisa mencapai [Referential transparency](https://en.wikipedia.org/wiki/Referential_transparency). Sehingga nggak akan ada ceritanya suatu function ngebuat error di bagian aplikasi yang lain yang sama sekali gak ada hubungannya sama function ini. _Unknown side effects are always evil_.
+- Karena _pure function_ inilah [Referential transparency](https://en.wikipedia.org/wiki/Referential_transparency) dapat tercapai. Sehingga nggak akan ada ceritanya suatu function ngebuat error bagian aplikasi yang lain yang sama sekali gak ada hubungannya sama function ini. _Unknown side effects are always evil_.
 - Dan yang paling penting: memudahkan proses debugging! Gak pingin kan dijadiin bahan cacian sama developer lain yang maintain code kita nantinya hanya karena **rookie mistake** begini.. 🤪
 - Di beberapa bahasa yang support multithreading semacam Java atau Scala, Immutability dapat [menghindari program dari _race condition_ dan berjalan di thread yang safe](https://pasztor.at/blog/why-immutability-matters)
 

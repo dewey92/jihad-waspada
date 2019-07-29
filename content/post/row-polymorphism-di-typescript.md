@@ -11,7 +11,7 @@ categories: ["programming", "type system"]
 draft: false
 ---
 
-## Selecting
+# Intro
 Pada suatu hari ada sebuah object koordinat 3 dimensi yang memiliki attribute X, Y, dan Z
 
 ```ts
@@ -96,14 +96,16 @@ Maka `flipX` tidak lagi sepenuhnya row-polymorphic. Akan terlihat ketika sebuah 
 ```js
 const coord3d = { x: 17, y: 8, z: 45 }
 const res = flipX(coord3d)
-res.z
+res.y
     ^
-// Property 'z' does not exist on type 'X'.
+// Property 'y' does not exist on type 'X'.
 ```
 
-Inilah basic dari definisi Row Polymorphism yang memungkinkan kita untuk membuat program yang polymorphic terhadap rows tanpa kehilangan informasi row sama sekali (kayak barusan).
+Compiler sekarang kehilangan informasi row y (dan row z!) karena notasi dari fungsi `flipX` yang hanya menyatakan X sebagai return type-nya.
 
-Tapi jangan salah, kalau mau dibuat lebih constrained juga boleh kok. Misal kita mau punya function yang hanya menerima `x` saja. Jika ada attribute tambahan selain `x`, atau object yang tidak memiliki row `x`, compiler harus complain.
+Inilah dasar dari definisi Row Polymorphism, yang memungkinkan kita untuk membuat program yang polymorphic terhadap rows **tanpa kehilangan informasi row sama sekali** (kayak barusan).
+
+Tapi jangan salah, kalau mau dibuat lebih constrained juga boleh kok. Misal kita ingin menulis sebuah function yang hanya menerima row `x` saja, tidak lebih tidak kurang. Otherwise compiler will complain.
 
 ```ts
 type Exact<O, E> = E & Record<Exclude<keyof O, keyof E>, never>
@@ -204,5 +206,5 @@ const x2 = rename({ x: 17, y: 8 }, 'y', 'z')
 // { x: 17, z: 8 }
 ```
 
-## Kesimpulan
+# Kesimpulan
 Sebuah fungsi yang row-polymorphic adalah fungsi yang reusable, dapat digunakan oleh berbagai macam record selama memenuhi constraint-nya. Typescript sendiri sudah menyediakan sekumpulan _utlity types_ (seperti Union, Intersection, Exclude, dsb) yang bisa digunakan untuk mendukung Row Polymorphism dengan cukup mudah. Yah, menurut saya sih lebih mudah dibanding [RP nya Purescript](https://github.com/purescript/purescript-record/blob/master/src/Record.purs) yang... sudahlah 😄

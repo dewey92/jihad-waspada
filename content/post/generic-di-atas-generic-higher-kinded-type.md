@@ -113,14 +113,14 @@ Kejadian ini membuat kita berasumsi jauh ke depan bagaimana jika suatu saat nant
 
 _And this is the time_: untuk membuat abstraksi dari solusi yang diinginkan, sebagai seorang developer kita harus bisa melihat pola dari masalah yang ada terlebih dahulu. Mari kita bandingkan function type `arrayifyArray` dengan `arrayifyTree`, maka kita akan menemukan bahwa kedua function type tersebut ternyata memiliki pola yang sangat mirip:
 
-```hs
+```ts
 arrayifyArray<T>(array: Array<T>): Array<[T]>
 arrayifyTree <T>( tree:  Tree<T>):  Tree<[T]>
 ```
 
 Yang membedakan keduanya hanyalah type constructor `Array` dan `Tree`. AHA-moment datang 💡, sekarang kita mulai membayangkan solusi yang lebih generic, yang mengasbtraksi (tidak lagi terikat dengan) "type constructor" `Array` maupun `Tree`:
 
-```hs
+```ts
 arrayify<DS, T>(arrayable: DS<T>): DS<[T]>
 ```
 
