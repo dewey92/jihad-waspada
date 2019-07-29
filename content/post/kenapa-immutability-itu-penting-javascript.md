@@ -137,7 +137,7 @@ _Now it works.._
 
 Prinsip di atas bisa diaplikasikan juga untuk **Object di dalam Object**. Karena sejatinya operasi `{ ...user }` tidaklah cukup jika object `user` memiliki object lagi.
 
-{{< highlight js "linenos=inline,noclasses=false,hl_lines=2 10-13" >}}
+{{< highlight js "linenos=table,hl_lines=2 10-13" >}}
 function removeProfilePicture(user) {
   const noPicture = { ...user }
   noPicture.profile.picture = undefined
@@ -190,7 +190,7 @@ console.log(typeof [])
 
 Dibilang Javascript ini rada-rada. Tapi intinya, diperlukan kehati-hatian juga dalam hal ini.
 
-{{< highlight js "noclasses=false,hl_lines=4" >}}
+{{< highlight js "hl_lines=4" >}}
 const persons = [{ age: 23 }, { age: 25 }]
 
 const newPersons = persons.map(person => {

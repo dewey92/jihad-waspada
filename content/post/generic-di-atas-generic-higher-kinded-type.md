@@ -21,13 +21,13 @@ Kalau temen-temen pernah baca-baca atau belajar Functional Programming menggunak
 ## Array
 Sebelum membahas lebih dalam tentang Higher-Kinded Type, ada baiknya kita mengingat-ingat kembali apa itu Generics. Dan, gak ada data structure generic yang lebih sederhana dan umum digunakan di dunia Typescript kecuali Array.
 
-{{< highlight typescript >}}
+```ts
 interface Array<T> {
   // ... map, filter, reduce, length, dll
 }
 
 const languages: Array<string> = ['javascript', 'typescript', 'purescript']
-{{< /highlight >}}
+```
 
 > ⚠️ IMPORTANT: type seperti `string`, `number`, `Date`, dll **yang tidak menerima generic disebut "(concrete) type"**. Sedangkan `Array` **disebut "type constructor" karena dapat menghasilkan concrete type (dengan mengambil generic)**. Bagaimana dengan `Array<string>`? Apakah termasuk "type" atau "type constructor"? Jawabannya: "type".
 
@@ -49,7 +49,7 @@ So, function `arrayifyArray` ini bersifat _polymorphic_: dimana ia mengubah `Arr
 ## Tree
 Beberapa bulan kemudian, Project Manager [dateng bawa berita duka](https://www.instagram.com/p/Bk4m_FrB0pR/): kita diminta untuk menambahkan struktur data Tree karena ternyata _requirement_ proyek sudah mulai melebar.
 
-{{< highlight typescript >}}
+```ts
 type Tree<T> = Leaf<T> | Branch<T>
 type Leaf<T> = {
   _type: 'leaf';
@@ -80,7 +80,7 @@ const treeA: Tree<number> = branch(
     leaf(3)
   )
 )
-{{< /highlight >}}
+```
 
 Dasar emang PM ini plin-plan dan kurang bisa nego sama client, dia sekarang minta juga untuk dibuatkan fungsi `arrayifyTree` persis seperti fungsi `arrayifyArray` yang sudah dibuat tadi. Sebagai developer [bike-bike](https://www.instagram.com/p/BvOSn0pD0A5/), kita buatkan saja fungsinya:
 
@@ -158,7 +158,7 @@ Type parameter `a` bisa disubstitusi dengan `Array` dan `Tree`, artinya `a` memi
 
 Lagi-lagi, kalau "style" di atas diterapkan di Typescript, saya rasa tetap belum bisa sepenuhnya akurat.
 
-{{< highlight typescript "hl_lines=2 14 15,linenos=inline" >}}
+{{< highlight typescript "hl_lines=2 14 15,linenos=table,noclasses=false" >}}
 interface Arrayable<T> {
   arrayify(): Arrayable<[T]>
 }

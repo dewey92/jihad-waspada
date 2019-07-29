@@ -9,8 +9,8 @@ hasCJKLanguage = false
 
 # syntax highlighting
 pygmentsStyle = "dracula"
-pygmentsUseClasses = false
-# pygmentsOptions = "linenos=inline"
+pygmentsUseClasses = true
+# pygmentsOptions = "linenos=table"
 
 [params]
 	author = "Jihad D. Waspada"
