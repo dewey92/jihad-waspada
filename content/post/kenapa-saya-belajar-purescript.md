@@ -261,6 +261,4 @@ Kemudian learning resource-nya juga masih terbilang sedikit. Kebanyakan _techniq
 ## Epilog
 Sejauh ini kesan saya belajar Purescript masih positif. Teman-teman bisa pantau [projek sampingan saya di Github](https://github.com/dewey92/pureshell) sebagai progres saya belajar Purescript. Sekian jam dari awal pengerjaan projek sampai setidaknya penulisan artikel ini (sekitar 42-an jam, tracking dari wakatime) saya belum pernah menemukan runtime error seperti "Undefined is not a function", "Cannot convert undefined or null to object", atau error-error lainnya yang umum didapati ketika mengembangkan aplikasi menggunakan Javascript.
 
-Purescript is a safe language, dengan segala bentuk konsekuensinya. Static typing-nya mungkin akan sering membuat kita frustasi, tapi akan selalu berujung pada apresiasi; terutama saat runtime. Yang senang senam otak saat development time mungkin bisa mencoba Purescript haha.
-
-Terima kasih sudah membaca artikel ini panjang-panjang, semoga tidak sia-sia. Selamat malam 🙂
+Purescript is a safe language, dengan segala bentuk konsekuensinya. Static typing-nya mungkin akan sering membuat kita frustasi, tapi akan selalu berujung pada apresiasi; terutama saat runtime. Yang senang senam otak saat development time mungkin suatu saat bisa mencoba Purescript haha. Selamat malam ✌🏻😃
