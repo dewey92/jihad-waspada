@@ -1,7 +1,7 @@
 ---
 title: "Row Polymorphism di Typescript"
 date: 2019-07-28T16:35:16+02:00
-description: "RP merupakan fitur yang sangat penting bagi sebuah bahasa yang banyak berinteraksi dengan record, seperti Typescript"
+description: "Fitur yang sangat penting bagi bahasa pemrograman yang banyak berinteraksi dengan record, seperti Typescript"
 images: ["/uploads/dna.jpg"]
 image:
   src: "/uploads/dna.jpg"
@@ -11,7 +11,7 @@ categories: ["programming", "type system"]
 draft: false
 ---
 
-# Intro
+## Intro
 Pada suatu hari ada sebuah object koordinat 3 dimensi yang memiliki attribute X, Y, dan Z
 
 ```ts
@@ -123,7 +123,7 @@ exact({ y: 2, z: 3 }) // complain ✅
 
 Plis jangan muntah liat syntax-nya ya!
 
-## Adding
+### Adding
 Row Polymorphism nggak sebatas bisa baca row aja, tapi harusnya juga bisa melakukan manipulasi terhadap rows: seperti penambahan, pengurangan, dan penamaan ulang.
 
 Anggap kita punya function yang polymorphic dengan row `firstName` bertipe string, yang menambahkan row `lastName` (jika belum ada) sebagai return value-nya.
@@ -162,7 +162,7 @@ const res = addLastName(person)
 // { firstName: 'jihad', lastName: 'jihad', email: 'email@email.email' }
 ```
 
-## Deleting
+### Deleting
 Sekarang kita balik: kita ingin membuat sebuah function yang polymorphic terhadap row `firstName` dan `lastName` (keduanya bertipe string), dan ingin menghilangkan `lastName` dari object tersebut.
 
 Typescript sudah menyediakan helper type untuk operasi ini dengan menggunakan [Exclude](https://www.typescriptlang.org/docs/handbook/advanced-types.html).
@@ -181,7 +181,7 @@ const removeLastName = <A extends Names>(
 }
 ```
 
-## Renaming
+### Renaming
 Menurut saya renaming ini adalah operasi gabungan dari `adding` dan `deleting`. Anggap kita ingin mengubah label (key) row y menjadi z. Operasi ini dapat dilakukan dengan dua cara yang identik:
 
 1. Tambah row `z` kemudian hapus row `y`, atau
@@ -204,7 +204,7 @@ const x2 = rename({ x: 17, y: 8 }, 'y', 'z')
 // { x: 17, z: 8 }
 ```
 
-# Kesimpulan
+## Kesimpulan
 Sebuah fungsi yang row-polymorphic adalah fungsi yang reusable, dapat digunakan oleh berbagai macam record selama memenuhi constraint-nya. Row Polymorphism di Typescript lumrahnya ditandai dengan keyword `extends` agar compiler tidak kehilangan informasi tipe rows yang sedang dimanipulasi. Terjaganya informasi ini sangat dibutuhkan ketika kita ingin mengembalikan object tersebut kembali (_the row type parameter appears in the return type_).
 
 Typescript sendiri sudah menyediakan sekumpulan _utlity types_ (seperti Union, Intersection, Exclude, dsb) yang bisa digunakan untuk mendukung Row Polymorphism dengan cukup mudah. Yah, menurut saya sih lebih mudah dibanding [RP nya Purescript](https://github.com/purescript/purescript-record/blob/master/src/Record.purs) yang... sudahlah 😄

@@ -21,7 +21,7 @@ delete newState.profile.picture // <- This guy!
 
 Langsung aja kami misuh-misuh di tempat, "_This is such a ridiculous bug!_ 💩💩💩😡🤬🤬🤬"
 
-# Const dan Let
+## Const dan Let
 Sebelum memahami kenapa kami bisa menyimpulkan code di atas adalah biang masalahnya, saya mau mengulas dulu apa sih Immutability itu. <mark>Immutability dalam programming adalah suatu value yang tidak bisa diubah ketika sudah dideklarasikan</mark>. Perhatikan potongan code berikut
 
 ```js
@@ -56,8 +56,8 @@ console.log(10 === 11) // FALSE!
 
 Sampe sejauh ini kita paham bahwa `const` bisa digunakan ketika kita ingin variable tersebut tidak bisa diganti, dan `let` bisa digunakan ketika ada variable yang ingin diganti _over time_.
 
-# Object di Javascript
-## Flat Object
+## Object di Javascript
+### Flat Object
 Gak selamanya variable yang dideklarasikan menggunakan `const` itu nggak bisa berubah. Iya, Javascript ini emang rada-rada gaes. Contohnya gimana, Mas Jihad?
 
 ```js
@@ -133,7 +133,7 @@ _Now it works.._
 
 > Saya pribadi lebih suka `solusi2` dan menghindari sebisa mungkin `solusi1`. Dan saya rekomendasikan teman-teman untuk pakai `solusi2` sebisa mungkin supaya gak dituduh orang yang tidak bertangungjawab. Hehe canda, biar lebih mudah aja kalau punya nested object 👇🏻
 
-## Nested Object
+### Nested Object
 
 Prinsip di atas bisa diaplikasikan juga untuk **Object di dalam Object**. Karena sejatinya operasi `{ ...user }` tidaklah cukup jika object `user` memiliki object lagi.
 
@@ -180,7 +180,7 @@ function solusi3(user) {
 
 Mirip dengan `solusi2`. Dan alasan inilah kenapa saya lebih suka "style" `solusi2` dibandingkan `solusi1` karena code-nya lebih straighforward dan terhindar dari _any possible bugs_ yang diakibatkan oleh mutasi object.
 
-## Array
+### Array
 Aturan di atas juga berlaku untuk Array karena pada dasarnya Array adalah object 🤔
 
 ```js
@@ -203,7 +203,7 @@ console.log(newPersons) // [{ age: 1 }, { age: 1 }]
 console.log(persons === newPersons) // FALSE!
 {{< /highlight >}}
 
-# Intermezzo dengan React
+## Intermezzo dengan React
 Satu kasus yang cukup simple dimana _mutability_ bisa mengakibatkan kita garuk-garuk kepala, mikir keras kenapa component kita gak jalan sesuai yang diharapkan. Mari berasumsi ada sebuah component yang gemuk dan _expensive_ dari segi rerendering sehingga kita perlu mengimplementasikan method `shouldComponentUpdate`
 
 ```js
@@ -221,7 +221,7 @@ class ExpensiveComp extends React.Component {
 
 Jika object `user` diubah dengan cara yang _mutable_, component tersebut gak akan pernah bisa melakukan rerendering karena object `user` yang baru dianggap sama dengan yang lama ⇒ bisa-bisa gak reaktif sama sekali. Immutability dalam hal ini membantu menghilangkan kompleksitas-kompleksitas yang sebenarnya tidak perlu.
 
-# Penutup
+## Penutup
 Sekarang kita sudah cukup paham _behaviour_ Object di Javascript yang memiliki nature _pass by reference_ 🎉 Ada beberapa keuntungan yang didapat jika menghindari mutasi variable dan object.
 
 - Sadar atau tidak sadar, ketiga function di atas (`solusi1`, `solusi2`, `solusi3`) semuanya adalah _pure function_. Yang dimaksud dengan _pure function_ adalah function yang tidak mengubah nilai di luar scope-nya. Ketiga function tersebut tidak mengubah object `user`, mereka justru **mengembalikan object baru**.
