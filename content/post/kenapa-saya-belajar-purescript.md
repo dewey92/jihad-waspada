@@ -22,7 +22,7 @@ const allowedProps = ['title', ...Object.keys(Tooltip.propTypes)]
 
 Di sini si programmer terlihat "malas". Ia malah mencoba untuk meng-copy semua key yang ada di `Tooltip.propTypes`. Yang lucu dari kasus ini adalah ternyata object `Tooltip.propTypes` hanya dibuat ketika development time, alias saat production build nilainya akan menjadi undefined 😄
 
-```
+```sh
 > Uncaught TypeError: Cannot convert undefined or null to object
 ```
 
