@@ -1,5 +1,5 @@
 ---
-title: "Fun With Functional Dependencies"
+title: "Membantu Compiler dengan Functional Dependencies"
 date: 2019-08-16T13:15:43+02:00
 description: "Functional Dependencies memungkinkan programmer mengekspresikan relasi antar type sekaligus memberi compiler jalan pintas dalam meng-infer suatu type"
 images: ["/uploads/rope-climbing.jpg"]
