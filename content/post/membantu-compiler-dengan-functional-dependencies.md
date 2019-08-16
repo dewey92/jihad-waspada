@@ -16,7 +16,7 @@ Udah cukup banyak artikel yang menjelaskan tentang apa itu Functional Dependenci
 ---
 ## Multi-parameter Type Classes
 
-Katanya sih, lahirnya fitur Functional Dependencies ini terinsipirasi dari [fitur Functional Dependencies yang ada pada relational database](https://opentextbc.ca/dbdesign01/chapter/chapter-11-functional-dependencies/), yaitu relasi attribute antar table (biasanya berurusan dengan Primary Key). Ada One to One, One to Many, Many to One, dan Many to Many.
+Lahirnya fitur Functional Dependencies ini katanya terinsipirasi dari [fitur Functional Dependencies yang ada pada relational database](https://opentextbc.ca/dbdesign01/chapter/chapter-11-functional-dependencies/), yaitu relasi attribute antar table (biasanya berurusan dengan Primary Key). Ada One to One, One to Many, Many to One, dan Many to Many. Relasi dalam database ini dan korelasinya dengan FuncDep akan di bahas di bawah. Sekarang mari bahas Multi-param type classes dulu.
 
 Functional Dependencies baru dapat digunakan ketika kita menulis class yang memiliki type parameter lebih dari satu, alias _multi-parameter type class_.
 
@@ -109,7 +109,7 @@ instance monadThrowTestM ∷ MonadThrow String TestM where
   throwError = ...
 ```
 
-Dengan begini, compiler juga dapat langsung mengetahui apa type `e` begitu type `m` diketahui. Artinya, jika nanti ada function yang menggunakan `Aff` monad dan memanggil `throwError` di dalamnya, compiler bisa langsung tahu bahwa `e` pastilah bertipe `Error` dan bukan yang lain. Demikian pula ketika ada function yang "hidup" di dalam konteks `TestM`, begitu ada `throwError` compiler akan langsug bisa meng-infer type `e` pastilah bertipe `String`.
+Dengan begini, compiler juga dapat langsung mengetahui apa type `e` begitu type `m` diketahui. Artinya, jika nanti ada function yang menggunakan `Aff` monad dan memanggil `throwError` di dalamnya, compiler bisa langsung tahu bahwa `e` pastilah bertipe `Error` dan bukan yang lain. Demikian pula ketika ada function di dalam konteks `TestM`, begitu ada pemanggilan `throwError` compiler akan langsug bisa meng-infer `e` sebagai `String`.
 
 ## One to One
 Fitur Functional Dependencies juga bisa memiliki spesifikasi yang lebih narrow dari relasi many-to-one, yaitu one-to-one.
@@ -203,7 +203,7 @@ const strint = jplus('5', 6);   // inferred as `string`
 const strstr = jplus('5', '6'); // inferred as `string`
 ```
 
-Namun function overloading ini tidak memiliki _relasi_ antar type seperti yang ada pada FuncDep. Program di bawah ini typecheck, walaupun jika dijalankan, overload yang terakhir tidak akan pernah dipanggil.
+Yang membedakan, function overloading ini tidak memiliki _relasi_ antar type seperti yang ada pada FuncDep. Program di bawah ini typecheck, walaupun jika dijalankan, overload yang terakhir tidak akan pernah dipanggil.
 
 ```ts
 declare function jplus(x: string, y: string): string;
@@ -216,7 +216,7 @@ Sedangkan compiler Purescript sendiri akan menolak fungsi di atas (jika mengguna
 
 ---
 
-Functional Depndencies lebih dari sekedar function overloading. Contoh yang real worldish adalah ketika mencoba re-implement State Monad dan membuat instance dengan Ref (mutable variables).
+Namun Functional Depndencies lebih dari sekedar function overloading. Contoh yang real worldish adalah ketika mencoba re-implement State Monad dan membuat instance dengan Ref (mutable variables).
 
 ```hs
 import Effect.Ref as Ref
@@ -255,7 +255,7 @@ someFn :: ∀ r a. SM Effect r => a -> Effect (r a)
 someFn x = ...
 ```
 
-yang tentunya tidak diinginkan karena terlalu general. Di lain kasus, tidak adanya FunCDep dapat menimbulkan ambiguity di sisi compiler.
+yang tentunya tidak diinginkan karena terlalu general. Di lain kasus, tidak adanya FuncDep dapat menimbulkan ambiguity di sisi compiler.
 
 ```hs
 ambiguousFn :: ∀ a. a -> Effect a
