@@ -94,7 +94,7 @@ console.log('Jihad: ', jihad.firstName)
 console.log(userWithoutName === jihad)
 ```
 
-```
+```nocode
 > No name: undefined
 > Jihad: undefined
 > true
@@ -159,7 +159,7 @@ console.log('no picture: ', userWithoutPicture.profile.picture)
 console.log('jihad: ', jihad.profile.picture)
 {{< /highlight >}}
 
-```
+```nocode
 > no picture: undefined
 > jihad: undefined
 ```
