@@ -48,7 +48,7 @@ acceptsAndReturnsSymbol = identity
 Pada section berikutnya kita akan melihat kombinasi antara `IsSymbol` dan `SProxy` banyak digunakan untuk merujuk pada suatu attribute record di level type.
 
 ## RowList
-Sewaktu artikel ini ditulis (`v13.3`), Purescript memiliki beberapa utility class untuk dapat memanipulasi dan menangkap informasi record saat compile-time. Salah satu yang paling sering digunakan adalah `Cons` (kind `RowList`).
+Sewaktu artikel ini ditulis (`v13.3`), Purescript memiliki beberapa tool untuk dapat memanipulasi dan menangkap informasi record saat compile-time. Salah satu yang paling sering digunakan adalah `Cons`.
 
 ```hs
 foreign import kind RowList
@@ -62,6 +62,7 @@ foreign import data Cons :: Symbol -> Type -> RowList -> RowList
 Cara penggunaan `Cons` dan `Nil` ini bisa dilihat lewat class `RowToList` yang melakukan konversi type `Record` biasa ke `RowList`. Perlu diperhatikan bahwa row bisa memiliki label yang duplikat di type level. Saya udah nanya soal ini di slack channel tapi pak Harry sendiri juga gatau kenapa haha. Yo-uwes.
 
 ```hs
+-- module Prim.RowList
 class RowToList (row :: # Type) (list :: RowList) | row -> list
 
 RowToList ()
@@ -82,7 +83,16 @@ Bisa dilihat bahwa entries record di `RowList` merupakan kumpulan (list) pair sy
 
 Mudah-mudahan cukup jelas bagaimana `Cons` ini bekerja karena sebentar lagi kita akan melihat bagaimana kegunaan `Cons` dalam meng-capture informasi type dari suatu record.
 
-**NOTE**: `Cons` di atas saya ambil dari module `Prim.RowList`. Mulai section selanjutnya saya menggunakan `Cons` dari module `Prim.Row` karena akan ditaro sebagai constraint. Namun secara struktur dan intuisi, keduanya sama.
+**NOTE**: `Cons` di atas saya ambil dari module `Prim.RowList` untuk menjelaskan general idea dibalik relasi Row dengan Cons saja. Mulai section selanjutnya saya menggunakan `Cons` dari module `Prim.Row` karena akan dipakai sebagai constraint (harus class, bukan data). Namun secara struktur dan intuisi, keduanya sama.
+
+
+```hs
+-- module Prim.Row
+
+class Cons (label :: Symbol) (a :: Type) (tail :: # Type) (row :: # Type)
+  | label a tail -> row
+  , label row -> a tail
+```
 
 ## Manipulasi Record Type
 ### Get
@@ -226,24 +236,20 @@ delete = ...
 
 `rowA` adalah record yang attribute `key`-nya ingin dihapus, dan `rowB` adalah row baru hasil penghapusan attribute tersebut. Dengan kata lain, `rowB = rowA - key`. PR kita tinggal mengekspresikan relasi ini ke dalam type signature. Dan saya rasa `Cons` masih bisa menjadi jawaban atas problem ini.
 
-Kita review ulang dulu struktur `Cons` supaya lebih paham.
+Kita review ulang dulu struktur class `Cons` supaya lebih paham.
 
 ```hs
-foreign import data Cons
-  :: Symbol    -- `key`
-  -> Type      -- type dari `key`
-  -> RowList   -- `tail`
-  -> RowList   -- `row`
+class Cons (label :: Symbol) (a :: Type) (tail :: # Type) (row :: # Type)
 
-RowToList (name :: String, age :: Int)  -- `row`
-          (Cons "age" Int (Cons "name" String Nil))
-           ^^^^^^^^^^^^^^ ^^^^^^^^^^^^^^^^^^^^^^^^
-               `head`             `tail`
+(Cons "age" Int (Cons "name" String Nil)) (name :: String, age :: Int)
+ ^^^^^^^^^^^^^^ ^^^^^^^^^^^^^^^^^^^^^^^^  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+      `head`             `tail`                     `row`
 
+-- | `head = Cons + label + a`
 -- | Sehingga `tail = row - head`
 ```
 
-Kita dapat melihat pola bahwa **tail adalah row tanpa head**, dimana head sendiri merupakan gabungan dari `Cons`, `key`, dan type dari `key`. Persepsi ini seolah memberikan kesimpulan bahwa `rowB` adalah tail dari `rowA` 😏
+Kita dapat melihat pola bahwa **tail adalah row tanpa head**, dimana head sendiri merupakan gabungan dari `Cons`, `label`, dan `a`. Persepsi ini seolah memberikan kesimpulan bahwa `rowB` adalah tail dari `rowA` 😏
 
 {{< highlight hs "hl_lines=6" >}}
 -- tail = row - head
