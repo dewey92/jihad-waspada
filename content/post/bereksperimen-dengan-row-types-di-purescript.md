@@ -82,6 +82,8 @@ Bisa dilihat bahwa entries record di `RowList` merupakan kumpulan (list) pair sy
 
 Mudah-mudahan cukup jelas bagaimana `Cons` ini bekerja karena sebentar lagi kita akan melihat bagaimana kegunaan `Cons` dalam meng-capture informasi type dari suatu record.
 
+**NOTE**: `Cons` di atas saya ambil dari module `Prim.RowList`. Mulai section selanjutnya saya menggunakan `Cons` dari module `Prim.Row` karena akan ditaro sebagai constraint. Namun secara struktur dan intuisi, keduanya sama.
+
 ## Manipulasi Record Type
 ### Get
 Mari kita latihan otak sekarang! 😄 Kita mulai dengan membuat type signature fungsi yang paling sederhana dulu, `get`, yang kira-kira berfungsi seperti:
