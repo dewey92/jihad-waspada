@@ -47,44 +47,8 @@ acceptsAndReturnsSymbol = identity
 
 Pada section berikutnya kita akan melihat kombinasi antara `IsSymbol` dan `SProxy` banyak digunakan untuk merujuk pada suatu attribute record di level type.
 
-## RowList
-Sewaktu artikel ini ditulis (`v13.3`), Purescript memiliki beberapa tool untuk dapat memanipulasi dan menangkap informasi record saat compile-time. Salah satu yang paling sering digunakan adalah `Cons`.
-
-```hs
-foreign import kind RowList
-foreign import data Nil :: RowList
-foreign import data Cons :: Symbol -> Type -> RowList -> RowList
-```
-
-- `Nil` mengindikasikan empty record.
-- Dan `Cons` mengekspresikan sebuah record yang memiliki _suatu_ attribute beserta type attribute tersebut.
-
-Cara penggunaan `Cons` dan `Nil` ini bisa dilihat lewat class `RowToList` yang melakukan konversi type `Record` biasa ke `RowList`. Perlu diperhatikan bahwa row bisa memiliki label yang duplikat di type level. Saya udah nanya soal ini di slack channel tapi pak Harry sendiri juga gatau kenapa haha. Yo-uwes.
-
-```hs
--- module Prim.RowList
-class RowToList (row :: # Type) (list :: RowList) | row -> list
-
-RowToList ()
-          Nil
-
-RowToList (name :: String)
-          (Cons "name" String Nil)
-
-RowToList (name :: String, age :: Int)
-          (Cons "age" Int Nil (Cons "name" String))
-
--- duplicate label
-RowToList (name :: String, age :: Int, name :: Array String)
-          (Cons "age" Int (Cons "name" String (Cons "name" (Array String) Nil)))
-```
-
-Bisa dilihat bahwa entries record di `RowList` merupakan kumpulan (list) pair symbol dan type. Compiler juga akan mengurutkan entries berdasarkan label (ascending) yang, jika ditemukan ada label yang duplikat, maka urutannya tetap di-preserve.
-
-Mudah-mudahan cukup jelas bagaimana `Cons` ini bekerja karena sebentar lagi kita akan melihat bagaimana kegunaan `Cons` dalam meng-capture informasi type dari suatu record.
-
-**NOTE**: `Cons` di atas saya ambil dari module `Prim.RowList` untuk menjelaskan general idea dibalik relasi Row dengan Cons saja. Mulai section selanjutnya saya menggunakan `Cons` dari module `Prim.Row` karena akan dipakai sebagai constraint (harus class, bukan data). Namun secara struktur dan intuisi, keduanya sama.
-
+## Cons
+Sewaktu artikel ini ditulis (`v13.3`), Purescript memiliki beberapa utility class untuk dapat memanipulasi dan menangkap informasi record saat compile-time. Salah satu yang paling sering digunakan adalah `Cons`.
 
 ```hs
 -- module Prim.Row
@@ -93,6 +57,32 @@ class Cons (label :: Symbol) (a :: Type) (tail :: # Type) (row :: # Type)
   | label a tail -> row
   , label row -> a tail
 ```
+
+class `Cons` mengekspresikan **sebuah record yang memiliki attribute `label` yang bertipe `a`**. `tail` adalah sisa `row` tanpa `label`.
+
+Perlu diperhatikan bahwa row bisa memiliki label yang duplikat di type level. Saya udah nanya soal kenapa row types bisa mengandung duplikasi label di slack channel tapi pak Harry sendiri juga gatau kenapa haha. Yo-uwes, mungkin kapan-kapan dijawab sama yang lebih berwenang.
+
+Anyway, `Cons` ini bisa diibaratkan seperti ini:
+
+```hs
+class Cons (label :: Symbol) (a :: Type) (tail :: # Type) (row :: # Type)
+  | label a tail -> row
+  , label row -> a tail
+
+-- `tail` is inferred as `()`
+Cons "name" String tail (name :: String)
+
+-- `tail` is inferred as `(name :: String)`
+Cons "age" Int tail (name :: String, age :: Int)
+
+-- Duplicate label "name"
+-- `tail` is inferred as `(name :: String, name :: Array String)`
+Cons "age" Int tail (name :: String, age :: Int, name :: Array String)
+```
+
+Bisa dilihat bahwa compiler mengurutkan entries berdasarkan label (ascending) yang, jika ditemukan ada label yang duplikat, maka urutannya tetap di-preserve.
+
+Mudah-mudahan cukup jelas bagaimana `Cons` ini bekerja karena sebentar lagi kita akan melihat bagaimana kegunaan `Cons` dalam meng-capture informasi type dari suatu record.
 
 ## Manipulasi Record Type
 ### Get
@@ -115,7 +105,7 @@ result = get (SProxy :: _ "name") { name: "jihad", age: 26 }
 result == "jihad"
 ```
 
-Ada beberapa yang langkah yang perlu diambil yang menurutku gak susah-susah amat asal udah ngerti konsep `Symbol` dan `RowList`. Langkah pertama adalah dengan mengimplementasikan apa yang bisa dan mudah diimplementasikan, walaupun belum sepenuhnya typechecked:
+Ada beberapa yang langkah yang perlu diambil yang menurutku gak susah-susah amat asal udah ngerti konsep `Symbol` dan `Cons`. Langkah pertama adalah dengan mengimplementasikan apa yang bisa dan mudah diimplementasikan, walaupun belum sepenuhnya typechecked:
 
 ```hs
 get :: ∀ key row a. key -> Record row -> a
@@ -241,9 +231,9 @@ Kita review ulang dulu struktur class `Cons` supaya lebih paham.
 ```hs
 class Cons (label :: Symbol) (a :: Type) (tail :: # Type) (row :: # Type)
 
-(Cons "age" Int (Cons "name" String Nil)) (name :: String, age :: Int)
- ^^^^^^^^^^^^^^ ^^^^^^^^^^^^^^^^^^^^^^^^  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-      `head`             `tail`                     `row`
+(Cons "age" Int (name :: String)) (name :: String, age :: Int)
+ ^^^^^^^^^^^^^^ ^^^^^^^^^^^^^^^^  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+      `head`         `tail`                 `row`
 
 -- | `head = Cons + label + a`
 -- | Sehingga `tail = row - head`
