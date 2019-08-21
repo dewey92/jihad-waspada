@@ -7,7 +7,7 @@ image:
   src: "/uploads/question-marks.jpg"
   caption: Image by <a href="https://pixabay.com/users/qimono-1962238/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=2492009">Arek Socha</a> from <a href="https://pixabay.com/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=2492009">Pixabay</a>
 tags: ["purescript", "functional programming", "type systems"]
-categories: ["programming"]
+categories: ["programming", "purescript"]
 draft: false
 ---
 

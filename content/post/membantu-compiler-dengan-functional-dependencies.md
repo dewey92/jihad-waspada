@@ -7,7 +7,7 @@ image:
   src: "/uploads/rope-climbing.jpg"
   caption: Image by <a href="https://pixabay.com/users/skeeze-272447/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=1761386">skeeze</a> from <a href="https://pixabay.com/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=1761386">Pixabay</a>
 tags: ["purescript", "haskell", "types"]
-categories: ["programming", "type system"]
+categories: ["programming", "type system", "purescript"]
 draft: false
 ---
 
