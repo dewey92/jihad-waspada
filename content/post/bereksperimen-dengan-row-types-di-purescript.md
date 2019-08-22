@@ -39,10 +39,10 @@ jihad == termLevel
 Oh ya satu lagi, Purescript juga menyediakan class `IsSymbol` yang bisa digunakan sebagai constraint untuk meng-assert (apa ya bahasa indonya?) suatu type variable sebagai Symbol.
 
 ```hs
-acceptsAndReturnsSymbol :: ∀ a.
+acceptsAndReturnsProxy :: ∀ a.
   IsSymbol a =>
   SProxy a -> SProxy a
-acceptsAndReturnsSymbol = identity
+acceptsAndReturnsProxy = identity
 ```
 
 Pada section berikutnya kita akan melihat kombinasi antara `IsSymbol` dan `SProxy` banyak digunakan untuk merujuk pada suatu attribute record di level type.
@@ -76,11 +76,9 @@ Cons "name" String tail (name :: String)
 Cons "age" Int tail (name :: String, age :: Int)
 
 -- Duplicate label "name"
--- `tail` is inferred as `(name :: String, name :: Array String)`
-Cons "age" Int tail (name :: String, age :: Int, name :: Array String)
+-- `tail` is inferred as `(age :: Int, name :: Array String)`
+Cons "name" String tail (name :: String, age :: Int, name :: Array String)
 ```
-
-Bisa dilihat bahwa compiler mengurutkan entries berdasarkan label (ascending) yang, jika ditemukan ada label yang duplikat, maka urutannya tetap di-preserve.
 
 Mudah-mudahan cukup jelas bagaimana `Cons` ini bekerja karena sebentar lagi kita akan melihat bagaimana kegunaan `Cons` dalam meng-capture informasi type dari suatu record.
 
@@ -226,14 +224,15 @@ delete = ...
 
 `rowA` adalah record yang attribute `key`-nya ingin dihapus, dan `rowB` adalah row baru hasil penghapusan attribute tersebut. Dengan kata lain, `rowB = rowA - key`. PR kita tinggal mengekspresikan relasi ini ke dalam type signature. Dan saya rasa `Cons` masih bisa menjadi jawaban atas problem ini.
 
-Kita review ulang dulu struktur class `Cons` supaya lebih paham.
+Kita review ulang dulu struktur class `Cons` biar freshhhh.
 
 ```hs
 class Cons (label :: Symbol) (a :: Type) (tail :: # Type) (row :: # Type)
 
-(Cons "age" Int (name :: String)) (name :: String, age :: Int)
- ^^^^^^^^^^^^^^ ^^^^^^^^^^^^^^^^  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-      `head`         `tail`                 `row`
+-- `tail` is inferred as (name :: String)
+Cons "age" Int tail (name :: String, age :: Int)
+^^^^^^^^^^^^^^      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+      `head`                  `row`
 
 -- | `head = Cons + label + a`
 -- | Sehingga `tail = row - head`
