@@ -1,6 +1,6 @@
 ---
 title: "Type Class Dan Cara Kerjanya Di Balik Layar"
-date: 2019-08-22T23:01:35+02:00
+date: 2019-08-23T01:40:00+02:00
 description: "Type Class adalah sebuah cara untuk memberikan instance dictionary secara implisit"
 images: ["/uploads/gear.jpg"]
 image:
