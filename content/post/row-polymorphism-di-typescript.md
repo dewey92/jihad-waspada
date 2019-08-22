@@ -6,7 +6,7 @@ images: ["/uploads/dna.jpg"]
 image:
   src: "/uploads/dna.jpg"
   caption: Image by <a href="https://pixabay.com/users/qimono-1962238/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=1811955">Arek Socha</a> from <a href="https://pixabay.com/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=1811955">Pixabay</a>
-tags: ["typescript", "polymorphism"]
+tags: ["typescript", "polymorphism", "types"]
 categories: ["programming", "type system"]
 draft: false
 ---

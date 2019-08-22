@@ -6,7 +6,7 @@ images: ["/uploads/row-houses.jpg"]
 image:
   src: "/uploads/row-houses.jpg"
   caption: Image by <a href="https://pixabay.com/users/12019-12019/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=2220459">David Mark</a> from <a href="https://pixabay.com/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=2220459">Pixabay</a>
-tags: ["purescript", "type system", "row polymorphism"]
+tags: ["purescript", "typesystem", "rowpolymorphism"]
 categories: ["programming", "purescript", "type system"]
 draft: false
 ---
