@@ -7,7 +7,7 @@ image:
   src: "/uploads/aurora.jpg"
   caption: Image by <a href="https://pixabay.com/users/Photo-View-7444623/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=3847784">Tommy Andreassen</a> from <a href="https://pixabay.com/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=3847784">Pixabay</a>
 tags: ["purescript", "types"]
-categories: ["programming", "type system"]
+categories: ["programming", "purescript", "type system"]
 draft: false
 ---
 
