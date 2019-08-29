@@ -30,7 +30,7 @@ Type `Boolean` terdiri dari dua buah term: true dan false.
 Kind |           Type
                    ↑
 Type |          Boolean
-              ↗️         ↖️
+              ↗         ↖
 Term |      true      false
 ```
 
@@ -41,7 +41,7 @@ Term yang bertipe string dapat berupa apa saja!
 Kind |              Type
                       ↑
 Type |              String
-              ↗️       ↑       ↖ ️
+              ↗       ↑       ↖ ️
 Term |     "jihad" "dzikri" "waspada"
 ```
 
@@ -69,7 +69,7 @@ data Coord = MkCoord Int Int
 
 ```no-code
 Kind |                            Type
-                        ↗️          ↑             ↖️
+                        ↗          ↑             ↖
 Type |  Int -> Int -> Coord   Int -> Coord      Coord
               ↑
 Term |     MkCoord              MkCoord 2     MkCoord 2 3
@@ -93,9 +93,9 @@ Oh ya perlu saya sebutkan bahwa sebuah type parameter (seperti `a` dalam `Maybe 
 
 ```no-code
 Kind |  Type -> Type             Type
-             ↑               ↗ ️         ↖️
+             ↑               ↗ ️         ↖
 Type |     Maybe       Maybe a          Maybe Int
-                          ↑            ↗️         ↖️
+                          ↑            ↗         ↖
 Term |       -         Nothing     Just 5  (Nothing :: Maybe Int)
 ```
 
@@ -115,9 +115,9 @@ type Waspada = "waspada"
 
 ```no-code
 Kind |           Type                 Symbol
-                  ↑                 ↗️        ↖️
+                  ↑                 ↗        ↖
 Type |          String          "jihad"   "waspada"
-              ↗️        ↖️
+              ↗        ↖
 Term |    "jihad"   "waspada"      -          -
 ```
 
@@ -140,7 +140,7 @@ foreign import data False :: Boolean
 
 ```no-code
 Kind |          Boolean
-              ↗️         ↖️
+              ↗         ↖
 Type |      True       False
 
 Term |       -           -
