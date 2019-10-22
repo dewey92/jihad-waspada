@@ -181,6 +181,51 @@ instance hazDefaultInt :: HazDefault Int where
 -- No type class instance was found for `Appendable Int`
 ```
 
+## Overlapping Instances
+
+Sejauh ini kita sudah belajar bagaimana type class berguna untuk memberikan "kemampuan" pada suatu data. Kita sudah memberi String dan Array "kemampuan" untuk melakukan penggabungan dengan fungsi `append` dan mengembalikan nilai kosongnya dengan fungsi `defaultVal`.
+
+Apa yang terjadi jika kita memberikan kemampuan yang sama dua kali?
+
+```hs
+instance hazDefaultStr :: HazDefault String where
+  defaultVal = ""
+
+instance hazDefaultStr2 :: HazDefault String where
+  defaultVal = "zzz"
+```
+
+Udah bisa ditebak pasti compiler bakal kebingungan harus pake instance yang mana, yang mengakibatkan compiler komplain. Kondisi ini disebut Overlapping Instances. Namun jika tetep kekeuh mau nulis overlapping instances, Purescript menyediakan fitur [Instance Chains](https://github.com/purescript/documentation/blob/master/language/Type-Classes.md#instance-chains) yang gak akan saya bahas di artikel ini.
+
+Tapi kadangkala ada aja kasus dimana suatu data bisa memiliki dua behaviour: misal untuk tipe Integer yang mengimplementasi class `HazDefault`. Nilai default Integer bernilai 0 ketika dalam konteks penjumlahan, namun bernilai 1 ketika dalam konteks perkalian. Dalam hal ini kita bisa membungkusnya dengan `newtype`.
+
+```hs
+newtype Sum = Sum Int
+newtype Prod = Prod Int
+
+instance appendableSum :: Appendable Sum where
+  append (Sum a) (Sum b) = Sum (a + b)
+
+instance appendableProd :: Appendable Prod where
+  append (Prod a) (Prod b) = Prod (a * b)
+
+instance hazDefaultSum :: HazDefault Sum where
+  defaultVal = Sum 0
+
+instance hazDefaultProd :: HazDefault Prod where
+  defaultVal = Prod 1
+--
+
+λ> append (Sum 99) (Sum 1)
+Sum 100
+λ> append (Prod 50) (Prod 2)
+Prod 100
+λ> append (Sum 99) defaultVal
+Sum 99
+λ> append (Prod 50) defaultVal
+Prod 50
+```
+
 ## Constraint
 Type class is all about instance and constraint. Mari perhatikan contoh berikut:
 
