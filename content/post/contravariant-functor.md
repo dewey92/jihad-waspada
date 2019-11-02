@@ -237,19 +237,19 @@ Namun setelah dipikir-pikir, **fungsi `fn :: a -> b` mustahil di-compose dengan 
 ```hs
 -- 1. `fn` then `f a`?
 (a -> b) -> (a -> String) -- `b` gak sama dengan `a` ❌
-      ⎣⎽⎽⎽⎽⎽⎽⎦
+      ⎣______⎦
 
 
 -- 2. `f a` then `fn`?
 (a -> String) -> (a -> b) -- `String` gak sama dengan `a` ❌
-         ⎣⎽⎽⎽⎽⎽⎽⎽⎽⎦
+         ⎣________⎦
 ```
 
 Nah karena kita ingin memanipulasi tipe `a` dengan `fn`, opsi nomor 2 ini sudah pasti gak valid (malah String yang dimanipulasi 😕). Dan satu-satunya jalan untuk memanipulasi tipe `a` adalah dengan menyuplai sebuah fungsi `b -> a`.
 
 ```hs
 (b -> a) -> (a -> String) -- `a` sekarang sama dengan `a`! ✅
-      ⎣⎽⎽⎽⎽⎽⎽⎦
+      ⎣______⎦
 
 -- Dengan funtion composition biasa, notasi ini bisa direduksi menjadi
 (b -> String)
@@ -287,7 +287,7 @@ Ilustrasi di bawah ini semoga membantu.
    contra f
  ⎡‾‾‾‾‾‾‾‾‾‾‾⎤
 fn >>> valueAsFunction >>> fn
-               ⎣⎽⎽⎽⎽⎽⎽⎽⎽⎽⎽⎽⎦
+               ⎣____________⎦
                   functor
 ```
 
@@ -386,7 +386,7 @@ byPersonAge = cmap (_.person) byAge
 
 Abstraksi Comparison ini bisa ditemukan di package [purescript-contravariant](https://github.com/purescript/purescript-contravariant/blob/cb69db0253c2e2ed3fef784dad58f3418a8ee834/src/Data/Comparison.purs#L14-L15).
 
-Saya juga rekomendasikan bagi temen-temen yang ingin tahu lebih lanjut tentang Contravariant untuk menonton video dari Mas George Wilson.
+Saya rekomendasikan bagi temen-temen yang ingin tahu lebih lanjut tentang Contravariant untuk menonton video dari Mas George Wilson.
 
 {{< youtube JZPXzJ5tp9w >}}
 
@@ -394,6 +394,6 @@ Saya juga rekomendasikan bagi temen-temen yang ingin tahu lebih lanjut tentang C
 
 ## What's Next
 
-Contravariant Functor bisa jadi tidak setenar Functor karena penggunaannya yang memang sedikit. Ia baru akan terlihat ketika **dikombinasikan** dengan (Covariant) Functor dan Bifunctor. Bifunctor yang contravariant di argument pertamanya dan covariant di argumen keduanya akan membentuk jenis Functor baru bernama _Profunctor_.§
+Contravariant Functor bisa jadi tidak setenar Functor karena penggunaannya yang memang sedikit. Ia baru akan terlihat ketika **dikombinasikan** dengan (Covariant) Functor dan Bifunctor. Bifunctor yang contravariant di argument pertamanya dan covariant di argumen keduanya akan membentuk jenis Functor baru bernama _Profunctor_.
 
 Bifunctor insyallah akan kita bahas pada artikel selanjutnya. Stay tuned 😉
