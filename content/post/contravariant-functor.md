@@ -1,7 +1,7 @@
 ---
 title: "Contravariant Functor"
 date: 2019-11-02T15:46:31+02:00
-description: "Analisa lahirnya Contaravariant Functor dengan penggunaan Functor pada function"
+description: "Apa benar semua data dengan kind `Type → Type` adalah Functor? Bagaimana dengan type variable yang muncul di posisi negatif?"
 images: ["/uploads/upside-down.jpg"]
 image:
   src: "/uploads/upside-down.jpg"
