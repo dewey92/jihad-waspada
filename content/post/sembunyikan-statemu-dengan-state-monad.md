@@ -50,7 +50,7 @@ transactions balance =
   let (Tuple _    balance2) = withdraw 10 balance in
   let (Tuple amnt balance3) = withdraw 5 balance2 in
   case amnt of
-    Just _  -> "Saldo terakhir Anda: " <> show balance''
+    Just _  -> "Saldo terakhir Anda: " <> show balance3
     Nothing -> "Kismin lu!"
 
 λ> transactions 100
