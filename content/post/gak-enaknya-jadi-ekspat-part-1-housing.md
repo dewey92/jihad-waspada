@@ -6,18 +6,18 @@ images: ["/uploads/houses-ams.jpg"]
 image:
   src: "/uploads/houses-ams.jpg"
   caption: Image by <a href="https://pixabay.com/users/epicantus-168198/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=954381">Daria Nepriakhina</a> from <a href="https://pixabay.com/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=954381">Pixabay</a>
-tags: ["expat", "relocation", "lessons"]
+tags: ["ekspat", "relocation", "lessons"]
 categories: ["life", "lessons"]
 draft: false
 ---
 
-Kerja jadi expat di negeri orang itu gak selamanya berjalan mulus dan sesuai ekspektasi. Banyak hal yang bisa ngebuat kita merasa kecil dan gak berdaya sama sekali, terlebih kalau kondisi benar-benar lagi gak memihak. Sering mikir apa mending balik aja ke Indonesia daripada ribet-ribet ngurus ini itu.
+Kerja jadi ekspat di negeri orang itu gak selamanya berjalan mulus dan sesuai ekspektasi. Banyak hal yang bisa ngebuat kita merasa kecil dan gak berdaya sama sekali, terlebih kalau kondisi benar-benar lagi gak memihak. Sering mikir apa mending balik aja ke Indonesia daripada ribet-ribet ngurus ini itu.
 
-Di artikel ini saya mau sedikit cerita pengalaman pribadi saya tentang bagaimana menantangnya mencari apartment sebagai expat, dengan kondisi keuangan pada saat itu yang cukup pas-pasan.
+Di artikel ini saya mau sedikit cerita pengalaman pribadi saya tentang bagaimana menantangnya mencari apartment sebagai ekspat, dengan kondisi keuangan pada saat itu yang cukup pas-pasan.
 
 ## Kedatangan di Belanda
 
-Housing atau cari apartment yang bisa disewa selalu jadi dajjal bagi expat-expat yang tinggal di Belanda. Apalagi kalau cari daerah Amsterdam, dimana demand sangat tinggi namun ketersediaan apartment sangat minim. Bisa mendapatkan apartment di daerah Amsterdam dengan harga yang sesuai kantong itu sudah sujud syukur.
+Housing atau cari apartment yang bisa disewa selalu jadi dajjal bagi ekspat-ekspat yang tinggal di Belanda. Apalagi kalau cari daerah Amsterdam, dimana demand sangat tinggi namun ketersediaan apartment sangat minim. Bisa mendapatkan apartment di daerah Amsterdam dengan harga yang sesuai kantong itu sudah sujud syukur.
 
 Seminggu pertama semenjak kedatangan saya di Belanda saya habiskan di sebuah hostel kecil di daerah Diemen Zuid bersama 5 rekam setim lainnya. Dua minggu berikutnya saya habiskan di apartment rekan saya dari Hungaria, kebetulan dia sudah dapat apartment terlebih dahulu. Saya terpaksa numpang di sana karena pada waktu itu masih banyak dokumen yang harus saya urus di direktorat imigrasi Belanda sebelum saya bisa membuka rekening bank di sini. Membuka rekening bank di Belanda itu hampir wajib hukumnya karena hampir semua transaksi dilakukan dengan PIN (non-cash), termasuk dalam hal pembayaran biaya bulanan apartment, utilities, beli tiket transportasi, biaya registrasi di imigrasi, dll. Jadi saya belum bisa menyewa apartment sebelum punya rekening bank.
 
@@ -71,16 +71,16 @@ Dan usaha 4 hari itu akhirnya terbayarkan. Ketika checkout pihak management tida
 
 ## Management Keuangan
 
-Cerita tahun pertama saya di Belanda barusan saya rasa cukup bisa jadi pelajaran bagi yang lain. Bahwa management keuangan itu sangat penting. Walaupun mencari apartment itu sulit, akan lebih sulit lagi kalau tidak ada pondasi keuangan yang kuat, yang setidaknya cukup untuk membayar deposit awal dan masih bisa bertahan hidup selama 2-3 bulan ke depan. Memang nominalnya terdengar cukup besar apalagi bagi yang baru datang sebagai expat tanpa tabungan atau dukungan finansial yang cukup.
+Cerita tahun pertama saya di Belanda barusan saya rasa cukup bisa jadi pelajaran bagi yang lain. Bahwa management keuangan itu sangat penting. Walaupun mencari apartment itu sulit, akan lebih sulit lagi kalau tidak ada pondasi keuangan yang kuat, yang setidaknya cukup untuk membayar deposit awal dan masih bisa bertahan hidup selama 2-3 bulan ke depan. Memang nominalnya terdengar cukup besar apalagi bagi yang baru datang sebagai ekspat tanpa tabungan atau dukungan finansial yang cukup.
 
-Seharusnya dari awal saya menyadari, dengan gaji yang pas-pasan (asumsi istri tidak bekerja), uang sebisa mungkin ditabung dan tidak dihabiskan untuk hal-hal yang kurang esensial. Terlebih lagi kami tidak memiliki siapa-siapa di negeri orang, tidak ada yang bisa dijadikan "pelarian" kalau ada apa-apa. Juga dengan peraturan yang jauh lebih ketat dibanding Indonesia. Ibarat semuanya harus terencana dan disiapkan secara matang.
+Seharusnya dari awal saya menyadari, dengan gaji yang pas-pasan (asumsi istri tidak bekerja), uang sebisa mungkin ditabung dan tidak dihabiskan untuk hal-hal yang kurang esensial. Terlebih lagi kami tidak memiliki siapa-siapa di negeri orang, tidak ada yang bisa dijadikan "pelarian" kalau terjadi apa-apa. Juga dengan peraturan yang jauh lebih ketat dibanding Indonesia. Ibarat semuanya harus terencana dan disiapkan secara matang.
 
-Saya hanya takut bila terus memaksakan cari makan di negeri orang sampai harus meninggalkan anak dan istri secara lahiriah, akan dianggap suami dan bapak yang dzalim yang hanya mementingkan dirinya sendiri. Kerja di Belanda itu nyaman, namun bila tak cukup nyaman bagi keluarga, lebih baik saya pulang ke negara asal dan hidup lebih tentram.
+Saya hanya takut bila terus memaksakan cari makan di negeri orang sampai harus meninggalkan anak dan istri secara lahiriah, akan dianggap suami dan bapak yang dzalim yang hanya mementingkan diri sendiri. Kerja di Belanda itu nyaman, namun bila tak cukup nyaman bagi keluarga, lebih baik saya pulang ke negara asal dan hidup lebih tentram.
 
 ---
 
 Menjadi ekspat gak selalu seperti yang terlihat dari luar. Terutama ketika dalam proses pencarian tempat tinggal. Tidak sedikit juga apartment yang memiliki kontrak sewa maksimal 2 tahun. Setelah 2 tahun ya harus mencari tempat tinggal baru. Kondisi ini mungkin terdengar oke-oke saja bagi yang masih single, namun akan jadi lain cerita kalau sudah memiliki keluarga.
 
-Saya berencana melanjutkan series tulisan "Gak Enaknya Jadi Expat" bagian 2 tentang bagaimana mencari pekerjaan di negara orang yang juga bisa membuat kita pingin balik ke Indonesia.
+Saya berencana melanjutkan series tulisan "Gak Enaknya Jadi Ekspat" bagian 2 tentang bagaimana mencari pekerjaan di negara orang yang juga bisa membuat kita pingin balik ke Indonesia.
 
 _Stay well everybody!_
