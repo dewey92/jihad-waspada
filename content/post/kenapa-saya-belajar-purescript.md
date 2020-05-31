@@ -81,7 +81,7 @@ Kesan saya setelah beberapa kali setup project di Haskell sebagai seorang nubi i
 
 Setup projek di Purescript sendiri justru sangat friendly. Cukup jalankan
 
-{{< highlight bash >}}
+```bash
 $ npm i -g purescript spago
 
 $ mkdir your-project
@@ -89,7 +89,7 @@ $ cd your-project
 
 $ spago init
 $ spago build
-{{< /highlight >}}
+```
 
 dan projek sudah langsung ready 🙂 Untuk editor saya tetap menggunakan VS Code dengan [Purescript IDE](https://github.com/nwolverson/vscode-ide-purescript) sebagai pluginnya.
 
@@ -122,7 +122,8 @@ program = command "cat" (info runCat $ progDesc "Simply read a file")
 ```
 
 Compiler akan melakukan analisis struktur program, mendeduksi types-nya dan bimsalabim jadi apa prok-prok-prok:
-{{% figure src="/uploads/type_hole_answer-type.png" alt="type-hole answer type" caption="Inferred type" class="fig-center img-60" %}}
+
+{{< figure src="/uploads/type_hole_answer-type.png" alt="type-hole answer type" caption="Inferred type" class="fig-center img-60" >}}
 
 Tinggal di-copy-paste saja jawaban dari compiler :)) Ohiya, type hole ini tidak hanya berguna untuk mengetahui suatu type saja, tapi juga bisa dimanfaatkan untuk mencari tau function apa saja yang compatible dengan program kita. Mari gunakan code snippet yang sama dan ganti `command` dengan `?help`.
 
@@ -133,7 +134,7 @@ program = ?help "cat" (info runCat $ progDesc "Simply read a file")
 
 Compiler akan melakukan tugasnya untuk mencari function yang cocok menggantikan placeholder `?help`. Dan bisa dilihat function `command` yang kita inginkan ternyata ada di suggestion nomor 2 👀
 
-{{% figure src="/uploads/type_hole_answer.png" alt="type-hole answer" caption="Compatible functions" class="fig-center" %}}
+{{< figure src="/uploads/type_hole_answer.png" alt="type-hole answer" caption="Compatible functions" class="fig-center" >}}
 
 > 💡Fun fact: fitur "values suggestion" ini dinamai Type-Directed Search, yang merupakan hasil dari tugas akhir (skripsi) Mas Christoph Hegemann berjudul **Implementing Type-Directed Search for Purescript** yang disimpulkan lewat [PR ini](https://github.com/purescript/purescript/pull/2352/files).
 
@@ -234,9 +235,9 @@ readFile path = ...
 Sehingga hampir "mustahil" bagi kita untuk membuat function yang effectful tanpa diketahui oleh compiler. Strictness inilah yang memaksa programmer untuk membuat program yang predictable dan sebisa mungkin effect-free agar behaviour yang tidak diinginkan dapat terminimalisir. Konsekuensinya kita harus banyak "berantem" dulu sama compiler alih-alih menghabiskan waktu untuk debugging nantinya. Hmm, sepertinya Purescript lebih memilih Correctness over Convenience..
 
 ## Caveats
-Kelebihan-kelebihan tersebut juga harus dibayar dengan beberapa kekurangan. Misalnya pesan error yang terkadang tidak begitu jelas. Akan sangat terasa sekali kalau sudah mulai banyak menggunakan Monad dan function yang generic.
+Kelebihan-kelebihan tersebut juga harus dibayar dengan beberapa kekurangan. Misalnya pesan error yang terkadang tidak begitu jelas. Akan sangat terasa sekali kalau sudah mulai banyak menggunakan Bind, HKT, atau function yang generic.
 
-```
+```nocode
 Could not match type
 
     t2 Unit

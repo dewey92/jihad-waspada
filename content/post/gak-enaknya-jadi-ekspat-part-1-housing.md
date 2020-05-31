@@ -25,9 +25,9 @@ Di waktu yang bersamaan, agent (makelaar) yang disewa kantor mulai mencari apart
 
 Pada akhirnya dapet juga apartment dengan harga €1.125. Studio sih, ukuran 44m², cuman _inclusive_ (termasuk listrik, air, dan internet) dan _furnished_. Deposit juga terbilang cukup murah, hanya €1.000. Tapi yang terpenting, dapet tempat tinggal sendiri yang masuk budget itu sudah lebih dari cukup.
 
-{{% figure src="/uploads/koningin-w.jpg" alt="Tampak depan" caption="Tampak depan" class="fig-center" %}}
+{{< figure src="/uploads/koningin-w.jpg" alt="Tampak depan" caption="Tampak depan" class="fig-center" >}}
 
-{{% figure src="/uploads/studio.jpg" alt="Tampak dalam" caption="Tampak dalam" class="fig-center" %}}
+{{< figure src="/uploads/studio.jpg" alt="Tampak dalam" caption="Tampak dalam" class="fig-center" >}}
 
 Cari apartment tanpa jasa agent di Belanda itu saaangat sulit, kalaupun dapet ya mahal. Agent-agent ini sudah punya banyak jaringan dengan landlord. Merekalah yang pertama kali diberitahu bila ada apartment yang available. Lucunya, seminggu sebelum dapet apartment ini saya pernah coba kontak sendiri landlord apartment yang sama untuk janjian viewing. Dan ditolak! Alasannya macem-macem. Eh pas agent ngabarin ke saya dia dapet apartement murah (ya apartment yang itu), besokannya langsung bisa viewing. Kan lucu.
 
@@ -49,9 +49,9 @@ Kalau istri dan anak benar-benar harus pulang ke Indonesia dan melanggar aturan 
 
 Namun ternyata Sang Pembuat Rencana turun tangan. Pertengahan bulan Desember saya bertemu seorang teman selepas solat Jum'at, yang mengabarkan bahwa sahabat baiknya sedang menyewakan apartment dengan harga yang lebih murah dibanding apartment saya waktu itu. Cus langsung besoknya saya kontak. Minggu viewing bersama 3 orang Indonesia yang juga sedang mencari apartment. Hari Selasa saya dapat kabar bahwa si landlord memilih saya untuk menjadi tenant di apartment-nya. Alhamdulillah.
 
-{{% figure src="/uploads/belakang-rumah-1.jpg" alt="Kanal belakang rumah 1" caption="Kanal belakang rumah 1" class="fig-center img-80" %}}
+{{< figure src="/uploads/belakang-rumah-1.jpg" alt="Kanal belakang rumah 1" caption="Kanal belakang rumah 1" class="fig-center img-80" >}}
 
-{{% figure src="/uploads/belakang-rumah-2.jpg" alt="Kanal belakang rumah 2" caption="Kanal belakang rumah 2" class="fig-center img-80" %}}
+{{< figure src="/uploads/belakang-rumah-2.jpg" alt="Kanal belakang rumah 2" caption="Kanal belakang rumah 2" class="fig-center img-80" >}}
 
 Landlord-nya juga sangat baik, dari Maroko, seorang muslim yang taat. Ia membolehkan saya membeli semua barang yang ada di apartment tersebut seharga €700, termasuk sofa, lemari-lemari, meja makan, kursi, TV, kasur, mesin cuci, peralatan dapur, semuanya. Bahkan ia mengganti kulkas dan ovennya juga. "Aggap saja bayar deposit", katanya. "Rasulullah pernah bilang, kalau kita mempermudah urusan orang lain, Allah akan mempermudah urusan kita". Masyaallah, semoga sehat-sehat ya, pak!
 
@@ -74,8 +74,6 @@ Dan usaha 4 hari itu akhirnya terbayarkan. Ketika checkout pihak management tida
 Cerita tahun pertama saya di Belanda barusan saya rasa cukup bisa jadi pelajaran bagi yang lain. Bahwa management keuangan itu sangat penting. Walaupun mencari apartment itu sulit, akan lebih sulit lagi kalau tidak ada pondasi keuangan yang kuat, yang setidaknya cukup untuk membayar deposit awal dan masih bisa bertahan hidup selama 2-3 bulan ke depan. Memang nominalnya terdengar cukup besar apalagi bagi yang baru datang sebagai ekspat tanpa tabungan atau dukungan finansial yang cukup.
 
 Seharusnya dari awal saya menyadari, dengan gaji yang pas-pasan (asumsi istri tidak bekerja), uang sebisa mungkin ditabung dan tidak dihabiskan untuk hal-hal yang kurang esensial. Terlebih lagi kami tidak memiliki siapa-siapa di negeri orang, tidak ada yang bisa dijadikan "pelarian" kalau terjadi apa-apa. Juga dengan peraturan yang jauh lebih ketat dibanding Indonesia. Ibarat semuanya harus terencana dan disiapkan secara matang.
-
-Saya hanya takut bila terus memaksakan cari makan di negeri orang sampai harus meninggalkan anak dan istri secara lahiriah, akan dianggap suami dan bapak yang dzalim yang hanya mementingkan diri sendiri. Kerja di Belanda itu nyaman, namun bila tak cukup nyaman bagi keluarga, lebih baik saya pulang ke negara asal dan hidup lebih tentram.
 
 ---
 

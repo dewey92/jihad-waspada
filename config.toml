@@ -8,7 +8,7 @@ googleAnalytics = "UA-142998318-1"
 hasCJKLanguage = false
 
 # syntax highlighting
-pygmentsStyle = "dracula"
+# pygmentsStyle = "dracula"
 pygmentsUseClasses = true
 # pygmentsOptions = "linenos=table"
 

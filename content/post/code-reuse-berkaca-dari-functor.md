@@ -101,7 +101,7 @@ isEven :: Int -> Boolean
 [false, true, false, true]
 ```
 
-{{% figure src="https://media.giphy.com/media/kBZBlLVlfECvOQAVno/200w_d.gif" alt="proud of myself" caption="tepuk tangan dulu" class="fig-center img-60" %}}
+{{< figure src="https://media.giphy.com/media/kBZBlLVlfECvOQAVno/200w_d.gif" alt="proud of myself" caption="tepuk tangan dulu" class="fig-center img-60" >}}
 
 ---
 
@@ -162,7 +162,7 @@ transform :: (a -> b) -> t a -> t b
 
 Sehingga jadilah sebuah fungsi generic baru untuk transformasi value di dalam suatu struktur data 🙂. Mari buatkan juga [Type Class]({{< ref "kenalan-dulu-sama-type-class.md" >}})-nya agar `t` dapat disubstitusi.
 
-{{< highlight haskell "hl_lines=1-2" >}}
+```hs {hl_lines=[1,2]}
 class Transformable t
   transform :: ∀ a b. (a -> b) -> t a -> t b
 
@@ -180,7 +180,7 @@ instance transQueue :: Transformable Queue where
 
 instance transBlabla :: Transformable Blabla where
   transform = transformBlabla
-{{< /highlight >}}
+```
 
 Class Transformable sudah dibuat. Fungsi `transform` akhirnya bisa dipanggil oleh Array, Tree, dan Queue.
 

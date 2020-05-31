@@ -251,7 +251,7 @@ Tidak mengejutkan 😄
 
 Balik ke pembahasan utama. Kita sudah tahu bahwa fungsi `guard` ter-contraint dengan class `HazDefault` pada type parameter `a`, yang berarti `a` hanya boleh diisi dengan String atau Array.
 
-{{< highlight hs "hl_lines=7 10" >}}
+```hs {hl_lines=[7,10]}
 type User = String
 
 isRoot :: User -> Boolean
@@ -273,7 +273,7 @@ access user = guard (isRoot user) [7, 7, 7]
 [7, 7, 7]
 λ> access "not admin"
 []
-{{< /highlight >}}
+```
 
 Lagi, compiler akan menolak untuk memberikan lampu hijau jika function `guard` dipanggil dengan tipe data yang tidak memiliki instance `HazDefault` seperti Int.
 
@@ -340,7 +340,7 @@ Fungsi `fetcUser` ter-constraint dengan dua buah type class: `MonadCache` dan `M
 
 Gak hanya itu, kita juga bisa menyimpulkan dari melihat type signature-nya saja bahwa `fetchUser` bakal berinteraksi dengan cache dan database (sebagai side effect) tanpa terikat dengan implementasi apapun! Implementasi tergantung konteks caller-nya. Misal ketika testing, instance bisa dibuat semau kita. Style ini biasa disebut dengan MTL/Tagless Final.
 
-{{< highlight hs "hl_lines=12-14 16-17" >}}
+```hs {hl_lines=["12-14","16-17"]}
 newtype TestM a = TesM (Aff a)
 
 runTest :: TestM ~> Aff
@@ -362,7 +362,7 @@ instance monadUserDbTestM :: MonadUserDb TestM where
 it "fetches a user from cache" do
   fromCache <- runTest $ fetchUser 1
   fromCache `shoudlEqual` (Just (User "user-from-cache"))
-{{< /highlight >}}
+```
 
 Mungkin pembahasan MTL (Monad Transformer Library) selengkapnya bisa diulas di lain waktu. Namun yang ingin saya tekankan adalah penggunaan type class itu sudah dimana-dimana. `Eq`, `Show`, `Functor`, `Monad`, `Applicative`, `Semigroup` (Appendable), `Monoid` (HazDefault), dan `Traversable` adalah beberapa type class dasar yang wajib dipahami.
 

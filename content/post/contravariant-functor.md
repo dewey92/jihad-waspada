@@ -270,14 +270,14 @@ Balik ke soal quiz tadi. Apakah tipe data `Consuming` bisa menjadi Functor? Saya
 
 Walaupun `Consuming` tidak bisa menjadi Functor, ia masih bisa menjelma jadi Contravariant Functor 🙃
 
-{{< highlight haskell "hl_lines=1-2" >}}
+```hs {hl_lines=[1,2]}
 instance contraConsuming :: Contravariant Consuming where
   cmap fn (MkConsuming aToStr) = MkConsuming (fn >>> aToSsr)
 
 -- `Returning` for reference
 instance functorReturning :: Functor Returning where
   map fn (MkReturning strToA) = MkReturning (fn <<< strToA)
-{{< /highlight >}}
+```
 
 Perbedaan `Consuming` dengan `Returning` sangat simple: pada `Consuming` fungsi transformasi `fn` dijalankan terlebih dahulu baru kemudian value di dalamnya. Sedangkan `Returning` sebaliknya, jalankan dulu value di dalamnya lalu transformasikan hasilnya dengan `fn`.
 
@@ -297,7 +297,7 @@ Penerapan Contravariant Functor memang tidak sebanyak saudara tirinya, Functor. 
 
 Anggap ada object Person dan program dapat melakukan sorting berdasarkan `name` dan `age`. Kita mulai dengan solusi tanpa Contravariant Functor.
 
-{{< highlight haskell "hl_lines=7-8 10-11" >}}
+```hs {hl_lines=["7-8","10-11"]}
 type Person = { name :: String, age :: Int }
 
 -- Factory function untuk sorting
@@ -324,7 +324,7 @@ persons = [
   { name: "A", age: 22 },
   { name: "C", age: 23 }
 ]
-{{< /highlight >}}
+```
 
 Namun ternyata fungsionalitas sorting Person ini gak hanya digunakan di satu tempat saja. Let's say ia juga digunakan ketika handling HTTP Request yang mengandung object Person.
 

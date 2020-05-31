@@ -73,6 +73,6 @@ instance bifunctorEither :: Bifunctor Either where
 
 Semua struktur data yang memiliki dua buah type paramater dapat dijadikan Bifunctor selama kedua type parameter-nya covariant. Maaf, ini kalimat sebenarnya kopas aja dari [sini](https://github.com/purescript/purescript-bifunctors/blob/1062425892b4a1c734ec653dded22546e3063b27/src/Data/Bifunctor.purs#L7-L8). Bisa di-skip karena gak peting. Tapi kalau penasaran, saya include gist dari apa yang dimaksud dengan Covariant dan Contravariant 👇🏻
 
-{{% figure src="/uploads/covariant-contravariant.png" alt="Rumus Covariant & Contravariant" caption="Rumus Covariant & Contravariant ([sumber](https://www.youtube.com/watch?v=OJtGECfksds&t=1142s))" class="fig-center" %}}
+{{< figure src="/uploads/covariant-contravariant.png" alt="Rumus Covariant & Contravariant" caption="Rumus Covariant & Contravariant ([sumber](https://www.youtube.com/watch?v=OJtGECfksds&t=1142s))" class="fig-center" >}}
 
 Sekian dan terima kangen.

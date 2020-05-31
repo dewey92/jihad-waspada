@@ -27,7 +27,7 @@ Tapi saya juga punya beberapa hal yang membuat saya mau _move away_ dari Medium:
 
 - Sebagian besar isi blog saya membahas konten technical. Dalam hal ini, editor Medium belum cukup bagus untuk menampilkan code yang saya tulis. Gak ada built-in _syntax highlighting_, block `<code> ... </code>` nya juga seringkali terlalu besar sehingga membaca code lewat mobile akan sangat sulit.
 
-    {{% figure src="/uploads/medium-mobile.png" alt="code di Medium sulit dibaca" caption="Sulit membaca di mobile" class="fig-center img-60" %}}
+    {{< figure src="/uploads/medium-mobile.png" alt="code di Medium sulit dibaca" caption="Sulit membaca di mobile" class="fig-center img-60" >}}
 
     Saya **harus** menggunakan gist dan meng-import-nya _only to show code colours and enhance readability_ 🤦🏻‍♀️
 - _Paywalls_. Sah-sah aja sih, _just doesn't work for me_.

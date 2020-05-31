@@ -137,7 +137,7 @@ main = do
 
 Nanti di bagian aplikasi lain, ketika user telah ter-autentikasi, barulah `currentUser` dapat di-update dan dibaca oleh function lain
 
-{{< highlight hs "hl_lines=11 20" >}}
+```hs {hl_lines=[11,20]}
 authenticate :: ∀ m.
   MonadAsk Env m =>
   MonadEffect m  =>
@@ -161,7 +161,7 @@ navbar = do
   case userMaybe of
     Nothing   -> H.button_ [H.text "Login"]
     Just user -> H.text ("Welcome, " <> user.name)
-{{< /highlight >}}
+```
 
 ## Wrap up
 

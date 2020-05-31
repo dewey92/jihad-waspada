@@ -51,7 +51,7 @@ fnName() === 'jihad'
 
 _Being powerful is great!_ Tapi perlu dicatat bahwa power yang sesungguhnya itu bukan yang digunakan tanpa batas, the real power comes when you can control it 😎 Iyadah serah lu!
 
-{{% figure src="https://media.giphy.com/media/42wMv7pMjAnH4uBn8G/giphy-downsized.gif" alt="yeah right" caption=" " class="fig-center img-60" %}}
+{{< figure src="https://media.giphy.com/media/42wMv7pMjAnH4uBn8G/giphy-downsized.gif" alt="yeah right" caption=" " class="fig-center img-60" >}}
 
 > Bukanlah orang kuat yang sebenarnya dengan (selalu mengalahkan lawannya dalam) perkelahian, tetapi tidak lain orang **kuat** yang sebenarnya adalah yang mampu **mengendalikan** dirinya ketika marah. - Muhammad SAW
 
@@ -62,7 +62,7 @@ Sama kayak programming, menurut saya sesuatu bisa dibilang **powerful** ketika d
 ## Newtype
 Di Purescript, `newtype` bersifat opaque yang berarti walaupun secara struktur dan runtime representation-nya persis sama namun mereka dianggap berbeda saat compile time.
 
-{{< highlight hs "hl_lines=4-5 10-11" >}}
+```hs {hl_lines=[4,5,10,11]}
 -- fileA.purs
 module FileA where
 
@@ -91,7 +91,7 @@ result = serebu != seceng -- error ❌
 -- | with type
 -- |
 -- |   Rupiah
-{{< /highlight >}}
+```
 
 Newtype sangat berguna untuk membuat distinction dari satu tipe data yang sama. Seperti ketika ingin membedakan konsep `name`, `address`, `url` yang biasanya diekspresikan dengan string biasa.
 

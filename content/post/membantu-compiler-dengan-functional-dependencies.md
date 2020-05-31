@@ -114,7 +114,7 @@ Dengan begini, compiler juga dapat langsung mengetahui apa type `e` begitu type 
 ## One to One
 Fitur Functional Dependencies juga bisa memiliki spesifikasi yang lebih narrow dari relasi many-to-one, yaitu one-to-one.
 
-{{% figure src="https://media.giphy.com/media/HIhwVDyNC6JOw/giphy-downsized.gif" alt="one on one" caption="One on One ini mah bro" class="fig-center img-60" %}}
+{{< figure src="https://media.giphy.com/media/HIhwVDyNC6JOw/giphy-downsized.gif" alt="one on one" caption="One on One ini mah bro" class="fig-center img-60" >}}
 
 Dengan one-to-one, kita menjamin jumlah instance type variable `a` **dan** `b` hanya satu saja. Mereka tidak boleh muncul lebih dari satu kali. Masih berkaitan dengan geografi, contoh yang paling mudah adalah relasi antara ibu kota dengan negaranya: suatu negara hanya boleh memiliki satu ibu kota **dan** suatu ibu kota hanya boleh dimiliki oleh satu negara.
 

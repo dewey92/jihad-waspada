@@ -145,7 +145,7 @@ Bagaimana informasi penambahan row ini dapat ditangkap oleh compiler?
 
 Kebetulan Typescript memiliki operasi intersection yang dinotasikan menggunakan symbol `&` sehingga operasi penambahan row ini relatif terlihat mudah.
 
-{{< highlight typescript "hl_lines=5,noclasses=false" >}}
+```ts {hl_lines=[5]}
 type FName = { firstName: string }
 
 const addLastName = <A extends FName>(
@@ -154,7 +154,7 @@ const addLastName = <A extends FName>(
   lastName: obj.firstName,
   ...obj
 })
-{{< /highlight >}}
+```
 
 ```js
 const person = { firstName: 'jihad', email: 'email@email.email' }

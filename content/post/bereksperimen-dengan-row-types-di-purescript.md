@@ -34,7 +34,7 @@ jihad = reflectSymbol typeLevel
 jihad == termLevel
 ```
 
-{{% figure src="https://media.giphy.com/media/12NUbkX6p4xOO4/giphy.gif" alt="one on one" caption="Compiler magic" class="fig-center img-60" %}}
+{{< figure src="https://media.giphy.com/media/12NUbkX6p4xOO4/giphy.gif" alt="one on one" caption="Compiler magic" class="fig-center img-60" >}}
 
 Oh ya satu lagi, Purescript juga menyediakan class `IsSymbol` yang bisa digunakan sebagai constraint untuk meng-assert (apa ya bahasa indonya?) suatu type variable sebagai Symbol.
 
@@ -114,24 +114,24 @@ Dimana `key` nantinya akan berupa type level string (Symbol) dan `a` adalah type
 
 Langkah kedua adalah memberikan constraint terhadap `key` dengan `SProxy` dan `IsSymbol` persis seperti yang sudah kita bahas di atas 😉
 
-{{< highlight hs "hl_lines=2 3" >}}
+```hs {hl_lines=[2,3]}
 get :: ∀ key row a.
   IsSymbol key =>
   SProxy key -> Record row -> a
 get = ...
-{{< /highlight >}}
+```
 
 We're getting there! Sekarang kita harus membuat koneksi antara `key`, `row`, dan `a` karena sebenarnya mereka adalah satu kesatuan yang tak terpisahkan: **ada sebuah `row` yang memiliki attribute `key` bertipe `a`**. Bagaimana cara mengekspresikan relasi ini?
 
 Dengan `Cons`! Ingat-ingat lagi bahwa `Cons` digunakan untuk mengekspresikan sebuah record yang memiliki _suatu_ attribute beserta type attribute tesebut. Persis seperti yang kita inginkan!
 
-{{< highlight hs "hl_lines=3" >}}
+```hs {hl_lines=[3]}
 get :: ∀ key row tail a.
   IsSymbol key =>
   Cons key a tail row =>
   SProxy key -> Record row -> a
 get = ...
-{{< /highlight >}}
+```
 
 Selesai! 🎉 Abaikan saja dulu `tail` di sini dan jangan terlalu dipikirkan, nanti akan ada saatnya kita menggunakan `tail`. Sekarang kita buktikan dulu apakah type signature ini typechecked..
 
@@ -168,24 +168,24 @@ set = ...
 
 Lalu asosiasikan `key` dan `b` dengan `rowB` menggunakan teman kita `Cons` karena mereka satu kesatuan republik indonesa:
 
-{{< highlight hs "hl_lines=3" >}}
+```hs {hl_lines=[3]}
 set :: ∀ key rowA rowB b tail.
   IsSymbol key =>
   Cons key b tail rowB =>
   SProxy key -> b -> Record rowA -> Record rowB
 set = ...
-{{< /highlight >}}
+```
 
 Lagi, abaikan `tail` untuk saat ini. Sekarang mari kita pikirkan sejenak relasi `rowA` dengan `rowB`. Mereka sebenarnya adalah `row` yang sama, hanya type dari `key`-nya saja yang kemungkinan berbeda. Karena masih ada relasi satu sama lain, kita harus melakukan penggabungan (unifikasi) dua buah insan ini dengan `Cons`:
 
-{{< highlight hs "hl_lines=3-4" >}}
+```hs {hl_lines=[3,4]}
 set :: ∀ key rowA a rowB b tail.
   IsSymbol key =>
   Cons key a tail rowA =>
   Cons key b tail rowB =>
   SProxy key -> b -> Record rowA -> Record rowB
 set = ...
-{{< /highlight >}}
+```
 
 Nah, markicek apa sudah benar implementasi type signature di atas dengan menggunakan fitur type hole.
 
@@ -240,7 +240,7 @@ Cons "age" Int tail (name :: String, age :: Int)
 
 Kita dapat melihat pola bahwa **tail adalah row tanpa head**, dimana head sendiri merupakan gabungan dari `Cons`, `label`, dan `a`. Persepsi ini seolah memberikan kesimpulan bahwa `rowB` adalah tail dari `rowA` 😏
 
-{{< highlight hs "hl_lines=6" >}}
+```hs {hl_lines=[6]}
 -- tail = row - head
 -- rowB = rowA - key
 
@@ -249,7 +249,7 @@ delete :: ∀ key a rowA rowB.
   Cons key a rowB rowA =>
   SProxy key -> Record rowA -> Record rowB
 delete = ...
-{{< /highlight >}}
+```
 
 Masih ada relasi yang kelewatan? Kalo gak ada langsung aja kita buktikan apakah type signature di atas typechecked..
 
@@ -291,14 +291,14 @@ Lacks "name" (name :: String, age :: Int)
 
 Oleh karena itu type signature fungsi `delete` masih bisa di-improve lagi dengan memberikan constraint `Lacks`:
 
-{{< highlight hs "hl_lines=4" >}}
+```hs {hl_lines=[4]}
 delete :: ∀ key a rowA rowB.
   IsSymbol key =>
   Cons key a rowB rowA =>
   Lacks key rowB =>
   SProxy key -> Record rowA -> Record rowB
 delete = ...
-{{< /highlight >}}
+```
 
 ### Insert
 Fungsi `insert` juga dapat dibuat dengan mengkombinasikan class `Lacks` dengan `Cons`. Intuisi type signature fungsi `insert` ini saya serahkan ke pembaca untuk exercise 🙂

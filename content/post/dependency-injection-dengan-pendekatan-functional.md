@@ -155,7 +155,7 @@ shoutImplTwo = shout Impl_two
 
 ketika di-compile menghasilkan output:
 
-{{< highlight js "hl_lines=22-26 28-29,linenos=table" >}}
+```js {hl_lines=["22-26","28-29"],linenos=inline}
 var Show = function (show) {
   this.show = show;
 };
@@ -185,7 +185,7 @@ var shout = function (dictShow) {
 
 var shoutImplOne = shout(showImplOne)(Impl_one.value);
 var shoutImplTwo = shout(showImplTwo)(Impl_two.value);
-{{< /highlight >}}
+```
 
 Perhatikan potongan code yang saya highlight. `shout` awalnya hanyalah sebuah _unary function_ (function dengan satu argument) namun menjadi _binary_ ketika di-compile, dengan parameter pertama berupa `dictShow`. `dictShow` akan diisi dengan implementation details oleh compiler ketika melakukan kompilasi (baris 28-29), dalam hal ini `showImplOne` dan `showImplTwo`. Implementation details tersebut dapat diubah-ubah sesuai konteks, persis seperti object `fsService` di atas tadi. Dengan kata lain, kita dapat menganggap `dictShow` sebagai dependency dari function `shout`.
 
@@ -204,7 +204,7 @@ initProject projectName = -- ...
 
 ... yang akan menghasilkan output
 
-{{< highlight js "hl_lines=12-16, linenos=table" >}}
+```js {hl_lines=["12-16"],linenos=inline}
 var FsService = function (exists, create) {
   this.exists = exists;
   this.create = create;
@@ -221,7 +221,7 @@ var initProject = function (dictFsService) {
       return ...;
   };
 };
-{{< /highlight >}}
+```
 
 Cukup dengan memberikan constraint `FsService` kepada function `initProject`, kita berhasil membuatnya menerima dependency `dictFsService` yang kedepannya dapat diubah-ubah sesuai konteks.
 
@@ -346,7 +346,7 @@ Layer 3 ini sebenarnya layer yang paling asyik, karena semua function yang ada d
 
 Yang saya sangat sukai dari pattern ini adalah bila ada sebuah function yang memiliki dependency lebih dari satu, maka kita hanya perlu menyatakannya lewat type signature sebagai constraint. Misal, function `initProject` kita dekorasi dengan logger dan prompt.
 
-{{< highlight hs "hl_lines=2-4" >}}
+```hs {hl_lines=["2-4"]}
 initProject :: ∀ m.
   ManageFileSystem m =>
   Logger m =>
@@ -366,7 +366,7 @@ initProject projectName = do
     createProject = do
       create projectName "Yoo!"
       log Success ("Successfully created project " <> projectName)
-{{< /highlight >}}
+```
 
 Dengan pattern ini, kita tidak lagi melakukan Dependency Injection dengan menyuplainya secara eksplisit lewat function argument seperti solusi di awal artikel tadi. **Kita mengalihkannya ke type signature**. Biar compiler yang menuntaskan pekerjaan Dependency Injection-nya. Dari segi estetika, dependencies dan function arguments juga terpisah jelas, sesuai goal awal kita.
 

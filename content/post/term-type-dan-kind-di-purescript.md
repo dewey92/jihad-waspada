@@ -187,7 +187,7 @@ takBoleh = enterRoom (SProxy :: _ "kamu")
 
 ```
 
-{{% figure src="https://media.giphy.com/media/7YeguV6Ia9lfO/giphy.gif" alt="yeah right" caption="squidward ganteng" class="fig-center img-60" %}}
+{{< figure src="https://media.giphy.com/media/7YeguV6Ia9lfO/giphy.gif" alt="yeah right" caption="squidward ganteng" class="fig-center img-60" >}}
 
 ## Penutup
 Sekarang sudah tau kan bedanya term, type, dan kind. Tapi pertanyaan besar muncul: terus kenapa gitu lho? Kenapa juga harus ada kind?

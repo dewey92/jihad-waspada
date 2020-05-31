@@ -33,7 +33,7 @@ const languages: Array<string> = ['javascript', 'typescript', 'purescript']
 
 Karena struktur data ini generic, kita bisa membuat function yang generic pula untuk mengubah nilai yang ada di dalamnya tanpa memandang apakah ia bertipe `number`, `string`, `object`, atau yang lainnya. _Let's say_, kita lagi butuh banget function yang bisa **ngubah array menjadi array of array**. Kalau gak ada function ini, proyek mangkrak ~~dan lu bakal dipaksa kawin ama anak kampung sebelah~~.
 
-{{< highlight typescript "hl_lines=2,noclasses=false" >}}
+```ts {hl_lines=[2]}
 const arrayifyArray = <T>(array: Array<T>): Array<[T]> =>
   array.map(item => [item])
 
@@ -42,7 +42,7 @@ const result = arrayifyArray([1, 2, 3])
 
 const result2 = arrayifyArray(['tikus', 'makan', 'sabun'])
 // [['tikus'], ['makan'], ['sabun']]
-{{< /highlight >}}
+```
 
 So, function `arrayifyArray` ini bersifat _polymorphic_: dimana ia mengubah `Array<number>` menjadi `Array<[number]>` pada contoh pertama dan mengubah `Array<string>` menjadi `Array<[string]>` pada contoh kedua, gak pandang type di dalamnya 🔥 So far so good.
 
@@ -84,7 +84,7 @@ const treeA: Tree<number> = branch(
 
 Dasar emang PM ini plin-plan dan kurang bisa nego sama client, dia sekarang minta juga untuk dibuatkan fungsi `arrayifyTree` persis seperti fungsi `arrayifyArray` yang sudah dibuat tadi. Sebagai developer [bike-bike](https://www.instagram.com/p/BvOSn0pD0A5/), kita buatkan saja fungsinya:
 
-{{< highlight typescript "hl_lines=4 16 18-19,noclasses=false" >}}
+```ts {hl_lines=[4,16,"18-19"]}
 function arrayifyTree<T>(tree: Tree<T>): Tree<[T]> {
   switch (tree._type) {
     case 'leaf':
@@ -107,7 +107,7 @@ branch(
   )
 )
 */
-{{< /highlight >}}
+```
 
 Kejadian ini membuat kita berasumsi jauh ke depan bagaimana jika suatu saat nanti lingkup projek menjadi semakin lebar dan harus menghadirkan beberapa data structure generic baru beserta function `arrayify`-nya. Data structure tersebut bisa berupa `Stack<T>`, `Queue<T>`, `LinkedList<T>`, `Stream<T>`, _you name it_.
 
@@ -143,7 +143,7 @@ Udah tidurnya bro? Hehe. Oke kita lanjut. Kind adalah cara untuk mengekspresikan
 
 Balik ke pembahasan Higher-Kinded Type. Di Haskell sendiri &mdash; salah satu bahasa dengan type system paling canggih &mdash; permasalah `arrayify` dapat dituliskan dengan HKT.
 
-{{< highlight hs "noclasses=false,hl_lines= 1 2" >}}
+```hs {hl_lines=[1,2]}
 class Arrayable a where
   arrayify :: a t -> a [t]
 
@@ -152,13 +152,13 @@ instance Arrayable Array where
 
 instance Arrayable Tree where
   arrayify = ... -- implementasi arrayify Tree
-{{< /highlight >}}
+```
 
 Type parameter `a` bisa disubstitusi dengan `Array` dan `Tree`, artinya `a` memiliki Kind `* -> *`. Dan type paramater `t`-nya adalah concrete type (Kind `*`). Anggap aja `class` di atas itu seperti `interface` di Typescript dan `instance` itu seperti `class` :p
 
 Lagi-lagi, kalau "style" di atas diterapkan di Typescript, saya rasa tetap belum bisa sepenuhnya akurat.
 
-{{< highlight typescript "hl_lines=2 14 15,linenos=table,noclasses=false" >}}
+```ts {hl_lines=[2,14,15],linenos=inline}
 interface Arrayable<T> {
   arrayify(): Arrayable<[T]>
 }
@@ -176,17 +176,17 @@ class Tree<T> implements Arrayable<T> {
     return new Array([this.val]);
   }
 }
-{{< /highlight >}}
+```
 
 Kurang akuratnya solusi ini terlihat jika kita memperhatikan return type-nya. Return type dari fungsi `arrayify` **bisa berupa apa saja asalkan ia subtype dari `Arrayable`**. Artinya notasi `Tree<T> → Array<[T]>` seperti yang ada pada line 14 type-checked! Sedangkan yang kita inginkan adalah kesamaan type constructor (dalam hal ini ya class itu sendiri) dengan outputnya: `Array<T> → Array<[T]>` atau `Tree<T> → Tree<[T]>` saja.
 
 Maunya sih begini tapi gak bisa 😅
 
-{{< highlight typescript >}}
+```ts
 interface Arrayable<T> {
   arrayify(): this<[T]>
 }
-{{< /highlight >}}
+```
 
 Selain itu, konsep Higher-Kinded Type memungkinkan kita untuk membuat _factory ~~function~~ type_, yang berarti satu type dapat menghasilkan banyak type atau data structure.
 
