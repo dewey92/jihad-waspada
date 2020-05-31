@@ -12,6 +12,11 @@ hasCJKLanguage = false
 pygmentsUseClasses = true
 # pygmentsOptions = "linenos=table"
 
+[markup]
+  [markup.goldmark]
+    [markup.goldmark.renderer]
+      unsafe = true
+
 [params]
 	author = "Jihad D. Waspada"
 	description = "Jihad Dzikri Waspada's personal blog"
