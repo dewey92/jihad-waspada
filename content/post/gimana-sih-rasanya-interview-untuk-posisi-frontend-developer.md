@@ -241,7 +241,7 @@ Ada beberapa tips yang belum saya sebut yang bisa diaplikasikan saat interview.
     - Is there any performance review for certain periods? What is it like?
     - Are you also open for hiring junior developers?
     - You've been at this company for a while. What keeps you motivated?
-    - If there’s one thing that you’d like to change at Adyen, what would it be?
+    - If there’s one thing that you’d like to change at XXX, what would it be?
 
     <div><strong>Questions to developers:</strong></div>
 
