@@ -25,7 +25,7 @@ Setiap perusahaan mungkin memiliki urutan dan nama yang sedikit berbeda. Tapi da
 
 ## "Say Hello" Interview
 
-"Say hello" bisa saja terdengar santuy, tapi interview ini adalah gerbang ke tahap selanjutnya karena pihak perusahaan akan menilai kepribadian, pengalaman kerja, _pereferences_, dan motivasi kita (why join us?). Jadi harus dipersiapkan secara matang. Pernah sekali saya gagal di tahap ini karena pada waktu itu tidak menyiapkan materi apa-apa. Ketika interview, jawaban-jawaban yang saya lontarkan terdengar dibuat-buat, tidak otentik, dan kurang berbobot. Keluar ruang interview, saya sudah tahu jawabannya tanpa harus menunggu email dari mereka lagi.
+"Say hello" bisa saja terdengar santuy, tapi interview ini adalah gerbang ke tahap selanjutnya karena pihak perusahaan akan menilai kepribadian, pengalaman kerja, _preferences_, dan motivasi kita (why join us?). Jadi harus dipersiapkan secara matang. Pernah sekali saya gagal di tahap ini karena pada waktu itu tidak menyiapkan materi apa-apa. Ketika interview, jawaban-jawaban yang saya lontarkan terdengar dibuat-buat, tidak otentik, dan kurang berbobot. Keluar ruang interview, saya sudah tahu jawabannya tanpa harus menunggu email dari mereka lagi.
 
 Mulai saat itu saya selalu membuat dokumen khusus tentang poin-poin yang akan saya sampaikan ketika interview. Bisa tiga jam sendiri menulisnya. Agak lebay sih memang. Padahal interview ini biasanya hanya berlangsung selama 30 menit saja. Tapi kan siapa yang tahu 🤷🏽
 
@@ -206,7 +206,7 @@ Dan masih banyak lagi. Tapi yang lainnya lupa 😅
 
 ## Final Interview
 
-Biasanya kalau sudah lolos technical interview, kita bisa agak santai sedikit. Final interview ini nggak semenyeramkan technical interview. Sekarang saatnya main cocok-cocokan sama perusahaan. Namun tetap perlu persiapan. Di tahap ini mereka akan mencoba mengenal lebih dekat kepribadian kita, pereferensi lingkungan kerja, diskusi mengenai team work, mengenai masalah-masalah umum ketika development yang tidak berhubungan dengan code (misal bagaimana me-manage deadline), atau mengenai motivasi dan value sebagai individu.
+Biasanya kalau sudah lolos technical interview, kita bisa agak santai sedikit. Final interview ini nggak semenyeramkan technical interview. Sekarang saatnya main cocok-cocokan sama perusahaan. Namun tetap perlu persiapan. Di tahap ini mereka akan mencoba mengenal lebih dekat kepribadian kita, preferensi lingkungan kerja, diskusi mengenai team work, mengenai masalah-masalah umum ketika development yang tidak berhubungan dengan code (misal bagaimana me-manage deadline), atau mengenai motivasi dan value sebagai individu.
 
 Beberapa pertanyaan yang saya ingat:
 
@@ -229,9 +229,9 @@ Saya pribadi tidak "lolos" interview terakhir ini. Lebih karena kurang cocok dar
 
 Ada beberapa tips yang belum saya sebut yang bisa diaplikasikan saat interview.
 
-- _Don't try to bluff_. Kalau memang tidak tahu akan sesuatu, jawab dengan jujur. Katakan, "I don't know" atau "Well, from what I know, bla bla bla bla bla. But I'm not even sure if that's really the case". Ini bisa jadi nilai plus tersendiri karena kita mampu mengakui bahwa kita memang tidak tahu segalanya.
-- Ajak diskusi. Interview itu bukan interogasi. Jadi kalau memang bisa, cobalah ambil alih kemudi interview di saat-saat tertentu. Misal setelah menjawab pertanyaan yang agak sulit, tanyakan, "I don't know if my aforementioned approach is effecient, what do you think about it?". Atau misal setelah cerita tentang pengalaman buruk, bisa di-follow-up dengan pertanyaan, "How do you guys as a team handle this sort of situation if one of the team members is experiencing such a thing?"
 - Atur napas sebelum interview. Saya selalu deg-degan setiap kali sebelum interview. Bisa dikurangi dengan menarik napas selama 6 detik, menahannya selama 2 detik, dan menghelanya selama 7 detik
+- _Don't try to bluff_. Kalau memang tidak tahu akan sesuatu, jawab dengan jujur. Katakan, "I don't know" atau "Well, from what I know, bla bla bla bla bla. But I'm not even sure if that's really the case". Ini bisa jadi nilai plus tersendiri karena kita mampu mengakui bahwa kita memang tidak tahu segalanya.
+- Ajak diskusi. Interview itu bukan interogasi. Jadi kalau memang bisa, cobalah ambil alih kemudi interview di saat-saat tertentu. Misal setelah menjawab pertanyaan yang agak sulit, tanyakan, "I don't know if my aforementioned approach is effecient, what do you think about it?". Atau misal setelah cerita tentang pengalaman buruk, bisa di-follow-up dengan pertanyaan, "How do you guys as a team handle this sort of situation if one of the team members is having the same problem?"
 - Siapkan pertanyaan untuk akhir sesi. _Awkward silence_ sering terjadi di akhir sesi interview, entah karena mereka kehabisan stok pertanyaan, atau memang waktunya aja yang kepanjangan. Situasi ini bisa disiasati dengan menanyakan beberapa hal ke mereka.
 
   <section class="box">
