@@ -71,6 +71,20 @@ Berikut saya cantumkan outline dokumen persiapan saya saat apply ke XXX 👇🏻
 
 </section>
 
+Kalau dari pihak mereka sendiri, selain memperkenalkan tim dan cara kerja sehari-hari, mereka juga akan menanyakan hal-hal dasar seperti:
+
+<section class="box">
+
+- Tinggal dimana sekarang?
+- Kenapa mau relokasi?
+- Tau perusahaan ini darimana?
+- Kenapa mau apply? Adakah yang membuatmu kurang nyaman di tempat kerja sekarang?
+- Pernah handle proyek apa aja?
+
+</section>
+
+Yaa lebih ke arah ta'aruf aja 🙂
+
 ## Technical Assignment
 
 Setelah lolos interview tahap awal, pihak perusahaan biasanya akan memberikan _technical assignment_ untuk melihat kemampuan pemecahan masalah kita dengan code. _Assignment_ ini sifatnya _homework_, jadi bisa dilakukan saat weekend.
