@@ -17,12 +17,12 @@ Singkat cerita, Jum'at kemarin salah satu rekan kerja saya sedang membuat fitur 
 
 ```tsx
 const ContentWrapper = () => {
-  const [needsReadMoreBtn, setNeedsReadMoreBtn] = React.useState(false)
+  const [hasReadMoreBtn, setHasReadMoreBtn] = React.useState(false)
   const [isExpanded, setIsExpanded] = React.useState(false)
   const contentRef = React.useRef(null)
 
   React.useEffect(() => {
-    if (contentRef.current.offsetHeight > 300) setNeedsReadMoreBtn(true)
+    if (contentRef.current.offsetHeight > 300) setHasReadMoreBtn(true)
   }, [])
 
   const onBtnClick = () => setIsExpanded(true)
@@ -32,13 +32,13 @@ const ContentWrapper = () => {
       <div ref={contentRef}>
         ...
       </div>
-      {needsReadMoreBtn && <button onClick={onBtnClick}>read more</button>}
+      {hasReadMoreBtn && <button onClick={onBtnClick}>read more</button>}
     </div>
   )
 }
 ```
 
-Cukup jelas. Namun ada masalah baru: `setNeedsReadMoreBtn(true)` dijalankan setelah render. Artinya, jika tinggi content ternyata melebihi 300px, _flash of content_ pun kemungkinan terjadi: awalnya user melihat seluruh isi content, lalu sepersekian detik kemudian tombol "read more" baru muncul
+Cukup jelas. Namun ada masalah baru: `setHasReadMoreBtn(true)` dijalankan setelah render. Artinya, jika tinggi content ternyata melebihi 300px, _flash of content_ pun kemungkinan terjadi: awalnya user melihat seluruh isi content, lalu sepersekian detik kemudian tombol "read more" baru muncul
 
 {{< figure src="/uploads/flash-of-content.gif" alt="flash of content" caption="flash of content" class="fig-center img-60" >}}
 
@@ -46,13 +46,13 @@ Ngakalinnya, jangan tampilkan konten ke user sebelum tinggi konten diketahui.
 
 ```tsx {hl_lines=[4,9,15]}
 const ContentWrapper = () => {
-  const [needsReadMoreBtn, setNeedsReadMoreBtn] = React.useState(false)
+  const [hasReadMoreBtn, setHasReadMoreBtn] = React.useState(false)
   const [isExpanded, setIsExpanded] = React.useState(false)
   const [isReady, setIsReady] = React.useState(false)
   const contentRef = React.useRef(null)
 
   React.useEffect(() => {
-    if (contentRef.current.offsetHeight > 300) setNeedsReadMoreBtn(true)
+    if (contentRef.current.offsetHeight > 300) setHasReadMoreBtn(true)
     setIsReady(true)
   }, [])
 
@@ -63,7 +63,7 @@ const ContentWrapper = () => {
       <div ref={contentRef}>
         ...
       </div>
-      {needsReadMoreBtn && <button onClick={onBtnClick}>read more</button>}
+      {hasReadMoreBtn && <button onClick={onBtnClick}>read more</button>}
     </div>
   )
 }
@@ -75,14 +75,14 @@ Masalah selesai. Tapi entah kenapa ada sesuatu yang mengganjal. _It feels hacky_
 
 | Kombinasi | Validitas & Penjelasan |
 |:-:|:-:|
-| `needsReadMoreBtn` ✅<br/>`isExpanded` ✅<br/>`isReady` ✅ | Valid. State ini terjadi ketika tinggi konten melebihi 300px, dan user sudah meng-klik tombol "read more" |
-| `needsReadMoreBtn` ✅<br/>`isExpanded` ✅<br/>`isReady` ❌ | **Tidak valid**. Bagaimana mungkin `isExpanded` sudah bernilai true sedangkan `isReady` masih bernilai false |
-| `needsReadMoreBtn` ✅<br/>`isExpanded` ❌<br/>`isReady` ✅ | Valid. State ini terjadi ketika konten dengan tinggi >300px sudah tersedia namun user belum meng-klik tombol "read more" |
-| `needsReadMoreBtn` ✅<br/>`isExpanded` ❌<br/>`isReady` ❌ | Valid. State ini terjadi ketika konten dengan tinggi >300px belum ditampikan ke layar |
-| `needsReadMoreBtn` ❌<br/>`isExpanded` ✅<br/>`isReady` ✅ | **Tidak valid**. `isExpanded = true` (tombol "read more" ketika sudah di-click) hanya mungkin terjadi bila `needsReadMoreBtn` juga bernilai true |
-| `needsReadMoreBtn` ❌<br/>`isExpanded` ✅<br/>`isReady` ❌ | **Tidak valid**. Sama seperti di atas |
-| `needsReadMoreBtn` ❌<br/>`isExpanded` ❌<br/>`isReady` ✅ | Valid. Kontent sudah disajikan dan tingginya tidak melebihi 300px |
-| `needsReadMoreBtn` ❌<br/>`isExpanded` ❌<br/>`isReady` ❌ | Valid. Kontent belum disajikan dan tingginya tidak melebihi 300px |
+| `hasReadMoreBtn` ✅<br/>`isExpanded` ✅<br/>`isReady` ✅ | Valid. State ini terjadi ketika tinggi konten melebihi 300px, dan user sudah meng-klik tombol "read more" |
+| `hasReadMoreBtn` ✅<br/>`isExpanded` ✅<br/>`isReady` ❌ | **Tidak valid**. Bagaimana mungkin `isExpanded` sudah bernilai true sedangkan `isReady` masih bernilai false |
+| `hasReadMoreBtn` ✅<br/>`isExpanded` ❌<br/>`isReady` ✅ | Valid. State ini terjadi ketika konten dengan tinggi >300px sudah tersedia namun user belum meng-klik tombol "read more" |
+| `hasReadMoreBtn` ✅<br/>`isExpanded` ❌<br/>`isReady` ❌ | Valid. State ini terjadi ketika konten dengan tinggi >300px belum ditampikan ke layar |
+| `hasReadMoreBtn` ❌<br/>`isExpanded` ✅<br/>`isReady` ✅ | **Tidak valid**. `isExpanded = true` (tombol "read more" ketika sudah di-click) hanya mungkin terjadi bila `hasReadMoreBtn` juga bernilai true |
+| `hasReadMoreBtn` ❌<br/>`isExpanded` ✅<br/>`isReady` ❌ | **Tidak valid**. Sama seperti di atas |
+| `hasReadMoreBtn` ❌<br/>`isExpanded` ❌<br/>`isReady` ✅ | Valid. Kontent sudah disajikan dan tingginya tidak melebihi 300px |
+| `hasReadMoreBtn` ❌<br/>`isExpanded` ❌<br/>`isReady` ❌ | Valid. Kontent belum disajikan dan tingginya tidak melebihi 300px |
 
 </div>
 
