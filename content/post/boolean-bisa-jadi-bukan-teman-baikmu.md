@@ -78,11 +78,11 @@ Masalah selesai. Tapi entah kenapa ada sesuatu yang mengganjal. _It feels hacky_
 | `hasReadMoreBtn` ✅<br/>`isExpanded` ✅<br/>`isReady` ✅ | Valid. State ini terjadi ketika tinggi konten melebihi 300px, dan user sudah meng-klik tombol "read more" |
 | `hasReadMoreBtn` ✅<br/>`isExpanded` ✅<br/>`isReady` ❌ | **Tidak valid**. Bagaimana mungkin `isExpanded` sudah bernilai true sedangkan `isReady` masih bernilai false |
 | `hasReadMoreBtn` ✅<br/>`isExpanded` ❌<br/>`isReady` ✅ | Valid. State ini terjadi ketika konten dengan tinggi >300px sudah tersedia namun user belum meng-klik tombol "read more" |
-| `hasReadMoreBtn` ✅<br/>`isExpanded` ❌<br/>`isReady` ❌ | Valid. State ini terjadi ketika konten dengan tinggi >300px belum ditampikan ke layar |
+| `hasReadMoreBtn` ✅<br/>`isExpanded` ❌<br/>`isReady` ❌ | Valid. State ini terjadi ketika konten dengan tinggi >300px belum ditampilkan ke layar |
 | `hasReadMoreBtn` ❌<br/>`isExpanded` ✅<br/>`isReady` ✅ | **Tidak valid**. `isExpanded = true` (tombol "read more" ketika sudah di-click) hanya mungkin terjadi bila `hasReadMoreBtn` juga bernilai true |
 | `hasReadMoreBtn` ❌<br/>`isExpanded` ✅<br/>`isReady` ❌ | **Tidak valid**. Sama seperti di atas |
-| `hasReadMoreBtn` ❌<br/>`isExpanded` ❌<br/>`isReady` ✅ | Valid. Kontent sudah disajikan dan tingginya tidak melebihi 300px |
-| `hasReadMoreBtn` ❌<br/>`isExpanded` ❌<br/>`isReady` ❌ | Valid. Kontent belum disajikan dan tingginya tidak melebihi 300px |
+| `hasReadMoreBtn` ❌<br/>`isExpanded` ❌<br/>`isReady` ✅ | Valid. konten sudah disajikan dan tingginya tidak melebihi 300px |
+| `hasReadMoreBtn` ❌<br/>`isExpanded` ❌<br/>`isReady` ❌ | Valid. konten belum disajikan dan tingginya tidak melebihi 300px |
 
 </div>
 
