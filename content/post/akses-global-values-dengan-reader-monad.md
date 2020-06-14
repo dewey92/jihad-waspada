@@ -95,7 +95,7 @@ fetchAllData = do
   pure someData
 
 
-someData = runReader fetchAllData { baseUrl: "http://localhost:4005" }
+allData = runReader fetchAllData { baseUrl: "http://localhost:4005" }
 ```
 
 Ketika `ask` dipanggil, ia akan mengembalikan environment yang nantinya disuplai. Jadi kalau ingin mendapatkan environment, **_ask_ for it** 😉.

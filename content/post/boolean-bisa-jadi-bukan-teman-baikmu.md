@@ -69,7 +69,7 @@ const ContentWrapper = () => {
 }
 ```
 
-Masalah selesai. Tapi entah kenapa ada sesuatu yang mengganjal. _It feels hacky_. **Masa iya harus butuh 3 buah state hanya untuk mengimplemen fitur se-simple ini**. Belum lagi, dengan kombinasi tiga buah boolean saja, ada banyak kemungkinan yang bisa terjadi. Beberapa diantaranya justru tidak valid.
+Masalah selesai. Tapi entah kenapa ada sesuatu yang mengganjal. _It feels hacky_. **Masa iya harus butuh 3 buah state hanya untuk membuat fitur se-simple ini**. Belum lagi, dengan kombinasi tiga buah boolean saja, ada banyak kemungkinan yang bisa terjadi. Beberapa diantaranya justru tidak valid.
 
 <div class="comparison-table">
 

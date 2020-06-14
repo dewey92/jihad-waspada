@@ -255,7 +255,7 @@ someFn :: ∀ r a. SM Effect r => a -> Effect (r a)
 someFn x = ...
 ```
 
-yang tentunya tidak diinginkan karena terlalu general. Di lain kasus, tidak adanya FuncDep dapat menimbulkan ambiguity di sisi compiler.
+dimana `r` tidak dapat di-infer oleh compiler. Di lain kasus, tidak adanya FuncDep dapat menimbulkan ambiguity di sisi compiler.
 
 ```hs
 ambiguousFn :: ∀ a. a -> Effect a

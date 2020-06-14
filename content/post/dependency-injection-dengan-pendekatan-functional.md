@@ -304,7 +304,7 @@ instance manageFsAppM :: ManageFileSystem AppM where
 
 Karena ini hanyalah "interface" terhadap dunia luar, membuat mock implementasi untuk kebutuhan testing juga mudah.
 
-```hs
+```hs {hl_lines=["7-9"]}
 -- Di Layer 1, definisikan "konteks"
 newtype TestM a = TestM (Writer [String] a)
 
