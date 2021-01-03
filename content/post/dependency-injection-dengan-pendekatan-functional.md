@@ -61,6 +61,8 @@ app.initProject('my-awesome-project')
 expect(fsMock.create).toHaveBeenCalledWith('my-awesome-project')
 ```
 
+Testing jadi jauh lebih mudah dan gak perlu berinteraksi dengan file system beneran. `AppGenerator` cukup tau **apa yang perlu dilakukan** namun tak perlu tau **bagaimana melakukannya**.  Sering juga disebut dengan _Inversion of Control_.
+
 Pertanyaannya: bagaimana jika dilakukan dengan pendekatan functional? Apakah bisa dilakukan tanpa adanya class? Cukup dengan function?
 
 ## Explicit Dependencies
@@ -89,7 +91,7 @@ initProject(fsService, 'my-awesome-project')
 initProject(fsMock, 'my-awesome-project')
 ```
 
-## Partial Application
+## Factory Function
 
 Anggap saja requirement berubah di kemudian hari. User butuh fitur _logging_ [1] untuk mengetahui apakah program berhasil dijalankan atau tidak. Lalu ada tambahan _options_ [2] juga agar user dapat mengkostumasi project dengan lebih leluasa.
 
@@ -109,7 +111,7 @@ initProject(fsService, logService, projectName, options) {
 }
 ```
 
-Fungsi `initProject` kini membutuhkan dua buah external service (`fsService` dan `logService`) dan dua buah argument "biasa" (`projectName` dan `options`). Pada dasarnya mereka semua sama-sama function argument, hanya concern-nya saja yang berbeda. Kita bisa melakukan sedikit refactor untuk membuat external service terlihat lebih eksplisit dan terpisah dari yang lainnya.
+Fungsi `initProject` kini membutuhkan dua buah external service (`fsService` dan `logService`) dan dua buah argument "biasa" (`projectName` dan `options`). Pada dasarnya mereka semua sama-sama function argument, hanya concern-nya saja yang berbeda. Kita bisa melakukan sedikit refactor untuk membuat external service terlihat lebih eksplisit dan terpisah dari yang lainnya dengan factory function.
 
 ```ts
 function makeInitProject(fsService, logService) {     // dependencies
@@ -123,11 +125,40 @@ const initProject = makeInitProject(fsService, consoleService)
 initProject('my-awesome-project', { overwrite: true })
 ```
 
-Style ini mirip dengan OOP dimana `makeInitProject` seolah berperan sebagai `constructor` dalam menerima dan menyimpan dependencies dengan bantuan closure. Namun esensinya pendekatan ini tidaklah berbeda dengan solusi sebelumnya. _It's just a matter of style_.
+`makeInitProject` menerima dua buah service dan mengembalikan fungsi `initProject` yang menerima argument "biasa".  `makeInitProject` seolah berperan sebagai `constructor` dalam menerima dan menyimpan dependencies dengan bantuan closure. Namun esensinya pendekatan ini tidaklah berbeda dengan solusi sebelumnya.
+
+Di artikel [Functional Approach to Dependency Injection](https://fsharpforfunandprofit.com/posts/dependency-injection-1/) si penulis juga menggunakan pendekatan ini yang bisa dicapai dengan partial application jika bahasanya mendukung currying, seperti F#.
+
+Di artikel lain seperti [Dependency Injection using Modules](https://itazura.io/modules-for-dependency-injection/) yang ditulis menggunakan ReasonML, juga memanfaatkan ide yang sama.
+
+```hs
+-- // The "interface"
+module type Logger = {
+  let log: string => unit;
+};
+
+-- // The "implementation"
+module ConsoleLogger = {
+  let log = loggable => Js.Console.log(log);
+};
+
+-- // The "consumer"
+module GreetingService = (LOG: Logger) => {
+  let sayHello = name => LOG.log("Hello " ++ name);
+};
+
+-- // Inject!
+module ConsoleGreeter = GreetingService(ConsoleLogger);
+ConsoleGreeter.sayHello("World");
+```
+
+_Who needs class when you have functions_ 😛
+
+Saya ingin menambahkan satu pendekatan lain yang mirip dengan factory function: yaitu type class.
 
 ## Type Class
 
-Cara lain agar DI dapat diimplementasikan dengan cara functional adalah melalui [type class]({{< ref "./kenalan-dulu-sama-type-class.md" >}}). Tidak semua bahasa punya fitur type class. Beberapa yang mendukung ada Haskell, Idris, dan Purescript. Type class sendiri adalah kumpulan-kumpulan method tanpa implementasi &mdash; seperti interface &mdash; yang memungkinkan tercapainya ad-hoc polymorphism.
+Cara lain agar DI dapat diimplementasikan dengan cara functional adalah melalui [type class]({{< ref "./kenalan-dulu-sama-type-class.md" >}}). Beberapa yang mendukung fitur type class diantaranya Haskell, Idris, dan Purescript. Type class sendiri adalah kumpulan-kumpulan method tanpa implementasi &mdash; seperti interface &mdash; yang memungkinkan tercapainya ad-hoc polymorphism.
 
 So, how does it look like?
 
@@ -222,7 +253,7 @@ Bisa dicoba di [link ini](https://try.purescript.org/?gist=43ab6916f4b22e6b7893c
 
 ### Dependency Baru
 
-Sejauh ini kita dapat menyimpulkan bahwa compiler melakukan dependency injection saat compile time hanya dengan mendeklarasikan constraint type class pada type signature fungsi `initProject`. Artinya ketika kita punya service tambahan e.g `logService` dan `promptService`, kita hanya perlu mengubah type signature dan voila, dependencies ter-inject.
+Sejauh ini kita dapat menyimpulkan bahwa compiler melakukan dependency injection saat compile time hanya dengan mendeklarasikan constraint type class pada type signature. Artinya ketika kita punya service tambahan e.g `logService` dan `promptService`, kita hanya perlu mengubah type signature-nya dan voila, dependencies ter-inject.
 
 ```hs
 -- Service baru
@@ -292,9 +323,7 @@ spec = describe "initProject" do
 
 _No problems whatsoever_.
 
----
-
-## Putting it All Together
+### Putting it All Together
 
 Dengan pattern ini, kita tidak lagi melakukan Dependency Injection dengan menyuplainya secara eksplisit lewat function argument seperti solusi di awal artikel. **Kita mengalihkannya ke type signature**. Biar compiler yang menuntaskan pekerjaan Dependency Injection-nya. Dari segi estetika, dependencies dan function arguments juga terpisah jelas, sesuai goal awal kita.
 
@@ -316,5 +345,11 @@ program = do
   when (not $ null projectName) do
     initProject projectName
 ```
+
+---
+
+## Wrap up
+
+Kita tetap bisa melakukan DI dengan hanya menggunakan functions. Factory function dapat membantu penulisan kode menjadi lebih jelas mana dependency (service) dan mana function argument biasa. Dan ternyata pendekatan ini cukup lumrah di bahasa-bahasa functional lainnya.
 
 Saya harap artikel ini bermanfaat dalam menambah wawasan teman-teman sekalian. Terima kasih banyak. _Stay well_ 🙂
