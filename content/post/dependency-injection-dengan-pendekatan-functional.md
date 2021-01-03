@@ -13,75 +13,75 @@ draft: false
 
 Istilah Dependency Injection (DI) biasa digunakan untuk merujuk pada teknik dimana suatu object menyuplai dependencies dari object lain. Tujuan utamanya adalah agar object tersebut tidak terikat pada satu implementasi tertentu saja, membuatnya menjadi lebih fleksibel terhadap perubahan. Istilah ini cukup dikenal dalam dunia Object-Oriented Programming.
 
-Pada dasarnya DI dapat diilustrasikan dengan code berikut (_oversimplified and contrived_):
+Berikut contoh kecil DI:
 
-```ts
+```ts {hl_lines=[7,10,13,24]}
 interface FileSystemService {
   exists: (path: Path) => boolean;
   create: (path: Path, content: string) => void;
-  // ... etc
 }
 
-class CommandLineApp {
-  constructor(fsService: FileSystemService) {
-    this.fsService = fsService
-  }
+class AppGenerator {
+  constructor(private fsService: FileSystemService) {} // [1]
 
   initProject(projectName: Path) {
-    if (this.fsService.exists(projectName)) {
+    if (this.fsService.exists(projectName)) { // [2]
       throw new Error('Cannot create project. A file/dir already exists!')
     }
-    this.fsService.create(projectName)
+    this.fsService.create(projectName, "Generated content") // [2]
   }
 }
 
-// later when calling
+// Later when calling
 import fs from 'fs'
 
 const fsService: FileSystemService = {
   exists: fs.existsSync,
   create: fs.writeFileSync,
-  // ... etc
 }
-const app = new CommandLineApp(fsService);
+const app = new AppGenerator(fsService); // [3]
 app.initProject('my-awesome-project')
 ```
 
-Dengan teknik ini, implementasi object `fsService` dapat diganti-ganti sesuka hati asal sesuai dengan interface yang telah ditentukan, semisal untuk kebutuhan testing.
+- Kita definisikan dependency di constructor class [1] dan berikan constraint dengan sebuah interface agar implementasi object `fsService` dapat diganti-ganti sesuka hati selama comply dengan interface tersebut.
+- Dependency dapat diakses dengan keyword `this` [2].
+- Dependency diberikan ketika object `AppGenerator` diinstansiasi [3].
+
+Dengan pemodelan dependency lewat class constructor ini, class `AppGenerator` menjadi lebih fleksibel dan tidak terikat pada satu implementasi saja. We program to an interface, not implementation. Detil implementasi dapat diganti semisal ketika testing:
 
 ```ts
 const fsMock: FileSystemService = {
   exists: jest.fn().mockReturnValue(false),
   create: jest.fn(),
-  // ... etc
 };
 
-const app = new CommandLineApp(fsMock)
+const app = new AppGenerator(fsMock)
 app.initProject('my-awesome-project')
 
 expect(fsMock.create).toHaveBeenCalledWith('my-awesome-project')
 ```
 
-Dependency Injection terlihat begitu mudah sampai suatu saat kita mulai bertanya-tanya: bagaimana jika dilakukan dengan pendekatan functional yang notabene segalanya terdiri dari function? Apakah DI bisa tercapai tanpa adanya class?
+Pertanyaannya: bagaimana jika dilakukan dengan pendekatan functional? Apakah bisa dilakukan tanpa adanya class? Cukup dengan function?
 
 ## Explicit Dependencies
 
-Pada contoh di atas kita dapat melihat bahwa method `initProject` bergantung pada object `fsService` agar bisa sepenuhnya bekerja. Object `fsService` dipanggil melalui magic keyword "this". Tanpa adanya class, kita kehilangan keyword tersebut sehingga `fsService` &mdash; yang "disimpan" melalui `constructor` &mdash; terkesan mustahil dipanggil.
+Kita dapat melihat pada contoh di atas bahwa method `initProject` bergantung pada object `fsService` yang kemudian diakses melalui magic keyword "this". Bicara dalam konteks function, kita tak lagi dapat mengandalkan keyword "this" dan harus mencari cara lain agar tetap bisa mengakses `fsService`.
 
-Di lain sisi, kita tahu bahwa pure function hanya bergantung pada inputannya (function arguments) untuk melakukan suatu komputasi. Semua data atau object yang dibutuhkan oleh komputasi tersebut  harus disuplai sebagai input. Karenanya DI tetap bisa dilakukan dengan menyuplai dependencies secara eksplisit melalui function argument.
+Satu-satunya cara adalah dengan menyuplai `fsService` langsung melalui function argument. Kenyataannya pure function memang mengharuskan kita untuk memberi semua data yang diperlukan melalui argument. Sehingga DI tetap bisa dilakukan dengan cara ini.
 
-`initProject` membutuhkan `fsService`, maka `fsService` hanya perlu dinyatakan sebagai input function tersebut.
+Well, technically dependencies == function arguments.
 
 ```ts
 function initProject(fsService, projectName) {
+                     ^^^^^^^^^
   if (fsService.exists(projectName)) {
     throw new Error('Cannot create project. A file/dir already exists!')
   }
-  fsService.create(projectName, "Yoo!")
+  fsService.create(projectName, "Generated content")
 }
 ```
 
-Style-nya memang sedikit berbeda namun kemampuan untuk mensubstitusi object `fsService` masih tercapai.
+No more `this`! Dependency didefinisikan langsung di function argument tanpa mengabaikan _substitutability_ object `fsService`.
 
 ```ts
 initProject(fsService, 'my-awesome-project')
@@ -91,10 +91,12 @@ initProject(fsMock, 'my-awesome-project')
 
 ## Partial Application
 
-Yang mungkin menjadi tantangan tersendiri dari cara _explicit passing_ di atas adalah ketika suatu function memiliki beberapa dependency beserta input lainnya. Misal ketika kita ingin menambahkan fitur logging untuk menginformasikan progress program kepada user. Lalu ada tambahan options juga agar user dapat mengkostumasi pilihan mereka.
+Anggap saja requirement berubah di kemudian hari. User butuh fitur _logging_ [1] untuk mengetahui apakah program berhasil dijalankan atau tidak. Lalu ada tambahan _options_ [2] juga agar user dapat mengkostumasi project dengan lebih leluasa.
 
 ```ts
 initProject(fsService, logService, projectName, options) {
+                       ^^^^^^^^^^               ^^^^^^^
+                           [1]                    [2]
   logService.log('Initiating project...')
 
   if (fsService.exists(projectName) && !options.overwrite) {
@@ -102,298 +104,217 @@ initProject(fsService, logService, projectName, options) {
     return
   }
 
-  fsService.create(projectName, "Yoo!")
+  fsService.create(projectName, "Generated content")
   logService.success(`Successfully created project ${projectName}`)
 }
 ```
 
-Function `initProject` memiliki dua buah dependencies (`fsService` dan `logService`) dan dua buah argument biasa (`projectName` dan `options`). Mereka semua sama-sama merupakan function argument, hanya saja concern-nya yang berbeda. Perbedaan concern ini mungkin mendorong sebagian dari kita untuk melakukan refactor agar dependencies dapat dipisahkan dari argument lainnya. Dan salah satu cara memisahkan dua concern tersebut adalah dengan partial application.
+Fungsi `initProject` kini membutuhkan dua buah external service (`fsService` dan `logService`) dan dua buah argument "biasa" (`projectName` dan `options`). Pada dasarnya mereka semua sama-sama function argument, hanya concern-nya saja yang berbeda. Kita bisa melakukan sedikit refactor untuk membuat external service terlihat lebih eksplisit dan terpisah dari yang lainnya.
 
 ```ts
-function makeInitProject(fsService, logService) {
-  return function (projectName, options) {
+function makeInitProject(fsService, logService) {     // dependencies
+  return function initProject(projectName, options) { // "normal" arguments
     // ...
   }
 }
 
 // later
-const initProject = makeInitProject(fsService, console)
+const initProject = makeInitProject(fsService, consoleService)
 initProject('my-awesome-project', { overwrite: true })
 ```
 
-Style ini juga kalau diperhatikan lebih mirip dengan gaya OOP, dimana `makeInitProject` seolah berperan sebagai `constructor` yang menerima dan menyimpan dependencies dengan bantuan closure. Namun pada akhirnya, pendekatan ini tidaklah berbeda dengan solusi sebelumnya. _It's just a matter of style_.
+Style ini mirip dengan OOP dimana `makeInitProject` seolah berperan sebagai `constructor` dalam menerima dan menyimpan dependencies dengan bantuan closure. Namun esensinya pendekatan ini tidaklah berbeda dengan solusi sebelumnya. _It's just a matter of style_.
 
 ## Type Class
 
-Cara lain agar DI dapat diimplementasikan dengan cara yang lebih functional adalah melalui teknik type class. Type class pada umumnya adalah kumpulan-kumpulan method tanpa implementasi &mdash; seperti interface &mdash; yang memungkinkan terciptanya polymorphism. Untuk penjelasan lebih detilnya, teman-teman bisa membaca artikel saya tentang [type class (dan apa perbedaannya dengan interface)]({{< ref "./kenalan-dulu-sama-type-class.md" >}}) dan bagaimana [cara kerjanya di balik layar]({{< ref "./type-class-dan-cara-kerjanya-di-balik-layar.md" >}}).
+Cara lain agar DI dapat diimplementasikan dengan cara functional adalah melalui [type class]({{< ref "./kenalan-dulu-sama-type-class.md" >}}). Tidak semua bahasa punya fitur type class. Beberapa yang mendukung ada Haskell, Idris, dan Purescript. Type class sendiri adalah kumpulan-kumpulan method tanpa implementasi &mdash; seperti interface &mdash; yang memungkinkan tercapainya ad-hoc polymorphism.
 
-Lalu bagaimana type class dapat membantu dalam hal ini?
-
-Saya rasa perlu sedikit demonstrasi dan penyegaran tentang type class terlebih dahulu. Saya juga memilih Purescript dalam penulisan contoh-contoh di bawah nanti karena dukungan fitur type class-nya.
-
-Sebagai _warm-up_, code di bawah ini
-
-```hs
-class Show a where
-  show :: a -> String
-
-data Impl_one = Impl_one
-data Impl_two = Impl_two
-
-instance showImplOne :: Show Impl_one where
-  show _ = "implementation one"
-
-instance showImplTwo :: Show Impl_two where
-  show _ = "implementation two"
-
-shout :: ∀ a. Show a => a -> String
-shout a = Data.String.toUpper (show a)
-
-shoutImplOne = shout Impl_one
-shoutImplTwo = shout Impl_two
-```
-
-ketika di-compile menghasilkan output:
-
-```js {hl_lines=["22-26","28-29"],linenos=inline}
-var Show = function (show) {
-  this.show = show;
-};
-var show = function (dict) {
-  return dict.show;
-};
-
-var Impl_one = (function () {
-  ...
-})();
-var Impl_two = (function () {
-  ...
-})();
-
-var showImplOne = new Show(function (v) {
-  return "implementation one";
-});
-var showImplTwo = new Show(function (v) {
-  return "implementation two";
-});
-
-var shout = function (dictShow) {
-  return function (a) {
-    return Data_String.toUpper(show(dictShow)(a));
-  };
-};
-
-var shoutImplOne = shout(showImplOne)(Impl_one.value);
-var shoutImplTwo = shout(showImplTwo)(Impl_two.value);
-```
-
-Perhatikan potongan code yang saya highlight. `shout` awalnya hanyalah sebuah _unary function_ (function dengan satu argument) namun menjadi _binary_ ketika di-compile, dengan parameter pertama berupa `dictShow`. `dictShow` akan diisi dengan implementation details oleh compiler ketika melakukan kompilasi (baris 28-29), dalam hal ini `showImplOne` dan `showImplTwo`. Implementation details tersebut dapat diubah-ubah sesuai konteks, persis seperti object `fsService` di atas tadi. Dengan kata lain, kita dapat menganggap `dictShow` sebagai dependency dari function `shout`.
-
-Nah dengan analogi yang sama, kita seharusnya juga bisa merekonstruksi function `initProject` yang bergantung pada `fsService` menggunakan type class.
+So, how does it look like?
 
 ```hs
 type Path = String
+type Content = String
 
-class FsService m where
+class Monad m <= FsService m where -- [1]
   exists :: Path -> m Boolean
-  create :: Path -> String -> m Unit
+  create :: Path -> Content -> m Unit
 
-initProject :: ∀ m. FsService m => String -> m Unit
-initProject projectName = -- ...
+initProject :: ∀ m.
+  FsService m => -- [2]
+  String -> m Unit
+initProject projectName = do
+  doesExist <- exists projectName -- [3]
+  if doesExist
+  then pure unit
+  else create projectName "Generated content" -- [3]
 ```
 
-... yang akan menghasilkan output
+- Pertama, kita harus definisikan type class `FsService` [1] yang memiliki dua buah method: `exists` dan `create`. Berikan `m` constraint Monad agar nantinya bisa kita berikan instance `Effect` (atau `Aff` untuk komputasi asynchronous) dan menjalankan **real** side-effect (IO operation).
+- Berikan constraint `FsService` [2] pada function `initProject` agar kita bisa memanggil kedua buah method `FsService` [3] di dalamnya.
 
-```js {hl_lines=["12-16"],linenos=inline}
+Dibandingkan dengan pendekatan-pendekatan sebelumnya di atas, kita tidak melihat dependency `fsService` terdefinisikan di function argument, hanya constraint class `FsService` di type signature saja. Lalu bagaimana kita bisa meng-inject implementasi konkrit dari class `FsService` kalau fungsi `initProject` sendiri tidak menerimanya di argument?
+
+<details style="margin-bottom: 30px; text-align: center;">
+  <summary>HINT 💡:</summary>
+  <p>Compiler yang menyuplainya saat compile time</p>
+</details>
+
+Yang harus kita lakukan saat ini hanyalah membuat implementasi (instance) dari type class `FsService` semisal:
+
+```hs
+import Prelude
+import Effect (Effect)
+import Effect.Aff (Aff)
+import Effect.Class (liftEffect)
+import Node.Buffer as Buffer
+import Node.Encoding (Encoding(..))
+import Node.FS.Aff as FS
+
+instance fsServiceAff :: FsService Aff where -- [1]
+  exists path = FS.exists path -- [2]
+  create path content = do -- [2]
+    FS.mkdir path
+    buffer <- liftEffect $ Buffer.fromString content UTF8
+    FS.writeFile (path <> "/README.md") buffer
+```
+
+Mari bahas step-by-step:
+- Kita memberikan `Aff` &mdash; sebuah Monad yang merepresentasikan komputasi asynchronous &mdash; instance `FsService` [1] dan beri nama instance tersebut `fsServiceAff`. Ini berarti method `exists` dan `create` bisa kita panggil di dalam konteks Aff (we'll do it below 👇🏼).
+- Implementation details [2]. Jika dipanggil, program akan berinteraksi dengan file system.
+
+Tinggal satu langkah tersisa: tempatkan function `initProject` ke dalam konteks `Aff` agar compiler dapat meng-inject instance `fsServiceAff`. Kita bisa menggunakan fungsi `launchAff_`.
+
+```hs
+import Effect.Aff (launchAff_)
+
+main :: Effect Unit
+main = launchAff_ do
+  initProject "my-awesome-project"
+```
+
+Langkah barusan sangat penting karena jika tidak, compiler tidak akan bisa melakukan DI. Seandainya kita tempatkan fungsi `initProject` misal ke dalam konteks `Effect` seperti `main = pure $ initProject "my-awesome-project"`, compiler akan gagal mencari instance `FsService Effect` karena kita memang belum membuatnya: "No type class instance was found for `FsService Effect`", keluh compiler.
+
+Kembali ke konteks `Aff`. Jika kita intip output hasil compile-nya, kita akan melihat bagaimana compiler melakukan DI untuk kita secara otomatis:
+
+```js {hl_lines=[10,17]}
 var FsService = function (exists, create) {
   this.exists = exists;
   this.create = create;
 };
-var exists = function (dict) {
-  return dict.exists;
-};
-var create = function (dict) {
-  return dict.create;
-};
 
-var initProject = function (dictFsService) {
-  return function (projectName) {
-      return ...;
+var fsServiceAff = new FsService(function () {
+  return ...;
+})
+
+var initProject = function (dictFsService) { // Argument untuk menerima service (dep)
+  return function (projectName) {            // Argument "biasa"
+    return ...;
   };
 };
+
+var main = Effect_Aff.launchAff_(
+  initProject(fsServiceAff)("my-awesome-project") // 💥 Inject `fsServiceAff`
+              ^^^^^^^^^^^^
+);
 ```
 
-Cukup dengan memberikan constraint `FsService` kepada function `initProject`, kita berhasil membuatnya menerima dependency `dictFsService` yang kedepannya dapat diubah-ubah sesuai konteks.
+Bisa dicoba di [link ini](https://try.purescript.org/?gist=43ab6916f4b22e6b7893c005c62126b7&js=true).
 
-Oh ya sebelum melanjutkan pembahasan lebih dalam, saya juga akan menambahkan constraint Monad terhadap type class tersebut supaya "do notation" dapat digunakan secara gratis.
+### Dependency Baru
+
+Sejauh ini kita dapat menyimpulkan bahwa compiler melakukan dependency injection saat compile time hanya dengan mendeklarasikan constraint type class pada type signature fungsi `initProject`. Artinya ketika kita punya service tambahan e.g `logService` dan `promptService`, kita hanya perlu mengubah type signature dan voila, dependencies ter-inject.
 
 ```hs
-type Path = String
+-- Service baru
+data LogType = Debug | Error | Success
+class Monad m <= LogService m where
+  log :: LogType -> String -> m Unit
 
-class Monad m <= FsService m where
-  exists :: Path -> m Boolean
-  create :: Path -> String -> m Unit
+class Monad m <= PromptService m where
+  prompt :: String -> m String
 
-initProject :: ∀ m. FsService m => String -> m Unit
+-- Buat instance-nya
+instance logServiceAff :: LogService Aff where
+  log = ...
+instance promptServiceAff :: PromptService Aff where
+  prompt = ...
+
+-- Tambah constraint di type signature-nya
+initProject :: ∀ m.
+  FsService m =>
+  LogService m =>    -- 👈🏻
+  PromptService m => -- 👈🏻
+  String -> m Unit
 initProject projectName = do
-  doesExist <- exists projectName
-  if doesExist
-  then pure unit
-  else create projectName "Yoo!"
 ```
 
-Tinggal satu pekerjaan rumah tersisa: bagaimana memilih implementation details yang sesuai untuk function tersebut? Kita ingin bisa men-swap implementasi `dictFsService` dengan mudah untuk, anggap saja, kebutuhan testing.
+Hasil compile-nya:
 
-## Layering App
+```js
+var initProject = function (dictFsService) {
+  return function (dictLogService) {
+    return function (dictPromptService) {
+      return function (projectName) {
+        return ...;
+      };
+    };
+  };
+};
 
-> _Bear with me_. Section ini mungkin agak sedikit off dari pembahasan Dependency Injection. Namun saya merasa memahami Layering App secara fundamental sangat membantu dalam menangkap intuisi type class melakukan DI.
+var main = Effect_Aff.launchAff_(
+  initProject(fsServiceAff)(logServiceAff)(promptServiceAff)("my-awesome-project")
+              ^^^^^^^^^^^^  ^^^^^^^^^^^^^  ^^^^^^^^^^^^^^^^
+);
+```
 
-Matt Parsons pernah menulis artikel tentang [The Three Layer Haskell Cake](https://www.parsonsmatt.org/2018/03/22/three_layer_haskell_cake.html) dimana ia menjelaskan tentang ReaderT pattern dengan membagi aplikasi menjadi tiga bagian utama:
+Nice! 🎉 🎉 🎉
 
-1. Layer 1, Imperative Shell: kita bisa saja membuat pure function sebanyak yang kita mau, tetapi pada akhirnya aplikasi harus tetap dijalankan dan menghasilkan effect (IO). Layer ini adalah layer terluar, yang berinteraksi dengan user input, request, configuration file, dan lain sebagainya. Testing di layer ini sangat tidak disarankan 😄
-2. Layer 2, External Services dan Dependencies: layer ini berfungsi sebagai jembatan antara Layer 1 dan Layer 3. Di sini kita berfokus pada pembuatan "interface" atau type class service-service yang dibutuhkan aplikasi. Contohnya sudah ada pada section sebelumnya saat membuat `class FsService` 😉
-3. Layer 3, Business Logic: layer ini harus sepenuhnya pure, tidak ada sangkut-pautnya dengan IO. Semua effectful function sudah terdefinisikan di Layer 2 dan dijalankan di Layer 1. Function `initProject` salah satu contohnya karena bersifat pure.
+### Ganti Implementasi
 
-Baik, mari kita breakdown seperti apa sih code-nya nanti.
-
-### Layer 1, Imperative Shell
-
-Karena ini merupakan layer terluar yang berhubungan dengan effect di function main, kita harus bisa menerjemahkan "konteks" aplikasi kita yang pure ke dalam effect. "Konteks" ini bisa kita namakan `AppM`.
+Di awal artikel saya menyebutkan salah satu benefit DI adalah kemampuan mengganti detil implementasi service tanpa perlu mengubah code yang menggunakannya. Dalam hal ini type class juga bisa diinstansiasi oleh tipe data lain. Contohnya ketika testing, kita ingin membuat "spy" terhadap method `FsService` dengan memanfaatkan Writer monad.
 
 ```hs
-newtype AppM a = AppM (Effect a)
-
-runAppM :: AppM ~> Effect
-runAppM (AppM a) = a
-
--- instances boilerplate
-derive newtype instance functorAppM :: Functor AppM
-derive newtype instance applyAppM :: Apply AppM
-derive newtype instance applicativeAppM :: Applicative AppM
-derive newtype instance bindAppM :: Bind AppM
-derive newtype instance monadAppM :: Monad AppM
-derive newtype instance monadEffAppM :: MonadEffect AppM
-```
-
-`AppM` adalah konteks kita, dimana Layer 2 dan Layer 3 hidup di dalamnya.
-
-```hs
-main :: Effect Unit
-main = runAppM do
-  -- Layer 2 dan 3 akan dijalankan di dalam do block ini, seperti
-  void $ initProject "my-awesome-project"
-  -- Namun `initProject` adalah layer 3. Kita membutuhkan layer 2
-  -- agar `initProject` dapat dijalankan dalam cangkang `AppM`!
-  -- Layer 2 tidak terlihat di dalam do block ini, karena mostly
-  -- ia berurusan dengan type.
-```
-
-### Layer 2, External Services dan Dependencies
-
-Layer 2 hanyalah berupa kumpulan-kumpulan type class terhadap dependencies aplikasi. Kita sudah membuat `FsService` sebelumnya, dan saya akan sedikit mengubah nama class tersebut sekaligus memberikan instance `AppM` agar function-function yang ada di Layer 3 dapat "dimengerti" oleh Layer 1.
-
-```hs
-class Monad m <= ManageFileSystem m where
-  exists :: Path -> m Boolean
-  create :: Path -> String -> m Unit
-
-instance manageFsAppM :: ManageFileSystem AppM where
-  exists = ... -- implementation details, i.e using Node's fs.exists
-  create = ... -- implementation details, i.e using Node's fs.writeFile
-```
-
-Karena ini hanyalah "interface" terhadap dunia luar, membuat mock implementasi untuk kebutuhan testing juga mudah.
-
-```hs {hl_lines=["7-10"]}
--- Di Layer 1, definisikan "konteks"
-newtype TestM a = TestM (Writer [String] a)
-
-logTestM :: ∀ a. TestM a -> [String]
-logTestM (TestM w) = execWriter w
-
--- Di Layer 2, mock it :))
-instance manageFsTestM :: ManageFileSystem TestM where
+-- Berikan instance `FsService` kepada `Writer`
+instance fsServiceWriter :: FsService (Writer [String] a) where
   exists path   = path /= "my-awesome-project"
   create path _ = tell [path]
 
 spec = describe "initProject" do
   it "creates a project" do
-    calls <- pure $ logTestM (initProject "my-awesome-project")
+    -- Jalankan `initProject` di dalam konteks `Writer`,
+    -- dengan menempatkannya di dalam fungsi `execWriter`
+    let calls = execWriter (initProject "my-awesome-project") in
     calls `shouldEqual` ["my-awesome-project"]
   it "fails creating a project" do
-    calls <- pure $ logTestM (initProject "invalid")
+    let calls = execWriter (initProject "invalid") in
     calls `shouldEqual` []
 ```
 
-Di layer ini kita bebas membuat type class yang kita mau. Misal logger, atau user service, prompt, apapun itu yang mungkin berkaitan dengan effectful operations.
+_No problems whatsoever_.
 
-```hs
-class Monad m <= ManageUser m where
-  getUserById :: Int -> m (Maybe User)
-  banUser :: UserId -> m Unit
-
-data LogType = Debug | Error | Success
-class Monad m <= Logger m where
-  log :: LogType -> String -> m Unit
-
-class Monad m <= Prompt m where
-  prompt :: String -> m String
-```
-
-### Layer 3, Business Logic
-
-Layer 3 ini sebenarnya layer yang paling asyik, karena semua function yang ada di sini adalah pure function, sama seperti function `initProject`. Layer ini abstrak, tidak terikat pada implementation details apapun. Sebagai hasilnya, layer ini mudah sekali untuk di-test (lihat contoh `TestM` di atas).
-
-Yang saya sangat sukai dari pattern ini adalah bila ada sebuah function yang memiliki dependency lebih dari satu, maka kita hanya perlu menyatakannya lewat type signature sebagai constraint. Misal, function `initProject` kita dekorasi dengan logger dan prompt.
-
-```hs {hl_lines=["2-4"]}
-initProject :: ∀ m.
-  ManageFileSystem m =>
-  Logger m =>
-  Prompt m =>
-  String -> m Unit
-initProject projectName = do
-  log Debug "Initiating project..."
-  doesExist <- exists projectName
-  if doesExist
-  then do
-    answer <- prompt "Do you want to overwrite existing project? (y/n)"
-    if answer /= "y"
-    then log Error "Cannot create project. A file/dir already exists!"
-    else createProject
-  else createProject
-  where
-    createProject = do
-      create projectName "Yoo!"
-      log Success ("Successfully created project " <> projectName)
-```
-
-Dengan pattern ini, kita tidak lagi melakukan Dependency Injection dengan menyuplainya secara eksplisit lewat function argument seperti solusi di awal artikel tadi. **Kita mengalihkannya ke type signature**. Biar compiler yang menuntaskan pekerjaan Dependency Injection-nya. Dari segi estetika, dependencies dan function arguments juga terpisah jelas, sesuai goal awal kita.
-
-Menurut saya, ini win-win solution untuk masalah DI 😉
+---
 
 ## Putting it All Together
 
-Memahami ketiga layer ini sangatlah penting untuk membuat aplikasi dengan pendekatan functional. Dependency Injection juga sudah di-manage oleh compiler _under the hood_. Fokus kita tertuju pada pembuatan type class terhadap dependencies (services) dan pure function saja. Selebihnya kita serahkan kepada compiler.
+Dengan pattern ini, kita tidak lagi melakukan Dependency Injection dengan menyuplainya secara eksplisit lewat function argument seperti solusi di awal artikel. **Kita mengalihkannya ke type signature**. Biar compiler yang menuntaskan pekerjaan Dependency Injection-nya. Dari segi estetika, dependencies dan function arguments juga terpisah jelas, sesuai goal awal kita.
+
+Menurut saya, ini win-win solution untuk masalah DI 😉
 
 _To sum up, this may be our final code_:
 
 ```hs
 main :: Effect Unit
-main = runAppM program
+main = launchAff_ program
 
 program :: ∀ m.
-  ManageFileSystem m =>
-  Logger m =>
-  Prompt m =>
+  FsService m =>
+  LogService m =>
+  PromptService m =>
   m Unit
 program = do
   projectName <- prompt "What's your project name: "
   when (not $ null projectName) do
     initProject projectName
-
--- Untuk testing, tinggal ubah "context"-nya
-test = runTestM program
 ```
 
-Saya harap artikel ini bermanfaat dalam menambah wawasan teman-teman sekalian. Terima kasih banyak dan, _stay well_ 🙂
+Saya harap artikel ini bermanfaat dalam menambah wawasan teman-teman sekalian. Terima kasih banyak. _Stay well_ 🙂
