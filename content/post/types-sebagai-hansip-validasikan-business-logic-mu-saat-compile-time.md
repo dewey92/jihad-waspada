@@ -57,10 +57,10 @@ _Being powerful is great!_ Tapi perlu dicatat bahwa power yang sesungguhnya itu 
 
 Udah dong ceramahnya pak haji, balik ke programming.
 
-Sama kayak programming, menurut saya sesuatu bisa dibilang **powerful** ketika dapat menyediakan **constraint** untuk membatasi programmer dari kemungkinan melakukan hal-hal gila haha. Dalam hal ini, constraint tersebut adalah type system.
+Sama kayak programming, menurut saya sesuatu bisa dikatakan **powerful** ketika dapat membatasi programmer dari kemungkinan melakukan hal-hal gila haha. Dalam hal ini, batasan tersebut adalah type system.
 
 ## Newtype
-Di Purescript, `newtype` bersifat opaque yang berarti walaupun secara struktur dan runtime representation-nya persis sama namun mereka dianggap berbeda saat compile time.
+Di Purescript, `newtype` bersifat opaque yang berarti walaupun secara struktur dan runtime representation-nya persis sama, mereka dianggap berbeda saat compile time.
 
 ```hs {hl_lines=[4,5,10,11]}
 -- fileA.purs

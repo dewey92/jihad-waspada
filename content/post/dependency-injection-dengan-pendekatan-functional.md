@@ -1,7 +1,7 @@
 ---
 title: "Dependency Injection Dengan Pendekatan Functional"
 date: 2020-03-19T02:39:00+01:00
-description: "Dependency Injection selalu menjadi bahan obrolan yang gak pernah habis dibahas. Kita akan mengeksplor bersama apa alternatif yang ditawarkan oleh Functional Programming terhadap permasalahan DI"
+description: "DI tanpa class dan hanya dengan function?"
 images: ["/uploads/knit-di.jpg"]
 image:
   src: "/uploads/knit-di.jpg"

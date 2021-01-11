@@ -1,7 +1,7 @@
 ---
 title: "Code Reuse — Berkaca dari Functor"
 date: 2019-10-29T21:37:42+01:00
-description: "Pengenalan konsep Functor bagi pemula dari sisi code reusability dengan Purescript"
+description: "Pengenalan konsep Functor dari sisi code reusability dengan Purescript"
 images: ["/uploads/functor-reuse.jpg"]
 image:
   src: "/uploads/functor-reuse.jpg"

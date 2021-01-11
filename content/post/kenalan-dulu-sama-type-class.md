@@ -1,7 +1,7 @@
 ---
 title: "Kenalan Dulu sama Type Class"
 date: 2019-10-10T20:39:43+02:00
-description: "Type class ini agak tricky dijelaskan untuk beginner. Mirip-mirip kayak interface, tapi ya bukan kayak interface. Terus gimana dong?"
+description: "Ad-hoc polymorphism \"interface\""
 images: ["/uploads/bandage.jpg"]
 image:
   src: "/uploads/bandage.jpg"
@@ -69,7 +69,7 @@ Bagaimana kalau `append` diisi dengan type yang belum memiliki instance `Appenda
 -- No type class instance was found for `Appendable Int`
 ```
 
-Walaupun type class sekilas _terlihat_ seperti interface, ada perbedaan yang sangat mendasar, yaitu type class memungkinkan kita untuk membuat instance untuk type yang bukan milik kita. Lihat saja String dan Array, keduanya adalah **tipe data primitif** Purescript, bukan buatan kita. Namun kita tetap bisa memberikan instance (dalam hal ini instance `Appendable`) kepada mereka. Kemampuan "memberikan instance" pada suatu tipe data yang **tidak kita buat sendiri** (i.e String dan Array) ini biasanya hampir tidak bisa dilakukan oleh interface.
+Walaupun type class sekilas _terlihat_ seperti interface, ada perbedaan yang sangat mendasar, yaitu type class memungkinkan kita untuk membuat instance untuk type yang bukan milik kita. Lihat saja String dan Array, keduanya adalah **tipe data primitif** Purescript, bukan buatan kita. Namun kita tetap bisa memberikan instance (dalam hal ini instance `Appendable`) kepada mereka. Kemampuan "memberikan instance" pada suatu tipe data yang **tidak kita buat sendiri** ini biasanya hampir tidak bisa dilakukan oleh interface.
 
 Agar lebih jelas, misal ada third-party library bernama `Color` dan kita memiliki interface kita sendiri, `Printable`.
 
@@ -106,12 +106,10 @@ class Printable a where
   print :: a -> String
 
 instance printableColor :: Printable Color where
-  print x =
-    if x.isRead then "RED" else
-    if x.isBlue then "BLUE" else
-    "GREEN"
-
--- Harusnya pake ADT. Tapi yaa.. contoh aja
+  print (Color c)
+    | c.isRed = "RED"
+    | c.isBlue = "BLUE"
+    | otherwise = "GREEN"
 ```
 ---
 

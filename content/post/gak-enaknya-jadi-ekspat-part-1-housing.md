@@ -1,7 +1,7 @@
 ---
 title: "Gak Enaknya Jadi Ekspat (Part 1: Housing)"
 date: 2020-05-20T13:03:00+02:00
-description: "Menjadi ekspat gak selalu seperti yang terlihat dari luar. Apalagi ketika sudah berkeluarga dan harus mencari tempat tinggal..."
+description: "Menjadi ekspat gak selalu seperti yang terlihat dari luar. Apalagi ketika sudah berkeluarga dan harus mencari tempat tinggal"
 images: ["/uploads/houses-ams.jpg"]
 image:
   src: "/uploads/houses-ams.jpg"

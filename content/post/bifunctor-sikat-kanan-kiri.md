@@ -29,7 +29,7 @@ Lalu bagaimana jika kita ingin mentransformasi **kedua value** Tuple?
 
 Pake <strong style="font-size: 2.5rem; color: #e81111">BIFUNCTOR</strong> bro!!
 
-Set ngegas.
+Sante pak.
 
 ---
 
