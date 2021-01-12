@@ -23,9 +23,9 @@ class Show a where -- [1]
 ```
 
 1. Kita membuat sebuah type class dengan nama `Show`. Umumnya type class menyediakan satu (atau lebih) type variable yang bakal digunakan di method-nya. Di sini type variable tersebut adalah `a`.
-2. Type class `SHow` ini memiliki satu method bernama `show`, yang menerima `a` dan mengembalikan String.
+2. Type class `Show` ini memiliki satu method bernama `show`, yang menerima `a` dan mengembalikan String.
 
-Tidak ada concrete code di sini, tugas type class hanya mendefinisikan struktur (type signature) dari method-method yang bisa digunakan oleh suatu data structure. Seperti interface, hanya kontrak. Detil implementasi diserahkan ke implementornya.
+Tidak ada concrete code di sini, tugas type class hanya mendefinisikan struktur (type signature) dari method-method yang bisa digunakan oleh suatu tipe data. Seperti interface, hanya kontrak. Detil implementasi diserahkan ke implementornya, seperti tipe Email di bawah:
 
 ```hs
 newtype Email = Email String
@@ -40,7 +40,7 @@ instance showEmail :: Show Email where -- [3]
 3. Di sini kita membuat instance `Show` untuk `Email` dengan nama `showEmail` (nama instance bisa kita abaikan, tidak terlalu penting untuk saat ini).
 4. Implementasi `show`. Inilah gunanya type variable `a` di atas tadi. Sekarang `a` telah di-instantiate dengan `Email` sehingga bisa kita konsumsi di function argument.
 
-Karena perannya yang mirip dengan interface, kita juga bisa membuat instance untuk data structure lain. Sehingga function `show` tidak hanya applicable untuk type Email, tapi juga Password.
+Karena perannya yang mirip dengan interface, kita juga bisa membuat instance untuk tipe data lain. Sehingga function `show` tidak hanya applicable untuk type Email, tapi juga Password.
 
 ```hs
 newtype Password = Password String
@@ -72,7 +72,7 @@ Tipe data primitif lainnya seperti Int, String, Array sudah "diurus" oleh [Prelu
 
 Let's dig deeper.
 
-Ambil String dan Array. Keduanya memiliki sifat yang sama yaitu dapat **digabungkan**; string dengan string, array dengan array. Di Javascript, penggabungan ini bisa dicapai dengan menggunakan operator `+` atau `concat`.
+Ambil String dan Array. Keduanya memiliki sifat yang sama yaitu dapat **digabungkan**; string dengan string, array dengan array. Di Javascript, penggabungan ini bisa dicapai dengan menggunakan operator `+`.
 
 ```js
 λ> 'jihad ' + 'waspada'
@@ -197,9 +197,9 @@ instance hazDefaultStr2 :: HazDefault String where
 --   hazDefailtStr2
 ```
 
-Compiler komplain. Dan sudah bisa ditebak pasti karena kebingungan memilih harus pakai instance yang mana. Kondisi ini disebut Overlapping Instances. Namun jika tetep kekeuh ingin menuliskan overlapping instances, Purescript menyediakan fitur [Instance Chains](https://github.com/purescript/documentation/blob/master/language/Type-Classes.md#instance-chains) yang tidak akan saya bahas di artikel ini.
+Compiler komplain. Masuk akal sih, karena nanti ketika ada code `defaultVal :: String` compiler akan kebingungan memilih harus pakai instance yang mana: apakah harus mengembalikan `""` atau `"zzz"`. Kondisi ini disebut Overlapping Instances. Namun jika tetep kekeuh ingin menuliskan overlapping instances, Purescript menyediakan fitur [Instance Chains](https://github.com/purescript/documentation/blob/master/language/Type-Classes.md#instance-chains) yang tidak akan saya bahas di artikel ini.
 
-Tapi kadangkala ada aja kasus dimana suatu data bisa memiliki dua behavior: misal untuk tipe `Int` jika mengimplementasi class `HazDefault`. Nilai default Integer bernilai 0 ketika dijalankan dalam konteks penjumlahan, namun bernilai 1 dalam konteks perkalian. Ketika dihadapkan dengan situasi seperti ini, salah satu cara untuk mengakalinya bisa dengan membungkusnya dengan `newtype`.
+Tapi kadangkala ada saja kasus dimana suatu data bisa memiliki dua behavior: misal untuk tipe `Int` jika mengimplementasi class `HazDefault`. Nilai default Integer bernilai 0 ketika dijalankan dalam konteks penjumlahan, namun bernilai 1 dalam konteks perkalian. Ketika dihadapkan dengan situasi seperti ini, salah satu cara untuk mengakalinya bisa dengan membungkusnya dengan `newtype`.
 
 ```hs
 newtype Sum = Sum Int
