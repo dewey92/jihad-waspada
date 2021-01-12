@@ -11,11 +11,66 @@ categories: ["programming", "purescript", "type system"]
 draft: false
 ---
 
-Tidak semua bahasa pemrograman mendukung fitur type class. Beberapa orang bilang konsep type class _identik_ dengan konsep interface pada bahasa-bahasa seperti Java, C#, atau Typescript, dimana type class dan interface sama-sama bertujuan untuk menyediakan function yang polymorphic, walaupun sebenarnya keduanya tidak 100% sama (hence identik).
+Tidak semua bahasa pemrograman mendukung fitur type class. Beberapa orang bilang konsep type class _identik_ dengan konsep interface pada bahasa-bahasa seperti Java, C#, atau Typescript, dimana type class dan interface sama-sama bertujuan untuk menyediakan function yang polymorphic, walaupun sebenarnya keduanya tidak 100% sama. Identik saja.
 
-Saya akan menggunakan Purescript untuk menjelaskan konsep type class pada article ini.
+Saya gunakan Purescript untuk menjelaskan konsep type class pada article ini.
 
-## Appendabale
+## Give Me the Code
+
+```hs
+class Show a where -- [1]
+  show :: a -> String  -- [2]
+```
+
+1. Kita membuat sebuah type class dengan nama `Show`. Umumnya type class menyediakan satu (atau lebih) type variable yang bakal digunakan di method-nya. Di sini type variable tersebut adalah `a`.
+2. Type class `SHow` ini memiliki satu method bernama `show`, yang menerima `a` dan mengembalikan String.
+
+Tidak ada concrete code di sini, tugas type class hanya mendefinisikan struktur (type signature) dari method-method yang bisa digunakan oleh suatu data structure. Seperti interface, hanya kontrak. Detil implementasi diserahkan ke implementornya.
+
+```hs
+newtype Email = Email String
+
+instance showEmail :: Show Email where -- [3]
+  show (Email e) = "Email: " <> e -- [4]
+
+λ> show (Email "dewey@email.com")
+"Email: dewey@email.com"
+```
+
+3. Di sini kita membuat instance `Show` untuk `Email` dengan nama `showEmail` (nama instance bisa kita abaikan, tidak terlalu penting untuk saat ini).
+4. Implementasi `show`. Inilah gunanya type variable `a` di atas tadi. Sekarang `a` telah di-instantiate dengan `Email` sehingga bisa kita konsumsi di function argument.
+
+Karena perannya yang mirip dengan interface, kita juga bisa membuat instance untuk data structure lain. Sehingga function `show` tidak hanya applicable untuk type Email, tapi juga Password.
+
+```hs
+newtype Password = Password String
+
+instance showPassword :: Show Password where
+  show _ = "<secret>"
+
+λ> show (Password "SomePassword789_+*!@#")
+"<secret>"
+```
+
+Kalau type class identik dengan interface, lalu dimana bedanya?
+
+## Type Class vs Interface
+
+Walaupun type class sekilas terlihat seperti interface, ada perbedaan yang sangat mendasar, yaitu type class memungkinkan kita untuk membuat instance terhadap type yang **bukan milik kita**. Oleh karenanya banyak orang yang menyebut type class sebagai "the true ad-hoc polymorphism".
+
+Tak perlu jauh-jauh memikirkan tipe data dari third-party library, kita bahkan bisa memberi instance untuk tipe data primitif seperti Boolean.
+
+```hs
+instance showBoolean :: Show Boolean where
+  show true = "true"
+  show false = "false"
+```
+
+Tipe data primitif lainnya seperti Int, String, Array sudah "diurus" oleh [Prelude](https://github.com/purescript/purescript-prelude/blob/a96663b34364fdd0885a200955e35b99f4e58c43/src/Data/Show.purs#L20-L42). Semua di level library, no magic.
+
+## Appendable
+
+Let's dig deeper.
 
 Ambil String dan Array. Keduanya memiliki sifat yang sama yaitu dapat **digabungkan**; string dengan string, array dengan array. Di Javascript, penggabungan ini bisa dicapai dengan menggunakan operator `+` atau `concat`.
 
@@ -27,33 +82,18 @@ Ambil String dan Array. Keduanya memiliki sifat yang sama yaitu dapat **digabung
 [1, 2, 3]
 ```
 
-Konsep type class bisa digunakan untuk meng-capture kesamaan behaviour antara String dan Array. Mari kita namakan type class ini `Appendable`.
+Behavior atau sifat "bisa digabungkan" ini bisa kita capture dengan sebuah type class, sebut saja `Appendable`.
 
 ```hs
--- Type class dalam Purescript ditulis dengan keyword `class`.
--- Jangan samakan `class` ini dengan istilah class yang ada
--- di bahasa-bahasa OOP pada umumnya
 class Appendable a where
   append :: a -> a -> a
-```
 
-Disini `Appendable` adalah nama class-nya, dan `append` adalah method tunggalnya. Type parameter `a` nanti akan diisi oleh type yang ingin memiliki instance `Appendable` (untuk saat ini String dan Array). Type class pada umumnya hanyalah kumpulan-kumpulan method tanpa implementasi, hanya type signature, maka gak heran sebagian menyandingkannya dengan konsep interface di Java atau bahasa sejenis.
-
-Agar function `append` tersebut dapat dipanggil, kita musti buat implementasi atau instance dari class `Appendable`.
-
-```hs
 instance appendableStr :: Appendable String where
   append x y = ... -- implementation details
 
 instance appendableArr :: Appendable (Array xs) where
   append x y = ... -- implementation details
-```
 
-Potongan kode di atas mengimplikasikan bahwa String dan Array kini memiliki instance `Appendable`, terlihat dari type parameter `a` pada class `Appendable a` yang sekarang sudah terisi (tersubstitusi) dengan String/Array. Oh ya, detil implementasinya bisa berupa _apapun_, namun kali ini saya biarkan kosong saja.
-
-Kita sudah define instance-nya, dan `append` akhirnya bisa digunakan oleh String dan Array 🥳
-
-```hs
 λ> append "jihad " "waspada"
 "jihad waspada"
 
@@ -61,7 +101,7 @@ Kita sudah define instance-nya, dan `append` akhirnya bisa digunakan oleh String
 [1, 2, 3]
 ```
 
-Bagaimana kalau `append` diisi dengan type yang belum memiliki instance `Appendable` seperti let's say, Int? Pasti error atuh..
+Kita baru saja memberikan String dan Array kemampuan untuk bisa digabungkan dengan membuat instance `Appendable`. Detil implementasinya kita biarkan kosong agar contoh code-nya tetap sederhana. Bila kita panggil fungsi `append` dengan tipe data yang belum memiliki instance `Appendable` seperti Int, program akan error.
 
 ```hs
 λ> append 11 99
@@ -69,48 +109,6 @@ Bagaimana kalau `append` diisi dengan type yang belum memiliki instance `Appenda
 -- No type class instance was found for `Appendable Int`
 ```
 
-Walaupun type class sekilas _terlihat_ seperti interface, ada perbedaan yang sangat mendasar, yaitu type class memungkinkan kita untuk membuat instance untuk type yang bukan milik kita. Lihat saja String dan Array, keduanya adalah **tipe data primitif** Purescript, bukan buatan kita. Namun kita tetap bisa memberikan instance (dalam hal ini instance `Appendable`) kepada mereka. Kemampuan "memberikan instance" pada suatu tipe data yang **tidak kita buat sendiri** ini biasanya hampir tidak bisa dilakukan oleh interface.
-
-Agar lebih jelas, misal ada third-party library bernama `Color` dan kita memiliki interface kita sendiri, `Printable`.
-
-```ts
-interface Printable {
-  print: () => string;
-}
-```
-
-Bagaimana caranya agar `Color` tersebut meng-implement interface `Printable`? Gak bisa 😢. Mau gak mau harus kita wrap dengan class lain.
-
-```ts
-import Color from 'thirdPartyLib'
-
-class MyColor implements Printable {
-  constructor (private color: Color) {}
-
-  print = () => {
-    if (this.color.isRed) return 'RED';
-    if (this.color.isBlue) return 'BLUE';
-    return 'GREEN'
-  }
-}
-```
-
-Yuck!
-
-Dengan type class, kita dengan mudahnya bisa memberikan behaviour tambahan pada `Color`:
-
-```hs
-import ThirdPartyLib (Color)
-
-class Printable a where
-  print :: a -> String
-
-instance printableColor :: Printable Color where
-  print (Color c)
-    | c.isRed = "RED"
-    | c.isBlue = "BLUE"
-    | otherwise = "GREEN"
-```
 ---
 
 ### INTERMEZZO
@@ -132,7 +130,7 @@ String.prototype.append = function (other) {
   return this + other;
 }
 Array.prototype.append = function (other) {
-  return this.concat(other); // atau `this + other`
+  return this.concat(other);
 };
 
 console.log('jihad '.append('waspada')) // => 'jihad waspada'
@@ -149,9 +147,7 @@ class Appendable a <= HazDefault a where
   defaultVal :: a
 ```
 
-Di sini class `HazDefault` dapat dianggap "meng-extend" class `Appendable`. Namun lagi, saya menolak untuk menerima anggapan ini sepenuhnya 😄. Alih-alih menggunakan keyword "extend" atau "subtyping", saya lebih suka dengan keyword **constraining**. Sehingga notasi class di atas dapat dibaca dengan: "suatu data dapat memiliki instance `HazDefault` **asalkan** ia memiliki instance `Appendable`".
-
-Bahasa kerennya: `HazDefault` is **constrained** by `Appendable`.
+Type class `HazDefault` di-construct dengan _superclass_ `Appendable`, yang memungkinkan instance `HazDefault` untuk tetap bisa memanggil fungsi `append`, dengan syarat setiap instance `HazDefault` harus juga memiliki instance `Appendable`. Relasi sebuah type class dengan superclass-nya ditandai dengan symbol `<=`.
 
 String dan Array sudah memiliki instance `Appendable`, maka sah-sah saja bagi mereka untuk juga memiliki instance `HazDefault` 😉
 
@@ -161,7 +157,6 @@ instance hazDefaultStr :: HazDefault String where
 
 instance hazDefaultArr :: HazDefault (Array xs) where
   defaultVal = []
---
 
 λ> append "jihad" defaultVal
 "jihad"
@@ -181,7 +176,7 @@ instance hazDefaultInt :: HazDefault Int where
 
 ## Overlapping Instances
 
-Sejauh ini kita sudah belajar bagaimana type class berguna untuk memberikan "kemampuan" pada suatu data. Kita sudah memberi String dan Array "kemampuan" untuk melakukan penggabungan dengan fungsi `append` dan mengembalikan nilai kosongnya dengan fungsi `defaultVal`.
+Sejauh ini kita sudah belajar bagaimana type class berguna untuk memberikan "kemampuan" pada suatu  tipe data. Kita sudah memberi String dan Array "kemampuan" untuk melakukan penggabungan dengan fungsi `append` dan mengembalikan nilai kosongnya dengan fungsi `defaultVal`.
 
 Apa yang terjadi jika kita memberikan kemampuan yang sama dua kali?
 
@@ -191,11 +186,20 @@ instance hazDefaultStr :: HazDefault String where
 
 instance hazDefaultStr2 :: HazDefault String where
   defaultVal = "zzz"
+
+-- Overlapping type class instances found for
+--
+--   HazDefault String
+--
+-- The following instances were found:
+--
+--   hazDefailtStr
+--   hazDefailtStr2
 ```
 
-Udah bisa ditebak pasti compiler bakal kebingungan harus pake instance yang mana, yang mengakibatkan compiler komplain. Kondisi ini disebut Overlapping Instances. Namun jika tetep kekeuh mau nulis overlapping instances, Purescript menyediakan fitur [Instance Chains](https://github.com/purescript/documentation/blob/master/language/Type-Classes.md#instance-chains) yang gak akan saya bahas di artikel ini.
+Compiler komplain. Dan sudah bisa ditebak pasti karena kebingungan memilih harus pakai instance yang mana. Kondisi ini disebut Overlapping Instances. Namun jika tetep kekeuh ingin menuliskan overlapping instances, Purescript menyediakan fitur [Instance Chains](https://github.com/purescript/documentation/blob/master/language/Type-Classes.md#instance-chains) yang tidak akan saya bahas di artikel ini.
 
-Tapi kadangkala ada aja kasus dimana suatu data bisa memiliki dua behaviour: misal untuk tipe Integer yang mengimplementasi class `HazDefault`. Nilai default Integer bernilai 0 ketika dalam konteks penjumlahan, namun bernilai 1 ketika dalam konteks perkalian. Dalam hal ini kita bisa membungkusnya dengan `newtype`.
+Tapi kadangkala ada aja kasus dimana suatu data bisa memiliki dua behavior: misal untuk tipe `Int` jika mengimplementasi class `HazDefault`. Nilai default Integer bernilai 0 ketika dijalankan dalam konteks penjumlahan, namun bernilai 1 dalam konteks perkalian. Ketika dihadapkan dengan situasi seperti ini, salah satu cara untuk mengakalinya bisa dengan membungkusnya dengan `newtype`.
 
 ```hs
 newtype Sum = Sum Int
@@ -235,29 +239,19 @@ guard false _ = defaultVal
 
 Constraint type class pada sebuah function dipisahkan dengan symbol `=>`. Fungsi `guard` menerima dua buah argument; `Boolean` dan `a`, dan mengembalikan `a`. Namun `a` di sini tidak boleh sembarang type, ia harus mempunyai instance `HazDefault`.
 
-In fact, kalau kita menginspeksi type `append` dan `defaultVal` di REPL, yang kita lihat sebenarnya adalah:
+Kita sudah tahu bahwa fungsi `guard` ter-contraint dengan class `HazDefault` pada type parameter `a`, yang berarti `a` hanya boleh diisi dengan String atau Array.
 
-```hs
-λ> :t append
-append :: Appendable a => a -> a -> a
-
-λ> :t defaultVal
-defaultVal :: HazDefault a => a
-```
-
-Tidak mengejutkan 😄
-
-Balik ke pembahasan utama. Kita sudah tahu bahwa fungsi `guard` ter-contraint dengan class `HazDefault` pada type parameter `a`, yang berarti `a` hanya boleh diisi dengan String atau Array.
-
-```hs {hl_lines=[7,10]}
+```hs {hl_lines=[8,12]}
 type User = String
 
 isRoot :: User -> Boolean
 isRoot user = user == "jihad"
 
+-- Untuk String
 welcomeMessage :: User -> String
 welcomeMessage user = guard (isRoot user) "Welcome, root!"
 
+-- Untuk Array
 access :: User -> Array Int
 access user = guard (isRoot user) [7, 7, 7]
 --
@@ -273,15 +267,17 @@ access user = guard (isRoot user) [7, 7, 7]
 []
 ```
 
-Lagi, compiler akan menolak untuk memberikan lampu hijau jika function `guard` dipanggil dengan tipe data yang tidak memiliki instance `HazDefault` seperti Int.
+In fact, kalau kita menginspeksi type `append` dan `defaultVal` di REPL, yang kita lihat sebenarnya adalah:
 
 ```hs
-invalid = guard true 123
-          ^^^^^^^^^^^^^^
+λ> :t append
+append :: Appendable a => a -> a -> a
 
--- ERROR!
--- No type class instance was found for `HazDefault Int`
+λ> :t defaultVal
+defaultVal :: HazDefault a => a
 ```
+
+Tidak mengejutkan 🙂
 
 ## Methods Injection
 Selain kemampuan membatasi akses pada suatu function, constraint type class pada dasarnya **memberikan semua method-nya** secara implisit. Untuk lebih jelasnya, mari modifikasi function `guard` barusan.
@@ -314,7 +310,7 @@ invalid x y = x `append` y
 
 ## Readability dan Testability
 
-Bicara agak real world, type class juga dapat membantu readability ketika ada suatu function yang melakukan side effect.
+Bicara agak real world, type class juga dapat membantu readability ketika kita ingin melacak side effect apa saja yang bakal dijalankan di sebuah function.
 
 ```hs
 class Monad m <= MonadCache m where
@@ -334,21 +330,15 @@ fetchUser uId = do
   ...
 ```
 
-Fungsi `fetcUser` ter-constraint dengan dua buah type class: `MonadCache` dan `MonadUserDb`, yang memungkinkan untuk memanggil fungsi `readCache`, `writeCache`, dan `getUser` di dalamnya. Fungsi `fetchUser` juga secara tidak langsung ter-constraint dengan type class `Monad` sehingga kita bisa langsung menggunakan`do` binding 😍
+Fungsi `fetcUser` ter-constraint dengan dua buah type class: `MonadCache` dan `MonadUserDb`, yang memungkinkan untuk memanggil fungsi `readCache`, `writeCache`, dan `getUser` di dalamnya. Fungsi `fetchUser` juga secara tidak langsung ter-constraint dengan type class `Monad` sehingga kita bisa langsung menggunakan `do` binding.
 
-Gak hanya itu, kita juga bisa menyimpulkan dari melihat type signature-nya saja bahwa `fetchUser` bakal berinteraksi dengan cache dan database (sebagai side effect) tanpa terikat dengan implementasi apapun! Implementasi tergantung konteks caller-nya. Misal ketika testing, instance bisa dibuat semau kita. Style ini biasa disebut dengan MTL/Tagless Final.
+Gak hanya itu, kita juga bisa menyimpulkan dari melihat type signature-nya saja bahwa `fetchUser` bakal berinteraksi dengan cache dan database (side effect) tanpa terikat dengan implementasi apapun. Implementasi tergantung konteks caller-nya. Misal ketika testing, instance bisa dibuat semau kita.
 
-```hs {hl_lines=["12-14","16-17"]}
+```hs {hl_lines=["6-8","10-11"]}
 newtype TestM a = TesM (Aff a)
 
 runTest :: TestM ~> Aff
 runTest (TestM a) = a
-
--- derive instances
-derive newtype instance functorTestM :: Functor TestM
-...
-...
-derive newtype instance monadTestM :: Monad TestM
 
 instance monadCacheTestM :: MonadCache TestM where
   readCache _ = pure $ Just "user-from-cache"
@@ -362,7 +352,9 @@ it "fetches a user from cache" do
   fromCache `shoudlEqual` (Just (User "user-from-cache"))
 ```
 
-Mungkin pembahasan MTL (Monad Transformer Library) selengkapnya bisa diulas di lain waktu. Namun yang ingin saya tekankan adalah penggunaan type class itu sudah dimana-dimana. `Eq`, `Show`, `Functor`, `Monad`, `Applicative`, `Semigroup` (Appendable), `Monoid` (HazDefault), dan `Traversable` adalah beberapa type class dasar yang wajib dipahami.
+## Penutup
+
+Penggunaan type class ada dimana-dimana. `Eq`, `Show`, `Functor`, `Monad`, `Applicative`, `Semigroup` (Appendable), `Monoid` (HazDefault), dan `Traversable` adalah beberapa type class dasar yang wajib dipahami.
 
 Dari type class jugalah kita sebenarnya bisa melihat bahwa pattern dalam programming dapat di-abstraksi sejauh mungkin. Appendable (biasa disebut `Semigroup`) dan HazDefault (biasa disebut `Monoid`) hanyalah contoh kecil saja. Video di bawah ini gak pernah bosen saya rekomendasikan untuk melihat bagaimana cara mengeneralisasi pattern dari sebuah masalah yang berujung pada terbentuknya type class.
 
