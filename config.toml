@@ -64,8 +64,8 @@ pygmentsUseClasses = true
 	copyright = ""
 
 	# show latest posts in single page
-	showLatestPosts = false
-	readMore = ""
+	showLatestPosts = true
+	readMore = "Latest Posts"
 
 	# Share
 	enableShare = true
