@@ -103,9 +103,9 @@ res.y
 
 Compiler sekarang kehilangan informasi row y (dan row z!) karena notasi dari fungsi `flipX` yang hanya menyatakan X sebagai return type-nya.
 
-Inilah dasar dari definisi Row Polymorphism, yang memungkinkan kita untuk membuat program yang polymorphic terhadap rows **tanpa kehilangan informasi row sama sekali** (kayak barusan).
+Inilah dasar dari definisi Row Polymorphism, yang memungkinkan kita untuk membuat program yang polymorphic terhadap rows **tanpa kehilangan informasi row sama sekali**.
 
-Tapi jangan salah, kalau mau dibuat lebih constrained juga boleh kok. Misal kita ingin menulis sebuah function yang hanya menerima row `x` saja, tidak lebih tidak kurang. Otherwise compiler will complain.
+Tapi jangan salah, kalau mau dibuat lebih constrained juga boleh kok. Misal kita ingin menulis sebuah function yang hanya menerima row `x` saja, tidak lebih tidak kurang.
 
 ```ts
 type Exact<O, E> = E & Record<Exclude<keyof O, keyof E>, never>
@@ -148,9 +148,9 @@ Kebetulan Typescript memiliki operasi intersection yang dinotasikan menggunakan 
 ```ts {hl_lines=[5]}
 type FName = { firstName: string }
 
-const addLastName = <A extends FName>(
-  obj: A
-): A & { lastName: string } => ({
+const addLastName = <T extends FName>(
+  obj: T
+): T & { lastName: string } => ({
   lastName: obj.firstName,
   ...obj
 })
@@ -165,19 +165,17 @@ const res = addLastName(person)
 ### Deleting
 Sekarang kita balik: kita ingin membuat sebuah function yang polymorphic terhadap row `firstName` dan `lastName` (keduanya bertipe string), dan ingin menghilangkan `lastName` dari object tersebut.
 
-Typescript sudah menyediakan helper type untuk operasi ini dengan menggunakan [Exclude](https://www.typescriptlang.org/docs/handbook/advanced-types.html).
+Typescript sudah menyediakan utility type untuk operasi ini dengan menggunakan [Omit](https://www.typescriptlang.org/docs/handbook/utility-types.html#omittype-keys).
 
 ```ts
 type Names = { firstName: string; lastName: string }
-type NoLastName<A> = { [K in Exclude<keyof A, "lastName">]: A[K] }
+type NoLastName<T> = Omit<T, 'lastName'>
 
-const removeLastName = <A extends Names>(
-  obj: A
-): NoLastName<A> => {
-  const newObj = { ...obj }
-  delete newObj.lastName
-
-  return newObj
+function removeLastName<T extends Names>(
+  obj: T
+): NoLastName<T> {
+  const { lastName, ...withoutLastName } = obj
+  return withoutLastName
 }
 ```
 
@@ -188,17 +186,17 @@ Menurut saya renaming ini adalah operasi gabungan dari `adding` dan `deleting`. 
 2. Hapus row `y` dulu baru tambah row `z`
 
 ```ts
-type Remove<A, K1> = { [P in Exclude<keyof A, K1>]: A[P] }
-
-const rename = <A, K1 extends keyof A, K2 extends string>(
-  a: A,
-  k1: K1,
-  k2: K2
-): Remove<A, K1> & { [P in K2]: A[K1] } => {
-   ^^^^^^^^^^^^^   ^^^^^^^^^^^^^^^^^^^^
-//    removal           addition
-  ...
-}
+declare function rename<
+  T,
+  KeyToRemove extends keyof T,
+  ReplaceWith extends string
+>(
+  obj: T,
+  k1: KeyToRemove,
+  k2: ReplaceWith
+): Omit<T, KeyToRemove> & Record<ReplaceWith, T[KeyToRemove]>
+// ^^^^^^^^^^^^^^^^^^^^   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+//       remove                       then add
 
 const x2 = rename({ x: 17, y: 8 }, 'y', 'z')
 // { x: 17, z: 8 }
@@ -207,4 +205,4 @@ const x2 = rename({ x: 17, y: 8 }, 'y', 'z')
 ## Kesimpulan
 Sebuah fungsi yang row-polymorphic adalah fungsi yang reusable, dapat digunakan oleh berbagai macam record selama memenuhi constraint-nya. Row Polymorphism di Typescript lumrahnya ditandai dengan keyword `extends` agar compiler tidak kehilangan informasi tipe rows yang sedang dimanipulasi. Terjaganya informasi ini sangat dibutuhkan ketika kita ingin mengembalikan object tersebut kembali (_the row type parameter appears in the return type_).
 
-Typescript sendiri sudah menyediakan sekumpulan _utlity types_ (seperti Union, Intersection, Exclude, dsb) yang bisa digunakan untuk mendukung Row Polymorphism dengan cukup mudah. Yah, menurut saya sih lebih mudah dibanding [RP nya Purescript](https://github.com/purescript/purescript-record/blob/master/src/Record.purs) yang... sudahlah 😄
+Typescript sendiri sudah menyediakan sekumpulan _utlity types_ (seperti Record, Omit, dsb) yang bisa digunakan untuk mendukung Row Polymorphism dengan cukup mudah. Yah, menurut saya sih lebih mudah dibanding [RP nya Purescript](https://github.com/purescript/purescript-record/blob/master/src/Record.purs) yang... sudahlah 😄
