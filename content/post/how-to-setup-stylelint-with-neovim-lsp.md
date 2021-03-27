@@ -44,8 +44,6 @@ nvim_lsp.diagnosticls.setup {
   init_options = {
     filetypes = filetypes,
     linters = linters,
-    formatters = formatters,
-    formatFiletypes = formatFiletypes,
   }
 }
 ```
@@ -54,7 +52,7 @@ Voila!
 
 ## Configuring the message
 
-Let's take a look at the stylelint output format when something is ill-formatted.
+Let's take a look at the stylelint output when something is ill-formatted.
 
 ```nocode
 client/src/components/clients/pricing/page/FeatureSection.tsx
@@ -63,7 +61,7 @@ client/src/components/clients/pricing/page/FeatureSection.tsx
   247:3  ✖  Expected indentation of 1 tab                               indentation
 ```
 
-As you can see, we have the line number, column number, severity, the description, and the rule id in the output. This is where `formatPattern` field comes into play — to translate the linter output to the LSP diagnostic engine.
+As you can see, we have the line number, column number, severity level marked by an icon, the description, and the rule id in the output. This is where `formatPattern` field comes into play — to translate the linter output to the LSP diagnostic engine.
 
 This regex pattern `(\d+):(\d+)\s\s(.)\s\s(.+?)\s+([a-zA-Z\/\-]+)$` enables us to capture all those information chunks into groups; the first group being the line number, the second being the column number, the third being the icon (severity), the fourth and the fifth being the message and the rule id respectively. Now that we know which group number corresponds to which chunk, you can start customizing to your liking the message format you'd like to see in the `message` field. Personally I like to see the message with the rule id in bracket.
 
@@ -79,7 +77,7 @@ formatPattern = {
 
 {{< figure src="/uploads/stylelint-lsp-diagnostic.png" alt="Stylelint working" caption="Stylelint error messages" class="fig-center" >}}
 
-## Using styelint-lsp
+## Using stylelint-lsp
 
 If you'd like to have code actions capabilities, you can set up [stylelint-lsp](https://github.com/bmatcuk/stylelint-lsp) in your config. I'm not gonna talk about how to set it up in this blog post, but you can take a look at this [PR](https://github.com/neovim/nvim-lspconfig/pull/800/files) and just follow the instruction written in the `docs.description` field.
 
