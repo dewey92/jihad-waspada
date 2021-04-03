@@ -20,11 +20,11 @@ local linters = {
   stylelint = {
     sourceName = 'stylelint',
     command = 'stylelint',
-    args = {'%filepath'},
+    args = {'--formatter', 'compact', '%filepath'},
     rootPatterns = {'.stylelintrc'},
     debounce = 100,
     formatPattern = {
-      [[(\d+):(\d+)\s\s(.)\s\s(.+?)\s+([a-zA-Z\/\-]+)$]],
+      [[: line (\d+), col (\d+), (warning|error) - (.+?) \((.+)\)],
       {
         line = 1,
         column = 2,
@@ -33,8 +33,8 @@ local linters = {
       },
     },
     securities = {
-      ['⚠'] = 'warning',
-      ['✖'] = 'error',
+      warning = 'warning',
+      error = 'error',
     },
   },
 }
@@ -48,22 +48,23 @@ nvim_lsp.diagnosticls.setup {
 }
 ```
 
-Voila!
+Note that we specified the `--formatter` option to `compact` as I find it the most convenient way to match `formatPattern`.
+
+And Voila!
 
 ## Configuring the message
 
 Let's take a look at the stylelint output when something is ill-formatted.
 
 ```nocode
-client/src/components/clients/pricing/page/FeatureSection.tsx
-  244:2  ⚠  Expected height to come before margin                       order/properties-alphabetical-order
-  245:2  ⚠  Expected border-bottom-right-radius to come before height   order/properties-alphabetical-order
-  247:3  ✖  Expected indentation of 1 tab                               indentation
+/path/Filename.tsx: line 469, col 2, warning - Expected left to come before position (order/properties-alphabetical-order)
+/path/Filename.tsx: line 472, col 2, warning - Expected pointer-events to come before z-index (order/properties-alphabetical-order)
+/path/Filename.tsx: line 470, col 3, error - Expected indentation of 1 tab (indentation)
 ```
 
 As you can see, we have the line number, column number, severity level marked by an icon, the description, and the rule id in the output. This is where `formatPattern` field comes into play — to translate the linter output to the LSP diagnostic engine.
 
-This regex pattern `(\d+):(\d+)\s\s(.)\s\s(.+?)\s+([a-zA-Z\/\-]+)$` enables us to capture all those information chunks into groups; the first group being the line number, the second being the column number, the third being the icon (severity), the fourth and the fifth being the message and the rule id respectively. Now that we know which group number corresponds to which chunk, you can start customizing to your liking the message format you'd like to see in the `message` field. Personally I like to see the message with the rule id in bracket.
+This regex pattern `: line (\d+), col (\d+), (warning|error) - (.+?) \((.+)\)` enables us to capture all those information chunks into groups; the first group being the line number, the second being the column number, the third being the icon (severity), the fourth and the fifth being the message and the rule id respectively. Now that we know which group number corresponds to which chunk, you can start customizing to your liking the message format you'd like to see in the `message` field. Personally I like to see the message with the rule id in bracket.
 
 ```lua
 formatPattern = {
@@ -76,6 +77,41 @@ formatPattern = {
 ````
 
 {{< figure src="/uploads/stylelint-lsp-diagnostic.png" alt="Stylelint working" caption="Stylelint error messages" class="fig-center" >}}
+
+## Using efm-langserver
+
+Another alternative would be using efm-langserver which is a general purpose language server. The setup is also fairly simple.
+
+```lua
+local stylelint = {
+  lintCommand = 'stylelint ${INPUT} --formatter compact',
+  lintIgnoreExitCode = true,
+  lintStdin = true,
+  lintFormats = {
+    '%f: line %l, col %c, %tarning - %m',
+    '%f: line %l, col %c, %trror - %m',
+  },
+  formatCommand = 'stylelint --fix --stdin --stdin-filename=${INPUT}',
+  formatStdin = true,
+}
+nvim_lsp.efm.setup {
+  cmd = { 'efm-langserver' },
+  init_options = {
+    documentFormatting = true,
+    rename = false,
+    hover = false,
+    completion = false,
+  },
+  filetypes = { 'typescript', 'typescriptreact' },
+  settings = {
+    rootMarkers = { '.git', 'package.json' },
+    languages = {
+      typescript = { stylelint },
+      typescriptreact = { stylelint },
+    },
+  },
+}
+```
 
 ## Using stylelint-lsp
 
