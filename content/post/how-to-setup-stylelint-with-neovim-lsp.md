@@ -132,6 +132,20 @@ If you'd like to have code actions capability, you can set up [stylelint-lsp](ht
 
 So far I find `stylint-lsp` to be the fastest compared to the other two: you open (or update) a file and you'll see the linter message instantly if errors are present. One note tho, I haven't been able to set up "auto fix" action just yet. I think I'll just rely on efm formatting for the time being.
 
+UPDATE: PR was merged, and this is all you need to do:
+
+```lua
+nvim_lsp.stylelint_lsp.setup {
+  settings = {
+    stylelintplus = {
+      autoFixOnSave = true,
+      autoFixOnFormat = true,
+      -- other settings...
+    }
+  },
+}
+```
+
 ---
 
 Hope it helps :)
