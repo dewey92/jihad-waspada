@@ -2,6 +2,7 @@
 title: "TIL: [Bab 2] The Divine Reality — Hidup Tanpa Tuhan"
 date: 2021-05-14T20:19:36+02:00
 description: "Implikasi paham Ateisme"
+images: ["/uploads/the-divine-reality.jpg"]
 image:
   src: "/uploads/the-divine-reality.jpg"
   caption: ""
