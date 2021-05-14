@@ -10,7 +10,7 @@ categories: ["til", "islam"]
 draft: false
 ---
 
-> Catatan pribadi dan ringakasan bab 1 dari buku The Divine Reality oleh Hamza Andreas Tzortzis.
+> Catatan pribadi dan ringaksan Bab 1 dari buku The Divine Reality oleh Hamza Andreas Tzortzis.
 
 ## Ateisme
 
@@ -28,7 +28,7 @@ Walaupun sebenernya miso (benci) teisme (tuhan) ini gak termasuk ideologi ateism
 
 Satu pertanyaan yang penulis buku ini sering lontarkan kepada seorang ateis: _Jika Tuhan itu benar adanya, apa kamu mau menyembah-Nya?_ Jawaban yang sering didapat adalah "tidak" dengan alasan ngapain menyembah Tuhan yang suka membiarkan kejahatan dan kesengsaraan terjadi. Menurut penulis, mereka yang berpandangan demikian tidak ingin melihat dunia dari sisi lain, hanya dari kacamata mereka sebagai manusia saja. Mereka pikir Tuhan melihat dunia ini persis seperti apa yang manusia lihat sehingga semua penderitaan dan kesengsaraan ini harus dihentikan oleh-Nya. Ini sama saja seperti memanusiakan Tuhan, padahal Ia Maha Bijaksana dan Maha Mengetahui. Jika Ia masih terus membiarkan ini semua terjadi, keberadaan-Nya harus dipertanyaakan atau bahkan ditolak mentah-mentah.
 
-Pada titik ini, misoteis berpaham bahwa moral manusia itu lebih baik dan lebih memiliki rasa kasih sayang dibanding Tuhan. Mereka belum memahami bahwa Tuhan sendiripun tidak senang dengan segala kejahatan yang terjadi. Ada alasan-alasan yang tidak kita ketahui dan hanya Dia yang tahu karena Kebijaksanaan-Nya (dijelaskan lebih lanjut di bab 11).
+Pada titik ini, misoteis berpaham bahwa moral manusia itu lebih baik dan lebih memiliki rasa kasih sayang dibanding Tuhan. Mereka belum memahami bahwa Tuhan sendiripun tidak senang dengan segala kejahatan yang terjadi. Ada alasan-alasan yang tidak kita ketahui dan hanya Dia yang tahu karena Kebijaksanaan-Nya (dijelaskan lebih lanjut di Bab 11).
 
 ## Ateisme dan Naturalisme (_Philosophical Naturalism_)
 
@@ -44,7 +44,7 @@ Dalam bahasa Arab Ateisme disebut _ilhaad_ yang berarti 'penyimpangan' atau lebi
 
 {{< figure src="/uploads/lahad.jpg" alt="joboffer" caption="[Liang lahat](https://www.marhaba.qa/funeral-rites-in-islam/islamic-graves/)" class="fig-center img-80" >}}
 
-Secara linguistik, ateis adalah sebuah bentuk penyimpangan dari fitrah manusia yang sudah mengenal Tuhan sebagai entitas yang patut disembah, seperti yang disabdakan oleh Rasulullah SAW (dibahas di bab 4).
+Secara linguistik, ateis adalah sebuah bentuk penyimpangan dari fitrah manusia yang sudah mengenal Tuhan sebagai entitas yang patut disembah, seperti yang disabdakan oleh Rasulullah SAW (dibahas di Bab 4).
 
 Dalam Al-Qur'an, ateis digambarkan sebagai orang-orang yang tidak yakin atas perkatakaan mereka sendiri.
 
@@ -62,4 +62,4 @@ Walaupun ideologi ateisme ini sudah muncul sejak abad ke-8 (Dahriyya), namun jum
 
 Salah satu alasan penulis menyusun buku ini adalah untuk menyajikan pembaca dengan materi-materi soal mengapa konsep thesime dalam Islam itu masuk akal dan logis sementara paham ateisme itu khayalan belaka.
 
-...[Bersambung ke bab 2]
+... [Bersambung ke [Bab 2]({{<ref "./til-bab-2-the-divine-reality.md" >}})]
