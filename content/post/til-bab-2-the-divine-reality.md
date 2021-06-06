@@ -63,7 +63,7 @@ Kalau betul demikian, lalu apa manusia itu tetap punya "nilai"?
 
 Misal nih, tak ambil palu terus tak pukul itu martabak sama kepalamu. Menurut mereka, serpihan martabak dan kepalamu ini sama aja, sama-sama terbuat dari materi tak bernyawa.
 
-Jawaban yang biasa dilontarkan adalah: _manusia itu makhluk hidup, punya nyawa, dan punya perasaan_. Tapi balik lagi, menurut pandangan naturalistik, emosi manusia itu pada hakikatnya hasil dari berbagai reaksi kimia yang terjadi di dalam otak, yang juga merupakan susunan-susunan materi saja. Rasa sedih, senang, sakit, nikmat, semuanya sama, tak lebih dari reaksi kimia.
+Jawaban yang biasa dilontarkan adalah: _manusia itu makhluk hidup, punya nyawa, dan punya perasaan_. Tapi balik lagi, menurut pandangan naturalistik, emosi manusia itu pada hakikatnya adalah hasil dari berbagai reaksi kimia yang terjadi di dalam otak, yang juga merupakan susunan-susunan materi saja. Rasa sedih, senang, sakit, nikmat, semuanya sama, tak lebih dari reaksi kimia semata.
 
 Kita bisa saja bilang, manusia lebih berharga dibanding martabak karena struktur manusia itu lebih kompleks. Tapi ingat, lagi-lagi, menurut mereka tidak ada sesuatupun di dunia ini yang didesain dan diciptakan dengan suatu tujuan. Ini semua hanyalah susunan materi yang terbentuk dari proses **acak**, buta, dan non-rasional.
 
