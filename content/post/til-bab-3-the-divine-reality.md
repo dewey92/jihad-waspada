@@ -31,7 +31,7 @@ Lalu mengapa pandangan Islam seperti supir taxi yang bisa melihat (gak pakai pen
 
 ## Apa itu Nalar?
 
-Dalam konteks tulisan ini, nalar adalah sesuatu yang memungkinkan kita untuk menangkap kebenaran, menemukan, dan menyimpulkan sesuatu (infer, induce, dan deduce—saya gak tahu translasi yang tepat hehe). Ketika kita bernalar secara logis, kita memiliki _mental insight_ untuk mengaitkan premis dengan kesimpulan, bahkan ketika premis-premis yang tersedia terdengar asing di telinga kita. Contoh:
+Dalam konteks tulisan ini, nalar adalah sesuatu yang memungkinkan kita untuk menangkap kebenaran, menemukan, dan menyimpulkan sesuatu (infer, induce, dan deduce—saya gak tahu translasi yang tepat hehe). Ketika kita bernalar secara logis, kita memiliki kemampuan untuk mengaitkan premis dengan kesimpulan, bahkan ketika premis-premis yang tersedia terdengar asing di telinga kita. Contoh:
 
   1. Semua domba punya cicionggong.
   2. Shaun adalah seekor domba.
