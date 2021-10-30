@@ -27,7 +27,7 @@ interface BlogWithImage extends Blog {
 }
 ```
 
-We know that `BlogWithImage` is a subtype of `Blog`. So when there's a function that expects a `Blog` object, passing a `BlogWithImage` should not make the compiler bark.
+We know that `BlogWithImage` is a subtype of `Blog`. Passing a `BlogWithImage` to a function that expects `Blog` should not make the compiler bark.
 
 ```ts
 function printTitle(blog: Blog) {
@@ -79,7 +79,7 @@ fetchBlog(printTitle) // ✅
 fetchBlog(printTitleImg) // ❌
 ```
 
-Providing `printTitleImg` will not typecheck and will throw at runtime cause the `img` field will not be present upon fetching the blog. The fact that we can't substitute `(b: Blog) => void` with `(b: BlogWithImage) => void` means that `(b: BlogWithImage) => void` is NOT a subtype of `(b: Blog) => void`
+Providing `printTitleImg` will not typecheck and will throw at runtime cause the `img` field will not be present upon fetching the blog (well, not necessarily. But imagine if it was a nested field). The fact that we can't substitute `(b: Blog) => void` with `(b: BlogWithImage) => void` means that `(b: BlogWithImage) => void` is NOT a subtype of `(b: Blog) => void`
 
 What about the other way around?
 
@@ -103,11 +103,11 @@ fetchBlogWithImage(printTitle) // ✅
 fetchBlogWithImage(printTitleImg) // ✅
 ```
 
-Passing `printTitle` typechecks and we won't encounter any runtime error since it only consumes `title` field from the `BlogWithImage` object and just doesn't care about the rest. So in this case `(blog: BlogWithImage) => void` is substitutable with `(blog: Blog) => void`, thus we can say that `(blog: Blog) => void` IS a subtype of `(blog: BlogWithImage) => void`.
+Passing `printTitle` typechecks and we won't encounter any runtime error since it only consumes `title` from the `BlogWithImage` object and just doesn't care about the rest. So in this case `(blog: BlogWithImage) => void` is substitutable with `(blog: Blog) => void`, thus we can say that `(blog: Blog) => void` IS a subtype of `(blog: BlogWithImage) => void`.
 
 > `(blog: Blog) => void` <: `(blog: BlogWithImage) => void`
 
-**When it comes to function argument, the more general type will always be the subtype of the more specific one**. This is the opposite (contra!) of what we usually encounter 🙂
+**When it comes to function arguments, the more general type will always be the subtype of the more specific one**. This is the opposite (contra!) of what we usually encounter 🙂
 
 ## Inferring in Contravariant Position
 
@@ -129,12 +129,12 @@ And we know that:
 - `{ title: string }` is more general than `{ title: string, img: string }`
 - `{ img: string }` is more general than `{ title: string, img: string }`
 
-Remember, when it comes to function argument, the more general type will always be the subtype of the more specific one. Thus it follows that:
+Remember, when it comes to function arguments, the more general type will always be the subtype of the more specific one. Thus it follows that:
 
 - `(b: { title: string }) => void` is the subtype of (extends) `(b: { title: string, img: string }) => void`
 - `(b: { img: string }) => void` is the subtype of (extends) `(b: { title: string, img: string }) => void`
 
-From these premises, it makes total sense if `infer T` should give you `{ title: string, img: string }` as it is the very least compatible type for each of the `BlogFn` constituents. And indeed, the resulting type of `WhatAmI` is `{ title: string, img: string }` 🙂.
+From these premises, it makes total sense if `infer T` should give you `{ title: string, img: string }` as it is the very minimum compatible type for each of the `BlogFn` constituents: it's now capable to handle both `{ title }` and `{ img }`. And indeed, the resulting type of `WhatAmI` is `{ title: string, img: string }` 🙂.
 
 ---
 
@@ -155,7 +155,7 @@ type IntersectionType = BlogFn extends (b: infer T) => void
  */
 ```
 
-Interesting! Why don't we just create a utility type that converts union types to intersection types?! 💡
+Interesting! Why don't we just create a utility type that converts union types into intersection types?! 💡
 
 ```ts
 type U2I<U> =

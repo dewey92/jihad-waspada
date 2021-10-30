@@ -34,14 +34,7 @@ type Something<T> = Some<Fancy<T>, Or<Long<T>>> extends infer U
 
 Kadangkala kita harus melakukan manipulasi type yang cukup kompleks dan panjang. Tapi gak asyik kalo type yang compleks tadi harus muncul di beberapa tempat: kita musti copy-paste. Gak DRY banget bro. Bakal jadi asyik kalo Typescript menyediakan cara untuk menyimpan hasil sebuah manupulasi ke dalam sebuah variable lalu tinggal kita panggil variable tersebut ketika dibutuhkan.
 
-Dan kita bisa melakukannya dengan formula `... extends infer SomeVar ? ... : never`. Ibaratnya kayak:
-
-```ts
-type Something<T> = (
-  let type U = Some<Fancy<T>, Or<Long<T>>>
-  return Array<U> | Promise<U> | { wrapped: U }
-)
-```
+Dan kita bisa melakukannya dengan formula `... extends infer TypeVar ? ... : never`. Keyword `infer` behaves seperti pattern matching sebuah type. Dalam hal ini, type yang di-pattern match adalah keseluruhan type, jadi yang masuk ke dalam type variable `U` ya type-nya itu sendiri.
 
 ## Looping Union Type
 
@@ -61,16 +54,7 @@ type Arrayify_Good<T> = T extends unknown ? Array<T> : never
 
 Anggap aja kita punya sebuah union `string | number`. Dan kita ingin sebuah type yang bisa mengubahnya menjadi `string[] | number[]`. Jika kita gunakan `Arrayify_Bad<string | number>`, hasilnya bakalan jadi `Array<string | number>`, _not something that we want_. `Arrayify_Good<string | number>` justru menghasilkan `string[] | number[]`. Kenapa?
 
-Karena generic type menjadi **distributif** ketika di-apply dengan conditional type. Anggap saja "distributif" = "looping". Ada di [dokumentasi](https://www.typescriptlang.org/docs/handbook/2/conditional-types.html#distributive-conditional-types) Typescript.
-
-Type variable `T` di dalam conditional type tadi menjadi `string` pada iterasi pertama, lalu `number` pada iterasi berikutnya. Biar gak bingung sama `T` di luar conditional type (yang berupa `string | number`), kita bisa gunakan tips pertama di atas dan mengubah definisi `Arrayify_Good` menjadi:
-
-```ts
-type Arrayify<Items> = Items extends infer Item ? Array<Item> : never
-
-type Result = Arrayify<string | number>
-// => string[] | number[]
-```
+Karena generic type menjadi **distributif** ketika di-apply dengan conditional type. Bisa dibaca di [dokumentasinya](https://www.typescriptlang.org/docs/handbook/2/conditional-types.html#distributive-conditional-types) untuk Penjelasan lebih lanjut.
 
 Sebaliknya, untuk mencegah union type terdistribusi, kita harus gunakan kurung kotak (tuple) di kedua sisi:
 
@@ -86,6 +70,12 @@ type Result = Arrayify_NonDist<string | number>
 ### Contoh
 
 ```ts
+type Human = { name: string, age: number, title: string }
+type Cat   = { name: string, age: number, meow: boolean }
+
+type Result = XOR<Human | Cat>
+// => Maunya { title: string } | { meow: boolean }
+
 /**
  * Get all keys in a union type
  */
@@ -104,12 +94,6 @@ type XOR<T> = keyof XAND<T> extends infer K
     ? Omit<T, K & string>
     : never
   : never
-
-type Human = { name: string, age: number, title: string }
-type Cat   = { name: string, age: number, meow: boolean }
-
-type Result = XOR<Human | Cat>
-// => Harusnya { title: string } | { meow: boolean }
 ```
 
 ### Penjelasan

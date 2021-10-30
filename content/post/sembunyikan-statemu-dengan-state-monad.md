@@ -18,27 +18,37 @@ withdraw :: Int -> Int
 withdraw amount = amount
 ```
 
-Nilai kembalian function `withdraw` kita asumsikan sebagai uang yang keluar dari mesin ATM.
+Argument function `withdraw` adalah jumlah yang ingin kita ambil dan nilai kembaliannya kita asumsikan sebagai uang yang keluar dari mesin ATM.
 
-Namun function tersebut sebenernya _useless_. Pertama, karena gak ngapa-ngapain selain mengembalikan uang sejumlah yang dimasukkan. Kedua, karena kurang _real world_. Untuk melakukan penarikan uang, mesin harus menghitung beberapa faktor yang telah ditentukan oleh pihak bank seperti jumlah penarikan, biaya penarikan, saldo, dll. Sedangkan tak ada pengecekan apapun di function tersebut. Mungkin harus kita buat versi yang lebih baik.
+Namun function tersebut kurang _real world_. Untuk melakukan penarikan uang, mesin harus menghitung beberapa faktor yang telah ditentukan oleh pihak bank seperti jumlah penarikan, biaya penarikan, saldo, dll. Sedangkan tak ada pengecekan apapun di function tersebut. Mungkin harus kita buat versi yang lebih baik.
 
 ```hs
-withdraw :: Int -> Int -> Maybe Int
+type Amount = Int
+type Balance = Int
+
+withdraw :: Amount -> Balance -> Tuple (Maybe Amount) Balance
 withdraw amount balance =
-  if balance > 50 && amount < balance
+  let minBalance = 50 in
+  let afterBalance = balance - amount in
+
+  if afterBalance >= minBalance
     then Just amount
     else Nothing
 ```
 
-Misal saldo saya ada 100 dan saya mengambil uang sebesar 10, maka uang yang keluar dari mesin adalah 10. _Works_, karena saldo lebih dari 50. Bagaimana dengan balance saya setelah penarikan? Oh pasti jadi 90 dong. Ermm, tapi apa ada bukti? Function tersebut gak mengubah nilai saldo sedikitpun. Ia hanya mengembalikan "uang" yang kita inputkan.
-
-Oke, mungkin perlu diiterasi lagi supaya mengembalikan dua hal sekaligus: jumlah yang keluar dari ATM, dan hasil saldo akhir setelah transaksi.
+Sekarang function `withdraw` akan cek terlebih dahulu apakah sisa saldo setelah penarikan masih lebih dari 50. Jika demikian, penarikan berhasil. Namun sayangnya sisa saldo setelah penarikan tidak berubah sama sekali. Mungkin perlu diiterasi lagi supaya mengembalikan dua hal sekaligus: jumlah yang keluar dari ATM, dan hasil saldo akhir setelah transaksi.
 
 ```hs
-withdraw :: Int -> Int -> Tuple (Maybe Int) Int
+type Amount = Int
+type Balance = Int
+
+withdraw :: Amount -> Balance -> Tuple (Maybe Amount) Balance
 withdraw amount balance =
-  if balance > 50 && amount < balance
-    then Tuple (Just amount) (balance - amount)
+  let minBalance = 50 in
+  let afterBalance = balance - amount in
+
+  if afterBalance >= minBalance
+    then Tuple (Just amount) afterBalance
     else Tuple Nothing balance
 ```
 
@@ -47,9 +57,10 @@ Dengan begini, nilai `balance` juga ikut dikomputasi setiap kali melakukan penar
 ```hs
 transactions :: Int -> String
 transactions balance =
-  let (Tuple _    balance2) = withdraw 10 balance in
-  let (Tuple amnt balance3) = withdraw 5 balance2 in
-  case amnt of
+  let (Tuple _        balance2) = withdraw 10 balance in
+  let (Tuple mbAmount balance3) = withdraw 5 balance2 in
+
+  case mbAmount of
     Just _  -> "Saldo terakhir Anda: " <> show balance3
     Nothing -> "Kismin lu!"
 
@@ -64,13 +75,17 @@ Pattern yang langsung terlihat dari penggunaan fungsi `withdraw` adalah nilai `b
 
 Sehingga, dalam domain studi kasus "bank" ini, saldo atau `balance` adalah State yang harus kita maintain.
 
-Balik ke permasalahan code, walaupun dalam banyak hal code mungkin akan lebih mudah dicerna dengan explicit passing, namun tentunya dalam hal ini akan sangat tidak readable bila harus terus melakukan _destructuring_ Tuple dan menyuplai State ke function berikutnya.
+Balik ke permasalahan code, walaupun dalam banyak hal code mungkin akan lebih mudah dicerna dengan explicit passing, namun dalam hal ini akan sangat tidak readable bila harus terus melakukan _destructuring_ Tuple dan menyuplai State ke function berikutnya.
 
 State monad bisa membantu menyembunyikannya.
 
 ## Definisi State Monad
 
-Sebetulnya function `withdraw` sudah menyerupai pattern State monad. Perhatikan type signature-nya dan fokus pada Balance, karena ia adalah state kita.
+```hs
+type State s a = s -> Tuple a s
+```
+
+Sebetulnya function `withdraw` sudah menyerupai pattern State monad. Perhatikan type signature-nya dan fokus pada Balance, karena ia adalah state yang ingin kita maintain.
 
 ```hs
 type Amount = Int
@@ -78,25 +93,11 @@ type Balance = Int
 
 withdraw :: Amount -> Balance -> Tuple (Maybe Amount) Balance
                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-```
-
-Lalu kita extract type signature yang digarisbawahi:
-
-```hs
-type BalanceState = Balance -> Tuple (Maybe Amount) Balance
-
-withdraw :: Amount -> BalanceState
-```
-
-dan bila `BalanceState` digeneralisir, akan menjadi:
-
-```hs
-type State s a = s -> Tuple a s
 
 withdraw :: Amount -> State Balance (Maybe Amount)
 ```
 
-Dan jadilah definisi State monad: sebuah function yang mengambil state dan mengembalikan state berikutnya, dibarengi dengan intermediate value (biasanya berupa hasil komputasi yang bergantung pada state).
+Jadi sebenarnya State monad hanyalah sebuah function yang mengambil state dan mengembalikan state berikutnya, dibarengi dengan intermediate value (biasanya berupa hasil komputasi yang bergantung pada state).
 
 ```hs
 state -> Tuple intermediateValue nextState
@@ -109,32 +110,42 @@ state -> Tuple intermediateValue nextState
 Mari refactor function `withdraw` menggunakan State monad.
 
 ```hs
-withdraw :: Int -> State Int (Maybe Int)
+type Amount = Int
+type Balance = Int
+
+withdraw :: Amount -> State Balance (Maybe Amount)
 withdraw amount = do
   balance <- get
-  if balance > 50 && amount < balance
+
+  let minBalance = 50
+  let afterBalance = balance - amount
+
+  if afterBalance >= minBalance
     then do
       put (balance - amount)
-      -- atau `modify (\st -> st - amount)`
       pure $ Just amount
     else pure Nothing
 ```
 
-Ada beberapa function State monad di sini. Pertama `get`, yang mengembalikan nilai state terbaru. Kedua ada function `put`, yang berguna untuk meng-overwrite nilai state. Ketiga ada `modify`, yang mirip dengan `put` namun alih-alih menerima function.
+Ada dua method State monad yang muncul di sini: `get` yang mengambil nilai state terbaru, dan `put` yang meng-overwrite nilai state.
 
 Dengan style ini, function `transactions` menjadi lebih singkat dan kita tak perlu lagi passing state secara eksplisit.
 
 ```hs
-deposit :: Int -> State Int Unit
-deposit amount = modify_ (_ + amount)
+type Amount = Int
+type Balance = Int
 
-transactions :: State Int String
+deposit :: Amount -> State Balance Unit
+deposit amount = modify (\s -> s + amount)
+-- `modify` sama seperti `put`, namun menerima callback
+
+transactions :: State Balance String
 transactions = do
   deposit 8
-  _    <- withdraw 10
-  amnt <- withdraw 5
+  _      <- withdraw 10
+  mbAmnt <- withdraw 5
   balance <- get
-  pure $ case amnt of
+  pure $ case mbAmnt of
     Just _  -> "Saldo terakhir Anda: " <> show balance
     Nothing -> "Kismin lu!"
 ```
@@ -158,6 +169,6 @@ Proses modifikasi dan passing state ini hanya terjadi di dalam operasi monad (ke
 
 ---
 
-_All in all_, State monad memberikan jalan alternatif yang pure untuk melakukan komputasi yang "stateful". Menambahkan state pada function `a -> b` cukup dengan mengubahnya ke `a -> State s b`, dan kita sudah mendapatkan function `get`, `put` dan `modify` secara gratis.
+_All in all_, State monad memberikan jalan alternatif yang pure untuk melakukan komputasi yang "stateful". Menambahkan state pada function `a -> b` cukup dengan mengubahnya menjadi `a -> State s b`, dan kita sudah mendapatkan function `get`, `put` dan `modify` secara gratis.
 
 Semoga bermanfaat.

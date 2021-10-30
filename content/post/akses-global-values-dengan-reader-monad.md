@@ -17,27 +17,7 @@ Lalu muncul React Context, yang tujuan utamanya persis seperti yang barusan: aga
 
 > Context provides a way to share values like these between components without having to explicitly pass a prop through every level of the tree.
 
-Terdengar brilian! Kami pun tak ingin ketinggalan mencicipi dan merasakan benefit yang ditawarkan oleh React Context yang mungkin tidak ditawarkan oleh Redux.
-
-Sampai suatu saat, entah kami salah design atau bagaimana, saya melihat pemandangan yang kurang sedap di mata: Context hell. Dulu ada callback hell, sekarang ada Context hell. Kurang lebih ada sepuluh nested Providers yang saya dapati di salah satu component, yang beberapa di antaranya dependent terhadap _context value_ di atasnya. Sehingga kalau salah urutan, aplikasi bisa gagal jalan. Testing component tersebut juga tidak begitu mudah 🤯
-
-```js
-<ThemeProvider>
-  <EventsProvider>
-    <BadgeProvider>
-      <NotificationsProvider>
-        <FilterProvider>
-          // etc
-        </FilterProvider>
-      </NotificationsProvider>
-    </BadgeProvider>
-  </EventsProvider>
-</ThemeProvider>
-```
-
-Saya yakin pasti banyak pattern yang jauh lebih baik dari desain component seperti di atas. Namun bukan itu tujuan penulisan artikel ini, saya tidak akan membahas lebih dalam tentang React Context. Artikel ini saya tulis lebih karena teringatnya saya pada Reader Monad sebagai salah satu cara untuk menyimpan dan mengatur _global values_ agar deep-nested function tetap punya akses tanpa _props drilling_. Persis seperti React Context. Dan saya akan menjelaskannya dengan Purescript.
-
-{{< tweet 1217747991429373953 >}}
+Artikel ini saya tulis lebih karena teringatnya saya pada Reader Monad sebagai salah satu cara untuk menyimpan dan mengatur _global values_ agar deep-nested functions tetap punya akses tanpa _props drilling_. Persis seperti React Context (bedanya Reader type-safe). Dan saya akan menjelaskannya dengan Purescript.
 
 ## Apa itu Reader Monad
 
@@ -51,26 +31,46 @@ Reader env a
 
 dimana `env` adalah shared value kita dan `a` adalah nilai yang dihasilkan dari shared value tersebut, mirip sebuah function `env -> a`. Dan memang sejatinya Reader Monad adalah function `env -> a` 😄. Tapi pembahasan function sebagai Reader kita kesampingkan dulu.
 
-Karena Reader berupa Monad ([reference dari module Control.Monad.Reader](https://github.com/purescript/purescript-transformers/blob/0e473e5ef0e294615ca0d9aab0bcffee47b2870d/src/Control/Monad/Reader.purs#L22-L22)), kita dapat memanggilnya seperti ini:
+Karena Reader ([memiliki instance Monad](https://github.com/purescript/purescript-transformers/blob/0e473e5ef0e294615ca0d9aab0bcffee47b2870d/src/Control/Monad/Reader.purs#L22-L22)), kita dapat memanggilnya seperti ini:
 
 ```hs
 type Env = {
   baseUrl :: String
 }
 
-example :: Reader Env String
-example = pure "yeah"
+port :: Reader Env Int
+port = pure 4005
 ```
 
-Type signature di atas mendeskripsikan bahwa kita telah membuat sebuah Reader yang menerima sebuah object `Env` dan menghasilkan `String`. Lalu bagaimana cara menyuplai object `Env` dan mendapatkan nilai "yeah"? Dengan function `runReader`:
+Type signature di atas mendeskripsikan bahwa kita telah membuat sebuah Reader yang menerima sebuah object `Env` dan menghasilkan `Int`. Lalu bagaimana cara menyuplai object `Env` dan mendapatkan nilai 4005? Dengan function `runReader`:
 
 ```hs
 runReader :: Reader env a -> env -> a
 
-yeah = (runReader example) { baseUrl: "http://localhost:4005" }
+env :: Env
+env = { baseUrl: "http://localhost" }
+
+result :: Int
+result = runReader port env
 ```
 
 `runReader` menerima Reader di argument pertamanya lalu disuplai dengan shared value `env` di argument kedua sehingga menghasilkan nilai `a`. Namun sampai contoh barusan kita belum juga menggunakan `Env` atau shared value yang kita suplai. Lalu bagaimana cara mendapatkannya? Dengan method `ask`!
+
+```hs
+insertPort :: Reader Env String
+insertPort = do
+  { baseUrl } <- ask
+  pure $ baseUrl <> ":4005"
+
+env :: Env
+env = { baseUrl: "http://localhost" }
+
+result :: Int
+result = runReader insertPort env
+-- "http://localhost:4005"
+```
+
+Contoh yang lebih real world:
 
 ```hs
 fetchAuthedUser :: Reader Env User
@@ -100,13 +100,6 @@ allData = runReader fetchAllData { baseUrl: "http://localhost:4005" }
 
 Ketika `ask` dipanggil, ia akan mengembalikan environment yang nantinya disuplai. Jadi kalau ingin mendapatkan environment, **_ask_ for it** 😉.
 
-`ask` adalah method yang disediakan oleh type class `MonadAsk`. `Reader r` adalah type alias dari `ReaderT r Identity`, dan `ReaderT` sudah memiliki instance type class `MonadAsk`. In short, code di atas juga sebenarnya valid bila dituliskan dengan gaya type class constraint.
-
-```hs
-fetchAuthedUser :: ∀ m. MonadAsk Env m => m User
-fetchArticle    :: ∀ m. MonadAsk Env m => m Article
-```
-
 Kurang lebih inilah yang dimaksud dengan Reader Monad beserta penggunaan dasarnya. Lihat bagaimana dalam pemanggilan function `fetchAuthedUser` kita tidak pernah benar-benar secara eksplisit melempar object `Env` ke function argument-nya. Begitu pula dalam pemanggilan `fetchArticles`, tidak ada explicit passing object `Env`. Semua "disembunyikan" lewat Reader.
 
 ## Update Global Value?
@@ -123,6 +116,7 @@ type Env = {
   baseUrl :: String
 }
 
+main :: Effect Unit
 main = do
   -- Jalankan dengan nilai awal kosong
   currentUser <- Ref.new Nothing
@@ -137,15 +131,14 @@ main = do
 
 Nanti di bagian aplikasi lain, ketika user telah ter-autentikasi, barulah `currentUser` dapat di-update dan dibaca oleh function lain
 
-```hs {hl_lines=[11,20]}
+```hs {hl_lines=[10,19]}
 authenticate :: ∀ m.
   MonadAsk Env m =>
   MonadEffect m  =>
   m (Maybe User)
 authenticate = do
   env <- ask
-  res <- fetchProfile env.baseUrl
-  case res of
+  case fetchProfile env.baseUrl of
     Left _     -> pure Nothing
     Right user -> do
       liftEffect $ Ref.write (Just user) env.currentUser
@@ -156,9 +149,9 @@ navbar :: ∀ m.
   MonadEffect m  =>
   m HTML
 navbar = do
-  env       <- ask
-  userMaybe <- liftEffect $ Ref.read env.currentUser
-  case userMaybe of
+  env    <- ask
+  mbUser <- liftEffect $ Ref.read env.currentUser
+  case mbUser of
     Nothing   -> H.button_ [H.text "Login"]
     Just user -> H.text ("Welcome, " <> user.name)
 ```
