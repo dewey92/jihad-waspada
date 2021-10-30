@@ -73,7 +73,7 @@ EDIT: Saya sudah bekerja di perusahaan yang baru semenjak awal Juni 2019, masih 
 
 ---
 
-Beberapa _takeaway_ receh dari saya pribadi sebelum _blindly apply for jobs_ di luar negeri:
+Sebelum menutup tulisan ini, saya punya beberapa tips sebelum _blindly apply for jobs_ di luar negeri:
 
 - Matangkan kemampuan berbahasa Inggris. Nggak harus sempurna, tapi cukup mengerti dan dimengerti.
 - Kita bisa mencari pekerjaan di luar negeri melalui [Stackoverflow](https://stackoverflow.com/). Jangan lupa mencari perusahaan yang menyediakan paket "Visa Sponsorship" atau "Relocation" karena elemen ini yang memungkinkan kita untuk relokasi ke negara tujuan. Di Stackoverflow ini juga, saya pernah ditawari pekerjaan lewst Inbox di Berlin tapi sayangnya waktu itu sedang persiapan keberangkatan ke Belanda. Maka, update profile [Developer Story](https://stackoverflow.com/users/story/3956497) temen-temen, cari pekerjaan di halaman [Jobs dengan filter Visa Sponspors dan Relocation](https://stackoverflow.com/jobs?v=true&t=true), insyallah banyak opportunity di sana. Sebelum berangkat ke Belanda saya juga aktif cari di Stackoverflow, pun sewaktu saya masih mencari pekerjaan baru. Silakan dicoba 😉

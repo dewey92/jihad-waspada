@@ -11,15 +11,11 @@ categories: ["programming", "functional programming", "type system"]
 draft: false
 ---
 
-Artikel ini merupakan artikel lanjutan dari [materi Generics yang awalnya ditulis di Medium saya](https://medium.com/codewey/kuy-ngobrol-dikit-soal-generics-4a05f60d5be1). Cuman ya karena [saya udah gak nulis di Medium lagi]({{< ref "/post/selamat-tinggal-medium.md" >}}), jadinya saya lanjutin di sini aja hehe.
-
-_PS: Saya bukan orang yang ahli dalam bidang Type Theory atau Programming Language, cuman seneng main sama statically-typed language sekaligus ingin mendalami bagaimana types dapat membantu dalam pengembangan software yang robust dan expressive_
-
-Kalau temen-temen pernah baca-baca atau belajar Functional Programming menggunakan bahasa dengan static typing yang setrong, mungkin di saat-saat tertentu pernah mendengar istilah Higher Kinded Type atau disingkat HKT. Konsep ini lumayan _mindblowing_ 🤯 (_at least_ buat saya), karena memungkinkan kita untuk **membuat abstraksi** yang gak akan ditemui di bahasa-bahasa mainstream seperti Typescript, Flow, Java, atau C#. Konsep HKT digunakan di beberapa bahasa pemrograman seperti Haskell, Purescript, dan Scala yang mana ketiganya memiliki konsep [klasifikasi types atau lumrah disebut Typeclasses](https://en.wikipedia.org/wiki/Type_class). Tapi kita gak akan bahas Typeclasses sekarang. ~~Kita bahas pernikahan dan tips-tips membangun rumah tangga aja.~~ Yang akan menjadi titik bahasan dalam artikel ini adalah menjelaskan konsep HKT menggunakan Typescript.
+Artikel ini merupakan artikel lanjutan dari [materi Generics dari Medium saya](https://medium.com/codewey/kuy-ngobrol-dikit-soal-generics-4a05f60d5be1) menggunakan Typescript.
 
 ## Generics
 ### Array
-Sebelum membahas lebih dalam tentang Higher-Kinded Type, ada baiknya kita mengingat-ingat kembali apa itu Generics. Dan, gak ada data structure generic yang lebih sederhana dan umum digunakan di dunia Typescript kecuali Array.
+Sebelum membahas lebih dalam tentang Higher-Kinded Type, ada baiknya kita mengingat-ingat kembali apa itu Generics. Dan saya rasa gak ada data structure generic yang lebih sederhana dan umum digunakan di Typescript kecuali Array.
 
 ```ts
 interface Array<T> {
@@ -29,22 +25,20 @@ interface Array<T> {
 const languages: Array<string> = ['javascript', 'typescript', 'purescript']
 ```
 
-> ⚠️ IMPORTANT: type seperti `string`, `number`, `Date`, dll **yang tidak menerima generic disebut "(concrete) type"**. Sedangkan `Array` **disebut "type constructor" karena dapat menghasilkan concrete type (dengan mengambil generic)**. Bagaimana dengan `Array<string>`? Apakah termasuk "type" atau "type constructor"? Jawabannya: "type".
-
-Karena struktur data ini generic, kita bisa membuat function yang generic pula untuk mengubah nilai yang ada di dalamnya tanpa memandang apakah ia bertipe `number`, `string`, `object`, atau yang lainnya. _Let's say_, kita lagi butuh banget function yang bisa **ngubah array menjadi array of array**. Kalau gak ada function ini, proyek mangkrak ~~dan lu bakal dipaksa kawin ama anak kampung sebelah~~.
+Karena struktur data ini generic, kita bisa membuat function yang generic pula untuk mengubah nilai yang ada di dalamnya tanpa memandang apakah ia bertipe `number`, `string`, `object`, atau yang lainnya. _Let's say_, kita lagi butuh function yang bisa **mengubah array menjadi array of tuple**.
 
 ```ts {hl_lines=[2]}
-const arrayifyArray = <T>(array: Array<T>): Array<[T]> =>
-  array.map(item => [item])
+const tuplifyArray = <T>(array: Array<T>): Array<[T, T]> =>
+  array.map(item => [item, item])
 
-const result = arrayifyArray([1, 2, 3])
-// [[1], [2], [3]]
+const int = tuplifyArray([1, 2, 3])
+// [[1, 1], [2, 2], [3, 3]]
 
-const result2 = arrayifyArray(['tikus', 'makan', 'sabun'])
-// [['tikus'], ['makan'], ['sabun']]
+const str = tuplifyArray(['tikus', 'makan', 'sabun'])
+// [['tikus', 'tikus'], ['makan', 'makan'], ['sabun', 'sabun']]
 ```
 
-So, function `arrayifyArray` ini bersifat _polymorphic_: dimana ia mengubah `Array<number>` menjadi `Array<[number]>` pada contoh pertama dan mengubah `Array<string>` menjadi `Array<[string]>` pada contoh kedua, gak pandang type di dalamnya 🔥 So far so good.
+So, function `tuplifyArray` ini bersifat _polymorphic_: dimana ia mengubah `Array<number>` menjadi `Array<[number, number]>` pada contoh pertama dan mengubah `Array<string>` menjadi `Array<[string, string]>` pada contoh kedua, gak pandang type di dalamnya 🔥 So far so good.
 
 ### Tree
 Beberapa bulan kemudian, Project Manager [dateng bawa berita duka](https://www.instagram.com/p/Bk4m_FrB0pR/): kita diminta untuk menambahkan struktur data Tree karena ternyata _requirement_ proyek sudah mulai melebar.
@@ -82,56 +76,58 @@ const treeA: Tree<number> = branch(
 )
 ```
 
-Dasar emang PM ini plin-plan dan kurang bisa nego sama client, dia sekarang minta juga untuk dibuatkan fungsi `arrayifyTree` persis seperti fungsi `arrayifyArray` yang sudah dibuat tadi. Sebagai developer [bike-bike](https://www.instagram.com/p/BvOSn0pD0A5/), kita buatkan saja fungsinya:
+Dasar emang PM ini plin-plan dan kurang bisa nego sama client, dia sekarang minta juga untuk dibuatkan fungsi `tuplifyTree` persis seperti fungsi `tuplifyArray` yang sudah dibuat tadi.
 
 ```ts {hl_lines=[4,16,"18-19"]}
-function arrayifyTree<T>(tree: Tree<T>): Tree<[T]> {
+function tuplifyTree<T>(tree: Tree<T>): Tree<[T, T]> {
   switch (tree._type) {
     case 'leaf':
-      return leaf([tree.value])
+      return leaf([tree.value, tree.value])
     case 'branch':
       return branch(
-        arrayifyTree(tree.left),
-        arrayifyTree(tree.right)
+        tuplifyTree(tree.left),
+        tuplifyTree(tree.right)
       )
   }
 }
 
-const result = arrayifyTree(treeA)
+const result = tuplifyTree(treeA)
 /* result:
 branch(
-  leaf([1]),
+  leaf([1, 1]),
   branch(
-    leaf([2]),
-    leaf([3])
+    leaf([2, 2]),
+    leaf([3, 3])
   )
 )
 */
 ```
 
-Kejadian ini membuat kita berasumsi jauh ke depan bagaimana jika suatu saat nanti lingkup projek menjadi semakin lebar dan harus menghadirkan beberapa data structure generic baru beserta function `arrayify`-nya. Data structure tersebut bisa berupa `Stack<T>`, `Queue<T>`, `LinkedList<T>`, `Stream<T>`, _you name it_.
+Kejadian ini membuat kita berasumsi jauh ke depan bagaimana jika suatu saat nanti lingkup projek menjadi semakin lebar dan harus menghadirkan beberapa data structure generic baru beserta function `tuplify`-nya. Data structure tersebut bisa berupa `Stack<T>`, `Queue<T>`, `LinkedList<T>`, `Stream<T>`, _you name it_.
 
-_And this is the time_: untuk membuat abstraksi dari solusi yang diinginkan, sebagai seorang developer kita harus bisa melihat pola dari masalah yang ada terlebih dahulu. Mari kita bandingkan function type `arrayifyArray` dengan `arrayifyTree`, maka kita akan menemukan bahwa kedua function type tersebut ternyata memiliki pola yang sangat mirip:
-
-```ts
-arrayifyArray<T>(array: Array<T>): Array<[T]>
-arrayifyTree <T>( tree:  Tree<T>):  Tree<[T]>
-```
-
-Yang membedakan keduanya hanyalah type constructor `Array` dan `Tree`. AHA-moment datang 💡, sekarang kita mulai membayangkan solusi yang lebih generic, yang mengasbtraksi (tidak lagi terikat dengan) "type constructor" `Array` maupun `Tree`:
+_And this is the time_: untuk membuat abstraksi dari solusi yang diinginkan, sebagai seorang developer kita harus bisa melihat pola dari masalah yang ada terlebih dahulu. Mari kita bandingkan function type `tuplifyArray` dengan `tuplifyTree`, maka kita akan menemukan bahwa kedua function type tersebut ternyata memiliki pola yang sangat mirip:
 
 ```ts
-arrayify<DS, T>(arrayable: DS<T>): DS<[T]>
+tuplifyArray<T>(array: Array<T>): Array<[T, T]>
+tuplifyTree <T>( tree:  Tree<T>):  Tree<[T, T]>
 ```
 
-Cerdas dah kite 🥳🎉🎊
+Yang membedakan keduanya hanyalah type `Array` dan `Tree`. AHA-moment datang 💡, sekarang kita mulai membayangkan solusi yang lebih generic, yang mengasbtraksi (tidak lagi terikat dengan) `Array` maupun `Tree`:
 
-Namun sayangnya, compiler Typescript menolak syntax ini dengan pesan error: `Type 'DS' is not generic`. Error muncul karena keterbatasan compiler Typescript yang mengharuskan **semua type variable (termasuk `DS`) berupa "type", tidak boleh berupa "type constructor"**. Sedangkan dalam kasus ini kita menginginkan type variable `DS` berupa type constructor.
+```ts
+tuplify<F, T>(wrapper: F<T>): F<[T, T]>
 
-_Anyway_, **kemampuan mengabstraksi type constructor inilah yang disebut Higher-Kinded Type**. Namun sayangnya Typescript hanya bisa mengabstraksi type, belum bisa mengabstraksi type constructor. Ya sudah, tidur sanah, aku kecewa :')
+tuplify(array) // F = Array
+tuplify(tree)  // F = Tree
+```
+
+Namun sayangnya, compiler Typescript menolak syntax ini dengan pesan error: `Type 'F' is not generic`. Error muncul karena keterbatasan compiler Typescript yang tidak memperbolehkan sebuah type variable menerima type lain.
+
+Nah kemampuan type variable menerima type lain (disebut type constructor) inilah yang disebut Higher-Kinded Type. Namun sayangnya Typescript hanya bisa mengabstraksi type, belum bisa mengabstraksi type constructor.
 
 ## Kind, type of type
-Udah tidurnya bro? Hehe. Oke kita lanjut. Kind adalah cara untuk mengekspresikan (concrete) type dan type constructor dengan symbol `*`. Anggap saja Kind ini adalah type-nya type 😄
+
+Kind adalah cara untuk mengekspresikan (concrete) type dan type constructor dengan symbol `*`. Anggap saja Kind ini adalah type-nya type 😄
 
 `*` adalah kind untuk concrete types. `string`, `number`, `Date`, `Array<number>`, `Tree<string>` masuk dalam kategori ini.
 
@@ -141,54 +137,52 @@ Udah tidurnya bro? Hehe. Oke kita lanjut. Kind adalah cara untuk mengekspresikan
 
 `* -> * -> * -> *` adalah kind untuk type constructor dengan tiga type parameter, dsb.
 
-Balik ke pembahasan Higher-Kinded Type. Di Haskell sendiri &mdash; salah satu bahasa dengan type system paling canggih &mdash; permasalah `arrayify` dapat dituliskan dengan HKT.
+Di salah satu bahasa yang mendukung HKT seperti Purescript (atau Haskell), permasalah `tuplify` dapat diekspresikan dengan:
 
 ```hs {hl_lines=[1,2]}
-class Arrayable a where
-  arrayify :: a t -> a [t]
+class Tupleable f where
+  tuplify :: f t -> f (t, t)
 
-instance Arrayable Array where
-  arrayify = ... -- implementasi arrayify Array
+instance Tupleable Array where
+  tuplify = ... -- implementasi tuplify Array
 
-instance Arrayable Tree where
-  arrayify = ... -- implementasi arrayify Tree
+instance Tupleable Tree where
+  tuplify = ... -- implementasi tuplify Tree
 ```
 
-Type parameter `a` bisa disubstitusi dengan `Array` dan `Tree`, artinya `a` memiliki Kind `* -> *`. Dan type paramater `t`-nya adalah concrete type (Kind `*`). Anggap aja `class` di atas itu seperti `interface` di Typescript dan `instance` itu seperti `class` :p
-
-Lagi-lagi, kalau "style" di atas diterapkan di Typescript, saya rasa tetap belum bisa sepenuhnya akurat.
+Type parameter `f` bisa disubstitusi dengan `Array` dan `Tree`, artinya `f` memiliki Kind `* -> *`. Dan type paramater `t`-nya adalah concrete type (Kind `*`). Anggap aja `class` di atas itu seperti `interface` di Typescript dan `instance` itu seperti `class` :p
 
 ```ts {hl_lines=[2,14,15],linenos=inline}
-interface Arrayable<T> {
-  arrayify(): Arrayable<[T]>
+interface Tupleable<T> {
+  tuplify(): Tupleable<[T, T]>
 }
 
-class Array<T> implements Arrayable<T> {
+class Array<T> implements Tupleable<T> {
   constructor(private val: T) {}
-  arrayify(): Array<[T]> {
+  tuplify(): Array<[T, T]> {
     return new Array([this.val]);
   }
 }
 
-class Tree<T> implements Arrayable<T> {
+class Tree<T> implements Tupleable<T> {
   constructor(private val: T) {}
-  arrayify(): Array<[T]> {
+  tuplify(): Array<[T, T]> {
     return new Array([this.val]);
   }
 }
 ```
 
-Kurang akuratnya solusi ini terlihat jika kita memperhatikan return type-nya. Return type dari fungsi `arrayify` **bisa berupa apa saja asalkan ia subtype dari `Arrayable`**. Artinya notasi `Tree<T> → Array<[T]>` seperti yang ada pada line 14 type-checked! Sedangkan yang kita inginkan adalah kesamaan type constructor (dalam hal ini ya class itu sendiri) dengan outputnya: `Array<T> → Array<[T]>` atau `Tree<T> → Tree<[T]>` saja.
+Namun tetap masih kurang akurat: perhatikan return type baris 14-15. Return type dari fungsi `tuplify` **bisa berupa apa saja asalkan ia subtype dari `Tupleable`**. Artinya notasi `Tree<T> → Array<[T, T]>` di baris 14 type-checked! Sedangkan kita ingin menjaga type constructor yang sama di return type: `Array<T> → Array<[T, T]>` atau `Tree<T> → Tree<[T, T]>` saja.
 
 Maunya sih begini tapi gak bisa 😅
 
 ```ts
-interface Arrayable<T> {
-  arrayify(): this<[T]>
+interface Tupleable<T> {
+  tuplify(): this<[T, T]>
 }
 ```
 
-Selain itu, konsep Higher-Kinded Type memungkinkan kita untuk membuat _factory ~~function~~ type_, yang berarti satu type dapat menghasilkan banyak type atau data structure.
+Selain itu, konsep Higher-Kinded Type memungkinkan kita untuk membuat _factory type_, yang berarti satu type dapat menghasilkan banyak type atau data structure.
 
 ```hs
 -- kind `User` adalah `(* -> *) -> *`
@@ -197,24 +191,20 @@ type User box = {
   email :: box String
 }
 
-type Id a = a
+type Identity a = a
 
-type UserWithEmail = User Id
+type UserWithEmail = User Identity
 type UserWithOrWithoutEmail = User Maybe
 type UserWithManyEmails = User Array
 ...
 -- endless possibilities
 ```
 
-Keren yak 🎉
-
 ## Penutup
 
-Jika teman-teman tertarik belajar Haskell atau Purescript yang memiliki konsep Typeclasses, memahami Higher-Kinded Type dapat membantu intuisi kita dalam mencerna suatu data structure dan/atau type. Saya sendiri juga masih belajar Haskell atau Purescript pelan-pelan, dan setiap kali melihat solusi-solusi di internet yang menggunakan HKT, saya cuman bisa bergumam dalam hati: "Andaikata Typescript sudah support HKT ...".
+Ada beberapa library yang mencoba mensimulasikan konsep HKT ke dalam Typescript. Yang paling terkenal adalah [fp-ts](https://github.com/gcanti/fp-ts). Dulu kami pernah menggunakan library ini di production, tapi kami merasa terlalu verbose dan kurang cocok dengan tim sehingga penggunaannya kami minimalisir. Ada juga alternatif lain yang mungkin lebih simple, [hkts](https://github.com/pelotom/hkts), belum pernah nyoba tapi hehe.
 
-Beberapa library mencoba meng-encode konsep HKT ke dalam Typescript. Yang paling terkenal adalah [fp-ts](https://github.com/gcanti/fp-ts). Dulu kami pernah menggunakan library ini di production, tapi kami merasa terlalu verbose dan kurang cocok dengan tim sehingga penggunaannya kami minimalisir. Ada juga alternatif lain yang mungkin lebih simple, [hkts](https://github.com/pelotom/hkts), belum pernah nyoba tapi hehe.
-
-Akhirul kalam, semoga artikel ini dapat menambah wawasan temen-temen dalam dunia programming terutama di bidang type system. Kalau mau ngasih komentar atau masukan, bisa langsung ke thread Twitter saya aja biar diskusinya asik 😉.
+Akhirul kalam, semoga artikel ini dapat menambah wawasan temen-temen soal type. Kalau mau kasih komentar atau masukan, bisa langsung ke thread Twitter saya aja biar diskusinya asik 😉.
 
 {{< tweet "1147535086453178369" >}}
 
