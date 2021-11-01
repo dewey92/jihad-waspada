@@ -25,14 +25,14 @@ const ContentWrapper = () => {
     if (contentRef.current.offsetHeight > 300) setHasReadMoreBtn(true)
   }, [])
 
-  const onBtnClick = () => setIsExpanded(true)
+  const expand = () => setIsExpanded(true)
 
   return (
     <div>
       <div ref={contentRef}>
         ...
       </div>
-      {hasReadMoreBtn && <button onClick={onBtnClick}>read more</button>}
+      {hasReadMoreBtn && <button onClick={expand}>read more</button>}
     </div>
   )
 }
@@ -56,14 +56,14 @@ const ContentWrapper = () => {
     setIsReady(true)
   }, [])
 
-  const onBtnClick = () => setIsExpanded(true)
+  const expand = () => setIsExpanded(true)
 
   return (
     <div style={{ visibility: isReady ? 'visible' : 'hidden' }}>
       <div ref={contentRef}>
         ...
       </div>
-      {hasReadMoreBtn && <button onClick={onBtnClick}>read more</button>}
+      {hasReadMoreBtn && <button onClick={expand}>read more</button>}
     </div>
   )
 }
@@ -97,41 +97,13 @@ Setelah me-review ulang behavior fitur ini dengan secarik kertas untuk dicorat-c
       - **konten bisa di-expand** dengan tombol "read more" (expandable)
       - Setelah tombol "read more" di-klik, **tampilkan seluruh isi konten** (expanded)
 
-Dari list ini terlihat bahwa secara behavior, konten hanya bisa memiliki salah satu dari ketiga state berikut: Hidden, Expandable, atau Expanded. Menyadari hal ini, spontan saja saya nyaut ke rekan saya: "BRO, PAKE ENUM!"
+Dari list ini terlihat bahwa secara behavior, konten hanya bisa memiliki salah satu dari ketiga state berikut: Hidden, Expandable, atau Expanded. Menyadari hal ini, spontan saja saya nyaut ke rekan saya: "BRO, PAKE ENUM/UNION!"
 
 ```tsx {hl_lines=[1,4]}
-enum Content { hidden, expandable, expanded }
+type ContentDisplay = 'hidden' | 'expandable' |'expanded'
 
 const ContentWrapper = () => {
-  const [contentDisplay, setContentDisplay] = React.useState(Content.hidden)
-  const contentRef = React.useRef(null)
-
-  React.useEffect(() => {
-    setContentDisplay(contentRef.current.offsetHeight > 300
-      ? Content.expandable
-      : Content.expanded
-    )
-  }, [])
-
-  const onBtnClick = () => setContentDisplay(Content.expanded)
-  const hasReadMoreBtn = contentDisplay === Content.expandable
-
-  return (
-    <div style={{ visibility: contentDisplay === Content.hidden ? 'hidden' : 'visible' }}>
-      <div ref={contentRef}>
-        ...
-      </div>
-      {hasReadMoreBtn && <button onClick={onBtnClick}>read more</button>}
-    </div>
-  )
-}
-```
-
-Atau versi JS-nya:
-
-```jsx
-const ContentWrapper = () => {
-  const [contentDisplay, setContentDisplay] = React.useState('hidden')
+  const [contentDisplay, setContentDisplay] = React.useState<ContentDisplay>('hidden')
   const contentRef = React.useRef(null)
 
   React.useEffect(() => {
@@ -141,15 +113,18 @@ const ContentWrapper = () => {
     )
   }, [])
 
-  const onBtnClick = () => setContentDisplay('expanded')
+  const expand = () => setContentDisplay('expanded')
   const hasReadMoreBtn = contentDisplay === 'expandable'
 
   return (
-    <div style={{ visibility: contentDisplay === 'hidden' ? 'hidden' : 'visible' }}>
+    <div style={{ visibility: contentDisplay === 'hidden'
+      ? 'hidden'
+      : 'visible'
+    }}>
       <div ref={contentRef}>
         ...
       </div>
-      {hasReadMoreBtn && <button onClick={onBtnClick}>read more</button>}
+      {hasReadMoreBtn && <button onClick={expand}>read more</button>}
     </div>
   )
 }
@@ -186,9 +161,13 @@ Stay well, my friend!
   overflow-x: auto;
 }
 .comparison-table code {
-  font-size: 90% !important;
+  font-size: 80% !important;
 }
 .comparison-table td:first-child {
+  text-align: right !important;
   white-space: nowrap;
+}
+.comparison-table td:last-child {
+  text-align: left !important;
 }
 </style>
