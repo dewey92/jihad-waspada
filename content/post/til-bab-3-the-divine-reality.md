@@ -72,7 +72,7 @@ Dari sini muncul pertanyaan: _Haruskah kita percaya dengan akal pikiran kita?_ K
 
 Rasa penasaran dan kemampuan kita untuk melakukan suatu penemuan juga bisa menjadi masalah dalam kelangsungan hidup. Kita tak perlu repot-repot belajar fisika atau matematika untuk berevolusi, untuk meneruskan keturunan, atau untuk bertahan hidup. Kecoa aja bisa hidup selama jutaan tahun, dan kita gak pernah lihat tuh mereka lagi ngopi-ngopi ala anak senja ngebahas eksistensi hidup dan implikasi dari paham ateisme.
 
-Sementara kita, manusia, sering kali melakukan sesuatu yang tidak kondusif untuk kelangsungan hidupnya sendiri hanya untuk mencari kebahagiaan. Seperti mendaki gunung Everest yang berbahaya, atau main buggy jumpy, atau eksplorasi ke luar angkasa tanpa adanya jaminan si astronot akan selamat atau tidak.
+Sementara kita, manusia, sering kali melakukan sesuatu yang tidak kondusif untuk kelangsungan hidupnya sendiri hanya untuk mencari kebahagiaan. Seperti mendaki gunung Everest yang berbahaya, atau main buggy jumpy, atau eksplorasi ke luar angkasa tanpa adanya jaminan si astronot akan selamat sekembalinya ke bumi.
 
 Sudah jelas bahwasanya teori evolusi Darwin yang mengarah pada kelangsungan hidup, bukan pencarian kebenaran, tidak cukup untuk menjelaskan kehausan kita akan _discovery_.
 
@@ -133,7 +133,7 @@ Tapi kalau dibahas lebih dalam, komputer sendiri sebenernya 'tidak mengerti' apa
 
 </div>
 
-Ini menunjukkan bahwa sintaks (karakter) dan semantik (makna/arti) adalah sesuatu yang berbeda. Cara kerja komputer itu gak beda jauh dengan kamu yang ada di ruangan tadi, kalian hanya tahu sintaks tanpa tahu semantiknya.
+Ini menunjukkan bahwa sintaks (karakter) dan semantik (makna/arti) adalah dua hal yang berbeda. Cara kerja komputer itu gak beda jauh dengan kamu yang ada di ruangan tadi, kalian hanya tahu sintaks tanpa tahu semantiknya.
 
 Kalau ada tanah longsor di gunung eh tiba-tiba terbentuk tulisan '_I love you_', kamu bakal dianggap gak sehat kalau menganggap gunung tersebut mengerti arti tulisan '_I love you_'. Inilah perbedaan antara manusia yang berakal dan bernalar dengan komputer yang hanya 'mengerti' sintaks.
 
@@ -159,17 +159,4 @@ Jika pada awal terbentuknya alam semesta ini hanya ada proses dan materi fisik y
 
 Dari sini bisa kita simpulkan bawha Tuhan telah memberi kita akal yang rasional dan hasrat untuk melakukan penemuan, supaya kita gunakan nalar ini untuk memahami alam semesta beserta keindahannya, yang pada akhirnya menggiring kita untuk menyembah-Nya (Bab 15). Ia telah menanamkan sarana dan instrumen yang kita tunggangi untuk sains, namun ironisnya sebagian dari kita malah menggunakannya untuk menentang Penciptanya sendiri.
 
-... [Bersambung ke Bab 4]
-
-<style>
-.verse {
-  background: #f9f9f9;
-  border-radius: 8px;
-  margin-bottom: 30px;
-  padding: 30px;
-}
-
-.translation > p {
-  font-size: 16px;
-}
-</style>
+... [Bersambung ke [Bab 4]({{< ref "./til-bab-4-the-divine-reality.md" >}})]

@@ -181,21 +181,3 @@ Bahkan Richard Dawkins pun mengaminkan,
 Alam semesta yang terbentuk dari materi fisik yang non-rasional, buta, dan dingin semestinya tak punya kaitan apapun dengan emosi kita. Kita hanya kumpulan molekul dan atom. Hanya Tuhan yang mampu menyediakan justifikasi intelektual terhadap apa-apa yang membentuk kemanusiaan kita.
 
 ... [Bersambung ke [Bab 3]({{<ref "./til-bab-3-the-divine-reality.md">}})]
-
-<style>
-.verse {
-  background: #f9f9f9;
-  border-radius: 8px;
-  margin-bottom: 30px;
-  padding: 30px;
-}
-
-.rtl {
-  text-align: right;
-}
-
-.translation > p {
-  font-size: 15px;
-  margin-bottom: 0;
-}
-</style>
