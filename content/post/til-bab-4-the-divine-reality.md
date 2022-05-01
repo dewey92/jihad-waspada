@@ -139,6 +139,7 @@ Tambahan, berikut beberapa video yang membantu saya menulis artikel ini:
 
 {{< youtube ZNlEtBZxML8 >}}
 {{< youtube icAfxAw0RPc>}}
+{{< youtube 9J0lOQT2HBo >}}
 {{< youtube z2m7jsH3_Mw >}}
 {{< youtube UmdQf6O_uqo >}}
 
