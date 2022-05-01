@@ -21,7 +21,7 @@ Sama seperti seorang ateis yang mengklaim, "eh Tuhan itu gak nyata lho". Kita ta
 
 ## _Self-evident Truths_
 
-Banyak hal di sekitar kita yang kebenerannya tak perlu dibuktikan lagi. Contohnya:
+Banyak hal di sekitar kita yang kebenerannya tak perlu dibuktikan lagi. Seperti:
 
 - Realita masa lalu
 - Validitas nalar kita
@@ -103,7 +103,7 @@ Beberapa ateis berargumen bahwa ateisme juga bisa jadi posisi default. Namun hal
 
 Tuhan sebagai _self-evident truth_ sejalan dengan konsep Fitrah dalam Islam. <dfn>Fitrah</dfn> dapat diartikan sebagai kondisi alami yang ditanamkan oleh Tuhan di dalam hati manusia sejak lahir (_innate disposition_). "Bawaannya udah begitu dari sononya."
 
-Saya coba beri cotoh: balita. Semua yang pernah ngobrol sama balita pasti tau mereka ini hobi nanya-nanya. Kenapa ada hujan? Karena air turun dari awan. Kenapa awan bisa terbentuk? Oh karena ada matahari yang membuat air menguap. Kenapa air menguap? Teruuus aja nanya. Sampe capek. Nah ini bisa jadi bukti bahwa anak-anak memang punya intuisi akan konsep _causation_ (sebab-akibat). Secara alami, kita memang terlahir untuk mencari tahu penyebab utama (_ultimate causal ends_) dari semua fenomena ini.
+Saya coba beri cotoh: balita. Semua yang pernah ngobrol sama balita pasti tau mereka ini hobi nanya-nanya. Kenapa ada hujan? Karena air turun dari awan. Kenapa awan bisa terbentuk? Oh karena ada matahari yang membuat air menguap. Kenapa air menguap? Teruuus aja nanya. Sampe capek. Nah ini bisa jadi bukti bahwa anak-anak memang punya intuisi akan konsep _causation_ (sebab-akibat). Secara alami, kita memang terlahir untuk mencari tahu penyebab utama (_ultimate causal ends_) dari semua fenomena ini. Kita sudah dirancang untuk menemukan Tuhan sebagai jawaban akhir.
 
 Kemampuan untuk mengenali dan menyembah-Nya juga sudah _built-in_ di dalam Fitrah. Al-Qur'an memberi perumpamaan dengan seseorang yang berada di kapal yang terombang-ambing di lautan. "_There are no atheists on a sinking ship_". Saat dihadapkan dengan situasi yang amat sulit, kita sebagai manusia secara natural akan mencari 'kekuatan' yang lebih tinggi ketika tak ada sesuatu lagi yang dapat dijadikan harapan.
 
@@ -125,7 +125,11 @@ Ibarat sepeda motor yang baru keluar dari pabrik, Fitrah ini juga tak bisa luput
   </div>
 </div>
 
-Sebagai penutup, seorang ulama Wesam Charkawi menejelaskan bahwa keberadaan Tuhan ini sejalan dengan Fitrah kita:
+**Ah, tapi apa bisa dibuktikan dan sejalan dengan sains? Kita kan gak bisa tiba-tiba berargumen bahwa semua ini pasti karena Fitrah, hanya karena belum ditemukannya jawaban atas fenomena ini.** Jawaban singkatnya: banyak hal yang gak bisa dijawab oleh sains, seperti asal muasal kecerdasan, [rasionalitas]({{< ref "./til-bab-3-the-divine-reality.md" >}}), dan _consciousness_. Begitupun dengan Fitrah. Kita bisa mencari jawabannya melalui pendekatan lain, seperti melalui argumen yang rasional dan logis—seperti premis berikut:
+
+"_Segala sesuatu yang kita ketahui dan rasakan di kehidupan ini terbatas dan terbentuk dari lingkungan dimana kita berada._" Jika kita tinggal di dunia yang naturalistis ini dimana segalanya terbatas dan bersifat materialis, maka seharusnya pengertian kita pun terbatas pada fenomena-fenomena naturalistis saja. Kita tidak bisa membayangkan sebuah konsep yang tidak natural, tidak materialis, dan di luar dunia ini. Seperti seekor ikan yang berenang di dalam aquarium seumur hidupnya, ia tak akan pernah tau fakta bahwa ternyata ia berada di ruang tamu seseorang. _Apa tuh ruang tamu?_ Kita pun seharusnya tidak akan pernah tahu, paham, dan percaya terhadap sesuatu yang supranatural (di luar dunia ini). Apalagi kalau kita ini memang produk evolusi yang berlangsung selama jutaan tahun, seharusnya apa-apa yang bisa kita bayangkan terbatas pada fenomena dunia yang naturalistis saja. Gak ada yang namanya supranatural. Tapi lucunya studi-studi di atas membuktikan hal yang sebaliknya; bahwasanya kita memang terlahir dengan kemampuan alami untuk mengenal Tuhan yang sifatnya supranatural, tak terbatas, dan melampaui fenomena-fenomena naturalistis. Berdasarkan premis di atas, bisa disimpulkan bahwa Fitrah secara logis tak dapat muncul dari dunia yang naturalistis dan materialistis ini. Sementara sains hanya bisa menjelaskan hal-hal yang sifatnya natural dan materialis.
+
+Sebagai penutup, seorang ulama Wesam Charkawi menjelaskan bahwa keberadaan Tuhan ini sejalan dengan Fitrah kita:
 
 > Indeed, the first sense in the depth of a person if he contemplates within himself and in the world around him is the sense of a higher power that reigns over the world with the command to dispose over life and death, creation and annihilation, motion and stillness ... In addition, we feel in ourselves the presence of compassion, love, hate, encouragement and dislike, though what is the proof that it exists, even while it flutters within us? **Is one able to bring forth evidence more than that which he feels and senses, and yet it is real without doubt? One feels excitement and senses pain, yet is one unable to establish evidence to prove it exists with more than what he feels?** Without doubt, this is the natural way [fitrah] or instinct on which mankind has been created ... it is a natural truth that corresponds to the world.
 
