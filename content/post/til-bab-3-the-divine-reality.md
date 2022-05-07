@@ -143,9 +143,7 @@ Dari prinsip-prinsip yang sudah kita bahas bersama di atas, maka penjelasan yang
 
 Jika pada awal terbentuknya alam semesta ini hanya ada proses dan materi fisik yang acak, buta, dan non-rasional, maka tak peduli seberapa rumitnya mereka tersusun, rasionalitas tak akan muncul darinya. Sebaliknya, jika pada awal terbentuknya alam semesta ini **sudah** ada satu Entitas yang nama dan atributnya disebut di paragraf sebelumnya, maka masuk akal bila di alam semesta ini terdapat makhluk hidup yang memiliki nalar dan rasionalitas.
 
-<div class="verse">
-
-<div class="translation">
+{{% verse %}}
 
 "Kami akan memperlihatkan kepada mereka tanda-tanda (kebesaran) Kami di segenap penjuru dan pada diri mereka sendiri, sehingga jelaslah bagi mereka bahwa Al-Quran itu adalah benar. Tidak cukupkah (bagi kamu) bahwa Tuhanmu menjadi saksi atas segala sesuatu?" - QS 41:53
 
@@ -153,9 +151,7 @@ Jika pada awal terbentuknya alam semesta ini hanya ada proses dan materi fisik y
 
 "Sesungguhnya dalam penciptaan langit dan bumi, dan pergantian malam dan siang terdapat tanda-tanda (kebesaran Allah) bagi orang yang berakal" - QS 3:190
 
-</div>
-
-</div>
+{{% /verse %}}
 
 Dari sini bisa kita simpulkan bawha Tuhan telah memberi kita akal yang rasional dan hasrat untuk melakukan penemuan, supaya kita gunakan nalar ini untuk memahami alam semesta beserta keindahannya, yang pada akhirnya menggiring kita untuk menyembah-Nya (Bab 15). Ia telah menanamkan sarana dan instrumen yang kita tunggangi untuk sains, namun ironisnya sebagian dari kita malah menggunakannya untuk menentang Penciptanya sendiri.
 

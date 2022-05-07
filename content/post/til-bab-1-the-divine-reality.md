@@ -35,7 +35,7 @@ Pada titik ini, misoteis berpaham bahwa moral manusia itu lebih baik dan lebih m
 
 Naturalisme adalah sebuah paham dimana semua fenomena yang terjadi di dunia ini bisa dijelaskan dengan proses-proses fisik. Proses-proses fisik ini "buta" dan tidak rasional, artinya mereka ga punya tujuan-tujuan terentu maupun kemampuan untuk mengait-kaitkan antara satu hal dengan yang lain. _It just happens_. Paham ini menolak semua ide-ide yang berhubungan dengan supernatural.
 
-> "There is nothing beyond the natural, physical world" - Richard Dawkins
+> There is nothing beyond the natural, physical world <br /><br />— Richard Dawkins
 
 Hampir semua ateis berpaham demikian, walaupun ada juga ateis yang percaya dengan adanya fenomena-fenomena non-fisik.
 
@@ -45,17 +45,21 @@ Dalam bahasa Arab Ateisme disebut _ilhaad_ yang berarti 'penyimpangan' atau lebi
 
 {{< figure src="/uploads/lahad.jpg" alt="joboffer" caption="[Liang lahat](https://www.marhaba.qa/funeral-rites-in-islam/islamic-graves/)" class="fig-center img-80" >}}
 
-Secara linguistik, ateis adalah sebuah bentuk penyimpangan dari fitrah manusia yang sudah mengenal Tuhan sebagai entitas yang patut disembah, seperti yang disabdakan oleh Rasulullah SAW (dibahas di Bab 4).
+Secara linguistik, ateis adalah sebuah bentuk penyimpangan dari fitrah manusia yang sudah mengenal Tuhan sebagai entitas yang patut disembah, seperti yang disabdakan oleh Rasulullah SAW (dibahas di [Bab 4]({{< ref "./til-bab-4-the-divine-reality.md" >}})).
 
 Dalam Al-Qur'an, ateis digambarkan sebagai orang-orang yang tidak yakin atas perkatakaan mereka sendiri.
 
-<div style="text-align: right">
+{{% verse %}}
 
-أَمْ خَلَقُوا۟ ٱلسَّمَـٰوَٰتِ وَٱلْأَرْضَ ۚ بَل لَّا يُوقِنُونَ
+  <div class="rtl">
 
-</div>
+  أَمْ خَلَقُوا۟ ٱلسَّمَـٰوَٰتِ وَٱلْأَرْضَ ۚ بَل لَّا يُوقِنُونَ
 
-"Ataukah mereka yang menciptakan langit dan bumi? Sesungguhnya mereka sendiri tidak yakin (atas apa yang mereka katakan)" - Qur'an 52:36
+  </div>
+
+  "Ataukah mereka yang menciptakan langit dan bumi? Sesungguhnya mereka sendiri tidak yakin (atas apa yang mereka katakan)" - Qur'an 52:36
+
+{{% /verse %}}
 
 ## Meningkatnya Ateisme
 

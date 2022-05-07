@@ -69,25 +69,25 @@ Seorang akademisi Olivera Petrovich dari Oxford melakukan penelitian tentang asa
 
 Mereka juga diminta untuk menjelaskan seperti apa sih Tuhan itu. Kita mungkin berekspektasi mereka akan menjelaskannya sesuai latarbelakang dan budaya mereka, namun ternyata tidak demikian. Kebanyakan menganggap Tuhan sebagai entitas tak bertubuh, seperti gas atau air. Petrovich menjelaskan bahwa konsep "Tuhan sebagai manusia" (seperti konsep trinitas) itu didapat dari pelajaran agama, namun tak ada anak yang secara natural menganggap Tuhan sebagai manusia dengan badan/tubuh.
 
-Ia juga berkesimpulan bahwa ateisme itu ide yang harus dipelajari, sedangkan Tuhan adalah konsep yang natural. Lebih lengkapnya dijelaskan di bukunya yang berjudul _Natural-Theological Understanding from Childhood to Adulthood_.
+Ia juga berkesimpulan bahwa ateisme itu ide yang harus dipelajari, sedangkan Tuhan adalah konsep yang natural. Lebih lengkapnya dijelaskan di bukunya yang berjudul <cite>Natural-Theological Understanding from Childhood to Adulthood</cite>.
 
 {{< youtube BH4GrqYA-5w >}}
 
 Seorang psikolog dan profesor dari Yale University, Paul Bloom juga menegaskan demikian: bahwa penemuan-penemuan kontemporer di bidang psikologi kognitif mengindikasikan bahwa kepercayaan terhadap seorang desainer itu natural pada anak-anak.
 
-Di artikelnya [_Are Children 'Intuitive Theists'?_](https://www.bu.edu/cdl/files/2013/08/2004_Kelemen_IntuitiveTheist.pdf) Profesor Deborah Kelemen dari Boston University merangkum poin-poin yang ia temukan di penelitian-penelitian yang berfokus pada realita bahwa anak-anak melihat adanya _purpose_ dan _intention_ pada objek-objek natural,
+Di artikelnya [<cite>Are Children 'Intuitive Theists'?</cite>](https://www.bu.edu/cdl/files/2013/08/2004_Kelemen_IntuitiveTheist.pdf) Profesor Deborah Kelemen dari Boston University merangkum poin-poin yang ia temukan di penelitian-penelitian yang berfokus pada realita bahwa anak-anak melihat adanya _purpose_ dan _intention_ pada objek-objek natural,
 
-> "A review of recent cognitive developmental research reveals that by around 5 years of age, children understand natural obejcts as not humanly caused, can reason about non-natural agents' mental states, and demonstrate the capacity to view objects in terms of design. Finally, evidence from 6- to 10-year-olds suggests that children's assignments of purpose to nature relate to their ideas concerning intentional nonhuman causation. Together, these research findings suggest that children's explanatory approach may be accurately described as intuitive theism."
+> A review of recent cognitive developmental research reveals that by around 5 years of age, children understand natural obejcts as not humanly caused, can reason about non-natural agents' mental states, and demonstrate the capacity to view objects in terms of design. Finally, evidence from 6- to 10-year-olds suggests that children's assignments of purpose to nature relate to their ideas concerning intentional nonhuman causation. Together, these research findings suggest that children's explanatory approach may be accurately described as intuitive theism.
 
-Ada juga penelitian yang dilakukan oleh Elisa Järnefelt, Caitlin Canfield and Deborah Kelemen, berjudul _The dividend mind of a disbeliever: Intuitive belifes about nature as purposefully created among different groups of non-religious adults_ berkesimpulan bahwa orang dewasa pun juga memiliki kecenderungan melihat alam ini sebagai sesuatu yang didesain. Menariknya penelitian ini melibatkan orang-orang ateis juga: 352 orang dari Amerika utara (campur antara teis dan ateis), 142 dari Amerika Utara namun direkrut via organisasi/asosiasi non-relijius, dan 151 ateis dari Finlandia.
+Ada juga penelitian yang dilakukan oleh Elisa Järnefelt, Caitlin Canfield and Deborah Kelemen, berjudul <cite>The dividend mind of a disbeliever: Intuitive belifes about nature as purposefully created among different groups of non-religious adults</cite> berkesimpulan bahwa orang dewasa pun juga memiliki kecenderungan melihat alam ini sebagai sesuatu yang didesain. Menariknya penelitian ini melibatkan orang-orang ateis juga: 352 orang dari Amerika utara (campur antara teis dan ateis), 142 dari Amerika Utara namun direkrut via organisasi/asosiasi non-relijius, dan 151 ateis dari Finlandia.
 
-> "... non-religous participants in Nordic Finland where theistic cultural discourse is not present in the way it is in the US, default to vieweing both living and non-living natural phenomena as purposefully made by a non-human being when their processing is restricted."
+> ... non-religous participants in Nordic Finland where theistic cultural discourse is not present in the way it is in the US, default to vieweing both living and non-living natural phenomena as purposefully made by a non-human being when their processing is restricted.
 
-Profesor Justin Barrett dari University of Oxford di bukunya _Born believers: the science of children's religious belief_ melihat kelakuan anak-anak dan berkesimpulan bahwa anak-anak ini terlahir dengan kepercayaan yang ia sebut "_natural religion_". Ia juga menjelaskan bahwa konsep Tuhan terhadap anak-anak itu seperti mainan bentuk: otak kita sudah siap menerima "bentuk" (konsep) Tuhan.
+Profesor Justin Barrett dari University of Oxford di bukunya <cite>Born believers: the science of children's religious belief</cite> melihat kelakuan anak-anak dan berkesimpulan bahwa anak-anak ini terlahir dengan kepercayaan yang ia sebut "_natural religion_". Ia juga menjelaskan bahwa konsep Tuhan terhadap anak-anak itu seperti mainan bentuk: otak kita sudah siap menerima "bentuk" (konsep) Tuhan.
 
 {{< figure src="/uploads/mainan-bentuk.jpg" alt="Mainan anak bentuk" caption="Mainan bentuk" class="fig-center" >}}
 
-> "... This tendency to see function and purpose, plus understanding purpose and order come from minded beings, makes children likely to see natural phenomena as intentionally created. Who is the Creator? Children know people are not good candidates. It must have been a god..."
+> ... This tendency to see function and purpose, plus understanding purpose and order come from minded beings, makes children likely to see natural phenomena as intentionally created. Who is the Creator? Children know people are not good candidates. It must have been a god...
 
 Untuk teman-teman yang penasaran bagaimana ia melakukan penelitiannya, bisa simak detail-nya di video berikut:
 
@@ -107,27 +107,21 @@ Saya coba beri cotoh: balita. Semua yang pernah ngobrol sama balita pasti tau me
 
 Kemampuan untuk mengenali dan menyembah-Nya juga sudah _built-in_ di dalam Fitrah. Al-Qur'an memberi perumpamaan dengan seseorang yang berada di kapal yang terombang-ambing di lautan. "_There are no atheists on a sinking ship_". Saat dihadapkan dengan situasi yang amat sulit, kita sebagai manusia secara natural akan mencari 'kekuatan' yang lebih tinggi ketika tak ada sesuatu lagi yang dapat dijadikan harapan.
 
-<div class="verse">
-  <div class="translation">
+{{% verse %}}
 
   Apabila orang-orang yang membangkang itu masuk dan menaiki kapal, kemudian mereka diombang-ambingkan oleh air laut dan ombak yang menggunung seakan-akan menaungi mereka sehingga mereka mengira bahwa mereka pasti akan tenggelam, mereka segera bergantung dan berlindung kepada Allah dan berdoa kepada-Nya dengan ikhlas dan tunduk untuk menolong mereka. Lalu apabila Allah telah menyelamatkan mereka sampai ke daratan, sedikit sekali dari mereka yang mengingat janjinya dan berjalan pada jalan yang lurus dalam setiap perbuatannya. Bahkan kebanyakan mereka lupa akan karunia Allah dan tetap membangkang. Sesungguhnya tidak ada yang mengingkari karunia dan kebaikan Tuhannya, kecuali orang yang sangat ingkar dan berlebih-lebihan dalam kekufurannya - QS 31:32
 
-  </div>
-</div>
+{{% /verse %}}
 
 Ibarat sepeda motor yang baru keluar dari pabrik, Fitrah ini juga tak bisa luput dari 'modifikasi'. Sejalan dengan hadits Nabi, "setiap anak terlahir dengan fitrah. Lalu orang tuanya yang membuatnya Yahudi, Kristiani, atau Majusi". Kalau sudah termodifikasi, Fitrah dapat di-reset melalui introspeksi, refleksi, dan tadabbur.
 
-<div class="verse">
-  <div class="translation">
-
+{{% verse %}}
   ... Demikianlah Kami menjelaskan tanda-tanda kekuasaan (Kami) kepada orang-orang berfikir - QS 10:24
-
-  </div>
-</div>
+{{% /verse %}}
 
 **Ah, tapi apa bisa dibuktikan dan sejalan dengan sains? Kita kan gak bisa tiba-tiba berargumen bahwa semua ini pasti karena Fitrah, hanya karena belum ditemukannya jawaban atas fenomena ini.** Jawaban singkatnya: banyak hal yang gak bisa dijawab oleh sains, seperti asal muasal kecerdasan, [rasionalitas]({{< ref "./til-bab-3-the-divine-reality.md" >}}), dan _consciousness_. Begitupun dengan Fitrah. Kita bisa mencari jawabannya melalui pendekatan lain, seperti melalui argumen yang rasional dan logis—seperti premis berikut:
 
-"_Segala sesuatu yang kita ketahui dan rasakan di kehidupan ini terbatas dan terbentuk dari lingkungan dimana kita berada._" Jika kita tinggal di dunia yang naturalistis ini dimana segalanya terbatas dan bersifat materialis, maka seharusnya pengertian kita pun terbatas pada fenomena-fenomena naturalistis saja. Kita tidak bisa membayangkan sebuah konsep yang tidak natural, tidak materialis, dan di luar dunia ini. Seperti seekor ikan yang berenang di dalam aquarium seumur hidupnya, ia tak akan pernah tau fakta bahwa ternyata ia berada di ruang tamu seseorang. _Apa tuh ruang tamu?_ Kita pun seharusnya tidak akan pernah tahu, paham, dan percaya terhadap sesuatu yang supranatural (di luar dunia ini). Apalagi kalau kita ini memang produk evolusi yang berlangsung selama jutaan tahun, seharusnya apa-apa yang bisa kita bayangkan terbatas pada fenomena dunia yang naturalistis saja. Gak ada yang namanya supranatural. Tapi lucunya studi-studi di atas membuktikan hal yang sebaliknya; bahwasanya kita memang terlahir dengan kemampuan alami untuk mengenal Tuhan yang sifatnya supranatural, tak terbatas, dan melampaui fenomena-fenomena naturalistis. Berdasarkan premis di atas, bisa disimpulkan bahwa Fitrah secara logis tak dapat muncul dari dunia yang naturalistis dan materialistis ini. Sementara sains hanya bisa menjelaskan hal-hal yang sifatnya natural dan materialis.
+<mark>"Segala sesuatu yang kita ketahui dan rasakan di kehidupan ini terbatas dan terbentuk dari lingkungan dimana kita berada."</mark> Jika kita tinggal di dunia yang naturalistis ini dimana segalanya terbatas dan bersifat materialis, maka seharusnya pengertian kita pun terbatas pada fenomena-fenomena naturalistis saja. Kita tidak bisa membayangkan sebuah konsep yang tidak natural, tidak materialis, dan di luar dunia ini. Seperti seekor ikan yang berenang di dalam aquarium seumur hidupnya, ia tak akan pernah tau fakta bahwa ternyata ia berada di ruang tamu seseorang. _Apa tuh ruang tamu?_ Atau seseorang yang gak pernah makan apel diminta untuk membayangkan rasa apel. Gak bisa! Kita pun seharusnya tidak akan pernah tahu, paham, dan percaya terhadap sesuatu yang supranatural (di luar dunia ini). Apalagi kalau kita ini memang produk evolusi yang berlangsung selama jutaan tahun, seharusnya apa-apa yang bisa kita bayangkan terbatas pada fenomena dunia yang naturalistis saja. Gak ada yang namanya supranatural. Tapi lucunya studi-studi di atas membuktikan hal yang sebaliknya; bahwasanya kita memang terlahir dengan kemampuan alami untuk mengenal Tuhan yang sifatnya supranatural, tak terbatas, dan melampaui fenomena-fenomena naturalistis. Berdasarkan premis di atas, bisa disimpulkan bahwa Fitrah secara logis tak dapat muncul dari dunia yang naturalistis dan materialistis ini. Sementara sains hanya bisa menjelaskan hal-hal yang sifatnya natural dan materialis.
 
 Sebagai penutup, seorang ulama Wesam Charkawi menjelaskan bahwa keberadaan Tuhan ini sejalan dengan Fitrah kita:
 

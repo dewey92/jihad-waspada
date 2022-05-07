@@ -279,7 +279,12 @@ Semoga bermanfaat.
     background: #f7f7f7;
     padding: 15px 15px 5px;
     margin-bottom: 15px;
-    border-radius: 3px;
+    border-radius: 8px;
     overflow-x: hidden;
+  }
+
+  .box pre {
+    padding: 0;
+    margin: 0;
   }
 </style>

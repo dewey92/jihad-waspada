@@ -21,24 +21,17 @@ Harapan dapat diartikan sebagai suatu perasaan atau ekspektasi akan terjadinya s
 
 Bandingkan dengan pandangan ateisme. Karena mereka tidak percaya dengan adanya "dunia di luar dunia kita" (konsep hari akhir), maka harapan untuk mendapatkan kesenangan itu hanya sia belaka. Bayangin aja kalo kamu dari lahir sudah hidup sengsara, menurut paham ateisme hidupmu ini sama seperti kalimat "mati aja lo", _no hope at all_. Sedangkan dalam Islam, kesengsaraan dan ketidaknyamanan yang kita rasakan di dunia ini gak akan sia-sia. Allah tahu dan akan mengganjarnya (Bab 11).
 
-<div class="verse">
-  <div class="rtl">
-
-  إِنَّهُۥ لَا يَا۟يْـَٔسُ مِن رَّوْحِ ٱللَّهِ إِلَّا ٱلْقَوْمُ ٱلْكَـٰفِرُونَ ...
-
-  </div>
-  <div class="translation">
+{{% verse %}}
 
   "... Sesungguhnya yang berputus asa dari rahmat Allah, hanyalah orang-orang yang kafir." - QS 12:87
 
-  </div>
-</div>
+{{% /verse %}}
 
 Karena mereka tidak percaya dengan konsep hari akhir, otomatis mereka juga tidak percaya dengan konsep pertanggungjawaban amal. Bayangkan seorang ibu Yahudi yang hidup pada tahun 1940-an (ketika Nazi berkuasa) yang menyaksikan suami dan anak-anaknya dieksekusi di depan matanya. Dan ia sedang menunggu gilirannya dieksekusi. Walaupun mereka pada akhirnya dikalahkan, tapi _keadilan_ ini tidak ia dapatkan semasa hidupnya. Di bawah paham ateisme, ibu ini bukan apa-apa, hanya sekumpulan molekul dan atom tak bernyawa yang kebetulan disebut manusia. _She didn't deserve anything, let alone justice_.
 
 Sementara dalam Islam, semua hal yang kita lakukan ada balasannya dan akan dimintai pertanggungjawabannya. Perbuatan kejam para Nazi dulu juga akan diadili.
 
-<div class="verse">
+{{% verse %}}
   <div class="rtl">
 
   •
@@ -48,12 +41,10 @@ Sementara dalam Islam, semua hal yang kita lakukan ada balasannya dan akan dimin
   وَمَن يَعْمَلْ مِثْقَالَ ذَرَّةٍ شَرًّا يَرَهُۥ
 
   </div>
-  <div class="translation">
 
   "Pada hari itu manusia keluar dari kuburnya dalam keadaan berkelompok-kelompok, untuk diperlihatkan kepada mereka (balasan) semua amal perbuatannya • Maka barangsiapa mengerjakan kebaikan seberat zarah, niscaya dia akan melihat (balasan)nya • Dan barangsiapa mengerjakan kejahatan seberat zarah, niscaya dia akan melihat (balasan)nya." - QS 99:4-6
 
-  </div>
-</div>
+{{% /verse %}}
 
 ## Tidak Ada Nilai
 
@@ -67,20 +58,16 @@ Jawaban yang biasa dilontarkan adalah: _manusia itu makhluk hidup, punya nyawa, 
 
 Kita bisa saja bilang, manusia lebih berharga dibanding martabak karena struktur manusia itu lebih kompleks. Tapi ingat, lagi-lagi, menurut mereka tidak ada sesuatupun di dunia ini yang didesain dan diciptakan dengan suatu tujuan. Ini semua hanyalah susunan materi yang terbentuk dari proses **acak**, buta, dan non-rasional.
 
-Dalam pandangan Islam, manusia dilahirkan dengan "bawaan" yang sama, yang nantinya dapat membantu mengenali harga diri kita sebagai manusia sekaligus mengenali nilai-nilai moral dan etika (Bab 9). Bawaan ini disebut _fitrah_ (Bab 4).
+Dalam pandangan Islam, manusia dilahirkan dengan "bawaan" yang sama, yang nantinya dapat membantu mengenali harga diri kita sebagai manusia sekaligus mengenali nilai-nilai moral dan etika (Bab 9). Bawaan ini disebut _fitrah_ ([Bab 4]({{< ref "./til-bab-4-the-divine-reality.md" >}})).
 
-
-<div class="verse">
+{{% verse %}}
   <div class="rtl">
 
-   وَلَقَدْ كَرَّمْنَا بَنِىٓ ءَادَمَ وَحَمَلْنَـٰهُمْ فِى ٱلْبَرِّ وَٱلْبَحْرِ وَرَزَقْنَـٰهُم مِّنَ ٱلطَّيِّبَـٰتِ وَفَضَّلْنَـٰهُمْ عَلَىٰ كَثِيرٍ مِّمَّنْ خَلَقْنَا تَفْضِيلًا
+  وَلَقَدْ كَرَّمْنَا بَنِىٓ ءَادَمَ وَحَمَلْنَـٰهُمْ فِى ٱلْبَرِّ وَٱلْبَحْرِ وَرَزَقْنَـٰهُم مِّنَ ٱلطَّيِّبَـٰتِ وَفَضَّلْنَـٰهُمْ عَلَىٰ كَثِيرٍ مِّمَّنْ خَلَقْنَا تَفْضِيلًا
 
   </div>
-  <div class="translation">
 
   "Dan sungguh, Kami telah memuliakan anak cucu Adam, dan Kami angkut mereka di darat dan di laut, dan Kami beri mereka rezeki dari yang baik-baik dan Kami lebihkan mereka di atas banyak makhluk yang Kami ciptakan dengan kelebihan yang sempurna." - QS 17:70
-
-  </div>
 
   <br />
 
@@ -90,18 +77,15 @@ Dalam pandangan Islam, manusia dilahirkan dengan "bawaan" yang sama, yang nantin
 
   </div>
 
-  <div class="translation">
-
   "... Ya Tuhan kami, tidaklah Engkau menciptakan semua ini sia-sia; Mahasuci Engkau, lindungilah kami dari azab neraka." QS 3:191
 
-  </div>
-</div>
+{{% /verse %}}
 
 Karena paham naturalisme ini menolak ide adanya segala bentuk keadilan Tuhan, 'ganjaran' yang diberikan ke seorang kriminal dan seorang pendamai itu sama saja: kematian. Kalau 'ujung' nasib seorang Hitler dan seorang Soekarno itu sama saja, lah terus dimana nilainya manusia? Ngapain capek-capek berbuat baik? Wong orang baik sama derajatnya dengan orang jahat. Sudah jelas kan, paham ini tidak memberikan value yang berarti kepada kita sebagai manusia.
 
 Seyyed Hossein Nasr, seorang profesor studi Islam dari Universitas George Washington, memberikan testimoni yang menarik mengenai martabat dan hak asasi manusia,
 
-> "Before speaking of human responsibilities or rights, one must answer the basic religious and philosophical question 'What does it mean to be human?' In today's world everyone speaks of human rights and the sacred character of human live and many secularists even claim that they are true champions of human rights as against those who accept various religious worldviews. But strangely enough, often those same champions of humanity believe that human beings are nothing more than evolved apes who in turn evolved from lower life forms and ultimately from various compounds of molecules. **If the human being is nothing but the result of 'blind forces' acting upon the original cosmic soup of molecules, then is not the very statement of the sacredness of human life intellectually meaningless and nothing but a hollow sentimental expression?** Is not human dignity nothing more than a conveniently contrived notion without basis in reality? And if we are nothing but highly organized inanimate particles, what is the basis for claims to 'human rights'? These basic questions know no geographic boundaries and are asked by thinking people everywhere"
+> Before speaking of human responsibilities or rights, one must answer the basic religious and philosophical question 'What does it mean to be human?' In today's world everyone speaks of human rights and the sacred character of human live and many secularists even claim that they are true champions of human rights as against those who accept various religious worldviews. But strangely enough, often those same champions of humanity believe that human beings are nothing more than evolved apes who in turn evolved from lower life forms and ultimately from various compounds of molecules. **If the human being is nothing but the result of 'blind forces' acting upon the original cosmic soup of molecules, then is not the very statement of the sacredness of human life intellectually meaningless and nothing but a hollow sentimental expression?** Is not human dignity nothing more than a conveniently contrived notion without basis in reality? And if we are nothing but highly organized inanimate particles, what is the basis for claims to 'human rights'? These basic questions know no geographic boundaries and are asked by thinking people everywhere
 
 _Kita (manusia) ini bernilai, lalu apa dunia ini juga demikian?_
 
@@ -150,21 +134,18 @@ Beberapa jawaban yang saya dapatkan setelah berdiskusi, merenung, dan baca-baca:
 1. Bagi mereka yang _terlihat_ kurang beruntung namun kenal dengan Tuhannya, ia bisa bersabar atas segala cobaan dan kesusahan di dunia ini. Karena ia tahu di akhirat nanti, semua penderitaan dan jerih payahnya akan dibalas oleh Yang Maha Adil, seperti yang sudah dibahas di atas. Analoginya seperti orang yang mendaki gunung Everest: ia tahu mendaki gunung Everest adalah sesuatu yang berbahaya, banyak harta dan tenaga yang harus dikorbankan, harus bersusah-payah untuk mencapai puncaknya, bahkan banyak orang yang mati di tengah jalan. Lalu kalau sudah tahu itu semua, kenapa masih mau mendaki? Jawabannya jelas, karena ia tahu akan ada kesenangan yang tidak dapat digambarkan ketika mencapai puncak Everest. Ada kepuasan yang sulit diungkapkan ketika berhasil melewati segala kesulitan selama perjalanan.
 1. Kalau kita melihat ada rumah bagus dan ingin memasukinya, apa yang kita lakukan? Kita tentu mendekati si pemilik rumah karena ia yang memegang kunci dan lebih tahu isi rumah tersebut. Sama halnya kalau kita ingin mendapat kebahagiaan sejati, seharusnya kita mendekati Ia yang mampu memberi kebahagiaan sejati, Ia yang mampu memberi kecukupan dan ketentraman di hati, Ia yang lebih tahu luar-dalamnya hati manusia.
 
-Dengan alasan-alasan ini, saya sekarang menjadi _convinced_ dengan ayat berikut:
+Dengan alasan-alasan ini, gak heran di dalam al-Qur'an disebutkan:
 
-
-<div class="verse">
+{{% verse %}}
   <div class="rtl">
 
   ٱلَّذِينَ ءَامَنُوا۟ وَتَطْمَئِنُّ قُلُوبُهُم بِذِكْرِ ٱللَّهِ ۗ أَلَا بِذِكْرِ ٱللَّهِ تَطْمَئِنُّ ٱلْقُلُوبُ
 
   </div>
-  <div class="translation">
 
   "(yaitu) orang-orang yang beriman dan hati mereka menjadi tenteram dengan mengingat Allah. Ingatlah, hanya dengan mengingat Allah hati menjadi tenteram." - QS 13:28
 
-  </div>
-</div>
+{{% /verse %}}
 
 Masuk ke pertanyaan berikutnya: _Kemana kita pergi?_
 
@@ -172,7 +153,7 @@ Kita punya pilihan: menerima rahmat Tuhan yang tak terbatas, atau lari darinya. 
 
 ## Kesimpulan
 
-Singkatnya, ateisme tidak dapat memberikan jawaban mendalam soal keberadaan kita. Oleh karenanya, konsep kebahagiaan sejati tinggal angin lewat saja. Jika ada yang mengaku-ngaku sudah bahagia, maka kebahagiaannya semu, seperti orang mabuk yang terlihat bahagia. Di bawah naturalisme, segalanya tak berarti apapun. 
+Singkatnya, ateisme tidak dapat memberikan jawaban mendalam soal keberadaan kita. Oleh karenanya, konsep kebahagiaan sejati tinggal angin lewat saja. Jika ada yang mengaku-ngaku sudah bahagia, maka kebahagiaannya semu, seperti orang mabuk yang terlihat bahagia. Di bawah naturalisme, segalanya tak berarti apapun.
 
 Bahkan Richard Dawkins pun mengaminkan,
 
