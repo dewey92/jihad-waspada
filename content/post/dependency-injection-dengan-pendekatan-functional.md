@@ -131,7 +131,7 @@ Di artikel [Functional Approach to Dependency Injection](https://fsharpforfunand
 
 Di artikel lain seperti [Dependency Injection using Modules](https://itazura.io/modules-for-dependency-injection/) yang ditulis menggunakan ReasonML, juga memanfaatkan ide yang sama.
 
-```hs
+```re
 -- // The "interface"
 module type Logger = {
   let log: string => unit;
@@ -162,7 +162,7 @@ Cara lain agar DI dapat diimplementasikan dengan cara functional adalah melalui 
 
 So, how does it look like?
 
-```hs
+```purs
 type Path = String
 type Content = String
 
@@ -174,14 +174,14 @@ initProject :: ∀ m.
   FsService m => -- [2]
   String -> m Unit
 initProject projectName = do
-  doesExist <- exists projectName -- [3]
+  doesExist <- exists projectName -- [3a]
   if doesExist
   then pure unit
-  else create projectName "Generated content" -- [3]
+  else create projectName "Generated content" -- [3b]
 ```
 
 - Pertama, kita harus definisikan type class `FsService` [1] yang memiliki dua buah method: `exists` dan `create`. Berikan `m` constraint Monad agar nantinya bisa kita berikan instance `Effect` (atau `Aff` untuk komputasi asynchronous) dan menjalankan **real** side-effect (IO operation).
-- Berikan constraint `FsService` [2] pada function `initProject` agar kita bisa memanggil kedua buah method `FsService` [3] di dalamnya.
+- Berikan constraint `FsService` [2] pada function `initProject` agar kita bisa memanggil kedua buah method `FsService` [3a, 3b] di dalamnya.
 
 Dibandingkan dengan pendekatan-pendekatan sebelumnya di atas, kita tidak melihat dependency `fsService` terdefinisikan di function argument, hanya constraint class `FsService` di type signature saja. Lalu bagaimana kita bisa meng-inject implementasi konkrit dari class `FsService` kalau fungsi `initProject` sendiri tidak menerimanya di argument?
 
@@ -192,7 +192,7 @@ Dibandingkan dengan pendekatan-pendekatan sebelumnya di atas, kita tidak melihat
 
 Yang harus kita lakukan saat ini hanyalah membuat implementasi (instance) dari type class `FsService` semisal:
 
-```hs
+```purs
 import Prelude
 import Effect (Effect)
 import Effect.Aff (Aff)
@@ -215,7 +215,7 @@ Mari bahas step-by-step:
 
 Tinggal satu langkah tersisa: tempatkan function `initProject` ke dalam konteks `Aff` agar compiler dapat meng-inject instance `fsServiceAff`. Kita bisa menggunakan fungsi `launchAff_`.
 
-```hs
+```purs
 import Effect.Aff (launchAff_)
 
 main :: Effect Unit
@@ -223,7 +223,7 @@ main = launchAff_ do
   initProject "my-awesome-project"
 ```
 
-Langkah barusan sangat penting karena jika tidak, compiler tidak akan bisa melakukan DI. Seandainya kita tempatkan fungsi `initProject` misal ke dalam konteks `Effect` seperti `main = pure $ initProject "my-awesome-project"`, compiler akan gagal mencari instance `FsService Effect` karena kita memang belum membuatnya: "No type class instance was found for `FsService Effect`", keluh compiler.
+Langkah barusan sangat penting karena jika tidak, compiler tidak akan bisa melakukan DI. Seandainya kita tempatkan fungsi `initProject` misal ke dalam konteks `Effect` seperti `main = pure $ initProject "my-awesome-project"`, compiler akan gagal mencari instance `FsService Effect` karena kita memang belum membuatnya: "_No type class instance was found for `FsService Effect`._"
 
 Kembali ke konteks `Aff`. Jika kita intip output hasil compile-nya, kita akan melihat bagaimana compiler melakukan DI untuk kita secara otomatis:
 
@@ -255,7 +255,7 @@ Bisa dicoba di [link ini](https://try.purescript.org/?gist=43ab6916f4b22e6b7893c
 
 Sejauh ini kita dapat menyimpulkan bahwa compiler melakukan dependency injection saat compile time hanya dengan mendeklarasikan constraint type class pada type signature. Artinya ketika kita punya service tambahan e.g `logService` dan `promptService`, kita hanya perlu mengubah type signature-nya dan voila, dependencies ter-inject.
 
-```hs
+```purs
 -- Service baru
 data LogType = Debug | Error | Success
 class Monad m <= LogService m where
@@ -304,7 +304,7 @@ Nice! 🎉 🎉 🎉
 
 Di awal artikel saya menyebutkan salah satu benefit DI adalah kemampuan mengganti detil implementasi service tanpa perlu mengubah code yang menggunakannya. Dalam hal ini type class juga bisa diinstansiasi oleh tipe data lain. Contohnya ketika testing, kita ingin membuat "spy" terhadap method `FsService` dengan memanfaatkan Writer monad.
 
-```hs
+```purs
 -- Berikan instance `FsService` kepada `Writer`
 instance fsServiceWriter :: FsService (Writer [String] a) where
   exists path   = path /= "my-awesome-project"
@@ -331,7 +331,7 @@ Menurut saya, ini win-win solution untuk masalah DI 😉
 
 _To sum up, this may be our final code_:
 
-```hs
+```purs
 main :: Effect Unit
 main = launchAff_ program
 

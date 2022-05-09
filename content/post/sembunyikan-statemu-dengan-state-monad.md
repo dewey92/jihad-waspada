@@ -13,7 +13,7 @@ draft: false
 
 Ceritanya lagi buat aplikasi bank kecil-kecilan.
 
-```hs
+```purs
 withdraw :: Int -> Int
 withdraw amount = amount
 ```
@@ -22,7 +22,7 @@ Argument function `withdraw` adalah jumlah yang ingin kita ambil dan nilai kemba
 
 Namun function tersebut kurang _real world_. Untuk melakukan penarikan uang, mesin harus menghitung beberapa faktor yang telah ditentukan oleh pihak bank seperti jumlah penarikan, biaya penarikan, saldo, dll. Sedangkan tak ada pengecekan apapun di function tersebut. Mungkin harus kita buat versi yang lebih baik.
 
-```hs
+```purs
 type Amount = Int
 type Balance = Int
 
@@ -38,7 +38,7 @@ withdraw amount balance =
 
 Sekarang function `withdraw` akan cek terlebih dahulu apakah sisa saldo setelah penarikan masih lebih dari 50. Jika demikian, penarikan berhasil. Namun sayangnya sisa saldo setelah penarikan tidak berubah sama sekali. Mungkin perlu diiterasi lagi supaya mengembalikan dua hal sekaligus: jumlah yang keluar dari ATM, dan hasil saldo akhir setelah transaksi.
 
-```hs
+```purs
 type Amount = Int
 type Balance = Int
 
@@ -54,7 +54,7 @@ withdraw amount balance =
 
 Dengan begini, nilai `balance` juga ikut dikomputasi setiap kali melakukan penarikan dan hasilnya dikembalikan ke caller.
 
-```hs
+```purs
 transactions :: Int -> String
 transactions balance =
   let (Tuple _        balance2) = withdraw 10 balance in
@@ -81,13 +81,13 @@ State monad bisa membantu menyembunyikannya.
 
 ## Definisi State Monad
 
-```hs
+```purs
 type State s a = s -> Tuple a s
 ```
 
 Sebetulnya function `withdraw` sudah menyerupai pattern State monad. Perhatikan type signature-nya dan fokus pada Balance, karena ia adalah state yang ingin kita maintain.
 
-```hs
+```purs
 type Amount = Int
 type Balance = Int
 
@@ -99,7 +99,7 @@ withdraw :: Amount -> State Balance (Maybe Amount)
 
 Jadi sebenarnya State monad hanyalah sebuah function yang mengambil state dan mengembalikan state berikutnya, dibarengi dengan intermediate value (biasanya berupa hasil komputasi yang bergantung pada state).
 
-```hs
+```purs
 state -> Tuple intermediateValue nextState
 ```
 
@@ -109,7 +109,7 @@ state -> Tuple intermediateValue nextState
 
 Mari refactor function `withdraw` menggunakan State monad.
 
-```hs
+```purs
 type Amount = Int
 type Balance = Int
 
@@ -131,7 +131,7 @@ Ada dua method State monad yang muncul di sini: `get` yang mengambil nilai state
 
 Dengan style ini, function `transactions` menjadi lebih singkat dan kita tak perlu lagi passing state secara eksplisit.
 
-```hs
+```purs
 type Amount = Int
 type Balance = Int
 
@@ -152,7 +152,7 @@ transactions = do
 
 Dan untuk menjalankannya, kita hanya perlu memanggil `runState` (atau `evalState` atau `execState`, tergantung kebutuhan) dan menyuplainya dengan initial state.
 
-```hs
+```purs
 initialBalance = 100
 
 λ> runState transactions initialBalance

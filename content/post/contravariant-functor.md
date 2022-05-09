@@ -19,7 +19,7 @@ Dengan menganalisanya, kita akan melihat bagaimana Contravariant Functor lahir d
 
 Recall pemahaman kita soal definisi (Covariant) Functor.
 
-```hs
+```purs
 class Functor f where
   map :: ∀ a b. (a -> b) -> f a -> f b
 ```
@@ -28,7 +28,7 @@ class Functor f where
 
 Alternatively, Functor juga dapat dilihat sebagai "lifter" sebuah function: jika ada sebuah function `a -> b`, maka `map` akan mengubahnya menjadi `f a -> f b`.
 
-```hs
+```purs
 map :: ∀ a b. (a -> b) -> (f a -> f b)
 ```
 
@@ -38,21 +38,21 @@ Di bawah ini akan kita eksplor bersama macam-macam struktur data dengan kind `Ty
 
 Ini adalah salah satu struktur data yang paling simple untuk dijadikan Functor, yaitu ia yang menggunakan type variable di salah satu inhabitant-nya, seperti `Identity`. Penggunaan type variable inilah yang dimaksud "mention of index".
 
-```hs
+```purs
 data Identity x = MkIdentity x
 -- `x` digunakan di sebelah kanan persamaan
 ```
 
 Membuat instance Functor dari struktur data semacam ini sangatlah mudah. Mudah karena yang harus dilakukan hanyalah meng-apply `fn` terhadap data yang dibungkusnya.
 
-```hs
+```purs
 instance functorId :: Functor Identity where
   map fn (MkIdentity x) = MkIdentity (fn x)
 ```
 
 Pattern ini juga berlaku jika type variable muncul lebih dari satu kali. Atau untuk data constructor yang memiliki multiple arguments. Saya rasa _code speaks better than words_ 🙂
 
-```hs
+```purs
 data Double x = MkDouble x x -- `x` muncul lebih dari sekali
 
 instance functorDbl :: Functor Double where
@@ -69,20 +69,20 @@ instance functorMulti :: Functor MultiArgs where
 
 Phantom type adalah sebuah type constructor yang type variable-nya tidak muncul di sebelah kanan persamaan (no "mention of index").
 
-```hs
+```purs
 data Phantom p = MkPhantom
 ```
 
 Bisa dilihat type variable `p` tidak digunakan sama sekali oleh inhabitant-nya. Walaupun demikian, `Phantom` tetap memiliki kind `Type -> Type` yang cocok dengan Functor. Ada sesuatu yang unik di sini: `MkPhantom` tidak membungkus value apapun sehingga struktur data ini tidak akan pernah bisa ditransformasi, a.k.a static.
 
-```hs
+```purs
 instance functorPhantom :: Functor Phantom where
   map _ MkPhantom = MkPhantom
 ```
 
 Lain cerita jika ia memiliki index tambahan yang digunakan oleh inhabitant. Implementasi `map`-nya akan sama dengan "mention of index".
 
-```hs
+```purs
 -- `p` is not used, but `x` is
 data Phantom2 p x = MkPhantom2 x
 
@@ -96,13 +96,13 @@ Oh ya, data dengan kind lebih dari `Type -> Type` seperti Either dan Tuple kuran
 
 Contoh Functor untuk sum type yang saya anggap cukup familiar adalah Maybe.
 
-```hs
+```purs
 data Maybe a = Nothing | Just a
 ```
 
 Untuk `Nothing`, strategi implementasi `map` bisa mengikuti caranya phantom type. Sementara `Just`, bisa mengikuti caranya "mention of index" 😉
 
-```hs
+```purs
 instance functorMaybe :: Functor Maybe where
   map _ Nothing   = Nothing
   map fn (Just a) = Just (fn a)
@@ -112,7 +112,7 @@ instance functorMaybe :: Functor Maybe where
 
 Implementasi functor untuk record hampir mirip dengan "mention of index" karena sejatinya record adalah product type dengan label.
 
-```hs
+```purs
 data Rec x = MkRec { a :: x, b :: x, c :: String }
 
 instance functorRec :: Functor Rec where
@@ -123,7 +123,7 @@ instance functorRec :: Functor Rec where
 
 List merupakan contoh struktur data rekursif paling umum yang bisa dijadikan Functor karena memiliki kind `Type -> Type`. Strategi implementasinya pun tidak jauh-jauh dari strategi "mention of index". Tinggal tambahkan recursive call saja 🙂
 
-```hs
+```purs
 data List x = Nil | Cons x (List x)
 
 instance functorList :: Functor List where
@@ -135,7 +135,7 @@ instance functorList :: Functor List where
 
 Dengan demikian, struktur data rekursif lainnya seperti `Tree` juga dapat dengan mudah kita buatkan instance Functor-nya.
 
-```hs
+```purs
 data Tree a = Leaf a | Branch a (Tree a) (Tree a)
 
 instance functorTree :: Functor Tree where
@@ -147,13 +147,13 @@ instance functorTree :: Functor Tree where
 
 Instance Functor juga dapat dibuat untuk sebuah data yang menjadi return value sebuah function. Let's say:
 
-```hs
+```purs
 data Returning a = MkReturning (String -> a)
 ```
 
 Secara intuitif, kita harus menjalankan fungsi `String -> a` terlebih dahulu (dengan menyuplai sebuah string) untuk mendapatkan `a`, yang nantinya akan di-apply dengan fungsi `fn :: a -> b` agar `a` menjadi `b`. Setelah menjadi `b`, kita bungkus lagi deh dengan function `String -> b`. Neat 😉
 
-```hs
+```purs
 instance functorReturning :: Functor Returning where
   map fn (MkReturning strToA) = MkReturning (\str -> fn (strToA str))
   -- `strToA` :: String -> a
@@ -176,7 +176,7 @@ instance functorReturning :: Functor Returning where
 
 Dengan asumsi bahwa `F` memiliki kind `Type -> Type`, compiler Purescript sebenarnya dapat membuat instance Functor secara otomatis, tanpa mengharuskan programmer untuk menuliskan implementasinya.
 
-```hs
+```purs
 -- | Alih-alih menulis instance Functor secara manual dengan
 -- |
 -- | ```
@@ -194,7 +194,7 @@ Lho gimana bisa? 🤔 Ternyata compiler Purescript memiliki algortima khusus (ya
 
 Dengan kata lain, instance Functor dari keenam contoh di atas dapat dihapus dan cukup menuliskannya seperti ini:
 
-```hs
+```purs
 derive instance functorPhantom   :: Functor Phantom
 derive instance functorId        :: Functor Identity
 derive instance functorMulti     :: Functor MultiArgs
@@ -217,7 +217,7 @@ Tidak ada behaviour yang berubah, semua tetap sama 😃🎉
 
 Sebelum melanjutkan ke pembahasan Contravariant Functor, saya punya sebuah quiz kecil yang masih berhubungan dengan contoh nomor 6 di atas: Bagaimana menerapkan instance functor dari `Consuming` dimana **posisi index ada di function argument**?
 
-```hs
+```purs
 data Consuming a = MkConsuming (a -> String)
 ```
 
@@ -225,7 +225,7 @@ data Consuming a = MkConsuming (a -> String)
 
 Mari kita telaah step by step. Argument pertama pada `map` memiliki type signature `a -> b`. Sekilas tipe Consuming ini memberikan kesan bahwa ia pasti memiliki type `(a -> String) -> (b -> String)` ketika di-map. Betul apa betul?
 
-```hs
+```purs
 map :: (a -> b) -> (f a -> f b)
 -- `fn` :: a -> b
 -- `f a` ~ MkConsuming (a -> String)
@@ -234,7 +234,7 @@ map :: (a -> b) -> (f a -> f b)
 
 Namun setelah dipikir-pikir, **fungsi `fn :: a -> b` mustahil di-compose dengan `(a -> String)`**! Mau jalanin `fn` dulu baru `f a`? Gak bisa. Atau jalanin `f a` dulu baru `fn`? Gak bisa juga!
 
-```hs
+```purs
 -- 1. `fn` then `f a`?
 (a -> b) -> (a -> String) -- `b` gak sama dengan `a` ❌
       ⎣______⎦
@@ -247,7 +247,7 @@ Namun setelah dipikir-pikir, **fungsi `fn :: a -> b` mustahil di-compose dengan 
 
 Nah karena kita ingin memanipulasi tipe `a` dengan `fn`, opsi nomor 2 ini sudah pasti gak valid (malah String yang dimanipulasi 😕). Dan satu-satunya jalan untuk memanipulasi tipe `a` adalah dengan menyuplai sebuah fungsi `b -> a`.
 
-```hs
+```purs
 (b -> a) -> (a -> String) -- `a` sekarang sama dengan `a`! ✅
       ⎣______⎦
 
@@ -257,7 +257,7 @@ Nah karena kita ingin memanipulasi tipe `a` dengan `fn`, opsi nomor 2 ini sudah 
 
 Dan akhirnya, dengan fungsi `b -> a` kita bisa mengubah `(a -> String)` menjadi `(b -> String)`! Ketika fungsi kebalik ini dijadikan type class, maka lahirlah saudara baru Functor, yang bernama Contravariant Functor.
 
-```hs
+```purs
 class Contravariant f where
   cmap :: ∀ a b. (b -> a) -> f a -> f b
 
@@ -270,7 +270,7 @@ Balik ke soal quiz tadi. Apakah tipe data `Consuming` bisa menjadi Functor? Saya
 
 Walaupun `Consuming` tidak bisa menjadi Functor, ia masih bisa menjelma jadi Contravariant Functor 🙃
 
-```hs {hl_lines=[1,2]}
+```purs {hl_lines=[1,2]}
 instance contraConsuming :: Contravariant Consuming where
   cmap fn (MkConsuming aToStr) = MkConsuming (fn >>> aToSsr)
 
@@ -283,7 +283,7 @@ Perbedaan `Consuming` dengan `Returning` sangat simple: pada `Consuming` fungsi 
 
 Ilustrasi di bawah ini semoga membantu.
 
-```hs
+```purs
    contra f
  ⎡‾‾‾‾‾‾‾‾‾‾‾⎤
 fn >>> valueAsFunction >>> fn
@@ -297,7 +297,7 @@ Penerapan Contravariant Functor memang tidak sebanyak saudara tirinya, Functor. 
 
 Anggap ada object Person dan program dapat melakukan sorting berdasarkan `name` dan `age`. Kita mulai dengan solusi tanpa Contravariant Functor.
 
-```hs {hl_lines=["7-8","10-11"]}
+```purs {hl_lines=["7-8","10-11"]}
 type Person = { name :: String, age :: Int }
 
 -- Factory function untuk sorting
@@ -328,7 +328,7 @@ persons = [
 
 Namun ternyata fungsionalitas sorting Person ini gak hanya digunakan di satu tempat saja. Let's say ia juga digunakan ketika handling HTTP Request yang mengandung object Person.
 
-```hs
+```purs
 type PersonRequestBody = {
   person :: Person,
   ...
@@ -345,7 +345,7 @@ Cukup simple dan straightforward. Namun ada beberapa bagian code yang terlihat r
 
 Langkah pertamanya, dengan meng-capture idea sorting ini ke sebuah struktur data sendiri (kita namakan `Comparison`) lalu membuat instance Contravariant-nya.
 
-```hs
+```purs
 newtype Comparison a = Comparison (a -> a -> Ordering)
 
 instance contraComp :: Contravariant Comparison where
@@ -362,7 +362,7 @@ defaultCompare = Comparison compare
 
 Bagian setelah ini cukup menarik karena fungsi-fungsi komparasi untuk `Person` dan `PersonRequestBody` dibuat dengan composition biasa, memungkinkan kita untuk me-reuse fungsi-fungsi yang sudah ada.
 
-```hs
+```purs
 byName :: Comparison Person
 byName = cmap (_.name) defaultCompare
 

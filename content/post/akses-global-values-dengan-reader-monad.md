@@ -25,7 +25,7 @@ Seperti yang telah dijelaskan sebelumnya, Reader Monad berfungsi sebagai wadah p
 
 Definisi Reader Monad sangat simple:
 
-```hs
+```purs
 Reader env a
 ```
 
@@ -33,7 +33,7 @@ dimana `env` adalah shared value kita dan `a` adalah nilai yang dihasilkan dari 
 
 Karena Reader ([memiliki instance Monad](https://github.com/purescript/purescript-transformers/blob/0e473e5ef0e294615ca0d9aab0bcffee47b2870d/src/Control/Monad/Reader.purs#L22-L22)), kita dapat memanggilnya seperti ini:
 
-```hs
+```purs
 type Env = {
   baseUrl :: String
 }
@@ -44,7 +44,7 @@ port = pure 4005
 
 Type signature di atas mendeskripsikan bahwa kita telah membuat sebuah Reader yang menerima sebuah object `Env` dan menghasilkan `Int`. Lalu bagaimana cara menyuplai object `Env` dan mendapatkan nilai 4005? Dengan function `runReader`:
 
-```hs
+```purs
 runReader :: Reader env a -> env -> a
 
 env :: Env
@@ -56,7 +56,7 @@ result = runReader port env
 
 `runReader` menerima Reader di argument pertamanya lalu disuplai dengan shared value `env` di argument kedua sehingga menghasilkan nilai `a`. Namun sampai contoh barusan kita belum juga menggunakan `Env` atau shared value yang kita suplai. Lalu bagaimana cara mendapatkannya? Dengan method `ask`!
 
-```hs
+```purs
 insertPort :: Reader Env String
 insertPort = do
   { baseUrl } <- ask
@@ -72,7 +72,7 @@ result = runReader insertPort env
 
 Contoh yang lebih real world:
 
-```hs
+```purs
 fetchAuthedUser :: Reader Env User
 fetchAuthedUser = do
   env  <- ask
@@ -110,7 +110,7 @@ Lumrahnya penggunaan Reader Monad hanyalah untuk **dibaca** value-nya, sesuai de
 
 Contoh kecil adalah ketika aplikasi baru diakses lewat browser dan user belum melakukan login. Sedangkan object user ini perlu diakses di banyak tempat. Kita tetap bisa menempatkan object user ini sebagai shared value di Reader.
 
-```hs
+```purs
 type Env = {
   currentUser :: Ref (Maybe User),
   baseUrl :: String
@@ -131,7 +131,7 @@ main = do
 
 Nanti di bagian aplikasi lain, ketika user telah ter-autentikasi, barulah `currentUser` dapat di-update dan dibaca oleh function lain
 
-```hs {hl_lines=[10,19]}
+```purs {hl_lines=[10,19]}
 authenticate :: ∀ m.
   MonadAsk Env m =>
   MonadEffect m  =>

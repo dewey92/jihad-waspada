@@ -94,7 +94,7 @@ console.log('Jihad: ', jihad.firstName)
 console.log(userWithoutName === jihad)
 ```
 
-```nocode
+```no-code
 > No name: undefined
 > Jihad: undefined
 > true
@@ -102,7 +102,7 @@ console.log(userWithoutName === jihad)
 
 Kok bisa?? Bukannya yang satu harusnya `undefined` dan yang satunya tetep `'Jihad'`?? Kok dua-duanya `undefined`??
 
-> "Mereka kira mereka bisa menjawab sedangkan mereka termasuk orang-orang yang tidak tahu" - JS 1:12
+> "Mereka kira mereka bisa menjawab sedangkan mereka termasuk orang-orang yang tidak tahu" — JS 1:12
 
 Keduanya bernilai `undefined` karena <mark>secara default, Object dalam Javascript sifatnya _pass by reference_, bukan _pass by value_ ketika dilempar ke dalam suatu function/method</mark>. Jadi sebenarnya variable `jihad` dan `userWithoutName` adalah variable yang sama (_point to the same address_), hanya namanya saja yang berbeda. Untuk mengakalinya, kita harus ubah sedikit dengan object destructuring atau spread operator.
 
@@ -130,8 +130,6 @@ console.log(userWithoutName === jihad) // false
 ```
 
 _Now it works.._
-
-> Saya pribadi lebih suka `solusi2` dan menghindari sebisa mungkin `solusi1`. Dan saya rekomendasikan teman-teman untuk pakai `solusi2` sebisa mungkin supaya gak dituduh orang yang tidak bertangungjawab. Hehe canda, biar lebih mudah aja kalau punya nested object 👇🏻
 
 ### Nested Object
 

@@ -19,7 +19,7 @@ Ada banyak cara untuk memahami Functor. Yang paling umum dan banyak dijumpai ial
 
 Mari kita mulai dengan sesuatu yang simple: sebuah angka. Lalu kita lakukan transformasi pada angka tersebut dengan fungsi `incr` dan `decr`.
 
-```hs
+```purs
 incr :: Int -> Int
 incr n = n + 1
 
@@ -36,7 +36,7 @@ decr n = n - 1
 
 Easy. Namun apa jadinya jika angka tersebut dimasukkan atau dibungkus **ke dalam suatu data structure** seperti Array? Apa ia masih bisa di-increment atau decrement?
 
-```hs
+```purs
 incrArray :: Array Int -> Array Int
 decrArray :: Array Int -> Array Int
 ```
@@ -53,7 +53,7 @@ Sebagai seorang programmer kita terbiasa melihat pola dalam code dan membuat abs
 
 Salah satu upaya agar code menjadi lebih reusable adalah dengan memanfaatkan Higher-Order Function.
 
-```hs
+```purs
 -- Implementasinya kita kosongkan dulu.
 -- Kita asumsikan `arr` di-loop dan apply `editFn` di setiap elementnya
 transformArray :: (Int -> Int) -> Array Int -> Array Int
@@ -62,7 +62,7 @@ transformArray editFn arr = ...
 
 Fokus kita ada di type signature: `transformArray` menerima fungsi `(Int -> Int)` di argument pertamanya, cocok dengan `incr` dan `decr` yang juga bertipe `Int -> Int`! Bisa langsung disubstitusi deh.
 
-```hs
+```purs
 incrArray :: Array Int -> Array Int
 incrArray = transformArray incr
 
@@ -76,7 +76,7 @@ Lebih parahnya lagi, fungsi `transformArray` hanya bisa memproses `Array Int`! S
 
 Di sinilah generic mulai berperan. Kita harus mengubah type signature yang terlalu spesifik terhadap Int dengan generics.
 
-```hs
+```purs
 -- Before
 transformArray :: (Int -> Int) -> Array Int -> Array Int
 
@@ -86,7 +86,7 @@ transformArray :: ∀ a b. (a -> b) -> Array a -> Array b
 
 Perubahan dari concrete type ke generics memperluas lingkup function, menjadikannya jauh lebih reusable. Lihat saja contoh-contoh berikut, kita tak lagi terikat dengan `Int -> Int` dan bisa bekerja dengan berbagai macam Array 🎉🎉🎉
 
-```hs
+```purs
 length :: String -> Int
 asciiCode :: Char -> Int
 isEven :: Int -> Boolean
@@ -109,7 +109,7 @@ isEven :: Int -> Boolean
 
 Kita sudah berhasil "menakhlukkan" Array. Saatnya membahas struktur data generic lain yang agak menantang. Let's talk about Tree.
 
-```hs
+```purs
 data Tree a = Leaf a | Branch a (Tree a) (Tree a)
 
 treeExample :: Tree Int
@@ -126,7 +126,7 @@ treeExample = Branch 1
 
 Tree sama seperti Array, ia bisa menampung berbagai macam jenis data: `Tree Int`, `Tree String`, `Tree Boolean`, dll. Bisa ditransformasi juga? Harusnya sih bisa. Karena kita sudah belajar bagaimana membuat fungsi yang reusable pada Array, kita pun juga ingin agar fungsi transformasi pada struktur data Tree ini reusable.
 
-```hs
+```purs
 transformTree :: ∀ a b. (a -> b) -> Tree a -> Tree b
 transformTree editFn tree = ...
 
@@ -145,7 +145,7 @@ Fokus pada type signature, kita melihat pola yang **sangat identik** pada fungsi
 
 Mungkin ketika suatu saat nanti ada struktur data lain (misal Queue), kita juga akan membuat fungsi `transformQueue` dengan type signature yang sama.
 
-```hs
+```purs
 transformArray :: (a -> b) -> Array a -> Array b
 transformTree  :: (a -> b) -> Tree a  -> Tree b
 transformQueue :: (a -> b) -> Queue a -> Queue b
@@ -156,13 +156,13 @@ transformBlabla :: (a -> b) -> Blabla a -> Blabla b
 
 `Array`, `Tree`, `Queue`, `Blabla` semua ini bisa direpresentasikan dengan variable `t`.
 
-```hs
+```purs
 transform :: (a -> b) -> t a -> t b
 ```
 
 Sehingga jadilah sebuah fungsi generic baru untuk transformasi value di dalam suatu struktur data 🙂. Mari buatkan juga [Type Class]({{< ref "kenalan-dulu-sama-type-class.md" >}})-nya agar `t` dapat disubstitusi.
 
-```hs {hl_lines=[1,2]}
+```purs {hl_lines=[1,2]}
 class Transformable t
   transform :: ∀ a b. (a -> b) -> t a -> t b
 
@@ -184,7 +184,7 @@ instance transBlabla :: Transformable Blabla where
 
 Class Transformable sudah dibuat. Fungsi `transform` akhirnya bisa dipanggil oleh Array, Tree, dan Queue.
 
-```hs
+```purs
 λ> transform incr [1, 2, 3, 4]
 λ> transform incr (Branch 1 (Leaf 2) (Leaf 3))
 λ> transform incr (Queue [1, 2, 3, 4])
@@ -194,7 +194,7 @@ Class Transformable sudah dibuat. Fungsi `transform` akhirnya bisa dipanggil ole
 
 Daritadi ngalor ngidul bahas "transformasi" tapi gak pernah nyinggung sama sekali tentang Functor. Eits jangan salah, sedari awal kita sebenarnya sudah bahas functor: Functor adalah class Transformable itu sendiri! Bedanya method `transform` dinamai `map`.
 
-```hs
+```purs
 class Functor f
   map :: ∀ a b. (a -> b) -> f a -> f b
 ```
@@ -212,7 +212,7 @@ Identity Law memastikan kesamaan struktur data setelah transformasi, walaupun va
 
 Bagaimana dengan tipe data yang memiliki kind lebih dari `Type -> Type` seperti Tuple atau Either? Apa masih bisa punya instance Functor?
 
-```hs
+```purs
 data Tuple a b = Tuple a b
 data Either a b = Left a | Right b
 
@@ -224,7 +224,7 @@ Type -> Type -> Type
 
 Yap. Masih bisa dong. Apply secara partial saja, kan type constructor juga auto-curry di Purescript 😉 Sebagai konsekuensinya, hanya sisa type variable **(yang paling kanan) saja yang bisa ditransformasi**.
 
-```hs
+```purs
 instance functorTuple :: Functor (Tuple a) where
   map fn (Tuple a b) = Tuple a (fn b) -- `a` is unchanged
 

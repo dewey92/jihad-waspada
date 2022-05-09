@@ -17,7 +17,7 @@ Saya gunakan Purescript untuk menjelaskan konsep type class pada article ini.
 
 ## Give Me the Code
 
-```hs
+```purs
 class Show a where -- [1]
   show :: a -> String  -- [2]
 ```
@@ -27,7 +27,7 @@ class Show a where -- [1]
 
 Tidak ada concrete code di sini, tugas type class hanya mendefinisikan struktur (type signature) dari method-method yang bisa digunakan oleh suatu tipe data. Seperti interface, hanya kontrak. Detil implementasi diserahkan ke implementornya, seperti tipe Email di bawah:
 
-```hs
+```purs
 newtype Email = Email String
 
 instance showEmail :: Show Email where -- [3]
@@ -42,7 +42,7 @@ instance showEmail :: Show Email where -- [3]
 
 Karena perannya yang mirip dengan interface, kita juga bisa membuat instance untuk tipe data lain. Sehingga function `show` tidak hanya applicable untuk type Email, tapi juga Password.
 
-```hs
+```purs
 newtype Password = Password String
 
 instance showPassword :: Show Password where
@@ -60,7 +60,7 @@ Walaupun type class sekilas terlihat seperti interface, ada perbedaan yang sanga
 
 Tak perlu jauh-jauh memikirkan tipe data dari third-party library, kita bahkan bisa memberi instance untuk tipe data primitif seperti Boolean.
 
-```hs
+```purs
 instance showBoolean :: Show Boolean where
   show true = "true"
   show false = "false"
@@ -84,7 +84,7 @@ Ambil String dan Array. Keduanya memiliki sifat yang sama yaitu dapat **digabung
 
 Behavior atau sifat "bisa digabungkan" ini bisa kita capture dengan sebuah type class, sebut saja `Appendable`.
 
-```hs
+```purs
 class Appendable a where
   append :: a -> a -> a
 
@@ -103,7 +103,7 @@ instance appendableArr :: Appendable (Array xs) where
 
 Kita baru saja memberikan String dan Array kemampuan untuk bisa digabungkan dengan membuat instance `Appendable`. Detil implementasinya kita biarkan kosong agar contoh code-nya tetap sederhana. Bila kita panggil fungsi `append` dengan tipe data yang belum memiliki instance `Appendable` seperti Int, program akan error.
 
-```hs
+```purs
 λ> append 11 99
 -- ERROR!
 -- No type class instance was found for `Appendable Int`
@@ -142,7 +142,7 @@ console.log([1, 2].append([3])) // => [1, 2, 3]
 ## Subtyping
 Sama seperti interface, type class juga memiliki konsep subtyping dimana sebuah type class dapat "meng-extend" method dari type class lainnya.
 
-```hs
+```purs
 class Appendable a <= HazDefault a where
   defaultVal :: a
 ```
@@ -151,7 +151,7 @@ Type class `HazDefault` di-construct dengan _superclass_ `Appendable`, yang memu
 
 String dan Array sudah memiliki instance `Appendable`, maka sah-sah saja bagi mereka untuk juga memiliki instance `HazDefault` 😉
 
-```hs
+```purs
 instance hazDefaultStr :: HazDefault String where
   defaultVal = ""
 
@@ -166,7 +166,7 @@ instance hazDefaultArr :: HazDefault (Array xs) where
 
 Compiler akan complain dengan pesan yang cukup jelas kalo kita iseng membuat instance `HazDefault` untuk tipe data yang belum memiliki instance `Appendable`.
 
-```hs
+```purs
 instance hazDefaultInt :: HazDefault Int where
   defaultVal = 0
 
@@ -180,7 +180,7 @@ Sejauh ini kita sudah belajar bagaimana type class berguna untuk memberikan "kem
 
 Apa yang terjadi jika kita memberikan kemampuan yang sama dua kali?
 
-```hs
+```purs
 instance hazDefaultStr :: HazDefault String where
   defaultVal = ""
 
@@ -201,7 +201,7 @@ Compiler komplain. Masuk akal sih, karena nanti ketika ada code `defaultVal :: S
 
 Tapi kadangkala ada saja kasus dimana suatu data bisa memiliki dua behavior: misal untuk tipe `Int` jika mengimplementasi class `HazDefault`. Nilai default Integer bernilai 0 ketika dijalankan dalam konteks penjumlahan, namun bernilai 1 dalam konteks perkalian. Ketika dihadapkan dengan situasi seperti ini, salah satu cara untuk mengakalinya bisa dengan membungkusnya dengan `newtype`.
 
-```hs
+```purs
 newtype Sum = Sum Int
 newtype Prod = Prod Int
 
@@ -231,7 +231,7 @@ Prod 50
 ## Constraint
 Type class is all about instance and constraint. Mari perhatikan contoh berikut:
 
-```hs
+```purs
 guard :: ∀ a. HazDefault a => Boolean -> a -> a
 guard true val = val
 guard false _ = defaultVal
@@ -241,7 +241,7 @@ Constraint type class pada sebuah function dipisahkan dengan symbol `=>`. Fungsi
 
 Kita sudah tahu bahwa fungsi `guard` ter-contraint dengan class `HazDefault` pada type parameter `a`, yang berarti `a` hanya boleh diisi dengan String atau Array.
 
-```hs {hl_lines=[8,12]}
+```purs {hl_lines=[8,12]}
 type User = String
 
 isRoot :: User -> Boolean
@@ -269,7 +269,7 @@ access user = guard (isRoot user) [7, 7, 7]
 
 In fact, kalau kita menginspeksi type `append` dan `defaultVal` di REPL, yang kita lihat sebenarnya adalah:
 
-```hs
+```purs
 λ> :t append
 append :: Appendable a => a -> a -> a
 
@@ -282,7 +282,7 @@ Tidak mengejutkan 🙂
 ## Methods Injection
 Selain kemampuan membatasi akses pada suatu function, constraint type class pada dasarnya **memberikan semua method-nya** secara implisit. Untuk lebih jelasnya, mari modifikasi function `guard` barusan.
 
-```hs
+```purs
 guard :: ∀ a. HazDefault a => Boolean -> a -> a -> a
 guard true x y = x `append` y
 guard false _ _ = defaultVal
@@ -290,17 +290,17 @@ guard false _ _ = defaultVal
 
 Dengan adanya constraint `HazDefault` di type signature, function `guard` memiliki izin untuk mengakses method-method yang ada pada class `HazDefault` (`append` dan `defaultVal`). Under the hood, compiler melakukan proses desugaring seperti berikut.
 
-```hs
+```purs
 guard :: ∀ a. HazDefaultDict a -> Boolean -> a -> a -> a
 guard { append, defaultVal } true x y = x `append` y
 guard { append, defaultVal } false _ _ = defaultVal
 ```
 
-> Proses bagaimana compiler melakukan desugaring dan memberikan semua method-nya secara implisit dapat dibaca di artikel saya tentang [Type Class Dan Cara Kerjanya Di Balik Layar]({{< ref "/post/type-class-dan-cara-kerjanya-di-balik-layar.md" >}}).
+> Proses bagaimana compiler melakukan desugaring dan memberikan semua method-nya secara implisit dapat dibaca di [Type Class Dan Cara Kerjanya Di Balik Layar]({{< ref "/post/type-class-dan-cara-kerjanya-di-balik-layar.md" >}}).
 
 Dengan kata lain, function `append` dan `defaultVal` bersifat eksklusif, tidak bisa sembarang dipanggil oleh function lain. **Caller harus memberikan constraint di type signature-nya**. Jika tidak, compiler akan complain.
 
-```hs
+```purs
 invalid :: ∀ a. a -> a -> a
 invalid x y = x `append` y
 
@@ -312,7 +312,7 @@ invalid x y = x `append` y
 
 Bicara agak real world, type class juga dapat membantu readability ketika kita ingin melacak side effect apa saja yang bakal dijalankan di sebuah function.
 
-```hs
+```purs
 class Monad m <= MonadCache m where
   readCache :: Path -> m (Maybe String)
   writeCache :: String -> Path -> m Unit
@@ -334,7 +334,7 @@ Fungsi `fetcUser` ter-constraint dengan dua buah type class: `MonadCache` dan `M
 
 Gak hanya itu, kita juga bisa menyimpulkan dari melihat type signature-nya saja bahwa `fetchUser` bakal berinteraksi dengan cache dan database (side effect) tanpa terikat dengan implementasi apapun. Implementasi tergantung konteks caller-nya. Misal ketika testing, instance bisa dibuat semau kita.
 
-```hs {hl_lines=["6-8","10-11"]}
+```purs {hl_lines=["6-8","10-11"]}
 newtype TestM a = TesM (Aff a)
 
 runTest :: TestM ~> Aff

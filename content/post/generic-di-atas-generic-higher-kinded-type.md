@@ -139,7 +139,7 @@ Kind adalah cara untuk mengekspresikan (concrete) type dan type constructor deng
 
 Di salah satu bahasa yang mendukung HKT seperti Purescript (atau Haskell), permasalah `tuplify` dapat diekspresikan dengan:
 
-```hs {hl_lines=[1,2]}
+```purs {hl_lines=[1,2]}
 class Tupleable f where
   tuplify :: f t -> f (t, t)
 
@@ -184,7 +184,7 @@ interface Tupleable<T> {
 
 Selain itu, konsep Higher-Kinded Type memungkinkan kita untuk membuat _factory type_, yang berarti satu type dapat menghasilkan banyak type atau data structure.
 
-```hs
+```purs
 -- kind `User` adalah `(* -> *) -> *`
 type User box = {
   name :: String,

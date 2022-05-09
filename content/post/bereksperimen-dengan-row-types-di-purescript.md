@@ -22,7 +22,7 @@ Sebelum masuk ke pembahasan yang lebih lanjut, kita harus mengetahui terlebih da
 
 Nah `Proxy` dapat membantu kita membuat type-level string dan function `reflectSymbol` untuk "menurunkan derajat" dari type-level string kembali ke term-level string.
 
-```hs
+```purs
 termLevel = "Jihad"
 
 typeLevel :: Proxy "Jihad"
@@ -41,7 +41,7 @@ Pada section berikutnya kita akan melihat kombinasi antara `IsSymbol` dan `Proxy
 ## Cons
 Sewaktu artikel ini ~~ditulis (v13.3)~~ di-update (v14.4), Purescript memiliki beberapa utility class untuk dapat memanipulasi dan menangkap informasi record saat compile-time. Salah satu yang paling sering digunakan adalah `Cons`.
 
-```hs
+```purs
 -- module Prim.Row
 
 class Cons :: Symbol -> Type -> Row Type -> Row Type
@@ -56,7 +56,7 @@ Perlu diperhatikan bahwa row bisa memiliki label yang duplikat di type level. Sa
 
 Anyway, `Cons` ini bisa diibaratkan seperti ini:
 
-```hs
+```purs
 class Cons :: Symbol -> Type -> Row Type -> Row Type
 class Cons label a tail row
   | label a tail -> row
@@ -88,7 +88,7 @@ result === 'jihad'
 
 Bagaimana mengimplementasikan type signature fungsi tersebut di Purescript dan tetap row-polymorphic? Kita ingin nantinya fungsi `get` di Purescript diakses mirip dengan fungsi Javascript di atas:
 
-```hs
+```purs
 get :: ?belumTau
 get = ...
 
@@ -98,7 +98,7 @@ result == "jihad"
 
 Ada beberapa yang langkah yang perlu diambil yang menurutku gak susah-susah amat asal udah ngerti konsep `Symbol` dan `Cons`. Langkah pertama adalah dengan mengimplementasikan apa yang bisa dan mudah diimplementasikan, walaupun belum sepenuhnya typecheck:
 
-```hs
+```purs
 get :: ∀ key row a. key -> Record row -> a
 get = ...
 ```
@@ -107,7 +107,7 @@ Dimana `key` nantinya akan berupa type level string (Symbol) dan `a` adalah type
 
 Langkah kedua, adalah dengan mengubah `key` menjadi `Proxy key` karena kita ingin string key yang di-supply dikenali oleh type checker.
 
-```hs {hl_lines=[2]}
+```purs {hl_lines=[2]}
 get :: ∀ key row a.
   Proxy key -> Record row -> a
 get = ...
@@ -117,7 +117,7 @@ We're getting there! Sekarang kita harus membuat koneksi antara `key`, `row`, da
 
 Dengan `Cons`! Ingat bahwa `Cons` digunakan untuk mengekspresikan sebuah record yang memiliki _suatu_ attribute tertentu.
 
-```hs {hl_lines=[2]}
+```purs {hl_lines=[2]}
 get :: ∀ key row tail a.
   Cons key a tail row =>
   Proxy key -> Record row -> a
@@ -126,7 +126,7 @@ get = ...
 
 Dan terakhir, dengan asumsi kita memiliki sebuah FFI sebagai implementation details untuk dieksekusi saat runtime, kita harus menambahkan constraint `IsSymbol` agar type-level key di parameter pertama dapat direalisasikan sebagai string biasa.
 
-```hs {hl_lines=[4]}
+```purs {hl_lines=[4]}
 foreign import getImpl :: forall row a. String -> Record row -> a
 
 get :: ∀ key row tail a.
@@ -144,7 +144,7 @@ exports.getImpl = key => record => record[key]
 
 Selesai! 🎉 Abaikan saja dulu `tail` di sini dan jangan terlalu dipikirkan, nanti akan ada saatnya kita menggunakan `tail`. Sekarang kita lihat dulu apakah compiler dapat meng-infer type yang tepat dengan type signature ini..
 
-```hs
+```purs
 result :: ?help
 result = get (Proxy :: _ "name") { name: "jihad", age: 26 }
 
@@ -158,7 +158,7 @@ Nice work, brain 🧠!
 ### Set
 Jom naik level: mari membuat fungsi `set` yang memungkinkan kita untuk mengubah nilai pada suatu attribute sekaligus dapat mengubah type-nya.
 
-```hs
+```purs
 set :: ?belumTau
 set = ...
 
@@ -171,7 +171,7 @@ result == { name: ["jihad", "waspada"], age: 26 }
 
 Komputasi di atas mengubah type "name" yang semula bertipe `String` menjadi `Array String`. Berarti akan ada duah buah row yang berbeda yang harus dimasukkan ke dalam type signature: row dengan "name" bertipe `String`, dan row dengan "name" bertipe `Array String`. Namun sebelumnya, lakukan upacara dengan Symbol dan kawan-kawannya agar mempermudah langkah selanjutnya.
 
-```hs
+```purs
 set :: ∀ key rowA rowB b.
   IsSymbol key =>
   Proxy key -> b -> Record rowA -> Record rowB
@@ -180,7 +180,7 @@ set = ...
 
 Lalu asosiasikan `key` dan `b` dengan `rowB` menggunakan teman kita `Cons` karena mereka satu kesatuan republik indonesa:
 
-```hs {hl_lines=[3]}
+```purs {hl_lines=[3]}
 set :: ∀ key rowA rowB b tail.
   IsSymbol key =>
   Cons key b tail rowB =>
@@ -190,7 +190,7 @@ set = ...
 
 Lagi, abaikan `tail` untuk saat ini. Sekarang mari kita pikirkan sejenak relasi `rowA` dengan `rowB`. Mereka sebenarnya adalah `row` yang sama, hanya type dari `key`-nya saja yang kemungkinan berbeda. Karena masih ada relasi satu sama lain, kita harus melakukan penggabungan dua buah record ini dengan `Cons`:
 
-```hs {hl_lines=[3,4]}
+```purs {hl_lines=[3,4]}
 set :: ∀ key rowA a rowB b tail.
   IsSymbol key =>
   Cons key a tail rowA =>
@@ -203,7 +203,7 @@ Dengan penambahan constraint ini, typechecker dapat melihat relasi antara keduan
 
 Nah, markicek apa sudah benar implementasi type signature di atas dengan menggunakan fitur type hole.
 
-```hs
+```purs
 result :: ?help
 result = set name ["jihad", "waspada"] { name: "jihad", age: 26 }
   where name = (Proxy :: _ "name")
@@ -220,7 +220,7 @@ Typechecked! ✅
 ### Delete
 Fungsi `delete` menghapus sebuah attribute dari suatu record dan mengembalikan row baru tanpa attribute tersebut. Kita ingin fungsi ini dipanggil seperti:
 
-```hs
+```purs
 delete :: ?belumTau
 delete = ...
 
@@ -230,7 +230,7 @@ result == { age: 26 }
 
 Lagi, langkah pertama dalam menulis type signature yang dirasa agak kompleks adalah dengan menuliskan apa yang mudah ditulis.
 
-```hs
+```purs
 delete :: ∀ key rowA rowB.
   IsSymbol key =>
   Proxy key -> Record rowA -> Record rowB
@@ -241,7 +241,7 @@ delete = ...
 
 Kita review ulang dulu struktur class `Cons` biar freshhhh.
 
-```hs
+```purs
 Cons "age" Int tail (name :: String, age :: Int)
      ^^^^^^^^^      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
       `head`                  `row`
@@ -251,7 +251,7 @@ Cons "age" Int tail (name :: String, age :: Int)
 
 Kita dapat melihat pola bahwa **tail adalah row tanpa head**. Persepsi ini seolah memberikan kesimpulan bahwa `rowB` adalah tail dari `rowA`.
 
-```hs {hl_lines=[6]}
+```purs {hl_lines=[6]}
 -- tail = row - head
 -- rowB = rowA - key
 
@@ -264,7 +264,7 @@ delete = ...
 
 Masih ada relasi yang kelewatan? Kalo gak ada langsung aja kita buktikan apakah type signature di atas typechecked..
 
-```hs
+```purs
 result :: ?help
 result = delete (Proxy :: _ "name") { name: "jihad", age: 26 }
 
@@ -280,7 +280,7 @@ Tapi belum sepenuhnya benar. Ingat bagaimana row bisa menampung label yang dupli
 
 Purescript memiliki class bernama `Lacks` yang bisa digunakan untuk mengekspresikan suatu record yang tidak memiliki attribute tertentu.
 
-```hs
+```purs
 class Lacks (label :: Symbol) (row :: Row Type)
 
 -- Contoh penggunaan
@@ -289,7 +289,7 @@ Lacks "nonExistingKey" (name :: String, age :: Int)
 
 Yang bisa dibaca dengan: "Hey compiler, tolong assert bahwa record `(name :: String, age :: Int)` tidak memiliki attribute/label bernama `nonExistingKey`". Karena tidak ditemukan maka expression di atas typechecked. Sebaliknya, compiler akan menolak untuk memberikan lampu hijau jika ditemukan Symbol pada record yang di-assert.
 
-```hs
+```purs
 Lacks "name" (name :: String, age :: Int)
 
 -- | No type class instance was found for
@@ -302,7 +302,7 @@ Lacks "name" (name :: String, age :: Int)
 
 Oleh karena itu type signature fungsi `delete` masih bisa di-improve lagi dengan memberikan constraint `Lacks`:
 
-```hs {hl_lines=[4]}
+```purs {hl_lines=[4]}
 delete :: ∀ key a rowA rowB.
   IsSymbol key =>
   Cons key a rowB rowA =>
@@ -314,7 +314,7 @@ delete = ...
 ### Insert
 Fungsi `insert` juga dapat dibuat dengan mengkombinasikan class `Lacks` dengan `Cons`. Intuisi type signature fungsi `insert` ini saya serahkan ke pembaca untuk exercise 🙂
 
-```hs
+```purs
 insert :: ∀ key a rowA rowB.
   IsSymbol key =>
   Lacks key rowA =>

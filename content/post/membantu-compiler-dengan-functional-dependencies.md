@@ -20,7 +20,7 @@ Lahirnya fitur Functional Dependencies ini katanya terinsipirasi dari [fitur Fun
 
 Functional Dependencies baru dapat digunakan ketika kita menulis class yang memiliki type parameter lebih dari satu, alias _multi-parameter type class_.
 
-```hs
+```purs
 class MultiParamTypeClass a b
 
 -- `a` dan `b` merupakan type parameter dari class `MultiTypeParamClass`
@@ -28,7 +28,7 @@ class MultiParamTypeClass a b
 
 "Baru dapat digunakan" dalam arti kita bisa memilih untuk menggunakan fitur FuncDep atau tidak, tergantung kasus-nya. Jika tidak menggunakan FuncDep, maka `a` dan `b` dapat diisi dengan type apa saja tanpa ada restriction, seperti relasi many-to-many pada database. Any combination of `a` and `b` is valid. Akan berbeda ketika FuncDep digunakan:
 
-```hs
+```purs
 class MultiParamTypeClass a b | a -> b
                               ^^^^^^^^
 ```
@@ -42,7 +42,7 @@ Nah seperti yang sudah dijelaskan di atas (bahwa FuncDep terinspirasi dari datab
 
 Misal ketika bicara Geografi, many-to-one bisa dianalogikan dengan relasi kota terhadap provinsi: satu kota hanya ada pada satu provinsi, tapi satu provinsi dapat memiliki banyak kota.
 
-```hs
+```purs
 class ManyToOne city province | city -> province
 ```
 
@@ -52,7 +52,7 @@ Maka betul kata compiler tadi: "gue bakal bisa infer type `province` asal gue ta
 
 Dari instance yang kita tulis 👇🏻
 
-```hs
+```purs
 -- class with funcdep
 class ManyToOne city province | city -> province
 
@@ -67,7 +67,7 @@ Jadi sebenarnya tidak ada magic di sini: kita yang mendikte compiler.
 
 Bagaimana kalau saya, misal, mau bilang Surabaya itu **juga** bagian dari Jawa Tengah? Mungkin pipi saya bakal jadi merah digampar sama Pak Guru. Alasannya? IQ lu jongkok! 🙊
 
-```hs
+```purs
 instance sbyJatim :: ManyToOne Surabaya JawaTimur
 instance sbyJateng :: ManyToOne Surabaya JawaTengah
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -92,7 +92,7 @@ Dari sini bisa ditarik kesimpulan, bahwa functional dependencies berguna untuk m
 
 Kasus yang paling umum di dunia nyata adalah ketika menggunakan MTL `MonadThrow` yang menspesifikasikan bahwa setiap Monad yang implements class `MonadThrow` harus memiliki satu error type saja, tidak boleh lebih.
 
-```hs
+```purs
 class Monad m <= MonadThrow e m | m -> e where
   throwError :: ∀ a. e -> m a
 
@@ -118,7 +118,7 @@ Fitur Functional Dependencies juga bisa memiliki spesifikasi yang lebih narrow d
 
 Dengan one-to-one, kita menjamin jumlah instance type variable `a` **dan** `b` hanya satu saja. Mereka tidak boleh muncul lebih dari satu kali. Masih berkaitan dengan geografi, contoh yang paling mudah adalah relasi antara ibu kota dengan negaranya: suatu negara hanya boleh memiliki satu ibu kota **dan** suatu ibu kota hanya boleh dimiliki oleh satu negara.
 
-```hs
+```purs
 class OneToOne capital country | capital -> country, country -> capital
 
 instance indo :: OneToOne Jakarta Indonesia
@@ -150,7 +150,7 @@ Dengan aturan ini, kita dapat melihat setidaknya ada dua buah pola menarik:
 
 Code-wise, aturan tersebut dapat dituliskan dengan sebuah class yang menerima tiga buah type variable.
 
-```hs
+```purs
 class JavascriptPlus a b c | a b -> c where
   jplus :: a -> b -> c
 
@@ -167,7 +167,7 @@ instance jStrStr :: JavascriptPlus String String String where
 
 Sekarang malah keliatan kayak pattern-matching tapi di level type 😅 "Kalo aku punya String dan Number, maka hasilnya harus String" dan seterusnya. Tapi yang pasti, function `jplus` ini mengembalikan return type yang berbeda-beda tergantung "input"-nya.
 
-```hs
+```purs
 toUpper :: String -> String
 
 resInNum = 5.0 `jplus` 6.0 -- 11.0 :: Number
@@ -179,7 +179,7 @@ notCompiled = toUpper <<< resInNum -- error! ❌
 
 Kasus Functional Dependencies dengan type parameter lebih dari dua ini bisa ditemukan ketika bermain dengan Record. Seperti type [Union](https://pursuit.purescript.org/builtins/docs/Prim.Row#t:Union) yang memiliki type signature:
 
-```hs
+```purs
 class Union (left :: # Type) (right :: # Type) (union :: # Type)
   | left right -> union
   , right union -> left
@@ -218,7 +218,7 @@ Sedangkan compiler Purescript sendiri akan menolak fungsi di atas (jika mengguna
 
 Namun Functional Depndencies lebih dari sekedar function overloading. Contoh yang real worldish adalah ketika mencoba re-implement State Monad dan membuat instance dengan Ref (mutable variables).
 
-```hs
+```purs
 import Effect.Ref as Ref
 
 class SM m r | m -> r, r -> m where
@@ -234,7 +234,7 @@ instance smEffect :: SM Effect Ref.Ref where
 
 Bagian `m -> r, r -> m` mengindikasikan adanya dua buah FuncDeps (Bidirectional Dependencies) sekaligus mengekspresikan relasi one-to-one. Sekarang perhatikan code berikut:
 
-```hs
+```purs
 someFn x = do
   r <- new x  -- `SM` monad
   log "Hello" -- `Effect` monad
@@ -243,21 +243,21 @@ someFn x = do
 
 Adanya pemanggilan fungsi `log` (yang memiliki type `String -> Effect Unit`) berimplikasi pada asumsi bahwa fungsi `someFn` ada di dalam `Effect` monad, yang, kalau dilihat dari Functional Dependencies-nya, type `r` pasti merujuk pada `Ref.Ref`. Dan pada akhirnya, compiler akan dengan sendirinya meng-infer fungsi `someFn` sebagai
 
-```hs
+```purs
 someFn :: ∀ a. a -> Effect (Ref.Ref a)
 someFn x = ...
 ```
 
 Andaikan FuncDep tidak digunakan, fungsi `someFn` akan memiliki type
 
-```hs
+```purs
 someFn :: ∀ r a. SM Effect r => a -> Effect (r a)
 someFn x = ...
 ```
 
 dimana `r` tidak dapat di-infer oleh compiler. Di lain kasus, tidak adanya FuncDep dapat menimbulkan ambiguity di sisi compiler.
 
-```hs
+```purs
 ambiguousFn :: ∀ a. a -> Effect a
 ambiguousFn x = do
   r <- new x

@@ -284,7 +284,13 @@ Semoga bermanfaat.
   }
 
   .box pre {
-    padding: 0;
+    padding: 5px 0;
     margin: 0;
+    border: none;
+    background: none;
+  }
+
+  .box .highlight-label {
+    display: none;
   }
 </style>

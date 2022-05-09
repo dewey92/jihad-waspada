@@ -97,7 +97,7 @@ Setelah me-review ulang behavior fitur ini dengan secarik kertas untuk dicorat-c
       - **konten bisa di-expand** dengan tombol "read more" (expandable)
       - Setelah tombol "read more" di-klik, **tampilkan seluruh isi konten** (expanded)
 
-Dari list ini terlihat bahwa secara behavior, konten hanya bisa memiliki salah satu dari ketiga state berikut: Hidden, Expandable, atau Expanded. Menyadari hal ini, spontan saja saya nyaut ke rekan saya: "BRO, PAKE ENUM/UNION!"
+Dari list ini terlihat bahwa secara behavior, konten hanya bisa memiliki salah satu dari ketiga state berikut: Hidden, Expandable, atau Expanded. Kata kuncinya <mark>"atau"</mark>. _As you might have guessed_, solusi terbaik untuk masalah ini adalah dengan memodelkannya menggunakan union.
 
 ```tsx {hl_lines=[1,4]}
 type ContentDisplay = 'hidden' | 'expandable' |'expanded'

@@ -22,7 +22,7 @@ const allowedProps = ['title', ...Object.keys(Tooltip.propTypes)]
 
 Di sini si programmer terlihat "malas". Ia malah mencoba untuk meng-copy semua key yang ada di `Tooltip.propTypes`. Yang lucu dari kasus ini adalah ternyata object `Tooltip.propTypes` hanya dibuat ketika development time, alias saat production build nilainya akan menjadi undefined 😄
 
-```sh
+```no-code
 > Uncaught TypeError: Cannot convert undefined or null to object
 ```
 
@@ -81,7 +81,7 @@ Kesan saya setelah beberapa kali setup project di Haskell sebagai seorang nubi i
 
 Setup projek di Purescript sendiri justru sangat friendly. Cukup jalankan
 
-```bash
+```no-code
 $ npm i -g purescript spago
 
 $ mkdir your-project
@@ -109,14 +109,14 @@ const mult = (x, y) => x * y;
 
 Di Purescript, compiler _automagically_ tahu bahwa `x` dan `y` **sudah pasti** memiliki tipe Number dan akan memberikan pesan error jika kita masukkan, misal, sebuah string ke dalam function tersebut. Walaupun sebenarnya bisa-bisa saja membuat function tanpa type signature, namun penulisannya masih tetap disarankan sebagai bentuk "living documentation" bagi diri sendiri dan developer lain.
 
-```hs
+```purs
 mult :: Number -> Number -> Number
 mult x y = x * y
 ```
 
 Dan power dalam meng-infer types ini bisa juga kita "eksploitasi" ketika otak sudah nggak bisa diandalkan lagi. Purescript mempunyai fitur _type hole_ yang memungkinkan programmer untuk "bertanya" ke compiler apa type atau function yang cocok digunakan di bagian aplikasi tertentu. Sebagai contoh, saya punya function `program` dan saya ingin compiler meng-infer type function tersebut.
 
-```hs
+```purs
 program :: ?help
 program = command "cat" (info runCat $ progDesc "Simply read a file")
 ```
@@ -127,7 +127,7 @@ Compiler akan melakukan analisis struktur program, mendeduksi types-nya dan bims
 
 Tinggal di-copy-paste saja jawaban dari compiler :)) Ohiya, type hole ini tidak hanya berguna untuk mengetahui suatu type saja, tapi juga bisa dimanfaatkan untuk mencari tau function apa saja yang compatible dengan program kita. Mari gunakan code snippet yang sama dan ganti `command` dengan `?help`.
 
-```hs
+```purs
 program :: Mod CommandFields (AppM Unit)
 program = ?help "cat" (info runCat $ progDesc "Simply read a file")
 ```
@@ -156,7 +156,7 @@ Algabraic Data Type adalah sebuah tipe data yang dibangun dari dua buah konstruk
 
 Untuk _Sum_ sendiri, ia digunakan untuk merepresentasikan suatu data yang dapat memiliki beberapa varian. Anggap saja ini sebagai "or" operator.
 
-```hs
+```purs
 -- Sum type
 data Boolean = True | False -- true `or` false
 
@@ -165,7 +165,7 @@ data Color = Red | Green | Blue -- red, `or` green, `or` blue
 
 Sedangkan _Product_ &mdash; kebalikan dari _Sum_ &mdash; digunakan untuk menggabungkan dua atau lebih tipe data ke dalam satu varian. Anggap saja ini sebagai "and" operator.
 
-```hs
+```purs
 data TupleIntAndString = Tuple Int String -- Int & String
 
 -- alias
@@ -182,7 +182,7 @@ data Shape
 
 Dan biasanya bahasa pemrograman yang sudah memiliki fitur ADT juga memiliki fitur Pattern Matching untuk mendekonstruksi ADT tersebut.
 
-```hs
+```purs
 -- cara 1
 printColor :: Color -> Effect String
 printColor = case _ of
@@ -203,7 +203,6 @@ Saya sendiri sih suka banget sama fitur ADT terlebih ketika menyinggung ranah do
 FFI memungkinkan Purescript berkomunikasi dengan bahasa target (dalam hal ini Javascript, walaupun bisa juga di-porting ke [C++](https://github.com/andyarvanitis/purescript-native) atau [Erlang](https://github.com/purerl/purescript)). Dengan FFI kita bisa memanggil code di Javascript dari Purescript!
 
 ```js
-// javascript
 exports.add = function (x) {
   return function (y) {
     return x + y;
@@ -213,8 +212,7 @@ exports.add = function (x) {
 exports.argv = process.argv;
 ```
 
-```hs
--- purescript
+```purs
 foreign import add :: Number -> Number -> Number
 foreign import argv :: Array String
 
@@ -224,10 +222,10 @@ decrement = add -1
 
 Begitupun sebaliknya, pemanggilan code Purescript dari Javascript juga mungkin dilakukan. Pembahasan lengkapnya ada di buku [Purescript by Example](https://leanpub.com/purescript/read#leanpub-auto-chapter-goals-8) (free).
 
-### Explicit Side Effect
+### Explicit Side Effects
 Purescript sebagai _pure functional language_ membatasi programmer dalam hal pemanggilan function yang effectful. Artinya kita tidak bisa sembarangan melakukan side-effect seperti [mutasi variable]({{< ref "/post/kenapa-immutability-itu-penting-javascript.md" >}}), pemanggilan HTTP request, akses DOM, generate random numbers, akses Local Storage, sampai hal sesimple logging ke terminal. Hal-hal yang berpotensi mengubah "state" di luar lingkup suatu function harus dibuat eksplisit lewat type signature. Walhasil, kita sebagai programmer tahu dengan sangat jelas mana function yang pure dan mana function yang effectful, umumnya ditandai dengan `Effect` monad.
 
-```hs
+```purs
 readFile :: FilePath -> Effect String
 readFile path = ...
 ```
@@ -237,7 +235,7 @@ Sehingga hampir "mustahil" bagi kita untuk membuat function yang effectful tanpa
 ## Caveats
 Kelebihan-kelebihan tersebut juga harus dibayar dengan beberapa kekurangan. Misalnya pesan error yang terkadang tidak begitu jelas. Akan sangat terasa sekali kalau sudah mulai banyak menggunakan Bind, HKT, atau function yang generic.
 
-```nocode
+```no-code
 Could not match type
 
     t2 Unit
@@ -257,9 +255,9 @@ where t1 is an unknown type
 
 Dari sudut pandang saya pribadi yang "cuman mau belajar" justru lumayan menantang dan encouraging 😄, benar-benar memutar otak untuk mencari tahu why-nya dan nggak sekedar main tebak-tebakan sama compiler.
 
-Kemudian learning resource-nya juga masih terbilang sedikit. Kebanyakan _technique_ yang saya gunakan di Purescript justru berasal dari hasil belajar saya dengan Haskell karena kemiripan kedua bahasa ini. Hal ini bisa jadi kelebihan juga sebenarnya, if you can't find something in Purescript then look for one in Haskell, you'll probably end up getting the answer 😅
+Kemudian learning resource-nya juga masih terbilang sedikit. Kebanyakan _technique_ yang saya gunakan di Purescript justru berasal dari hasil belajar saya dengan Haskell karena kemiripan kedua bahasa ini. Hal ini bisa jadi kelebihan juga sebenarnya, _if you can't find something in Purescript then look for one in Haskell, you'll probably end up getting the answer_.
 
 ## Epilog
 Sejauh ini kesan saya belajar Purescript masih positif. Teman-teman bisa pantau [projek sampingan saya di Github](https://github.com/dewey92/pureshell) sebagai progres saya belajar Purescript. Sekian jam dari awal pengerjaan projek sampai setidaknya penulisan artikel ini (sekitar 42-an jam, tracking dari wakatime) saya belum pernah menemukan runtime error seperti "Undefined is not a function", "Cannot convert undefined or null to object", atau error-error lainnya yang umum didapati ketika mengembangkan aplikasi menggunakan Javascript.
 
-Purescript is a safe language, dengan segala bentuk konsekuensinya. Static typing-nya mungkin akan sering membuat kita frustasi, tapi akan selalu berujung pada apresiasi; terutama saat runtime. Yang senang senam otak saat development time mungkin suatu saat bisa mencoba Purescript haha. Selamat malam ✌🏻😃
+Purescript is a safe language, dengan segala bentuk konsekuensinya. Static typing-nya mungkin akan sering membuat kita frustasi, tapi akan selalu berujung pada apresiasi; terutama saat runtime. Yang senang senam otak saat development time mungkin suatu saat bisa mencoba Purescript. Selamat malam ✌🏻😃

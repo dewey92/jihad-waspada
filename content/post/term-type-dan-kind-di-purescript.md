@@ -52,7 +52,7 @@ Gak heran disebutnya `Type` 😛
 ### Type dan Data Constructor
 Misal ada sebuah data coordinate:
 
-```hs
+```purs
 data Coord = MkCoord Int Int
 
 > :t MkCoord
@@ -77,7 +77,7 @@ Term |     MkCoord              MkCoord 2     MkCoord 2 3
 
 Purescript secara default sudah support currying. Dan gak cuman buat data constructor, untuk type constructor pun juga bisa currying.
 
-```hs
+```purs
 data Maybe a = Just a | Nothing
 
 > :k Maybe
@@ -102,7 +102,7 @@ Term |       -         Nothing     Just 5  (Nothing :: Maybe Int)
 ### Symbol
 Symbol adalah kind dari type level string. Jadi string di Purescript itu bisa hidup di dua alam: term level dan type level.
 
-```hs
+```purs
 type Jihad = "jihad"
 type Waspada = "waspada"
 
@@ -126,7 +126,7 @@ Nah ini adalah salah satu contoh kasus dimana type tidak melulu harus "bertipe" 
 ### Custom Kind
 Untuk membuat custom kind di Purescript, kita musti menggunakan keyword `foreign import` walaupun sebenarnya tidak ada data yang di-import.
 
-```hs
+```purs
 foreign import kind Boolean
 foreign import data True :: Boolean
 foreign import data False :: Boolean
@@ -148,7 +148,7 @@ Term |       -           -
 
 Bisa dilihat bahwa pada contoh Symbol dan Custom Kind ini, **tidak ada term yang bisa merepresentasikan type-type tersebut**. Artinya penggunaannya memang hanya diperuntukkan untuk type-level programming saja. Tak kasih contoh kecil:
 
-```hs
+```purs
 import Prelude
 import Data.Symbol (class IsSymbol, SProxy(..), reflectSymbol)
 
@@ -171,14 +171,14 @@ enterRoom sym = "Selamat datang " <> (reflectSymbol sym)
 
 Perhatikan type signature fungsi `enterRoom`. Fungsi ini memiliki constraint `IsGanteng a Iya` yang artinya hanya orang-orang ganteng aja yang bisa mengakses fungsi `enterRoom`.
 
-```hs
+```purs
 bolehMasuk  = enterRoom (SProxy :: _ "jihad")
 bolehMasuk2 = enterRoom (SProxy :: _ "squidward")
 ```
 
 Kalo ada yang coba-coba masuk selain `"jihad"` dan `"squidward"`, compiler bakal kasih error dan menolak untuk compile.
 
-```hs
+```purs
 takBoleh = enterRoom (SProxy :: _ "kamu")
            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 -- |  No type class instance was found for

@@ -18,7 +18,7 @@ Artikel ini kurang lebih membahas konsep yang sama namun ditelaah menggunakan ty
 ## Masalah dengan String dan Angka
 Anggap ada requirement project yang melibatkan konsep mata uang. Katakanlah Rupiah dan Euro. Dan ada function `addMoney` yang melakukan penjumlahan dua buah nominal uang.
 
-```hs
+```purs
 addMoney :: Number -> Number -> Number
 addMoney a b = a + b
 ```
@@ -27,7 +27,7 @@ Pemodelan fungsi seperti ini terlalu loose dan berbahaya karena tidak mampu menc
 
 Salah satu cara mungkin bisa dengan menamakan kedua buah variable dengan penamaan yang jelas.
 
-```hs
+```purs
 oneRupiah = 1.0
 oneEuro = 1.0
 ```
@@ -49,20 +49,20 @@ fnName() === 'jihad'
 
 👻👻👻
 
-_Being powerful is great!_ Tapi perlu dicatat bahwa power yang sesungguhnya itu bukan yang digunakan tanpa batas, the real power comes when you can control it 😎 Iyadah serah lu!
+_Being powerful is great!_ Tapi perlu dicatat bahwa power yang sesungguhnya itu bukan yang digunakan tanpa batas, the real power comes when you can control it 😎
 
 {{< figure src="https://media.giphy.com/media/42wMv7pMjAnH4uBn8G/giphy-downsized.gif" alt="yeah right" caption=" " class="fig-center img-60" >}}
 
-> Bukanlah orang kuat yang sebenarnya dengan (selalu mengalahkan lawannya dalam) perkelahian, tetapi tidak lain orang **kuat** yang sebenarnya adalah yang mampu **mengendalikan** dirinya ketika marah. - Muhammad SAW
+> Bukanlah orang kuat yang sebenarnya dengan (selalu mengalahkan lawannya dalam) perkelahian, tetapi tidak lain orang **kuat** yang sebenarnya adalah yang mampu **mengendalikan** dirinya ketika marah.<br /><br />— Muhammad SAW
 
 Udah dong ceramahnya pak haji, balik ke programming.
 
-Sama kayak programming, menurut saya sesuatu bisa dikatakan **powerful** ketika dapat membatasi programmer dari kemungkinan melakukan hal-hal gila haha. Dalam hal ini, batasan tersebut adalah type system.
+Sama kayak programming, menurut saya sesuatu bisa dikatakan **powerful** ketika dapat membatasi programmer dari kemungkinan melakukan hal-hal gila. Dalam hal ini, batasan tersebut adalah type system.
 
 ## Newtype
 Di Purescript, `newtype` bersifat opaque yang berarti walaupun secara struktur dan runtime representation-nya persis sama, mereka dianggap berbeda saat compile time.
 
-```hs {hl_lines=[4,5,10,11]}
+```purs {hl_lines=[4,5,10,11]}
 -- fileA.purs
 module FileA where
 
@@ -95,7 +95,7 @@ result = serebu != seceng -- error ❌
 
 Newtype sangat berguna untuk membuat distinction dari satu tipe data yang sama. Seperti ketika ingin membedakan konsep `name`, `address`, `url` yang biasanya diekspresikan dengan string biasa.
 
-```hs
+```purs
 newtype Name = Name String
 newtype Address = Address String
 newtype URL = URL String
@@ -111,14 +111,14 @@ invalid' = yell (URL "https://url.com") -- error ❌
 
 Kembali ke masalah utama. Dengan teknik ini, kita bisa dengan mudah memebedakan mata uang Rupiah dengan Euro!
 
-```hs
+```purs
 newtype Rupiah = Rupiah Number
 newtype Euro = Euro Number
 ```
 
 Cuman masalahnya, bagaimana type signature dari fungsi `addMoney`???
 
-```hs
+```purs
 addMoney :: Rupiah -> Rupiah -> Rupiah
 addMoeny :: Rupiah -> Euro -> Rupiah
 ...
@@ -130,7 +130,7 @@ Nope. Bukan ini yang kita mau. Kita ingin type signature fungsi `addMoney` polym
 ## Kind Signature
 Untuk membuat fungsi `addMoney` bekerja dengan `Rupiah` dan `Euro`, mereka harus dikelompokkan ke dalam sesuatu yang sama. Mari kita sebut `Currency`.
 
-```hs
+```purs
 newtype Currency a = Amount Number
 
 addMoney :: ∀ a. Currency a -> Currency a -> Currency a
@@ -141,7 +141,7 @@ Kita bisa lihat bahwa type variable `a` tidak muncul di sebalah kanan persamaan,
 
 Type variable `a` berguna sebagai tag, sebagai pembeda antara satu mata uang dengan mata uang lainnya.
 
-```hs
+```purs
 tenEuro :: Currency "euro"
 tenEuro = Amount 10.0
 
@@ -153,13 +153,13 @@ tenRupiah = Amount 10.0
 
 Sekarang type variable `a` sudah diisi oleh type level string (Symbol): "euro" dan "rupiah". Kita perlu modifikasi definisi Currency sedikit karena, seperti yang kita tahu, type variable di Purescript by default memiliki kind `Type` sedangkan type level string punya kind `Symbol`.
 
-```hs
+```purs
 newtype Currency (a :: Symbol) = Amount Number
 ```
 
 Lalu batasi export data constructor Currency dan buat factory function sesuai kebutuhan project.
 
-```hs
+```purs
 module Project.Currency
   ( Currency -- data constructor tidak di-export
   , rupiah   -- factory function untuk Rupiah
@@ -185,7 +185,7 @@ tenRupiah = (rupiah 5.0) `addMoney` (rupiah 5.0)
 
 Dengan pattern seperti ini, data invalid yang dihasilkan dari penjumlahan nominal dua buah mata uang yang berbeda pun dapat dicegah:
 
-```hs
+```purs
 notValid = tenEuro `addMoney` tenRupiah
                               ^^^^^^^^^
 -- |  Could not match type
@@ -200,14 +200,14 @@ notValid = tenEuro `addMoney` tenRupiah
 ## Custom Kind
 Pemodelan di atas masih belum bisa terlepas dari masalah string. Sekalipun ada di type level, pemodelan dengan string tetap rawan akan typo dan compiler tidak bisa menangkap kesalahan ini.
 
-```hs
+```purs
 euroToRupiah :: Currency "euro" -> Currency "rupiahh_typo"
 euroToRupiah (Amount eur) = Amount (eur * 15703.0)
 ```
 
 Kita harus **mempersempit scope** karena lagi, string can contain anything: dengan cara membuat kind kita sendiri.
 
-```hs
+```purs
 -- Buat custom kind
 foreign import kind CurrencyK
 foreign import data Rupiah :: CurrencyK

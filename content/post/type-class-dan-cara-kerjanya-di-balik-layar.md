@@ -49,7 +49,7 @@ const res2 = lengthPlusTen(new MyString('waspada')) // 17
 
 Fungsi `lengthPlusTen` jelas dapat mengakses method `len()` karena variable `size` merupakan **instance dari `Size`** yang memiliki method `len()`. Sekarang bandingkan dengan "interface" yang ada di Purescript.
 
-```hs
+```purs
 class Size s where
   len :: s -> Int
   whoAreYou :: s -> String
@@ -80,7 +80,7 @@ Saya pun double-check di Slack Channel <mark>#purescript</mark> apakah proses te
 
 Jadi gini bapak-bapak ibu-ibu, setiap class yang kita buat, compiler juga membuat representasinya sendiri dengan sesuatu yang disebut "dictionary". Misal untuk contoh kasus `class Size n` tadi, compiler akan melakukan proses _desugaring_ untuk class tersebut dan membuat dictionary-nya dengan record.
 
-```hs
+```purs
 type SizeDict s = {
   len :: s -> Int,
   whoAreYou :: s -> String
@@ -89,7 +89,7 @@ type SizeDict s = {
 
 Juga untuk tiap-tiap "instance"-nya. Saya ambil yang integer saja dulu.
 
-```hs
+```purs
 sizeIntDict :: SizeDict Int
 sizeIntDict = {
   len: \n -> n,
@@ -99,7 +99,7 @@ sizeIntDict = {
 
 Pun function `len` yang semula memiliki type signature `∀ s. Size s => s -> Int` juga mengalami proses _desugaring_ ini.
 
-```hs
+```purs
 -- semula
 len     :: ∀ s. Size     s => s -> Int
 
@@ -112,7 +112,7 @@ Eaa sekarang malah mirip kayak contoh Typescript tadi!
 
 Dengan proses _desugaring_ seperti ini, ketika saya menyuplai fungsi `len` dengan angka `5`, maka sebenarnya code saya akan "diubah" menjadi:
 
-```hs
+```purs
 -- semula
 res1 = len 5
 -- menjadi
@@ -121,13 +121,13 @@ res1 = lenDict ? 5
 
 Somehow kita membutuhkan `sizeIntDict` untuk mengisi placeholder `?`. Dan kita hanya bisa mengandalkan compiler untuk melakukan type inference pada fungsi `lenDict` yang mana (dalam konteks ini) pasti memiliki type signature:
 
-```hs
+```purs
 lenDict :: SizeDict Int -> Int -> Int
 ```
 
 Setelah [monotype](https://en.wikipedia.org/wiki/Hindley%E2%80%93Milner_type_system#Monotypes) diketahui (`Int`), compiler gak menemukan kandidat yang type signature-nya cocok dengan `SizeDict Int` selain variable `sizeIntDict`. Akhirnya compiler pun menyuplai dictionary ini ke fungsi `lenDict`:
 
-```hs
+```purs
 res1 = lenDict sizeIntDict 5
 ```
 
@@ -180,7 +180,7 @@ var res1 = lengthPlusTen(sizeInt)(5);
 
 Dari output ini terlihat jelas bahwa fungsi `len`, `whoAreYou`, dan fungsi lain yang depend on them seperti `lengthPlusTen` membutuhkan "dictionary" saat runtime. Dictionary tersebut di-resolve oleh compiler saat compile time bergantung pada konteksnya. Artinya kalo kita kasih string ke dalam fungsi `len`, dictionary yang di-resolve oleh compiler pun pasti akan berbeda.
 
-```hs
+```purs
 res2 = len "waspada"
 ```
 
