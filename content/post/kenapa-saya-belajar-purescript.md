@@ -136,7 +136,9 @@ Compiler akan melakukan tugasnya untuk mencari function yang cocok menggantikan 
 
 {{< figure src="/uploads/type_hole_answer.png" alt="type-hole answer" caption="Compatible functions" class="fig-center" >}}
 
-> 💡Fun fact: fitur "values suggestion" ini dinamai Type-Directed Search, yang merupakan hasil dari tugas akhir (skripsi) Mas Christoph Hegemann berjudul **Implementing Type-Directed Search for Purescript** yang disimpulkan lewat [PR ini](https://github.com/purescript/purescript/pull/2352/files).
+{{% message info %}}
+  Fun fact: fitur "values suggestion" ini dinamai Type-Directed Search, yang merupakan hasil dari tugas akhir (skripsi) Mas Christoph Hegemann berjudul **Implementing Type-Directed Search for Purescript** yang disimpulkan lewat [PR ini](https://github.com/purescript/purescript/pull/2352/files).
+{{% /message %}}
 
 Terima kasih compiler 🤗🤗🤗
 

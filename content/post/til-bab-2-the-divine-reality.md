@@ -11,7 +11,9 @@ categories: ["til", "islam"]
 draft: false
 ---
 
-> Catatan pribadi dan ringkasan Bab 2 dari buku The Divine Reality oleh Hamza Andreas Tzortzis.
+{{% message info %}}
+  Catatan pribadi dan ringkasan Bab 2 dari buku <cite>[The Divine Reality](https://www.noor-book.com/en/ebook-The-Divine-Reality-God-Islam-and-The-Mirage-of-Atheism-by-Hamza-Andreas-Tzortzis-pdf)</cite> oleh Hamza Andreas Tzortzis.
+{{% /message %}}
 
 Hidup di bawah ateisme itu lucu. Penjelasan di bawah nanti mungkin **gak bisa dijadikan bukti rasional untuk menunjukkan keberadaan Tuhan** namun tetap menjadi landasan argumen-argumen yang ada di buku ini. Seperti yang sudah dibahas di [Bab 1]({{<ref "./til-bab-1-the-divine-reality.md">}}), kebanyakan ateis itu mengikuti paham naturalisme dimana segala sesuatu bisa dijelaskan dengan proses fisik (gak ada yang namanya supranatural). Ateisme + Naturalisme = Ambyar. Tidak ada Tuhan = tidak ada konsep pertanggungjawaban = tidak ada nilai, tujuan, dan harapan di dunia ini. Mari kita bahas.
 
@@ -22,9 +24,7 @@ Harapan dapat diartikan sebagai suatu perasaan atau ekspektasi akan terjadinya s
 Bandingkan dengan pandangan ateisme. Karena mereka tidak percaya dengan adanya "dunia di luar dunia kita" (konsep hari akhir), maka harapan untuk mendapatkan kesenangan itu hanya sia belaka. Bayangin aja kalo kamu dari lahir sudah hidup sengsara, menurut paham ateisme hidupmu ini sama seperti kalimat "mati aja lo", _no hope at all_. Sedangkan dalam Islam, kesengsaraan dan ketidaknyamanan yang kita rasakan di dunia ini gak akan sia-sia. Allah tahu dan akan mengganjarnya (Bab 11).
 
 {{% verse %}}
-
-  "... Sesungguhnya yang berputus asa dari rahmat Allah, hanyalah orang-orang yang kafir." - QS 12:87
-
+  "... Sesungguhnya yang berputus asa dari rahmat Allah, hanyalah orang-orang yang kafir." — QS 12:87
 {{% /verse %}}
 
 Karena mereka tidak percaya dengan konsep hari akhir, otomatis mereka juga tidak percaya dengan konsep pertanggungjawaban amal. Bayangkan seorang ibu Yahudi yang hidup pada tahun 1940-an (ketika Nazi berkuasa) yang menyaksikan suami dan anak-anaknya dieksekusi di depan matanya. Dan ia sedang menunggu gilirannya dieksekusi. Walaupun mereka pada akhirnya dikalahkan, tapi _keadilan_ ini tidak ia dapatkan semasa hidupnya. Di bawah paham ateisme, ibu ini bukan apa-apa, hanya sekumpulan molekul dan atom tak bernyawa yang kebetulan disebut manusia. _She didn't deserve anything, let alone justice_.
@@ -42,7 +42,7 @@ Sementara dalam Islam, semua hal yang kita lakukan ada balasannya dan akan dimin
 
   </div>
 
-  "Pada hari itu manusia keluar dari kuburnya dalam keadaan berkelompok-kelompok, untuk diperlihatkan kepada mereka (balasan) semua amal perbuatannya • Maka barangsiapa mengerjakan kebaikan seberat zarah, niscaya dia akan melihat (balasan)nya • Dan barangsiapa mengerjakan kejahatan seberat zarah, niscaya dia akan melihat (balasan)nya." - QS 99:4-6
+  "Pada hari itu manusia keluar dari kuburnya dalam keadaan berkelompok-kelompok, untuk diperlihatkan kepada mereka (balasan) semua amal perbuatannya • Maka barangsiapa mengerjakan kebaikan seberat zarah, niscaya dia akan melihat (balasan)nya • Dan barangsiapa mengerjakan kejahatan seberat zarah, niscaya dia akan melihat (balasan)nya." — QS 99:4-6
 
 {{% /verse %}}
 
@@ -67,7 +67,7 @@ Dalam pandangan Islam, manusia dilahirkan dengan "bawaan" yang sama, yang nantin
 
   </div>
 
-  "Dan sungguh, Kami telah memuliakan anak cucu Adam, dan Kami angkut mereka di darat dan di laut, dan Kami beri mereka rezeki dari yang baik-baik dan Kami lebihkan mereka di atas banyak makhluk yang Kami ciptakan dengan kelebihan yang sempurna." - QS 17:70
+  "Dan sungguh, Kami telah memuliakan anak cucu Adam, dan Kami angkut mereka di darat dan di laut, dan Kami beri mereka rezeki dari yang baik-baik dan Kami lebihkan mereka di atas banyak makhluk yang Kami ciptakan dengan kelebihan yang sempurna." — QS 17:70
 
   <br />
 
@@ -77,7 +77,7 @@ Dalam pandangan Islam, manusia dilahirkan dengan "bawaan" yang sama, yang nantin
 
   </div>
 
-  "... Ya Tuhan kami, tidaklah Engkau menciptakan semua ini sia-sia; Mahasuci Engkau, lindungilah kami dari azab neraka." QS 3:191
+  "... Ya Tuhan kami, tidaklah Engkau menciptakan semua ini sia-sia; Mahasuci Engkau, lindungilah kami dari azab neraka." — QS 3:191
 
 {{% /verse %}}
 
@@ -95,7 +95,7 @@ Misal nih, kamu dimasukkan ke dalam suatu ruangan sama semua hal yang kamu suka:
 
 _Apa maksud dan tujuan kita terlahir di dunia ini?_ Albert Camus, peraih Nobel Prize, berkata: "Kamu gak akan pernah hidup jika kamu terus mencari arti kehidupan". Ia pada dasarnya berprinsip untuk hidup dengan kehidupan yang sesuai dengan pribadi masing-masing, tak peduli apa ada kebenaran di luar sana. Tapi _on a serious note_, masuk akal gak sih kalo kita percaya kita ini punya tujuan?
 
-Untuk membantu menjawab pertanyaan tersebut, coba renungkan: kamu mungkin lagi baca artikel ini sambil duduk di kursi, atau lagi pakai baju. Pertanyaannya: buat apa? Kursi itu buat apa? Ngapain pakai baju? Jawabannya jelas: kursi ya buat duduk, biar nyaman. Pakaian juga sama, menjaga tubuh agar tetap hangat. See, bahkan hal-hal yang kita lihat setiap hari saja punya tujuan (nilai guna). Mereka ini benda mati, gak punya emosi, gak punya kemampuan apa-apa, namun kita tetap menganggap bahwa mereka ini ada gunanya. Lucunya sebagian dari kita masih bilang bahwa keberadaan kita di dunia tak memiliki tujuan sama sekali. _Counterintuitive_. 
+Untuk membantu menjawab pertanyaan tersebut, coba renungkan: kamu mungkin lagi baca artikel ini sambil duduk di kursi, atau lagi pakai baju. Pertanyaannya: buat apa? Kursi itu buat apa? Ngapain pakai baju? Jawabannya jelas: kursi ya buat duduk, biar nyaman. Pakaian juga sama, menjaga tubuh agar tetap hangat. See, bahkan hal-hal yang kita lihat setiap hari saja punya tujuan (nilai guna). Mereka ini benda mati, gak punya emosi, gak punya kemampuan apa-apa, namun kita tetap menganggap bahwa mereka ini ada gunanya. Lucunya sebagian dari kita masih bilang bahwa keberadaan kita di dunia tak memiliki tujuan sama sekali. _Counterintuitive_.
 
 Banyak juga yang bilang bahwa ketiadaan _ultimate purpose_ ini justru lebih memberikan kebebasan untuk menentukan tujuan kita sendiri. Ini cacat logika karena mereka pada dasarnya tetap "butuh" tujuan hidup namun di saat yang bersamaan menyangkal keberadaan manusia di dunia ini tanpa tujuan. Sama aja kayak bilang, "_Let's pretend to have purpose_". Juga tak ada bedanya dengan anak-anak yang sedang bermain dokter-dokteran, ibu-ibuan, atau ayah-ayahan. Bagaimanapun, kita harus sadar dan dewasa bahwa hidup ini bukan sekedar main-main.
 
@@ -143,7 +143,7 @@ Dengan alasan-alasan ini, gak heran di dalam al-Qur'an disebutkan:
 
   </div>
 
-  "(yaitu) orang-orang yang beriman dan hati mereka menjadi tenteram dengan mengingat Allah. Ingatlah, hanya dengan mengingat Allah hati menjadi tenteram." - QS 13:28
+  "(yaitu) orang-orang yang beriman dan hati mereka menjadi tenteram dengan mengingat Allah. Ingatlah, hanya dengan mengingat Allah hati menjadi tenteram." — QS 13:28
 
 {{% /verse %}}
 

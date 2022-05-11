@@ -98,12 +98,12 @@ Beberapa _assignment_ yang pernah saya buat di tahap ini:
 - **Game "tap the beat"**: [🔗 Github link](https://github.com/dewey92/tap-the-beat)
 
 Oh ya, saya juga punya beberapa tips dalam mengerjakan _technical assignment_:
-1. Jangan terpaku dengan _requirement_ yang diberikan. _Improvise_! Buat mereka terkesan. Boleh kita "langgar" asal punya _reasoning_ kita sendiri.
-2. Jangan segan bertanya bila _requirement_ kurang jelas.
-3. Jangan lupa tulis test (unit, integration, etc)
-4. Pastikan README jelas dan mudah dibaca
-5. Lampirkan link demo online di README. Bisa menggunakan Netlify, Vercel, dkk.
-6. Dan yang paling penting, jangan habiskan lebih dari 8 jam. Mereka sadar kok code ini bukan code terbaik kita dan tidak mencerminkan kapasitas asli kita. Mereka tahu waktu luang yang kita miliki juga berharga.
+- Jangan terpaku dengan _requirement_ yang diberikan. _Improvise_! Buat mereka terkesan. Boleh kita "langgar" asal punya _reasoning_ kita sendiri.
+- Jangan segan bertanya bila _requirement_ kurang jelas.
+- Jangan lupa tulis test (unit, integration, etc)
+- Pastikan README jelas dan mudah dibaca
+- Lampirkan link demo online di README. Bisa menggunakan Netlify, Vercel, dkk.
+- Dan yang paling penting, jangan habiskan lebih dari 8 jam. Mereka sadar kok code ini bukan code terbaik kita dan tidak mencerminkan kapasitas asli kita. Mereka tahu waktu luang yang kita miliki juga berharga.
 
 ## Technical Interview
 
@@ -290,7 +290,7 @@ Semoga bermanfaat.
     background: none;
   }
 
-  .box .highlight-label {
+  .box .highlight__label {
     display: none;
   }
 </style>

@@ -11,7 +11,9 @@ categories: ["til", "islam"]
 draft: false
 ---
 
-> Catatan pribadi dan ringkasan Bab 4 dari buku The Divine Reality oleh Hamza Andreas Tzortzis.
+{{% message info %}}
+  Catatan pribadi dan ringkasan Bab 4 dari buku <cite>[The Divine Reality](https://www.noor-book.com/en/ebook-The-Divine-Reality-God-Islam-and-The-Mirage-of-Atheism-by-Hamza-Andreas-Tzortzis-pdf)</cite> oleh Hamza Andreas Tzortzis.
+{{% /message %}}
 
 Suatu hari kamu dapat panggilan telfon dari sahabat lamamu. Dia minta ketemuan makan siang, ada urusan penting katanya. Tapi bukan untuk prospek MLM. Yasudah, karena ia sahabat lamamu kamu setuju untuk makan siang bersama. Pas ketemu, topik yang dia bicarakan malah membuat dahimu mengernyit: "Lo tau gak, masa lalu itu gak nyata. Yang lo lakaukan tadi, kemarin, seminggu yang lalu, dll itu gak nyata, cuma ilusi!". Sebagai orang yang rasional, kamu pasti gak setuju. Dan, alih-alih kamu yang membuktikan masa lalu itu benar adanya, di sini kamu yang bertanya balik, "lo punya bukti gak yang mendukung pernyataan lo barusan?"
 
@@ -42,7 +44,11 @@ Nah sekarang kita coba terapkan karekteristik di atas ke 'masa lalu'. Apakah mas
 
 ### Tuhan sebagai _self-evident truth_
 
-⚠️ Disclaimer: tulisan di bab ini tidak bertujuan untuk membuktikan keberadaan Tuhan, melainkan untuk membuktikan bahwa kepercayaan kepada Tuhan itu _the default position_, bukan ateisme.
+{{% message warning %}}
+  Disclaimer: tulisan di bab ini tidak bertujuan untuk membuktikan keberadaan Tuhan, melainkan untuk membuktikan bahwa kepercayaan kepada Tuhan itu _the default position_, bukan ateisme.
+{{% /message %}}
+
+<br />
 
 #### Universal
 

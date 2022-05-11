@@ -11,7 +11,9 @@ categories: ["til", "islam"]
 draft: false
 ---
 
-> Catatan pribadi dan ringaksan Bab 1 dari buku The Divine Reality oleh Hamza Andreas Tzortzis.
+{{% message info %}}
+  Catatan pribadi dan ringkasan Bab 1 dari buku <cite>[The Divine Reality](https://www.noor-book.com/en/ebook-The-Divine-Reality-God-Islam-and-The-Mirage-of-Atheism-by-Hamza-Andreas-Tzortzis-pdf)</cite> oleh Hamza Andreas Tzortzis.
+{{% /message %}}
 
 ## Ateisme
 

@@ -11,7 +11,9 @@ categories: ["til", "islam"]
 draft: false
 ---
 
-> Catatan pribadi dan ringkasan Bab 3 dari buku The Divine Reality oleh Hamza Andreas Tzortzis.
+{{% message info %}}
+  Catatan pribadi dan ringkasan Bab 3 dari buku <cite>[The Divine Reality](https://www.noor-book.com/en/ebook-The-Divine-Reality-God-Islam-and-The-Mirage-of-Atheism-by-Hamza-Andreas-Tzortzis-pdf)</cite> oleh Hamza Andreas Tzortzis.
+{{% /message %}}
 
 Anggap saja kamu seorang supir taxi yang baru dapat order di bandara. Kamu bertukar salam dengan si penumpang, berbasa-basi, lalu mengantarnya sampai ke tujuannya di pelosok desa.
 
@@ -37,7 +39,7 @@ Dalam konteks tulisan ini, nalar adalah sesuatu yang memungkinkan kita untuk men
   2. Shaun adalah seekor domba.
   3. Maka, Shaun punya cicionggong.
 
-Kita tahu bahwa [3] pasti mengikuti premis [1] dan [2], meskipun kita belum tahu apa itu cicionggong. Namun tak ada yang bisa menjelaskan di dunia ini (secara fisikal maupun secara empiris) kenapa [3] berkaitan dengan [1] dan [2], kenapa kita bisa "melihat" benang merah antara kesimpulan dengan premis-premis sebelumnya. Namun tetap, otak kita punya kemampuan untuk bernalar dan dapat mengarahkan kita untuk sampai ke kesimpulan [3].
+  Kita tahu bahwa <span style="color: var(--color-blue)">[3]</span> pasti mengikuti premis <span style="color: var(--color-blue)">[1]</span> dan <span style="color: var(--color-blue)">[2]</span>, meskipun kita belum tahu apa itu cicionggong. Namun tak ada yang bisa menjelaskan di dunia ini (secara fisikal maupun secara empiris) kenapa <span style="color: var(--color-blue)">[3]</span> berkaitan dengan <span style="color: var(--color-blue)">[1]</span> dan <span style="color: var(--color-blue)">[2]</span>, kenapa kita bisa "melihat" benang merah antara kesimpulan dengan premis-premis sebelumnya. Namun tetap, otak kita punya kemampuan untuk bernalar dan dapat mengarahkan kita untuk sampai ke kesimpulan <span style="color: var(--color-blue)">[3]</span>.
 
 Sayangnya, "mengarahkan" ke suatu tujuan itu bukan atribut dari proses-proses fisik: karena mereka buta, non-rasional, tak berakal, tak bertujuan, dan tak memiliki kemauan maupun kapasitas untuk mengarahkan premis-premis tersebut ke suatu kesimpulan, yang merupakan ciri dari rasionalitas. Kita tak bisa mendapatkan _insight_ dari sesuatu yang buta. Oleh karenanya, _rationality cannot come from non-rational physical processes_.
 
@@ -49,24 +51,22 @@ Manusia itu spesial: kita mampu membedakan mana yang benar mana yang salah, mana
 
 Tapi bukan berarti sains tak memiliki penjelasan sama sekali terkait (mekanisme) kemampuan kita bernalar. Poinnya adalah sains hanya bisa berurusan dengan hal-hal yang bisa diobservasi; sedangkan _logical relations_ antar premis itu mustahil untuk diobservasi. Menganggap sains dapat memberikan penjelasan yang utuh terhadap kemampuan kita bernalar sama saja seperti _arguing in a circle_, karena si saintis sendiri harus mengandalkan nalarnya untuk menjelaskan nalar itu sendiri. Ia harus yakin—bukan hanya yakin, malah harus bisa membuktikan—bahwa nalarnya bekerja dengan baik untuk bisa memberikan penjelasan tentang nalar yang saintifik. Sains juga punya batasan (dibahas di Bab 12).
 
-> Naturalism actually denies reason, because rationality cannot come from non-rational physical processes. Mental insights cannot come from blind physical processes.
+{{% message success %}}
+  _Naturalism actually denies reason, because rationality cannot come from non-rational physical processes. Mental insights cannot come from blind physical processes._
+{{% /message %}}
 
 ## Nalar Muncul Dari Evolusi (Darwinian)?
 
 Menurut para naturalis, akal dan nalar kita telah berevolusi untuk jadi rasional, agar kita lebih tahu lingkungan di sekitar kita yang pada akhirnya memberikan kesempatan bertahan hidup lebih baik. Kedengarannya masuk akal! Tapi ternyata, Darwin sendiri meragukan ide ini di sebuah surat yang ia tulis pada tahun 1881: "_But then with me the horrid doubt always arises whether the convictions of man's mind, which has been developed from the mind of the lower animals, are of any value or at all trustworthy. Would anyone trust in the convictions of a monkey's mind, if there are any convictions in such a mind?_"
 
 Namun mari tetap bahas mengapa argumen evolusi dapat melahirkan nalar adalah sesuatu yang absurd:
-1. Pertama, kemampuan kita membedakan kebenaran dengan kebohongan itu bukanlah syarat dalam bertahan hidup.
-1. Kedua, kemampuan bernalar (_having mental insights_) juga bukan merupakan syarat dalam meneruskan keturunan. Evolusi itu untuk bertahan hidup, bukan untuk berlogika ria.
-1. Terakhir, rasa penasaran dan kemampuan kita dalam melakukan suatu penemuan—salah satu ciri akal yang rasional—sering kali bertentangan dengan kelangsungan hidup kita sendiri.
+1. Kemampuan kita membedakan kebenaran dengan kebohongan itu bukanlah syarat dalam bertahan hidup.
+1. Kemampuan bernalar (_having mental insights_) juga bukan merupakan syarat dalam meneruskan keturunan. Evolusi itu untuk bertahan hidup, bukan untuk berlogika ria.
+1. Rasa penasaran dan kemampuan kita dalam melakukan suatu penemuan—salah satu ciri akal yang rasional—sering kali bertentangan dengan kelangsungan hidup kita sendiri.
 
 Apa benar sesuatu tetap bisa bertahan hidup walau dengan keyakinan yang salah (_false belief_) dan tidak rasional? Seorang profesor filsafat, Anthony O'Hear memberikan sebuah contoh yang membuktikan bahwa evolusi dapat melahirkan keyakinan yang salah namun justru malah membuatnya bertahan hidup: Seekor burung bisa saja menghindari tipe-tipe ulat yang beracun berdasarkan warnanya; namun ia juga akan menghindari ulat yang tak beracun dengan warna yang mirip-mirip. Ini kan _false belief_, karena tidak semua ulat dengan warna tersebut beracun. Tapi tentu saja kelangsungan hidup burung tersebut meningkat karena ia menghindari memakan tipe-tipe ulat tersebut, yang beracun maupun yang tidak. Begitupun dengan ulat-ulat yang tak beracun ini, mereka jadi bisa bertahan hidup lebih lama dan menjadi hasil sampingan (_by-product_) dari proses evolusi ini dengan mimikri atau dengan meniru warna ulat yang beracun.
 
-<div style="margin-left: 20px">
-
-"_... we have here an evolutionary explanation of falsehood, reinforcing the general point that there is no direct way of moving from evolutionary workings to truth._"
-
-</div>
+> ... we have here an evolutionary explanation of falsehood, reinforcing the general point that there is no direct way of moving from evolutionary workings to truth.
 
 Dari sini muncul pertanyaan: _Haruskah kita percaya dengan akal pikiran kita?_ Karena tak ada korelasi antara kebenaran dengan kelangsungan hidup—dan dengan _false belief_-pun kita bisa bertahan hidup—maka bagaimana kita bisa percaya dengan kemampuan nalar kita sendiri jika ia bisa saja muncul dari proses evolusi yang didorong oleh _false belief_?
 
@@ -90,11 +90,7 @@ Terlepas dari argumen di atas, banyak naturalis yang tetap meyakini bahwa di baw
 
 Namun kita tahu dari contoh burung sebelumnya yang menghindari tipe ulat dengan warna tertentu, memiliki kemampuan non-kognitif tidak menurunkan kesempatan bertahan hidupnya begitu saja. Seorang akademis James Sage berargumen,
 
-<div style="margin-left: 20px">
-
-"_For example, an organism may hide because it believes falsely that a predator is nearby. Evolutionarily, it pays to have cautious belief-forming processes that "over detect" dangerous predators, especially when false beliefs carry little cost._"
-
-</div>
+> For example, an organism may hide because it believes falsely that a predator is nearby. Evolutionarily, it pays to have cautious belief-forming processes that "over detect" dangerous predators, especially when false beliefs carry little cost.
 
 Sementara itu, untuk melahirkan kemampuan kognitif yang dapat diandalkan untuk melahirkan _true belief_, dibutuhkan biaya biologis yang cukup mahal karena:
 
@@ -145,11 +141,11 @@ Jika pada awal terbentuknya alam semesta ini hanya ada proses dan materi fisik y
 
 {{% verse %}}
 
-"Kami akan memperlihatkan kepada mereka tanda-tanda (kebesaran) Kami di segenap penjuru dan pada diri mereka sendiri, sehingga jelaslah bagi mereka bahwa Al-Quran itu adalah benar. Tidak cukupkah (bagi kamu) bahwa Tuhanmu menjadi saksi atas segala sesuatu?" - QS 41:53
+"Kami akan memperlihatkan kepada mereka tanda-tanda (kebesaran) Kami di segenap penjuru dan pada diri mereka sendiri, sehingga jelaslah bagi mereka bahwa Al-Quran itu adalah benar. Tidak cukupkah (bagi kamu) bahwa Tuhanmu menjadi saksi atas segala sesuatu?" — QS 41:53
 
-"Tidakkah kamu memikirkannya (menggunakan akal dan nalarmu)?" - QS 11:51
+"Tidakkah kamu memikirkannya (menggunakan akal dan nalarmu)?" — QS 11:51
 
-"Sesungguhnya dalam penciptaan langit dan bumi, dan pergantian malam dan siang terdapat tanda-tanda (kebesaran Allah) bagi orang yang berakal" - QS 3:190
+"Sesungguhnya dalam penciptaan langit dan bumi, dan pergantian malam dan siang terdapat tanda-tanda (kebesaran Allah) bagi orang yang berakal" — QS 3:190
 
 {{% /verse %}}
 

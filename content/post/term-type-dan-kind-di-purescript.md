@@ -183,7 +183,7 @@ takBoleh = enterRoom (SProxy :: _ "kamu")
            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 -- |  No type class instance was found for
 -- |
--- |    IsGanteng "kamu" True
+-- |    IsGanteng "kamu" Iya
 
 ```
 

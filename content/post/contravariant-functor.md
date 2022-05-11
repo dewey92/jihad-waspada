@@ -207,8 +207,6 @@ derive instance functorReturning :: Functor Returning
 
 Tidak ada behaviour yang berubah, semua tetap sama 😃🎉
 
-<small>* Excuse me for this ugly stripes</small>
-
 </section>
 
 ---

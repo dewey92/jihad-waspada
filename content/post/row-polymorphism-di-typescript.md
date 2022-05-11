@@ -70,7 +70,10 @@ const flipX = <A extends { x: number }>(hasX: A): A => ({
 
 Dengan begini, `flipX` sekarang hanya memiliki satu attribute sebagai _constraint_, yaitu x yang bertipe number. Seolah-olah ia menyeru, "Barangsiapa memiliki row x bertipe number, niscaya aku akan dapat melakukan manipulasi data terhadapnya. Sesungguhnya, aku adalah row polymorphism".
 
-> Yang berarti: function `flipX` ini **polymorphic terhadap row `x` yang bertipe number**
+{{% message success %}}
+  Yang berarti: function `flipX` ini **polymorphic terhadap row `x` yang bertipe number**
+{{% /message %}}
+<br />
 
 ```js
 flipX({ x: 17, y: 8, z: 45 }) // { x: -17, y: 8, z: 45 } ✅

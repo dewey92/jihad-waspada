@@ -53,7 +53,9 @@ printImg({ title: 'B', img: 'someURL' } as BlogWithImage) // ✅
 
 So from these instances, we can draw a conclusion that `BlogWithImage` is indeed a subtype of `Blog` as we can use it as a `Blog` substitute.
 
-> `BlogWithImage` <: `Blog`
+{{% message success %}}
+  `BlogWithImage` extends `Blog`
+{{% /message %}}
 
 ## Contravariance
 
@@ -105,7 +107,9 @@ fetchBlogWithImage(printTitleImg) // ✅
 
 Passing `printTitle` typechecks and we won't encounter any runtime error since it only consumes `title` from the `BlogWithImage` object and just doesn't care about the rest. So in this case `(blog: BlogWithImage) => void` is substitutable with `(blog: Blog) => void`, thus we can say that `(blog: Blog) => void` IS a subtype of `(blog: BlogWithImage) => void`.
 
-> `(blog: Blog) => void` <: `(blog: BlogWithImage) => void`
+{{% message success %}}
+  `(blog: Blog) => void` extends `(blog: BlogWithImage) => void`
+{{% /message %}}
 
 **When it comes to function arguments, the more general type will always be the subtype of the more specific one**. This is the opposite (contra!) of what we usually encounter 🙂
 

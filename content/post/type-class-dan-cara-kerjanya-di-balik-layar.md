@@ -193,6 +193,3 @@ var res2 = len(sizeStr)("waspada");
 ---
 
 Sekian dari saya kurang lebihnya diambil aja 🙏🏻
-
-_Wa billahi ttaufiq walhidayah, wa rridho wal'inayah_, wa dzikri waspada.
-Wassalamu 'alaikum warahmatullahi wabarakatuh.

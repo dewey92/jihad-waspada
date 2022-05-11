@@ -250,7 +250,7 @@ Penerapan Functor sangat sangat banyak. Sudah dimana-mana. Artikel ini bakal jad
 
 ## Penutup
 
-Saya kira sampai di sini dulu penjelasan tentang Functor. Saya harap kita belajar banyak dari Functor soal bagaimana HOC dan generic berperan penting dalam code reusability.
+Saya kira sampai di sini dulu penjelasan tentang Functor. Saya harap kita belajar banyak dari Functor soal bagaimana <abbr title="Higher-Order Function">HOF</abbr> dan generic berperan penting dalam code reusability.
 
 Ngomong-ngomong saya sedang menulis artikel lain tentang pembahasan apakah semua struktur data dengan kind `Type -> Type` bisa otomatis menjadi Functor. Insight ini menarik karena dengan menganalisanya, kita bisa menemukan motivasi di balik Contravariant Functor, saudara tiri Functor. Insyallah rampung dalam waktu dekat.
 

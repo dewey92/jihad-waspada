@@ -105,7 +105,9 @@ state -> Tuple intermediateValue nextState
 
 ## Refactor
 
-> Potongan code State yang muncul mulai section ini diambil dari module `Control.Monad.State`.
+{{% message info %}}
+  Potongan code State yang muncul mulai section ini diambil dari module `Control.Monad.State`.
+{{% /message %}}
 
 Mari refactor function `withdraw` menggunakan State monad.
 

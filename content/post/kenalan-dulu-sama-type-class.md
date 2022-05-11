@@ -28,12 +28,12 @@ class Show a where -- [1]
 Tidak ada concrete code di sini, tugas type class hanya mendefinisikan struktur (type signature) dari method-method yang bisa digunakan oleh suatu tipe data. Seperti interface, hanya kontrak. Detil implementasi diserahkan ke implementornya, seperti tipe Email di bawah:
 
 ```purs
-newtype Email = Email String
+newtype Email = MkEmail String
 
 instance showEmail :: Show Email where -- [3]
-  show (Email e) = "Email: " <> e -- [4]
+  show (MkEmail e) = "Email: " <> e -- [4]
 
-λ> show (Email "dewey@email.com")
+λ> show (MkEmail "dewey@email.com")
 "Email: dewey@email.com"
 ```
 
@@ -43,12 +43,12 @@ instance showEmail :: Show Email where -- [3]
 Karena perannya yang mirip dengan interface, kita juga bisa membuat instance untuk tipe data lain. Sehingga function `show` tidak hanya applicable untuk type Email, tapi juga Password.
 
 ```purs
-newtype Password = Password String
+newtype Password = MkPassword String
 
 instance showPassword :: Show Password where
   show _ = "<secret>"
 
-λ> show (Password "SomePassword789_+*!@#")
+λ> show (MkPassword "SomePassword789_+*!@#")
 "<secret>"
 ```
 
@@ -113,7 +113,7 @@ Kita baru saja memberikan String dan Array kemampuan untuk bisa digabungkan deng
 
 ### INTERMEZZO
 
-> 📝 Di Typescript, kemampuan ini "bisa" dicapai dengan memanfaatkan fitur [augmentation](https://www.typescriptlang.org/docs/handbook/declaration-merging.html#global-augmentation) dan JS prototypes!
+📝 Di Typescript, kemampuan ini "bisa" dicapai dengan memanfaatkan fitur [augmentation](https://www.typescriptlang.org/docs/handbook/declaration-merging.html#global-augmentation) dan JS prototypes!
 
 ```ts
 // Buat interface dasarnya
@@ -296,7 +296,9 @@ guard { append, defaultVal } true x y = x `append` y
 guard { append, defaultVal } false _ _ = defaultVal
 ```
 
-> Proses bagaimana compiler melakukan desugaring dan memberikan semua method-nya secara implisit dapat dibaca di [Type Class Dan Cara Kerjanya Di Balik Layar]({{< ref "/post/type-class-dan-cara-kerjanya-di-balik-layar.md" >}}).
+{{% message info %}}
+  Proses bagaimana compiler melakukan desugaring dan memberikan semua method-nya secara implisit dapat dibaca di [Type Class Dan Cara Kerjanya Di Balik Layar]({{< ref "/post/type-class-dan-cara-kerjanya-di-balik-layar.md" >}}).
+{{% /message %}}
 
 Dengan kata lain, function `append` dan `defaultVal` bersifat eksklusif, tidak bisa sembarang dipanggil oleh function lain. **Caller harus memberikan constraint di type signature-nya**. Jika tidak, compiler akan complain.
 

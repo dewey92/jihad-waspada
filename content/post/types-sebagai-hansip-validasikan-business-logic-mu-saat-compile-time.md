@@ -120,7 +120,7 @@ Cuman masalahnya, bagaimana type signature dari fungsi `addMoney`???
 
 ```purs
 addMoney :: Rupiah -> Rupiah -> Rupiah
-addMoeny :: Rupiah -> Euro -> Rupiah
+addMoney :: Rupiah -> Euro -> Rupiah
 ...
 addMoney :: Euro -> Euro -> Euro
 ```
@@ -149,7 +149,9 @@ tenRupiah :: Currency "rupiah"
 tenRupiah = Amount 10.0
 ```
 
-> Saya sarankan pembaca yang belum familiar dengan kind untuk memahami konsep [kind di Purescript]({{< ref "/post/term-type-dan-kind-di-purescript" >}}).
+{{% message info %}}
+  Untuk artikel yang lebih lengkap mengenai kind di Purescript, bisa mampir ke [Term, Type, dan Kind di Purescript]({{< ref "/post/term-type-dan-kind-di-purescript" >}}).
+{{% /message %}}
 
 Sekarang type variable `a` sudah diisi oleh type level string (Symbol): "euro" dan "rupiah". Kita perlu modifikasi definisi Currency sedikit karena, seperti yang kita tahu, type variable di Purescript by default memiliki kind `Type` sedangkan type level string punya kind `Symbol`.
 

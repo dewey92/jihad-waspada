@@ -49,7 +49,9 @@ Saya jawab insyallah saya siap relokasi ke Belanda jika pihak perusahaan memutus
 
 Dan setelah tiga bulan, kontrak kami diperpanjang. Alhamdulillah.
 
-> Maka tidak berlebihan ketika saya bilang di awal artikel bahwa bisa dapat kesempatan bekerja di Belanda ini _solely_ karena Kuasa Allah
+{{% message info %}}
+  Maka tidak berlebihan ketika saya bilang di awal artikel bahwa bisa dapat kesempatan bekerja di Belanda ini _solely_ karena Kuasa Allah
+{{% /message %}}
 
 Bulan Januari 2018 saya terbang ke Belanda. Persiapannya pun hanya satu hari: Selasa ambil visa, beli jaket winter, Rabu langsung berangkat. Istri belum bisa ikut karena dokumen kami sebenarnya belum lengkap (seperti legalisir Buku Nikah, identitas, akte lahir, dll). Selama tiga bulan pertama saya di Belanda saya masih belum cukup percaya diri berkomunikasi dalam Bahasa Inggris. Sedangkan orang-orang Belanda sendiri sangatlah fasih. Bisa dilihat di [EF English Proficiency Index](https://en.wikipedia.org/wiki/EF_English_Proficiency_Index) dimana Belanda dan Swedia menempati peringkat pertama untuk negara non-native English (yang mengambil tes EF) dengan profisiensi Bahasa Inggris tertinggi di dunia. Jiper bro 😅
 
@@ -57,7 +59,9 @@ Bulan Januari 2018 saya terbang ke Belanda. Persiapannya pun hanya satu hari: Se
 
 Daaan setelah 3 bulan saya mulai melihat kenyataan bahwa mereka pun banyak melakukan kesalahan _here and there_ karena sejatinya mereka sendiri  bukan native speaker. Saya seringkali mendengar "belum siapnya berbahasa Inggris" menjadi salah satu faktor terbesar orang Indonesia ogah merantau ke luar negeri. Bahkan saya punya beberapa kolega yang Bahasa Inggris-nya sangat amburadul tapi tetep _stay cool_, yang penting dimengerti. Saya juga pernah ngobrol sama seorang developer asal Rusia yang Bahasa Inggrisnya masyaallah hancur sampai-sampai gak terhitung saya bilang "_sorry?_", tapi dia sukses bekerja di perusahaan sebesar [Booking.com](https://www.booking.com/). Jadi santai aja lagi, kita semua paham kok kita bukan native speaker 🙂
 
-> Bahasa Inggris masih kurang bagus gak masalah, asalkan kita betul-betul paham apa yang orang lain bicarakan, dan orang lain betul-betul paham apa yang kita bicarakan.
+{{% message success %}}
+  Bahasa Inggris masih kurang bagus gak masalah, asalkan kita betul-betul paham apa yang orang lain bicarakan, dan orang lain betul-betul paham apa yang kita bicarakan.
+{{% /message %}}
 
 ---
 

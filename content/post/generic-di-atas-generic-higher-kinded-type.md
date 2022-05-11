@@ -209,4 +209,5 @@ Akhirul kalam, semoga artikel ini dapat menambah wawasan temen-temen soal type. 
 {{< tweet "1147535086453178369" >}}
 
 <br />
+
 _Arriverdeci!_

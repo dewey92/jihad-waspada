@@ -13,8 +13,6 @@ draft: false
 
 ## Menyimpan Hasil Komputasi ke dalam Type Variable
 
-### Contoh
-
 ```ts
 // NOPE ❌
 type Something<T> =
@@ -34,11 +32,9 @@ type Something<T> = Some<Fancy<T>, Or<Long<T>>> extends infer U
 
 Kadangkala kita harus melakukan manipulasi type yang cukup kompleks dan panjang. Tapi gak asyik kalo type yang compleks tadi harus muncul di beberapa tempat: kita musti copy-paste. Gak DRY banget bro. Bakal jadi asyik kalo Typescript menyediakan cara untuk menyimpan hasil sebuah manupulasi ke dalam sebuah variable lalu tinggal kita panggil variable tersebut ketika dibutuhkan.
 
-Dan kita bisa melakukannya dengan formula `... extends infer TypeVar ? ... : never`. Keyword `infer` behaves seperti pattern matching sebuah type. Dalam hal ini, type yang di-pattern match adalah keseluruhan type, jadi yang masuk ke dalam type variable `U` ya type-nya itu sendiri.
+Dan kita bisa melakukannya dengan formula `... extends infer TypeVar ? ... : never`. Keyword `infer` behaves seperti pattern matching sebuah type. Dalam hal ini, type yang di-pattern match adalah keseluruhan type, jadi yang masuk ke dalam type variable `U` adalah type yang ada di sebelah kiri kata kunci _extends_.
 
 ## Looping Union Type
-
-### Contoh
 
 ```ts
 // NOPE ❌
@@ -67,8 +63,6 @@ type Result = Arrayify_NonDist<string | number>
 
 ## Hilangkan Type Alias dengan Mapped Type
 
-### Contoh
-
 ```ts
 type Human = { name: string, age: number, title: string }
 type Cat   = { name: string, age: number, meow: boolean }
@@ -76,15 +70,8 @@ type Cat   = { name: string, age: number, meow: boolean }
 type Result = XOR<Human | Cat>
 // => Maunya { title: string } | { meow: boolean }
 
-/**
- * Get all keys in a union type
- */
-type Keyof<T> = T extends unknown ? keyof T : never
-
-/**
- * Get overlapping properties in a union type
- */
-type XAND<T> = { [K in Extract<Keyof<T>, keyof T>]: T[K] }
+type Keyof<T> = ...
+type XAND<T> = ...
 
 /**
  * Get non-overlapping properties in a union type (the dual of XAND)
@@ -98,7 +85,7 @@ type XOR<T> = keyof XAND<T> extends infer K
 
 ### Penjelasan
 
-Kamu gak perlu pusing-pusing memahami `XAND` atau `XOR` di atas, karena bukan itu poin yang ingin saya tunjukkan. Poinnya ada di reporting ketika hover variable `Result`:
+`Keyof` dan `XAND` di atas saya singkat saja karena kurang relevan. `XOR` pun jangan diambil pusing. Poinnya ada di reporting ketika hover variable `Result`:
 
 ![Cryptic reporting](/uploads/cryptic-reporting.png)
 
