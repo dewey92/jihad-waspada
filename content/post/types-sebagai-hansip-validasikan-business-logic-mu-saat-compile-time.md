@@ -109,7 +109,7 @@ invalid  = yell (Address "Tangerang")   -- error ❌
 invalid' = yell (URL "https://url.com") -- error ❌
 ```
 
-Kembali ke masalah utama. Dengan teknik ini, kita bisa dengan mudah memebedakan mata uang Rupiah dengan Euro!
+Kembali ke masalah utama. Dengan teknik ini, kita bisa dengan mudah membedakan mata uang Rupiah dengan Euro!
 
 ```purs
 newtype Rupiah = Rupiah Number
