@@ -8,6 +8,8 @@ image:
   caption: ""
 tags: ["ateisme", "islam", "filosofi"]
 categories: ["til", "islam"]
+aliases:
+  - /post/til-bab-2-the-divine-reality
 draft: false
 ---
 
