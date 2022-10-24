@@ -83,9 +83,43 @@ Kalau dilihat baik-baik, fungsi `onPlayback` kini mengatur semua side effect dar
 
 Wah bakal terjadi banyak code coupling di dalam fungsi `onPlayback` nantinya karena ia tau terlalu banyak behavior dari elemen-elemen lain.
 
-Kalau situasinya seperti ini, mungkin akan lebih baik jika semua side effect ini yang justru bereaksi terhadap perubahan state `isPlaying`. Jadi kita balik tanggungjawabnya. Kita ingin ada mekanisme dimana semua yang tertarik dengan nilai `isPlaying` bisa meninggalkan "nomor" mereka dan nomor-nomor ini akan ditelepon ketika terjadi perubahan terhadap nilai `isPlaying`. Seolah state ini reaktif. Mekanisme inilah yang disebut Observer Pattern.
+Kalau situasinya seperti ini, mungkin akan lebih baik jika semua side effect ini yang justru bereaksi terhadap perubahan state `isPlaying`. Jadi kita balik tanggungjawabnya. Kita ingin ada mekanisme dimana semua yang tertarik dengan nilai `isPlaying` bisa meninggalkan "nomor" mereka dan nomor-nomor ini akan ditelepon ketika terjadi perubahan terhadap nilai `isPlaying`.
 
-Cara kerja Observer Pattern ini mirip seperti `addEventListener(event, callback)` dimana nomor (callback) yang kita tinggalkan akan ditelepon (dijalankan) saat suatu event terjadi. Mari kita ubah `playerUI`.
+Nomor-nomor ini berbentuk callback. Untuk menyembunyikan navbar saat player dimainkan, tinggal cantolin aja:
+
+```ts {hl_lines=[2]}
+// Navbar.jquery.js
+ui.subscribe((state) => {
+  if (state.isPlaying) {
+    $('#navbar').hide()
+  } else {
+    $('#navbar').show()
+  }
+})
+```
+
+Atau misal, aplikasi utama kita ditulis menggunakan React dan halaman akan diredupkan saat video sedang diputar dan iklan akan ditampilkan saat di-pause:
+
+```ts {hl_lines=[3,11]}
+// MainPage.react.tsx
+React.useEffect(function listenToPlayback() {
+  const playerSubs = ui.subscribe((state) => {
+    if (state.isPlaying) {
+      dimPage(0.7)
+    } else {
+      showAds()
+    }
+  })
+
+  return () => playerSubs.unsubscribe()
+}, [])
+```
+
+Dan pada saat component unmount kita bisa unsubscribe agar bersih dari efek samping yang tak diinginkan.
+
+Mekanisme subsciribe-unsubscribe inilah yang disebut Observer Pattern: `playerUI` sebagai _observee_, dan callback-callback ini sebagai _observer_-nya. Dipikir-pikir cara kerja Observer Pattern ini mirip seperti `addEventListener(event, callback)` dimana callback yang kita tinggalkan akan dijalankan saat suatu event terjadi.
+
+Lalu bagaimana implementasinya?
 
 ```ts {hl_lines=[6,"9-20",26],linenos=inline}
 function playerUI() {
@@ -120,60 +154,9 @@ function playerUI() {
 
 Singkatnya, semua pihak yang tertarik dengan perubahan state harus menyediakan callback lewat fungsi `subscribe`. Callback-callback ini lalu didaftarkan ke dalam variable `listeners`. Dan ketika `isPlaying` berubah semuanya akan dijalankan. Jika tak terarik lagi, mereka bisa menjalankan fungsi `unsubscribe`.
 
-Berikut contoh kode dari sisi consumer:
-
-```ts
-// ===========================================
-// playerUI.js
-// ===========================================
-const ui = playerUI()
-export default ui
-
-// ===========================================
-// Navbar.legacy.js
-// ===========================================
-ui.subscribe((state) => {
-  if (state.isPlaying) {
-    $('#navbar').hide()
-  } else {
-    $('#navbar').show()
-  }
-})
-
-// ===========================================
-// MainPage.react.tsx
-// ===========================================
-React.useEffect(function listenToPlayback() {
-  const playerSubs = ui.subscribe((state) => {
-    if (state.isPlaying) {
-      dimPage(0.7)
-    } else {
-      showAds()
-    }
-  })
-
-  return () => playerSubs.unsubscribe()
-}, [])
-
-// ===========================================
-// analytics.redux.ts
-// ===========================================
-const middleware = (store) => {
-  ui.subscribe((state) => {
-    if (state.isPlaying) {
-      store.dispatch({ ... })
-    }
-  })
-
-  return (next) => (action) => {
-    // ...
-  }
-}
-```
-
 ## Refactor
 
-Jika kita perhatikan fungsi `playerUI`, saya rasa fungsi ini menjalankan 2 hal yang berbeda sekaligus: mengelola listeners untuk reaktifitas, dan menyediakan behavior-nya sendiri (`togglePlay` dan `toggleTheme`). Harus kita pisahkan biar comply sama [Single Responsibility Principle](https://en.wikipedia.org/wiki/Single-responsibility_principle).
+Jika kita perhatikan fungsi `playerUI`, fungsi ini menjalankan 2 hal yang berbeda sekaligus: mengelola listeners untuk reaktifitas, dan menyediakan behavior-nya sendiri (`togglePlay` dan `toggleTheme`). Harus kita pisahkan biar comply sama [Single Responsibility Principle](https://en.wikipedia.org/wiki/Single-responsibility_principle).
 
 Pertama, mari kita ekstrak kode pengelolaan state ke dalam fungsi sendiri, sebut saja `observable`.
 
