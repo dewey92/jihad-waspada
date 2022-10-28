@@ -1,7 +1,7 @@
 ---
 title: "Function Overload Di Typescript"
 date: 2022-10-28T19:57:09+02:00
-description: ""
+description: "Function overload memungkinkan kita untuk mendefinisikan kombinasi type yang bervariasi baik di posisi parameter maupun di posisi return."
 images: ["/uploads/overload.jpg"]
 image:
   src: "/uploads/overload.jpg"
