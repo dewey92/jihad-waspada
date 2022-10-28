@@ -38,7 +38,7 @@ Untuk memperbaikinya mungkin bisa kita batasi requirement fungsi `combine` diman
 
 Di luar kombinasi ini—seperti `combine('jihad', ['waspada'])` atau `combine(['jihad'], 'waspada')`—harus error, nggak typecheck. Lalu gimana cara mengekspresikan requirement ini dengan Typescript?
 
-Kita coba dulu:
+Kita coba dulu pake union biasa:
 
 ```ts
 function combine<T>(a: string | T[], b: string | T[]): string | T[] {
