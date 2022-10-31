@@ -1,5 +1,5 @@
 ---
-title: "Function Overload Di Typescript"
+title: "Function Overload di Typescript"
 date: 2022-10-28T19:57:09+02:00
 description: "Function overload memungkinkan kita untuk mendefinisikan kombinasi type yang bervariasi baik di posisi parameter maupun di posisi return."
 images: ["/uploads/overload.jpg"]
@@ -69,7 +69,9 @@ function combine   (a: any   , b: any   ) {
 }
 ```
 
-Typechecker akan meng-evaluasi overload yang paling atas dulu dan akan lanjut ke overload di baris selanjutnya bila yang pertama tadi gak cocok. Begitupun seterusnya sampai mentok di function definition. Oleh karenya ketika menuliskan function overload, type yg paling spesifik sebaiknya diletakkkan di baris teratas.
+Kita hanya perlu menuliskan type annotations di posisi parameter dan return untuk melakukan function overload, tak perlu function body. Typechecker akan meng-evaluasi overload yang paling atas dulu dan akan lanjut ke overload di baris selanjutnya bila yang pertama tadi gak cocok. Begitupun seterusnya sampai mentok di overload terakhir. Untuk type annotation di function implementation-nya sendiri, cukup kita definisikan dengan type yang kompatibel dengan semua overload-nya: dalam kasus ini saya pilih `any` biar gampang.
+
+Oleh karena itu ketika menuliskan function overload, type yang paling spesifik sebaiknya diletakkkan di baris teratas.
 
 Dan ketika kita check:
 
