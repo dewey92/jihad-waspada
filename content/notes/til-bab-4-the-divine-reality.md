@@ -105,7 +105,7 @@ Untuk teman-teman yang penasaran bagaimana ia melakukan penelitiannya, bisa sima
 
 ### "Kebenaran Ateisme juga tak perlu dibuktikan lagi"
 
-Beberapa ateis berargumen bahwa ateisme juga bisa jadi posisi default. Namun hal yang perlu disadari adalah: menolak gagasan adanya Sang Pencipta bukanlah penjelasan yang paling sederhana dan komperhensif. Sederhana sih mungkin aja, tapi tentu tidak komperhensif. Ia harus bisa menjelaskan bagaimana alam semesta yang kontingen ini (bergantung pada sesuatu yang lain, tidak independen. Dibahas di Bab 6) bisa tiba-tiba muncul dari ketiadaan (Bab 5). Bisa saja mereka menjawab persoalan asal muasal alam semesta ini dengan model lain, namun lagi, ia tidak _self-evident_, harus dipelajari, bukan _default position_.
+Beberapa ateis berargumen bahwa ateisme juga bisa jadi posisi default. Namun hal yang perlu disadari adalah: menolak gagasan adanya Sang Pencipta bukanlah penjelasan yang paling sederhana dan komperhensif. Sederhana sih mungkin aja, tapi tentu tidak komperhensif. Ia harus bisa menjelaskan bagaimana alam semesta yang kontingen ini (bergantung pada sesuatu yang lain, tidak independen. Dibahas di Bab 6) bisa tiba-tiba muncul dari ketiadaan ([Bab 5]({{< ref "./til-bab-5-the-divine-reality.md" >}})). Bisa saja mereka menjawab persoalan asal muasal alam semesta ini dengan model lain, namun lagi, ia tidak _self-evident_, harus dipelajari, bukan _default position_.
 
 ## Bawaan lahir: Fitrah
 
@@ -145,4 +145,4 @@ Tambahan, berikut beberapa video yang membantu saya menulis artikel ini:
 {{< youtube z2m7jsH3_Mw >}}
 {{< youtube UmdQf6O_uqo >}}
 
-... [Bersambung ke Bab 5]
+... [Bersambung ke [Bab 5]({{< ref "./til-bab-5-the-divine-reality.md" >}})]
