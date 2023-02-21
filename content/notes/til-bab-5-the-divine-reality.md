@@ -17,7 +17,7 @@ draft: false
 
 Bayangin kamu lagi ada di suatu ruangan dan pintu yang barusan kamu masukin sudah tertutup rapat; gak ada yang bisa masuk dan keluar. Karena bosen gak ada apa-apa, kamu ngantuk dan mulai tertidur. Ketika terbangun sudah ada sebuah meja dan komputer yang menyala di tengah ruangan. Sambil penasaran, kamu membaca tulisan yang terpampang di layar komputer, "Tak perlu risau dan gundah! Meja dan komputer ini muncul sendiri kok, gak ada yang naro di sini."
 
-<div style="width:60%;height:0;padding-bottom:52%;position:relative;margin: 0 auto;"><iframe src="https://giphy.com/embed/iHe7mA9M9SsyQ" width="480" height="344" frameBorder="0" class="giphy-embed" allowFullScreen></iframe></div>
+<div class="iframe__container"><iframe src="https://giphy.com/embed/iHe7mA9M9SsyQ" frameBorder="0" class="giphy-embed iframe__responsive" allowFullScreen></iframe></div>
 
 Kamu bakal percaya gitu aja? Pasti nggak dong. _Pasti ada seseorang yang melakukannya_. Tapi karena kamu orangnya suka merenung, kamu mulai moncoba memikirkan semua sebab dan kemungkinan bagaimana meja dan komputer tersebut bisa berada di dalam ruangan, _apa betul ia ada begitu saja_ seperti yang tertulis di layar. Yang pada akhirnya dapat direduksi menjadi 3 penyebab:
 1. Mereka memang muncul dengan sendirinya, tidak dari mana-mana. Alias dari ketiadaan.
@@ -107,3 +107,23 @@ Dari pembahasan di atas bisa kita ambil kesimpulan bahwa Zat yang memunculkan al
 Kita telah membahas di bab ini bahwa alam semesta ini tak mungkin muncul dengan sendirinya atau menciptakan dirinya sendiri. Harus ada faktor eksternal. Yaitu Allah, sang Pencipta yang tak Tercipta.
 
 ... [Bersambung ke Bab 6]
+
+<style>
+.iframe__container {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  padding-top: 52%;
+}
+
+.iframe__responsive {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+</style>
