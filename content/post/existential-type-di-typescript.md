@@ -1,7 +1,7 @@
 ---
 title: "Existential Type di Typescript"
 date: 2023-05-22T19:05:40+02:00
-description: ""
+description: "Bagaimana kalau ternyata kamu bisa membuat private sebuah type? Hanya bisa diakses oleh implementor namun tidak oleh consumer?"
 images: ["/uploads/hide.jpg"]
 image:
   src: "/uploads/hide.jpg"
@@ -117,9 +117,9 @@ Nah ini pertanyaan bagus. Gimana ceritanya _existential type_ bisa diekspresikan
 
 Mari kita ambil contoh type `string`. Ia bersifat 'true' (ada representasi value saat runtime). `Not<string>` seharusnya bersifat 'false', layaknya `never`. `Not<string>` juga dapat dieskpresikan lewat `(str: string) => never` yang kira-kira dibaca, "kalau saya punya sebuah string, saya akan **membuat sesuatu yang mustahil ada**!". Ini sama aja kayak bilang, dengan string kita bisa menghasilkan "bukti" untuk type `never`. Ini kontradiksi, gak boleh terjadi. Oleh sebab itu `(str: string) => never` praktisnya bersifat 'false'.[^1]
 
-Lewat asas ini bisa kita tarik rumus bahwa
+Lewat asas ini bisa kita tarik rumus dimana [^2]
 1. `Not<A> == <A>(_: A) => never`, dan
-2. `Not<Not<A>> == (fn: <A>(_: A) => never) => never`.[^2]
+2. `Not<Not<A>> == (fn: <A>(_: A) => never) => never`
 
 Balik ke type `Chunk` di bagian sebelumnya, _double negation_ dari `Chunk` adalah `(next: <P>(chunk: Chunk<P>) => never) => never`. Satu masalah besar dengan type ini adalah ia tak berguna: kita cuman dapat `never`, sedangkan kita perlu sesuatu yang konkrit agar komputasi ini bermakna. Lihatlah `Array<T>` yang bisa dicari tahu panjang array-nya, diambil element pertamanya, dll, namun type `T` tetap tidak bisa kita konsumsi secara langsung karena ia abstrak. Dalam hal ini `Array`-lah yang membuat komputasi dengan `T` berguna. Lewat analogi yang sama kita **musti substitusi `never` dengan suatu _quantifier_ (type) agar dapat menghasilkan value yang bisa dikonsumsi**, menjadi `<R>(next: <P>(chunk: Chunk<P>) => R) => R`.[^3] Terlihat familiar?
 
@@ -222,13 +222,15 @@ const retrievedToken = BankSyariah().doTransaction((ops) => {
 
 Sebenernya sih ya bisa aja _cheating_ pake semacam `console.log` gitu kan untuk tahu bentuk aslinya. Tapi kalau kamu lagi buat sebuah kontrak dan ada type yang ingin disembunyikan—baik untuk mengurangi type parameter di sisi consumer maupun untuk alasan _correctness_ semata—_existential type_ mungkin bisa jadi awal yang baik.
 
-## Kesimpulan
+## Penutup
 
-Perbedaan mendasar antara _universally quantified variable_ (type variable biasa) dengan _existentially quantified variable_ (well, _existetial type_) adalah:
+Perbedaan mendasar antara _universally quantified variable_ (type parameter biasa) dengan _existentially quantified variable_ (well, _existetial type_) adalah:
 1. Bila consumer dapat menentukan instance type-nya, maka ia universal.
 2. Bila consumer harus menggunakan type yang sudah ditentukan untuknya, maka ia eksistensial.
 
 Dan dari contoh-contoh di atas, baik `P`-nya `Chunk` maupun `Token`-nya `Transaction` consumer tak punya kontrol untuk menginstansiasinya. Karena itu keduanya eksistensial.
+
+Sayangnya bahasa sepopuler Typescript belum sepenuhnya mendukung fitur ini, padahal potensinya besar. Problem yang kelihatannya sederhana jadi butuh solusi yang kompleks: harus ditulis menggunakan continuation-passing style. Semoga kedepannya Typescript segera mengadopsi _existential type_.
 
 [^1]: Selengkapnya bisa dibaca di [Type systems and logic](https://codewords.recurse.com/issues/one/type-systems-and-logic)
 [^2]: Tak berlaku di classical logic dimana negasi itu _reversible_. Type system menggunakan constructive logic.
