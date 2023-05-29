@@ -61,14 +61,37 @@ run(console.log)
 
 Bila style ini diterapkan untuk meng-encode _existential type_:
 
-```ts {hl_lines=[1]}
-type ChunkCPS = <R>(next: <P>(_: Chunk<P>) => R) => R
-type CreateChunk = <P>(_: Chunk<P>) => ChunkCPS
-
+```ts
 const createChunk: CreateChunk = (chunk) => (next) => next(chunk)
+
+type CreateChunk = <P>(_: Chunk<P>) => ChunkCPS
+type ChunkCPS = <R>(next: <P>(_: Chunk<P>) => R) => R
 ```
 
-Triknya adalah dengan memanfaatkan _scoped generics_! Pehatikan type variale `P` di baris pertama: ia tidak muncul di scope yang sama dengan type variable `R` namun muncul satu level di bawahnya, membuatnya tidak bisa "bocor" keluar dari `next`. Karena tidak bocor ke luar, kita tak lagi punya kewajiban untuk mengisi type `P` saat mengkonsumsi `ChunkCPS` (lihat implementasi `ChunksMap` di bawah). Nama umum dari scoped generics adalah [Rank-N types](https://wiki.haskell.org/Rank-N_types).
+Ada hal yang menarik dengan type `CreateChunk` dan `ChunkCPS`:
+1. Keduanya tak memiliki type parameter, karena...
+2. Deklarasi type `P` dan `R` berada di <abbr title="right hand side, sebelah kanan persamaan">RHS</abbr>.
+
+<details>
+  <summary>RHS? LHS?</summary>
+  Umumnya generic type ditulis di LHS (sebelah kiri persamaan) sebagai type parameter
+
+  ```ts
+  type Identity<T> = (val: T) => T
+  ```
+
+  Namun ia bisa juga ditulis di sebalah kanan persamaan
+
+  ```ts
+  type Identity = <T>(val: T) => T
+  ```
+</details>
+
+Di Typescript, kemampuan mendeklarasikan generic type di RHS hanya bisa dilakukan oleh function. Di bahasa lain seperti Haskell, cukup dengan keyword `forall`.
+
+Hal menarik selanjutnya yaitu deklarasi type `P` di scope yang berbeda dengan type variable `R`, ia muncul satu level di bawahnya. Teknik ini biasa disebut [Rank-N types](https://wiki.haskell.org/Rank-N_types).
+
+Rasa-rasanya mirip film <cite>[Inception](https://www.imdb.com/title/tt1375666/)</cite> tapi pake types. `P` ada di bawah `R`, dan `R` tidak keluar dari `ChunkCPS`, membuatnya _parameterless type_. Tanpa parameter, kita tak lagi punya kewajiban untuk mengisinya dengan type argument.
 
 Mari perbarui type `ChunksMap`.
 
@@ -105,7 +128,7 @@ chunks.forEach((unwrap, key) => {
 })
 ```
 
-Meng-hover kursor di atas `fetchProps` dan `comp` menghasilkan `() => Promise<P>` dan `React.ComponentType<P>`. Kita gak kehilangan type variable `P`! 🎉
+Meng-hover kursor di atas `fetchProps` dan `comp` menghasilkan `() => Promise<P>` dan `React.ComponentType<P>`. Kita gak kehilangan type `P`! 🎉
 
 ## Kok Bisa CPS?
 
