@@ -190,40 +190,7 @@ function observable<T>(initValue: T) {
 }
 ```
 
-Di sini kita hanya menambahkan function `get`. Tapi kenapa harus ada fungsi ini sedangkan bisa saja kita langsung mengembalikan `value` di posisi return? Sebenarnya bisa aja, asalkan `value` berbentuk object. Kalau primitive value malah jadi trikcy. Contoh:
-
-```ts
-function observable<T>(initValue: T) {
-  let value = initValue
-  // ...
-
-  return { value, set, subscribe }
-}
-
-const obs = observable(0)
-obs.set((val) => val + 1)
-obs.value // 0 ❌
-```
-
-Kok bisa nilainya gak ter-update jadi 1? Ternyata begitu `set` dipanggil, hanya variable `value` di dalam function `observable` saja yang berubah, namun tidak di posisi return. Karena ketika fungsi `observable` dijalankan pertama kali, object yang di-return dievaluasi menjadi
-
-```ts
-return {
-  value: 0,
-  set,
-  subscribe,
-}
-```
-
-Oleh karena itu kita butuh fungsi `get` untuk mendapatkan `value` secara lazy (tidak langsung dievaluasi ketika return).
-
-```ts
-const obs = observable(0)
-obs.set((val) => val + 1)
-obs.get() // 1 ✅
-```
-
-Dan fungsi `playerUI` pun menjadi:
+Kedua, kita gunakan `observable` di dalam fungsi `playerUI` yang kini hanya berfokus pada behavior player:
 
 ```ts
 function playerUI() {
