@@ -7,7 +7,7 @@ image:
   src: "/uploads/upside-down.jpg"
   caption: Image by <a href="https://pixabay.com/users/Kranich17-11197573/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=4017587">Kranich17</a> from <a href="https://pixabay.com/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=4017587">Pixabay</a>
 tags: ["purescript", "haskell", "functor", "functionalprogramming"]
-categories: ["programming", "purescript", "functional programming"]
+categories: ["programming", "purescript"]
 draft: false
 ---
 

@@ -3,11 +3,11 @@ title: "Kerja Merantau di Belanda"
 date: 2019-06-29T15:10:02+02:00
 description: Tidak selamanya orang yang bekerja di luar negeri haruslah orang yang hebat. Dan tidak selamanya bekerja di luar negeri itu sesulit yang dibayangkan
 tags: ["belanda", "developer", "random", "work"]
-categories: ["random", "work"]
 images: ["/uploads/amsterdam-night.jpg"]
 image:
   src: "/uploads/amsterdam-night.jpg"
   caption: Image by <a href="https://pixabay.com/users/ansgarscheffold-12599326/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=4230946">Ansgar Scheffold</a> from <a href="https://pixabay.com/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=4230946">Pixabay</a>
+categories: ["other"]
 draft: false
 ---
 

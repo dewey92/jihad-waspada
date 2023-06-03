@@ -7,7 +7,7 @@ image:
   src: "/uploads/dual-trees.jpg"
   caption: Image by <a href="https://pixabay.com/users/skeeze-272447/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=2242958">skeeze</a> from <a href="https://pixabay.com/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=2242958">Pixabay</a>
 tags: ["purescript", "haskell", "functor", "functionalprogramming"]
-categories: ["programming", "purescript", "functional programming"]
+categories: ["programming", "purescript"]
 draft: false
 ---
 

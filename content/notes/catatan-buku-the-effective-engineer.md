@@ -7,7 +7,7 @@ image:
   src: "/uploads/the-effective-engineer.png"
   caption: "The Effective Engineer book"
 tags: ["engineer"]
-categories: ["work"]
+categories: ["other"]
 draft: false
 ---
 

@@ -7,7 +7,7 @@ image:
   src: "/uploads/overload.jpg"
   caption: Image by <a href="https://pixabay.com/users/shaq64-14977059/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=4780853">Stephan Westphal</a> from <a href="https://pixabay.com//?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=4780853">Pixabay</a>
 tags: ["typescript", "types"]
-categories: ["programming"]
+categories: ["programming", "typescript"]
 draft: false
 ---
 

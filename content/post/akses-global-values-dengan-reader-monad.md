@@ -7,7 +7,7 @@ image:
   src: "/uploads/cup.jpg"
   caption: Image by <a href="https://pixabay.com/users/JillWellington-334088/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=1975215">Jill Wellington</a> from <a href="https://pixabay.com/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=1975215">Pixabay</a>
 tags: ["purescript", "haskell", "types", "monad", "functionalprogramming"]
-categories: ["programming", "purescript", "functional programming"]
+categories: ["programming", "purescript"]
 draft: false
 ---
 

@@ -7,7 +7,7 @@ image:
   src: "/uploads/truth.jpg"
   caption: Image by <a href="https://pixabay.com/users/PDPics-44804/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=166853">PDPics</a> from <a href="https://pixabay.com/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=166853">Pixabay</a>
 tags: ["typescript", "javascript", "react", "modelling"]
-categories: ["programming", "modelling"]
+categories: ["programming"]
 draft: false
 ---
 

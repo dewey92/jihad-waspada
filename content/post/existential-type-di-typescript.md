@@ -7,7 +7,7 @@ image:
   src: "/uploads/hide.jpg"
   caption: Image by <a href="https://pixabay.com/users/ambermb-3121132/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=1635065">ambermb</a> from <a href="https://pixabay.com//?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=1635065">Pixabay</a>
 tags: ["typescript", "types"]
-categories: ["programming", "type system"]
+categories: ["programming", "type system", "typescript"]
 draft: false
 ---
 

@@ -7,7 +7,7 @@ image:
   src: "/uploads/houses-ams.jpg"
   caption: Image by <a href="https://pixabay.com/users/epicantus-168198/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=954381">Daria Nepriakhina</a> from <a href="https://pixabay.com/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=954381">Pixabay</a>
 tags: ["ekspat", "relocation", "lessons"]
-categories: ["life", "lessons"]
+categories: ["other"]
 draft: false
 ---
 

@@ -7,7 +7,7 @@ image:
   src: "/uploads/knit-di.jpg"
   caption: Image by <a href="https://pixabay.com/users/Foundry-923783/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=869221">Foundry Co</a> from <a href="https://pixabay.com/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=869221">Pixabay</a>
 tags: ["purescript", "haskell", "types", "dependency-injection", "functionalprogramming"]
-categories: ["programming", "purescript", "functional programming"]
+categories: ["programming", "purescript"]
 draft: false
 ---
 

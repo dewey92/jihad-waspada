@@ -3,7 +3,7 @@ title: "How to Setup Stylelint with Neovim LSP"
 date: 2021-03-27T17:54:11+01:00
 description: "Stylelint + NVIM diagnostic"
 tags: ["neovim", "lsp", "stylelint"]
-categories: ["code", "editor", "neovim"]
+categories: ["other"]
 draft: false
 ---
 

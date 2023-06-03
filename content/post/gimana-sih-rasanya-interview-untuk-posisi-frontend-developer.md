@@ -7,7 +7,7 @@ image:
   src: "/uploads/laptop.jpg"
   caption: Image by <a href="https://pixabay.com/users/StartupStockPhotos-690514/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=849822">StartupStockPhotos</a> from <a href="https://pixabay.com/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=849822">Pixabay</a>
 tags: ["career", "interview", "frontend"]
-categories: ["career"]
+categories: ["other"]
 draft: false
 ---
 
