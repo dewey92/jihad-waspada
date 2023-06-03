@@ -1,5 +1,5 @@
 ---
-title: "TIL: [Bab 3] The Divine Reality — Musuh Akal"
+title: "Bab 3: The Divine Reality — Musuh Akal"
 date: 2021-06-09T03:52:36+02:00
 description: "Mengapa ateisme tidak logis"
 images: ["/uploads/the-divine-reality.jpg"]
@@ -7,7 +7,7 @@ image:
   src: "/uploads/the-divine-reality.jpg"
   caption: ""
 tags: ["ateisme", "islam", "filosofi"]
-categories: ["til", "islam"]
+categories: ["philosophy", "islam"]
 aliases:
   - /post/til-bab-3-the-divine-reality
 draft: false

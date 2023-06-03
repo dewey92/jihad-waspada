@@ -1,5 +1,5 @@
 ---
-title: "TIL: [Bab 5] The Divine Reality — A Universe from Nothing?"
+title: "Bab 5: The Divine Reality — A Universe from Nothing?"
 date: 2023-02-21T12:24:00+02:00
 description: "Argumen Qur'an tentang Tuhan"
 images: ["/uploads/the-divine-reality.jpg"]
@@ -7,7 +7,7 @@ image:
   src: "/uploads/the-divine-reality.jpg"
   caption: ""
 tags: ["ateisme", "islam", "filosofi"]
-categories: ["til", "islam"]
+categories: ["philosophy", "islam"]
 draft: false
 ---
 

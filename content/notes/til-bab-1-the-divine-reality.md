@@ -1,5 +1,5 @@
 ---
-title: "TIL: [Bab 1] The Divine Reality — Ateisme"
+title: "Bab 1: The Divine Reality — Ateisme"
 date: 2021-05-01T07:17:36+02:00
 description: "Definisi, latar belakang, dan meningkatnya paham Ateisme"
 images: ["/uploads/the-divine-reality.jpg"]
@@ -7,7 +7,7 @@ image:
   src: "/uploads/the-divine-reality.jpg"
   caption: ""
 tags: ["ateisme", "islam", "filosofi"]
-categories: ["til", "islam"]
+categories: ["philosophy", "islam"]
 aliases:
   - /post/til-bab-1-the-divine-reality
 draft: false

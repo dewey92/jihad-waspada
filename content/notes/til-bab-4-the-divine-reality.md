@@ -1,5 +1,5 @@
 ---
-title: "TIL: [Bab 4] The Divine Reality — Self-Evident"
+title: "Bab 4: The Divine Reality — Self-Evident"
 date: 2022-04-29T18:28:00+02:00
 description: "Mengapa ateisme tidak natural"
 images: ["/uploads/the-divine-reality.jpg"]
@@ -7,7 +7,7 @@ image:
   src: "/uploads/the-divine-reality.jpg"
   caption: ""
 tags: ["ateisme", "islam", "filosofi"]
-categories: ["til", "islam"]
+categories: ["philosophy", "islam"]
 aliases:
   - /post/til-bab-4-the-divine-reality
 draft: false
