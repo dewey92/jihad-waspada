@@ -89,7 +89,7 @@ Lalu jika opsi-posi di atas bukan jawabannya, lalu apa? Jawaban terbaik adalah a
 
 Lho kalau memang ujungnya itu harus berupa sesuatu yang tak tercipta, yang orang-orang sebut sebagai Tuhan, bisa aja dong kita bilang bahwa zat itu adalah alam semesta ini, bukan Tuhan? Seorang filsuf Abraham Varghese pernah menulis, "_now, clearly, theists and atheists can agree on one thing: if anything at all exists, there must be something preceeding it that always existed. How did this eternally existing reality come to be? The answer is that it never came to be. **It always existed**. Take your pick: God or universe. Something always existed._"
 
-Namun karena alam semesta ini _dependent_ dan _contingent_ (dibahas di Bab 6) maka jawabannya sudah pasti bukan alam semesta.
+Namun karena alam semesta ini _dependent_ dan _contingent_ (dibahas di [Bab 6]) maka jawabannya sudah pasti bukan alam semesta.
 
 Kesimpulan bahwa ada Zat yang tak tercipta mungkin sulit dibayangkan dengan akal kita yang terbatas, namun menurut saya pribadi ini adalah penjelasan terbaik karena kita sudah _exhaust_ semua kemungkinan dan ternyata sampai di kesimpulan ini. _The best explanation_ tak mesti berpanjang lebar.
 
@@ -97,7 +97,7 @@ Kesimpulan bahwa ada Zat yang tak tercipta mungkin sulit dibayangkan dengan akal
 
 Dari pembahasan di atas bisa kita ambil kesimpulan bahwa Zat yang memunculkan alam semesta ini pastilah:
 1. **Abadi**. Ia selalu ada. Sesuatu yang tak bermula berarti abadi. Pertanyaan-pertanyaan klasik seperti _siapa yang menciptakan Tuhan_ tak bisa ditanyakan lagi. Karena secara definisi, Tuhan itu _uncreated_. Kalau diciptakan ya namanya bukan Tuhan. "_Allahu Al-Ṡamad_" QS 112:2.
-2. **Transenden**. Jika Pencipta ini bagian dari ciptaannya sendiri maka ia menjadi kontingen, terbatasi oleh kualitas-kualitas fisik. _Terbatas_ adalah sifat benda kontingen sedangkan Tuhan tidak kontingen, Ia absolut (_necessary_ dalam Bahasa Inggris, dibahas di Bab 6). Allah berfirman, "Tak ada sesuatupun yang menyerupainya", QS 112:4.
+2. **Transenden**. Jika Pencipta ini bagian dari ciptaannya sendiri maka ia menjadi kontingen, terbatasi oleh kualitas-kualitas fisik. _Terbatas_ adalah sifat benda kontingen sedangkan Tuhan tidak kontingen, Ia absolut (_necessary_ dalam Bahasa Inggris, dibahas di [Bab 6]). Allah berfirman, "Tak ada sesuatupun yang menyerupainya", QS 112:4.
 3. **Mengetahui**. Kita bisa lihat di alam semesta ini mengandung banyak keteraturan dan konsistensi hukum alam. Ada hukum gravitasi, elektromagnetik, nuklir, dan lain-lain. Hukum-hukum ini menunjukkan adanya pembuat hukum. Pembuat hukum tak mungkin tak berilmu. "Sesungguhnya Allah Maha Mengetahui segala sesuatu" QS 59:7.
 4. **Berkuasa**. Dia pastilah memiliki kekuatan dan kekuasaan yang tak terhingga karena telah menciptakan alam semesta yang penuh dengan kekuatan dan energi ini. Nggak perlu jauh-jauh, ambil satu atom saja dari sekian banyaknya atom di dunia ini lalu belah jadi dua, boom _nuclear fission_ 💥. Ini baru satu atom, masih ada 10<sup>^82</sup> atom lainnya. "Sungguh, Allah Mahakuasa atas segala sesuatu" QS 2:20.
 5. **Berkehendak**. Dapat memilih antara beberapa pilihan membuktikan kemampuan berkehendak. Allah telah memilih satu dari dua pilihan: menciptakan atau tidak menciptakan alam semesta. Artinya Dia memiliki kehendak. Kita juga sudah pernah bahas di bab-bab sebelumnya bahwa sesuatu tak dapat melahirkan sesuatu lain yang tak dimilikinya. Manusia memiliki kehendak, oleh karenanya penciptanya pun juga pasti memiliki kehendak. "...kecuali jika Tuhanmu menghendaki yang lain" QS 11:107.
@@ -106,7 +106,9 @@ Dari pembahasan di atas bisa kita ambil kesimpulan bahwa Zat yang memunculkan al
 
 Kita telah membahas di bab ini bahwa alam semesta ini tak mungkin muncul dengan sendirinya atau menciptakan dirinya sendiri. Harus ada faktor eksternal. Yaitu Allah, sang Pencipta yang tak Tercipta.
 
-... [Bersambung ke Bab 6]
+... [Bersambung ke [Bab 6]]
+
+[Bab 6]: {{<ref "./bab-6-the-divine-reality.md" >}}
 
 <style>
 .iframe__container {
