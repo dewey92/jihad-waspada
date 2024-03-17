@@ -602,6 +602,11 @@ Mumpung Ramadhan, yuk semakin dekatkan diri dengan Al-Qur'an!
     --details-spacing: 15px;
     margin-top: 10px;
   }
+  @media (max-width: 420px) {
+    table details {
+      --details-spacing: 6px;
+    }
+  }
   span.expand {
     text-decoration: underline dashed;
     text-underline-offset: 2px;
