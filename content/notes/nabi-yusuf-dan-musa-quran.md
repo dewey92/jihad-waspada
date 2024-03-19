@@ -411,10 +411,6 @@ Dari sini kita bisa melihat ada hubungan khusus antara Yusuf <span class="as"></
       <td>Beberapa tahun yang buruk (kekeringan, hama) untuk membuat Fir'aun rendah hati (7:94) dan menyelematkannya dari azab yang lebih pedih</td>
     </tr>
     <tr>
-      <td>Tujuh tahun panen yang bagus untuk mempersiapkan tujuh tahun kemarau panjang</td>
-      <td>Beberapa tahun yang buruk (kekeringan, hama) untuk membuat Fir'aun rendah hati (7:94) dan menyelematkannya dari azab yang lebih pedih</td>
-    </tr>
-    <tr>
       <td>Yusuf <em>ingin</em> berdiri di hadapan raja untuk memberikan kesaksian atas apa yang terjadi (12:51)</td>
       <td>Musa <em>diperintahkan</em> Allah untuk berdiri di hadapan Fir'aun (20:24, 20:43, 79:17)</td>
     </tr>
@@ -475,12 +471,8 @@ Dari sini kita bisa melihat ada hubungan khusus antara Yusuf <span class="as"></
       <td>Harun tetap diam meski fasih berbicara</td>
     </tr>
     <tr>
-      <td>Bunyamin membantu dengan tetap diam</td>
-      <td>Harun tetap diam meski fasih berbicara</td>
-    </tr>
-    <tr>
       <td>Raja sangat terkesan terhadap Yusuf sampai ia berkata, "Aku pilih ia untuk diriku" (12:54)</td>
-      <td>Fir'aun sangat benci terhadap Musa sampai-sampai ia berkata, "Biar aku sendiri yang mmebunuh Musa" (40:26)</td>
+      <td>Fir'aun sangat benci terhadap Musa sampai-sampai ia berkata, "Biar aku sendiri yang membunuh Musa" (40:26)</td>
     </tr>
     <tr>
       <td>Saat berkumpul kembali dengan keluarganya, Yusuf yang menjadi "hakim", dan agresornya (saudara-suadaranya) yang diadili</td>
