@@ -153,4 +153,4 @@ Jika pada awal terbentuknya alam semesta ini hanya ada proses dan materi fisik y
 
 Dari sini bisa kita simpulkan bawha Tuhan telah memberi kita akal yang rasional dan hasrat untuk melakukan penemuan, supaya kita gunakan nalar ini untuk memahami alam semesta beserta keindahannya, yang pada akhirnya menggiring kita untuk menyembah-Nya (Bab 15). Ia telah menanamkan sarana dan instrumen yang kita tunggangi untuk sains, namun ironisnya sebagian dari kita malah menggunakannya untuk menentang Penciptanya sendiri.
 
-... [Bersambung ke [Bab 4]({{< ref "./til-bab-4-the-divine-reality.md" >}})]
+... [Bersambung ke [Bab 4]({{< ref "./bab-4-the-divine-reality.md" >}})]

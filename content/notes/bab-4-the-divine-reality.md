@@ -105,7 +105,7 @@ Untuk teman-teman yang penasaran bagaimana ia melakukan penelitiannya, bisa sima
 
 ### "Kebenaran Ateisme juga tak perlu dibuktikan lagi"
 
-Beberapa ateis berargumen bahwa ateisme juga bisa jadi posisi default. Namun hal yang perlu disadari adalah: menolak gagasan adanya Sang Pencipta bukanlah penjelasan yang paling sederhana dan komperhensif. Sederhana sih mungkin aja, tapi tentu tidak komperhensif. Ia harus bisa menjelaskan bagaimana alam semesta yang kontingen ini (bergantung pada sesuatu yang lain, tidak independen. Dibahas di Bab 6) bisa tiba-tiba muncul dari ketiadaan ([Bab 5]({{< ref "./til-bab-5-the-divine-reality.md" >}})). Bisa saja mereka menjawab persoalan asal muasal alam semesta ini dengan model lain, namun lagi, ia tidak _self-evident_, harus dipelajari, bukan _default position_.
+Beberapa ateis berargumen bahwa ateisme juga bisa jadi posisi default. Namun hal yang perlu disadari adalah: menolak gagasan adanya Sang Pencipta bukanlah penjelasan yang paling sederhana dan komperhensif. Sederhana sih mungkin aja, tapi tentu tidak komperhensif. Ia harus bisa menjelaskan bagaimana alam semesta yang kontingen ini (bergantung pada sesuatu yang lain, tidak independen. Dibahas di Bab 6) bisa tiba-tiba muncul dari ketiadaan ([Bab 5]({{< ref "./bab-5-the-divine-reality.md" >}})). Bisa saja mereka menjawab persoalan asal muasal alam semesta ini dengan model lain, namun lagi, ia tidak _self-evident_, harus dipelajari, bukan _default position_.
 
 ## Bawaan lahir: Fitrah
 
@@ -127,7 +127,7 @@ Ibarat sepeda motor yang baru keluar dari pabrik, Fitrah ini juga tak bisa luput
   ... Demikianlah Kami menjelaskan tanda-tanda kekuasaan (Kami) kepada orang-orang berfikir - QS 10:24
 {{% /verse %}}
 
-**Ah, tapi apa bisa dibuktikan dan sejalan dengan sains? Kita kan gak bisa tiba-tiba berargumen bahwa semua ini pasti karena Fitrah, hanya karena belum ditemukannya jawaban atas fenomena ini.** Jawaban singkatnya: banyak hal yang gak bisa dijawab oleh sains, seperti asal muasal kecerdasan, [rasionalitas]({{< ref "./til-bab-3-the-divine-reality.md" >}}), dan _consciousness_. Begitupun dengan Fitrah. Kita bisa mencari jawabannya melalui pendekatan lain, seperti melalui argumen yang rasional dan logis—seperti premis berikut:
+**Ah, tapi apa bisa dibuktikan dan sejalan dengan sains? Kita kan gak bisa tiba-tiba berargumen bahwa semua ini pasti karena Fitrah, hanya karena belum ditemukannya jawaban atas fenomena ini.** Jawaban singkatnya: banyak hal yang gak bisa dijawab oleh sains, seperti asal muasal kecerdasan, [rasionalitas]({{< ref "./bab-3-the-divine-reality.md" >}}), dan _consciousness_. Begitupun dengan Fitrah. Kita bisa mencari jawabannya melalui pendekatan lain, seperti melalui argumen yang rasional dan logis—seperti premis berikut:
 
 <mark>"Segala sesuatu yang kita ketahui dan rasakan di kehidupan ini terbatas dan terbentuk dari lingkungan dimana kita berada."</mark> Jika kita tinggal di dunia yang naturalistis ini dimana segalanya terbatas dan bersifat materialis, maka seharusnya pengertian kita pun terbatas pada fenomena-fenomena naturalistis saja. Kita tidak bisa membayangkan sebuah konsep yang tidak natural, tidak materialis, dan di luar dunia ini. Seperti seekor ikan yang berenang di dalam aquarium seumur hidupnya, ia tak akan pernah tau fakta bahwa ternyata ia berada di ruang tamu seseorang. _Apa tuh ruang tamu?_ Atau seseorang yang gak pernah makan apel diminta untuk membayangkan rasa apel. Gak bisa! Kita pun seharusnya tidak akan pernah tahu, paham, dan percaya terhadap sesuatu yang supranatural (di luar dunia ini). Apalagi kalau kita ini memang produk evolusi yang berlangsung selama jutaan tahun, seharusnya apa-apa yang bisa kita bayangkan terbatas pada fenomena dunia yang naturalistis saja. Gak ada yang namanya supranatural. Tapi lucunya studi-studi di atas membuktikan hal yang sebaliknya; bahwasanya kita memang terlahir dengan kemampuan alami untuk mengenal Tuhan yang sifatnya supranatural, tak terbatas, dan melampaui fenomena-fenomena naturalistis. Berdasarkan premis di atas, bisa disimpulkan bahwa Fitrah secara logis tak dapat muncul dari dunia yang naturalistis dan materialistis ini. Sementara sains hanya bisa menjelaskan hal-hal yang sifatnya natural dan materialis.
 
@@ -145,4 +145,4 @@ Tambahan, berikut beberapa video yang membantu saya menulis artikel ini:
 {{< youtube z2m7jsH3_Mw >}}
 {{< youtube UmdQf6O_uqo >}}
 
-... [Bersambung ke [Bab 5]({{< ref "./til-bab-5-the-divine-reality.md" >}})]
+... [Bersambung ke [Bab 5]({{< ref "./bab-5-the-divine-reality.md" >}})]

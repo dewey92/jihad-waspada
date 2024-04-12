@@ -21,7 +21,7 @@ Di suatu hari yang cerah saat jalan-jalan di taman kamu melihat serangkaian domi
 
 Well, karena secara intuitif kita tahu jumlah domino ini terbatas. Kalau jumlahnya tak terbatas, mungkin kamu sudah mengurungkan niatmu tadi untuk mencari domino pertama—gak bakal ketemu karena gak ada ujungnya. Pun, domino-domino ini akan membutuhkan waktu yang tak terhingga pula agar domino terakhir tadi bisa jatuh di depan kakimu. Dengan kata lain, domino terakhir ini, secara logis, tak akan pernah jatuh.
 
-Hal ini pernah disinggung di [bab sebelumnya]({{<ref "./til-bab-5-the-divine-reality.md" >}}), yang umum disebut dengan _infinite regress of causation_.
+Hal ini pernah disinggung di [bab sebelumnya]({{<ref "./bab-5-the-divine-reality.md" >}}), yang umum disebut dengan _infinite regress of causation_.
 
 Kembali ke domino tadi, kamu juga tahu persis bahwa domino pertama tak mungkin jatuh dengan sendirinya. Pasti ada penyebabnya; entah angin, kesenggol daun, didorong seseorang. Pasti ada penjelasannya.
 
@@ -99,5 +99,7 @@ Salah satu tujuan sains sendiri adalah mencari penjelasan dari suatu fenomena. K
 ## Penutup
 
 Di bab ini kita telah menyimpulkan bahwa Tuhan eksis _by necessity_ dan segala yang ada dunia ini bergantung padanya, secara filosofis dan secara literal; kita tak mungkin ada dan terus hidup tanpaNya. Mengetahui ini seharusnya dapat menumbuhkan kecintaan terhadapNya. 💛💛💛
+
+... [Bersambung ke [Bab 7]({{< ref "./bab-7-the-divine-reality.md" >}})]
 
 _Stay well!_

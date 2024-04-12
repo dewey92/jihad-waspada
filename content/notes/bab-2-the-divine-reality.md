@@ -17,7 +17,7 @@ draft: false
   Catatan pribadi dan ringkasan Bab 2 dari buku <cite>[The Divine Reality](https://www.noor-book.com/en/ebook-The-Divine-Reality-God-Islam-and-The-Mirage-of-Atheism-by-Hamza-Andreas-Tzortzis-pdf)</cite> oleh Hamza Andreas Tzortzis.
 {{% /message %}}
 
-Hidup di bawah ateisme itu lucu. Penjelasan di bawah nanti mungkin **gak bisa dijadikan bukti rasional untuk menunjukkan keberadaan Tuhan** namun tetap menjadi landasan argumen-argumen yang ada di buku ini. Seperti yang sudah dibahas di [Bab 1]({{<ref "./til-bab-1-the-divine-reality.md">}}), kebanyakan ateis itu mengikuti paham naturalisme dimana segala sesuatu bisa dijelaskan dengan proses fisik (gak ada yang namanya supranatural). Ateisme + Naturalisme = Ambyar. Tidak ada Tuhan = tidak ada konsep pertanggungjawaban = tidak ada nilai, tujuan, dan harapan di dunia ini. Mari kita bahas.
+Hidup di bawah ateisme itu lucu. Penjelasan di bawah nanti mungkin **gak bisa dijadikan bukti rasional untuk menunjukkan keberadaan Tuhan** namun tetap menjadi landasan argumen-argumen yang ada di buku ini. Seperti yang sudah dibahas di [Bab 1]({{<ref "./bab-1-the-divine-reality.md">}}), kebanyakan ateis itu mengikuti paham naturalisme dimana segala sesuatu bisa dijelaskan dengan proses fisik (gak ada yang namanya supranatural). Ateisme + Naturalisme = Ambyar. Tidak ada Tuhan = tidak ada konsep pertanggungjawaban = tidak ada nilai, tujuan, dan harapan di dunia ini. Mari kita bahas.
 
 ## Tidak Ada Harapan
 
@@ -60,7 +60,7 @@ Jawaban yang biasa dilontarkan adalah: _manusia itu makhluk hidup, punya nyawa, 
 
 Kita bisa saja bilang, manusia lebih berharga dibanding martabak karena struktur manusia itu lebih kompleks. Tapi ingat, lagi-lagi, menurut mereka tidak ada sesuatupun di dunia ini yang didesain dan diciptakan dengan suatu tujuan. Ini semua hanyalah susunan materi yang terbentuk dari proses **acak**, buta, dan non-rasional.
 
-Dalam pandangan Islam, manusia dilahirkan dengan "bawaan" yang sama, yang nantinya dapat membantu mengenali harga diri kita sebagai manusia sekaligus mengenali nilai-nilai moral dan etika (Bab 9). Bawaan ini disebut _fitrah_ ([Bab 4]({{< ref "./til-bab-4-the-divine-reality.md" >}})).
+Dalam pandangan Islam, manusia dilahirkan dengan "bawaan" yang sama, yang nantinya dapat membantu mengenali harga diri kita sebagai manusia sekaligus mengenali nilai-nilai moral dan etika (Bab 9). Bawaan ini disebut _fitrah_ ([Bab 4]({{< ref "./bab-4-the-divine-reality.md" >}})).
 
 {{% verse %}}
   <div class="rtl">
@@ -163,4 +163,4 @@ Bahkan Richard Dawkins pun mengaminkan,
 
 Alam semesta yang terbentuk dari materi fisik yang non-rasional, buta, dan dingin semestinya tak punya kaitan apapun dengan emosi kita. Kita hanya kumpulan molekul dan atom. Hanya Tuhan yang mampu menyediakan justifikasi intelektual terhadap apa-apa yang membentuk kemanusiaan kita.
 
-... [Bersambung ke [Bab 3]({{<ref "./til-bab-3-the-divine-reality.md">}})]
+... [Bersambung ke [Bab 3]({{<ref "./bab-3-the-divine-reality.md">}})]

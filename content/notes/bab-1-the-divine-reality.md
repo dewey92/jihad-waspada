@@ -49,7 +49,7 @@ Dalam bahasa Arab Ateisme disebut _ilhaad_ yang berarti 'penyimpangan' atau lebi
 
 {{< figure src="/uploads/lahad.jpg" alt="joboffer" caption="[Liang lahat](https://www.marhaba.qa/funeral-rites-in-islam/islamic-graves/)" class="fig-center img-80" >}}
 
-Secara linguistik, ateis adalah sebuah bentuk penyimpangan dari fitrah manusia yang sudah mengenal Tuhan sebagai entitas yang patut disembah, seperti yang disabdakan oleh Rasulullah SAW (dibahas di [Bab 4]({{< ref "./til-bab-4-the-divine-reality.md" >}})).
+Secara linguistik, ateis adalah sebuah bentuk penyimpangan dari fitrah manusia yang sudah mengenal Tuhan sebagai entitas yang patut disembah, seperti yang disabdakan oleh Rasulullah SAW (dibahas di [Bab 4]({{< ref "./bab-4-the-divine-reality.md" >}})).
 
 Dalam Al-Qur'an, ateis digambarkan sebagai orang-orang yang tidak yakin atas perkatakaan mereka sendiri.
 
@@ -71,4 +71,4 @@ Walaupun ideologi ateisme ini sudah muncul sejak abad ke-8 (Dahriyya), namun jum
 
 Salah satu alasan penulis menyusun buku ini adalah untuk menyajikan pembaca dengan materi-materi soal mengapa konsep thesime dalam Islam itu masuk akal dan logis sementara paham ateisme itu khayalan belaka.
 
-... [Bersambung ke [Bab 2]({{<ref "./til-bab-2-the-divine-reality.md" >}})]
+... [Bersambung ke [Bab 2]({{<ref "./bab-2-the-divine-reality.md" >}})]
